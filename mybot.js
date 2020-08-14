@@ -15,7 +15,7 @@ client.on("raw", (...args) => {try{
 
 client.login();
 
-const Discord2 = require("discord.js");
+const Discord2 = require("discord_ex.js");
 const client2 = new Discord2.Client();
 client2.lang=1;
 client2.SERVER_ID='301063859702071316';
