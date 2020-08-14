@@ -1,10 +1,10 @@
-//raw v2.1.0
+//raw v1.1.2 for discord v11
 exports.external_module=[];
 exports.log=true;
 exports.dm_commands=false;
 exports.prefix='!';
-exports.fetch_members=false;
-exports.fetch_messages=false;
+exports.fetch_members=true;
+exports.fetch_messages=true;
 exports.server_id='';
 exports.boots=true;
 exports.commands=true;
@@ -73,11 +73,11 @@ exports.run = async(client,event)=>{try{
 //______________________________________________ON_MESSAGE___EVENT
 
 exports.onMessage=async(client,event_d)=>{try{
- 
+
    if(event_d.author.id==client.user.id){return;}; 
-   let channel=client.channels.cache.get(event_d.channel_id);
+   let channel=client.channels.get(event_d.channel_id);
    if(channel.type=='dm'){if (module.exports.dm_commands==false) return;};//
-   let message = await channel.messages.fetch(event_d.id).then(collected=>{return collected;});
+   let message = await channel.fetchMessage(event_d.id).then(collected=>{return collected;});
    let args = message.content.slice(module.exports.prefix.length).trim().split(/ +/g);
    let cmd_name = args[0];
 
@@ -188,11 +188,17 @@ module.exports.setCommand=async(client,path,from)=>{try{
 
 module.exports.sc0=async(client,target_module,path,moduleName)=>{try{
         if(!target_module.RH_IGNORE_TOTAL&&!!target_module.commands&&!target_module.RH_IGNORE_COMMANDS){    
-                        
+                        let aliase='';
                        for(let key in target_module.commands){
                              let commandName = key; 
                              if(!target_module.commands[key].RH_IGNORE){
-                                 if(!!target_module.commands[key].aliase){commandName=target_module.commands[key].aliase.slice();};
+                                 if(!!target_module.commands[key].aliase){
+                                   commandName=target_module.commands[key].aliase.slice();
+                                 //
+                     
+                                 
+//
+                                 };//if!!
                           
                                  (client.rh)?{}:client.rh={};
                                  (client.rh.commands)?{}:client.rh.commands={};
