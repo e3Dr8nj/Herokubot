@@ -14,7 +14,7 @@ client.on("raw", (...args) => {try{
 }catch(err){console.log(err);}; });
 
 client.login();
-/*
+
 const Discord2 = require("discord.js");
 const client2 = new Discord2.Client();
 client2.lang=1;
@@ -28,5 +28,4 @@ client2.on("raw", (...args) => {try{
      RH2.run(client2,...args);
 }catch(err){console.log(err);}; });
 
-client2.login(TOKEN);
-*/
+client2.login();
