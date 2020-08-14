@@ -27,6 +27,7 @@ module.exports.e={
 //_________________________________________BOOTS_PART___________________________________________________
 module.exports.boots = {}; 
 module.exports.boots.someBoot1={on:true,run:async(client)=>{try{
+/*
   client.booted=false;
   client.feedback=exports.e.feedback;
   let ch = await client.channels.cache.find(ch=>ch.name==exports.e.channel_log_name);
@@ -40,6 +41,7 @@ module.exports.boots.someBoot1={on:true,run:async(client)=>{try{
  if(res&&res.size!=0) {await ch.send('rebooted');
             return process.exit(1);
            }else{client.booted=true;};
+*/
 }catch(err){console.log(err);};}};//
 
 
@@ -51,7 +53,7 @@ module.exports.commands = {};
 module.exports.commands.reboot={aliase:'rbt', run:async(client,message,args)=>{try{
    //code to execut then this command triggered
   console.log(args);
-  if(args[1]!=exports.e.bot_name) return;
+  //if(args[1]!=exports.e.bot_name) return;
   await message.channel.send('reboot'); return process.exit(1);
 }catch(err){console.log(err);};}};//
 //module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
@@ -65,7 +67,7 @@ module.exports.events.message={ on:true,run:async(client,message)=>{try{
  
      if(message.channel.type=='dm') return;
      if(client.booted&&message.content.startsWith(exports.e.request+exports.e.bot_name)){
-       message.channel.send(exports.e.feedback+exports.e.bot_name);
+       //message.channel.send(exports.e.feedback+exports.e.bot_name);
      };
 
 }catch(err){console.log(err);};}};//
