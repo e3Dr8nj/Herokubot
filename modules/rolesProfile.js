@@ -1,6 +1,6 @@
 ﻿//________________________________________INITIATION_PART__________________________________________
 //_____________SETTINGS
-//exports.RH_IGNORE_TOTAL=true;//add this line to ignore this module 
+exports.RH_IGNORE_TOTAL=true;//add this line to ignore this module 
 exports.active=true;//this module activate (deactivate module and all events,commands,boot in it if value is false)
 exports.events={};// {} - activate/false - deactive
 exports.commands={};// {} - activate/false -deactive
