@@ -1,20 +1,12 @@
-﻿exports.logs=true;
-//________________________________________INITIATION_PART__________________________________________
-let s_up=false;
+﻿//________________________________________INITIATION_PART__________________________________________
 //_____________SETTINGS
-
-let delay=async(duration)=>{await new Promise(resolve=>setTimeout(resolve,duration))};
-
-//_________________PART MANAGER (OPCIONAL)
-exports.RH_IGNORE_TOTAL=true;//add this line to ignore this module 
-//exports.RH_IGNORE_COMMANDS=true;//add this line to ignore all commands from this module
-//module.exports.RH_BOOTS=true;//add this line to ignore all boots from this module
-//module.exports.RH_IGNORE_EVENTS=true;//add this line to ignore all events from this module
-//module.exports.RH_IGNORE_EVENTS_PRIMITIVE=true;//add this line to ignore all events_primitive from this module
-exports.active=true;//this module activate (deactivate module and all events,commands,boot in it if value is false)
+//exports.RH_IGNORE_TOTAL=true;//add this line to ignore this module 
+exports.active=false;//this module activate (deactivate module and all events,commands,boot in it if value is false)
 exports.events={};// {} - activate/false - deactive
 exports.commands={};// {} - activate/false -deactive
 exports.boots={};// {} - activate/false -deactive
+//exports.on=true;
+let delay=async(duration)=>{await new Promise(resolve=>setTimeout(resolve,duration))};
 //exports.m=require('./this_project_main.js'); //inculde this project`s main file if present (same directory)
 //____________DICTIONARY//dictionary set, elements by accesed by module.exports.d.some_phase[client.lang] 
 exports.d={
@@ -24,6 +16,7 @@ exports.d={
 };//d end
 //___________ENVORIMENTAL//envorimental set, elements accesed by module.exports.e.some_envorimental
 exports.e={
+     time_limit:1000*60*60,
      some_envorimental:'value'  
 };//e end
 exports.system={
@@ -167,7 +160,7 @@ exports.reset=async(client,message,args)=>{try{
       roleList=roleList[0]; 
       if(roleList==' '){roleList='no data';};
       let msg = await message.channel.messages.fetch(args[2]);
-      await msg.reactions.removeAll().catch(error => console.error('Failed to clear reactions: ', error));
+       await msg.clearReactions();
       msg = await msg.edit({
       embed:{
          title:'',
@@ -269,7 +262,9 @@ exports.onclickEmoji=async(client,messageReaction,user,action)=>{try{
    
      if(member.user.id==client.user.id) return;
     // if(member.roles.get(roleID)){ member.removeRole(role);  }else{member.addRole(role);};
-       if(action=='remove'){ member.roles.remove(role);  }else{
+       if(action=='remove'){ 
+        if(member.roles.cache.get(role.id)) {console.log('rh');member.roles.remove(role); };
+       }else{
                  
 if(module.exports.e[user.id]&&exports.e[user.id]>new Date().getTime()) return console.log('due time limit'+exports.e[user.id]);
                  //console.log(module.exports.system.temple.roles_arr_id);
@@ -285,7 +280,7 @@ if(module.exports.e[user.id]&&exports.e[user.id]>new Date().getTime()) return co
                    await check();
                 };
            
-                let res = await member.roles.add(role).then(r=>{exports.e[user.id]=new Date().getTime()+2000;}).catch(err=>{console.log(err+'111');return 2;});
+                let res = await member.roles.add(role).then(r=>{exports.e[user.id]=new Date().getTime()+exports.e.time_limit;}).catch(err=>{console.log(err+'111');return 2;});
                await console.log(role.name+' '+res);
 //await delay(1000);
          
