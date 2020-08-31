@@ -1,6 +1,6 @@
 ﻿//________________________________________INITIATION_PART__________________________________________
 //_____________SETTINGS
-exports.RH_IGNORE_TOTAL=true;//add this line to ignore this module 
+//exports.RH_IGNORE_TOTAL=true;//add this line to ignore this module 
 exports.active=true;//this module activate (deactivate module and all events,commands,boot in it if value is false)
 exports.events={};// {} - activate/false - deactive
 exports.commands={};// {} - activate/false -deactive
@@ -16,6 +16,7 @@ exports.d={
 };//d end
 //___________ENVORIMENTAL//envorimental set, elements accesed by module.exports.e.some_envorimental
 exports.e={
+     amount_limit:7,
      some_envorimental:'value'  
 };//e end
 exports.system={
@@ -229,7 +230,13 @@ exports.onclickEmoji=async(client,messageReaction,user,action)=>{try{
      let role = messageReaction.message.guild.roles.cache.get(roleID);
      if(!role){return console.log('this role is apsend');};
      if(member.user.id==client.user.id) return;
-     if(action=='remove'){ member.roles.remove(role);  }else{member.roles.add(role);};
+     if(action=='remove'){ if(member.roles.cache.get(role.id)){console.log('rh');member.roles.remove(role); }; }else{
+       
+       exports.e[user.id]=(exports.e[user.id])?exports.e[user.id]+1:1;
+       console.log(exports.e);
+       let num = Number(exports.e.amount_limit);
+       if(exports.e[user.id]<num) {member.roles.add(role)}else{console.log('x rate limit');};
+     };
     return;
      
      
