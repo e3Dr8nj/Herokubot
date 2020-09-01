@@ -6,7 +6,7 @@ let random =(max)=>{ return Math.floor(Math.random()*max);};
 
 
 //_________________PART MANAGER (OPCIONAL)
-exports.RH_IGNORE_TOTAL=true;//add this line to ignore this module 
+//exports.RH_IGNORE_TOTAL=true;//add this line to ignore this module 
 exports.RH_IGNORE_COMMANDS=false;//add this line to ignore all commands from this module
 module.exports.RH_BOOTS=false;//add this line to ignore all boots from this module
 module.exports.RH_IGNORE_EVENTS=false;//add this line to ignore all events from this module
