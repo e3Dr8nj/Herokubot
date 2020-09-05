@@ -74,8 +74,8 @@ message.channel.send('<:28:589907105717157909>');
 */
                 message.channel.send('<:28:589907105717157909>'); 
                 
-                if(!client.suped) message.channel.send('а теперь напиши *s.up* пожалуйста <:28:589907105717157909> ');
-                client.suped=false;
+                message.channel.send('а теперь напиши *s.up* пожалуйста <:28:589907105717157909> ');
+               // client.suped=false;
                 await  module.exports.changeChnlName(client,message.channel,'default');//change channel name to default
                 await module.exports.updateTime(client,message,time_msc);
                 await module.exports.setAwaiter(client,message.channel,module.exports.e.tag_time,time_msc);
