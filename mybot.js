@@ -16,7 +16,7 @@ client.on('rateLimit', (rateLimitInfo)  => {try{
 	client.rateLimit = rateLimitInfo.timeout;
   client.rateLimitDate=rateLimitInfo.timeout+new Date().getTime();
 
-//console.log('RL__'+client.rateLimit+'  '+rateLimitInfo.limit)
+console.log('RL__'+client.rateLimit+'  '+rateLimitInfo.limit)
 }catch(err){console.log(err);}; });
 
 client.on("raw", (...args) => {try{
