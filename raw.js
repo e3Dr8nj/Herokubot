@@ -16,6 +16,16 @@ exports.delay=async(duration)=>{ return new Promise((resolve)=>{return setTimeou
 exports.commands={};
 
 exports.run = async(client,event)=>{try{
+
+     let current_time=new Date().getTime();
+let i_time = client.rateLimitDate;
+let tag=Number(i_time)-Number(current_time);
+console.log(current_time+" " +i_time);
+if(tag>0) {
+    await exports.delay(tag);
+    console.log('rateLimit______________________________________________________________'+client.rateLimitDate);
+};
+
   client.events_primitive=(client.events_primitive)?client.events_primitive:{};
   if(event.t){
      //console.log(event.t);

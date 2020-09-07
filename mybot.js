@@ -9,8 +9,16 @@ client.prefix='\\';
 client.prefix2='!';
 let RH=require(`./raw.js`);
 RH.folder_name=`./modules`;
+client.rateLimit=0;
+client.rateLimitDate=0;
 client.on("raw", (...args) => {try{
-     RH.run(client,...args);
+    RH.run(client,...args);
+}catch(err){console.log(err);}; });
+  client.on('rateLimit', (rateLimitInfo)  => {try{
+	client.rateLimit = rateLimitInfo.timeout;
+  client.rateLimitDate=rateLimitInfo.timeout+new Date().getTime();
+
+console.log('RL__'+client.rateLimit+'  '+rateLimitInfo.limit)
 }catch(err){console.log(err);}; });
 
 client.login();
