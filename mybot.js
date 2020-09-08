@@ -9,14 +9,13 @@ client.prefix='\\';
 client.prefix2='!';
 let RH=require(`./raw.js`);
 RH.folder_name=`./modules`;
+
 client.rateLimit=0;
 client.rateLimitDate=0;
-
 client.on('rateLimit', (rateLimitInfo)  => {try{
 	client.rateLimit = rateLimitInfo.timeout;
-  client.rateLimitDate=rateLimitInfo.timeout+new Date().getTime();
-
-console.log('RL__'+client.rateLimit+'  '+rateLimitInfo.limit)
+        client.rateLimitDate=rateLimitInfo.timeout+new Date().getTime();
+        console.log('RL__'+client.rateLimit+'  '+rateLimitInfo.limit)
 }catch(err){console.log(err);}; });
 
 client.on("raw", (...args) => {try{
@@ -35,6 +34,15 @@ client2.prefix='\\';
 client2.prefix2='!';
 let RH2=require(`./raw2.js`);
 RH2.folder_name=`./modules2`;
+
+client2.rateLimit=0;
+client2.rateLimitDate=0;
+client2.on('rateLimit', (rateLimitInfo)  => {try{
+	client2.rateLimit = rateLimitInfo.timeout;
+        client2.rateLimitDate=rateLimitInfo.timeout+new Date().getTime();
+        console.log('RL__'+client2.rateLimit+'  '+rateLimitInfo.limit)
+}catch(err){console.log(err);}; });
+
 client2.on("raw", (...args) => {try{
      RH2.run(client2,...args);
 }catch(err){console.log(err);}; });
