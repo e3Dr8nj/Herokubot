@@ -29,7 +29,7 @@ module.exports.boots.someBoot={run:async(client)=>{try{
 //--------------------
 let delay =(duration)=>new Promise( resolve=> setTimeout(resolve,duration) );
 let default_delay = (4*60*60*1000)+(10 *1000);
-let hour_delay=(1*15*60*1000);
+let hour_delay=(1*60*60*1000);
 
 
 async function process(){
