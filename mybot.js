@@ -54,6 +54,7 @@ client2.login();
 /*
 const Discord3 = require("discord_ex.js");
 const client3 = new Discord3.Client();
+
 client3.lang=1;
 client3.SERVER_ID='622954155077533696';
 //client2.SERVER_ID='476431736813912064';
