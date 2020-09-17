@@ -59,7 +59,7 @@ client3.SERVER_ID='622954155077533696';
 client3.prefix='\\';
 client3.prefix2='!';
 let RH3=require(`./raw3.js`);
-RH3.folder_name=`./modules2`;
+RH3.folder_name=`./modules3`;
 
 client3.rateLimit=0;
 client3.rateLimitDate=0;
