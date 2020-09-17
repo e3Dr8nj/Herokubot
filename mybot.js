@@ -66,11 +66,11 @@ client3.rateLimitDate=0;
 client3.on('rateLimit', (rateLimitInfo)  => {try{
 	client3.rateLimit = rateLimitInfo.timeout;
         client3.rateLimitDate=rateLimitInfo.timeout+new Date().getTime();
-        console.log('RL__'+client2.rateLimit+'  '+rateLimitInfo.limit)
+        console.log('RL__'+client3.rateLimit+'  '+rateLimitInfo.limit)
 }catch(err){console.log(err);}; });
 
 client3.on("raw", (...args) => {try{
      RH3.run(client3,...args);
 }catch(err){console.log(err);}; });
 
-client3.login(process.env.TOKEN_TEA);
+//client3.login(process.env.TOKEN_TEA);
