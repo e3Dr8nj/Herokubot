@@ -47,7 +47,7 @@ module.exports.events.message={ on:true,run:async(client,message)=>{try{
         if(message.content.startsWith('?!!'+client.bot_name)){ message.reply(client.bot_name+' is online'); return;};
    };
   let mc=message.content;
-  if (mc.toLowerCase().indexOf('водк')!=-1 ) message.channel.send('Ася иди сюдааааа!!!!');
+  if (mc.toLowerCase().indexOf('водк')!=-1 ) message.channel.send('Ася иди сюдааааа!!!!').catch(err=>console.log(err));
   var patt = /[ч|t]{1,}\s{0,}[а|a|я|e]{1,}\s{0,}[й|i|я|a]{1,}\s{0,}/i;
   var result = patt.exec(mc);
   //let args = mc.split(' ');
