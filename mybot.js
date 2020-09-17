@@ -51,7 +51,7 @@ client2.on("raw", (...args) => {try{
 client2.login();
 
 //_______________
-/*
+
 const Discord3 = require("discord_ex.js");
 const client3 = new Discord3.Client();
 
@@ -76,4 +76,4 @@ client3.on("raw", (...args) => {try{
 }catch(err){console.log(err);}; });
 
 client3.login(process.env.TOKEN_TEA);
-*/
+
