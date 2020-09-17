@@ -73,4 +73,4 @@ client3.on("raw", (...args) => {try{
      RH3.run(client3,...args);
 }catch(err){console.log(err);}; });
 
-//client3.login(process.env.TOKEN_TEA);
+client3.login(process.env.TOKEN_TEA);
