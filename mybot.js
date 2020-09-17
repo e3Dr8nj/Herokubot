@@ -25,7 +25,7 @@ client.on("raw", (...args) => {try{
 
 client.login();
 //____________
-/*
+
 const Discord2 = require("discord_ex.js");
 const client2 = new Discord2.Client();
 client2.lang=1;
@@ -49,7 +49,7 @@ client2.on("raw", (...args) => {try{
 }catch(err){console.log(err);}; });
 
 client2.login();
-*/
+
 //_______________
 const Discord3 = require("discord_ex.js");
 const client3 = new Discord3.Client();
