@@ -49,7 +49,7 @@ module.exports.events.message={ on:true,run:async(client,message)=>{try{
       if (message.author.bot) return;
       let channel_true=module.exports.e.channels_exceptions.includes(message.channel.id);
               if(channel_true) return;
-   if(!message.member) message.guild.fetchMember(message.author.id).then(m => console.log('cashed');
+   if(!message.member) message.guild.fetchMember(message.author.id).then(m => console.log('cashed'));
    if(!message.member.bannable) return;
   
      if( (message.content.indexOf(module.exports.e.link)!=-1) ){
