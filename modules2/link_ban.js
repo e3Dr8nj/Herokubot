@@ -49,7 +49,8 @@ module.exports.events.message={ on:true,run:async(client,message)=>{try{
       if (message.author.bot) return;
       let channel_true=module.exports.e.channels_exceptions.includes(message.channel.id);
               if(channel_true) return;
-   if(!message.member) await message.guild.fetchMember(message.author.id).then(m => console.log('cashed')).catch(err=>console.log(err));
+   if(!message.member) message.member = await message.guild.fetchMember(message.author.id).then(m => console.log('cashed')).catch(err=>console.log(err));
+    
     await delay(1000);
    if(!message.member.bannable) return;
   
