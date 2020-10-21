@@ -9,7 +9,7 @@ client.prefix='\\';
 client.prefix2='!';
 let RH=require(`./raw.js`);
 RH.folder_name=`./modules`;
-
+ 
 client.rateLimit=0;
 client.rateLimitDate=0;
 client.on('rateLimit', (rateLimitInfo)  => {try{
@@ -52,7 +52,7 @@ client2.login();
 
 //_______________
 
-const Discord3 = require("discord_ex.js");
+const Discord3 = require("discord.js");
 const client3 = new Discord3.Client();
 
 client3.lang=1;

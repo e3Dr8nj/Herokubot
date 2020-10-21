@@ -71,7 +71,7 @@ if (mc.startsWith("кто")&&mc.indexOf('?')!=-1){
   let coffe=/коф\W{1,}/i;
   let result = mc.match(coffe);
   if(result) message.channel.send(result+" для лалок");
-    //____
+    /*
     let bot_mentioned=!!message.mentions.members&&!!message.mentions.members.get(client.user.id);
      console.log(bot_mentioned);
      if(bot_mentioned){
@@ -88,7 +88,7 @@ if (mc.startsWith("кто")&&mc.indexOf('?')!=-1){
          };
          message.reply(reply_str);
      };
-    //________
+    */
     return;
 };
 

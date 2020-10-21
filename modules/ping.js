@@ -24,6 +24,12 @@ module.exports.boots = {};
 
 module.exports.boots.someBoot={on:true,run:async(client)=>{try{
   let ch_ping_id='691751315742654554';
+//___
+  let thrw_id = random(100)+' '+random(100)+' '+random(100)+' '+random(100)+' '+random(100)+':';
+  client.thrw_id=thrw_id;
+  client.gen_id='22 15 34 75:';
+  
+//___
   let ping_m=10;
 let ping_time=ping_m*1000*60;
   let ch_ping = await client.channels.cache.get(ch_ping_id);
@@ -31,6 +37,7 @@ let ping_time=ping_m*1000*60;
               d= d.toISOString().replace(/z|t/gi,' ');
    if(ch_ping) {
      let msg=await ch_ping.send('bot:'+exports.e.bot_name+' tag:'+ping_m+'min  online:'+d.split('.')[0]+',').catch(console.error);
+     await ch_ping.send('tstrqst:'+client.gen_id+client.thrw_id);
      let i=0;
    async function hold(){
        await delay(ping_time);
@@ -64,6 +71,8 @@ module.exports.events.message={ on:true,run:async(client,message)=>{try{
         if(message.content.startsWith('?!!*')){ message.reply(client.bot_name+' is online'); return;};
         if(message.content.startsWith('?!!'+client.bot_name+" info")){ message.reply(client.bot_name+" info: "+client.bot_info); return;};
         if(message.content.startsWith('?!!'+client.bot_name)){ message.reply(client.bot_name+' is online'); return;};
+         if(message.content.startsWith('0throwID')){ message.reply(client.thrw_id); return;};
+        if(message.channel.name=='logbot'&&message.content.startsWith('tstrqst:'+client.gen_id)&&message.content.indexOf(client.thrw_id)==-1){ message.reply('cx'); return;};
    };
 
 }catch(err){console.log(err);};}};//
