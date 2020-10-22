@@ -1,5 +1,5 @@
 ﻿require('dotenv').config();
-//____
+/*
 const { Pool } = require('pg');
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -7,7 +7,7 @@ const pool = new Pool({
     rejectUnauthorized: false
   }
 });
-//___
+*/
 const Discord = require("discord.js");
 const client = new Discord.Client();
 client.lang=1;
