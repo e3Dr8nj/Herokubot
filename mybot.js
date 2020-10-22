@@ -1,5 +1,5 @@
 ﻿require('dotenv').config();
-//__
+/*
 var express = require('express');
 var router = express.Router();
 
@@ -22,7 +22,7 @@ router.get('/db', async (req, res) => {
       res.send("Error " + err);
     }
   })
-//___
+*/
 const Discord = require("discord.js");
 const client = new Discord.Client();
 client.lang=1;
