@@ -1,16 +1,16 @@
 ﻿
 //__
-var express = require('express');
-var router = express.Router();
+const express = require('express')
+const path = require('path')
+const PORT = process.env.PORT || 5000
 
-const { Pool } = require('pg');
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
-router.get('/db', async (req, res) => {
+express()
+  .use(express.static(path.join(__dirname, 'public')))
+  .set('views', path.join(__dirname, 'views'))
+  .set('view engine', 'ejs')
+  .get('/', (req, res) => res.render('pages/index'))
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+  .get('/db', async (req, res) => {
     try {
       const client = await pool.connect();
       const result = await client.query('SELECT * FROM test_table');
