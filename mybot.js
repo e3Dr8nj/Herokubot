@@ -1,5 +1,20 @@
 ﻿require('dotenv').config();
+//___
+var pg = require('pg');
+var conString = process.env.DATABASE_URL;
 
+var client = new pg.Client(conString);
+client.connect();
+
+var query = client.query("SELECT * FROM test_table");
+//fired after last row is emitted
+
+query.on('row', function(row) {
+    console.log('TEST_______________________________________-');
+    console.log(row);
+});
+//___
+/*
 var express = require('express');
 var router = express.Router();
 
@@ -22,6 +37,7 @@ router.get('/db', async (req, res) => {
       res.send("Error " + err);
     }
   })
+*/
 
 const Discord = require("discord.js");
 const client = new Discord.Client();
