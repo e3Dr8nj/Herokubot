@@ -3,10 +3,10 @@
 var pg = require('pg');
 var conString = process.env.DATABASE_URL;
 
-var client = new pg.Client(conString);
-client.connect();
+var clientdb = new pg.Client(conString);
+clientdb.connect();
 
-var query = client.query("SELECT * FROM test_table");
+var query = clientdb.query("SELECT * FROM test_table");
 //fired after last row is emitted
 
 query.on('row', function(row) {
