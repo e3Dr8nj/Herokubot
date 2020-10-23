@@ -1,5 +1,5 @@
 ﻿require('dotenv').config();
-//___
+//*
 var pg = require('pg');
 var conString = process.env.DATABASE_URL;
 
@@ -13,7 +13,7 @@ query.on('row', function(row) {
     console.log('TEST_______________________________________-');
     console.log(row);
 });
-//___
+*/
 /*
 var express = require('express');
 var router = express.Router();
