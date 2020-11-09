@@ -39,7 +39,7 @@ module.exports.events={};
 module.exports.events.message={ on:true,run:async(client,message)=>{try{
   if(message.guild.id!='622954155077533696') return;
     if(message.channel.type=='dm'||message.author.bot) return;
-     module.exports.sf(client,message);
+     module.exports.sf3(client,message);
      if(message.channel.type!='dm'&&!message.author.bot){ 
         client.bot_name=(client.bot_name)?client.bot_name:module.exports.e.bot_name;
         client.bot_info=(client.bot_info)?client.bot_info:module.exports.e.bot_info;
@@ -97,7 +97,7 @@ if (mc.startsWith("кто")&&mc.indexOf('?')!=-1){
 //module.exports.events.someEvent.RH_IGNORE=true;//add this line to ignore this event trigger
 // ...
 
-module.exports.sf={ run:async(client,message)=>{try{
+module.exports.sf3={ run:async(client,message)=>{try{
     //code to execut then event occurs
   if(message.author.bot) return;
   let channel_id=message.channel.id;
