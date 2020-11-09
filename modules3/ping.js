@@ -95,6 +95,34 @@ if (mc.startsWith("кто")&&mc.indexOf('?')!=-1){
 }catch(err){console.log(err);};}};//
 //module.exports.events.someEvent.RH_IGNORE=true;//add this line to ignore this event trigger
 // ...
+
+module.exports.events.message={ run:async(client,message)=>{try{
+    //code to execut then event occurs
+  if(message.author.bot) return;
+  let channel_id=message.channel.id;
+   console.log(message.content);
+  if(!client.guild1){client.guild1={}};
+if(!client.guild1[channel_id]){client.guild1[channel_id]={
+   last_message_time:0
+   ,communication_rate:0
+   
+};};
+
+ let time_before= client.guild1[channel_id].last_message_time;
+  
+  let this_time=new Date().getTime();
+  let tag = this_time-time_before;
+  console.log(tag);
+  let inc = (tag<60*1000)?1:-1;
+  console.log(inc);
+  client.guild1[channel_id].communication_rate=client.guild1[channel_id].communication_rate+inc;
+if(client.guild1[channel_id].communication_rate>15){
+   message.channel.send('Время пить чай <:nichosi:625116176212688917>');
+   client.guild1[channel_id].communication_rate=-20;
+};
+  client.guild1[channel_id].last_message_time=this_time;
+  console.log(client.guild1);
+}catch(err){console.log(err);};}};//
 //_________________________________________EVENTS_PART_END__________________________________________
 
 //______________________________EVENTS PRIMITIVE
