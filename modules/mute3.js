@@ -61,7 +61,7 @@ module.exports.commands.muteWarn={ on:true, aliase:'предупреждение
               
               let super_moderator_role = message.member.guild.roles.cache.find(r=>r.name==module.exports.e.super_moderator_name);
               if(!!super_moderator_role&&message.member.roles.cache.get(super_moderator_role.id)){allow_warn=true;};
-              if(!allow_warn) {return message.channel.send(message.member+' У вас недостаточно прав, лалка');};
+              if(!allow_warn) {return message.channel.send(message.member.toString()+' У вас недостаточно прав, лалка');};
              let mmb = message.mentions.members.first();
               if(!mmb){
                    //let rnd = Math.floor(Math.random()*ph.warn.length);           
@@ -112,16 +112,16 @@ module.exports.commands.selfmute={ on:true, aliase:'бот-лалка', run:asyn
            if(rnd!=0&&last_two[0]!=0&&last_two[1]!=0) rnd=0;
            client.self_mute_last_rnd.push(rnd);
           
-                if(rnd==1) return message.channel.send(mmb+' сам лалка');
-                if(rnd==2) return message.channel.send(mmb+' уфф');
+                if(rnd==1) return message.channel.send(mmb.toString()+' сам лалка');
+                if(rnd==2) return message.channel.send(mmb.toString()+' уфф');
                 
-                if(rnd==3) return message.channel.send(mmb+' Слишком эмоционально, садись два.');
-                if(rnd==4) return message.channel.send(mmb+' оскорбления признак низкого уровня развития');
-                if(rnd==5) return message.channel.send(mmb+' нит');
-                if(rnd==6) return message.channel.send(mmb+' ты заблочен');
+                if(rnd==3) return message.channel.send(mmb.toString()+' Слишком эмоционально, садись два.');
+                if(rnd==4) return message.channel.send(mmb.toString()+' оскорбления признак низкого уровня развития');
+                if(rnd==5) return message.channel.send(mmb.toString()+' нит');
+                if(rnd==6) return message.channel.send(mmb.toString()+' ты заблочен');
                
               //if(!mmb){message.channel.send('щас буду мутить, мля'); return;};
-              message.channel.send(mmb+' Замучен на '+Number(rnd_time)/(60*1000)+' минут'); 
+              message.channel.send(mmb.toString()+' Замучен на '+Number(rnd_time)/(60*1000)+' минут'); 
               //return;
               let current_time = new Date().getTime();
               let terminal_time=current_time+rnd_time;
@@ -148,8 +148,8 @@ module.exports.commands.unmute={ on:true, aliase:'размут', run:async(clien
                     message.channel.send(ph.unmute[rnd]); return;
           };//if mmb to unmute is not defined
              // message.channel.send('И пусть бы дальше познавали пустотность бытия.. <:33:402137670345687050> ');
-             if(!client.muted[mmb.user.id]) return message.channel.send(mmb+' Объект не найден среди замученных..');
-              message.channel.send(mmb+' Снимается печать немоты. <:59:589907585449197570>');
+             if(!client.muted[mmb.user.id]) return message.channel.send(mmb.toString()+' Объект не найден среди замученных..');
+              message.channel.send(mmb.toString()+' Снимается печать немоты. <:59:589907585449197570>');
               await module.exports.delay(1000);
               message.channel.send(' Происходит восстановление ролей доступа.');
                 let resolve = module.exports.unmute(client,message,mmb.user.id,0);
@@ -158,7 +158,7 @@ module.exports.commands.unmute={ on:true, aliase:'размут', run:async(clien
               //await module.exports.delay(1000);
               message.channel.send(' Дождитесь полной интеграции.');
               
-              await module.exports.log(client,message,{name:'Размут',description:' размутил '+mmb+' '+mmb.user.username+mmb.user.discriminator,color:'green'});
+              await module.exports.log(client,message,{name:'Размут',description:' размутил '+mmb.toString()+' '+mmb.user.username+mmb.user.discriminator,color:'green'});
               return;  
 
 
@@ -181,7 +181,7 @@ module.exports.commands.timemute={ on:true, aliase:'мут', run:async(client,me
                 //message.channel.send('Укажите жертву'); return;
                 let rnd = Math.floor(Math.random()*2);
                  if(rnd==0){message.channel.send('Рандомный объект замучен'); return;};
-                 message.channel.send(message.member+' Снимаются роли доступа');
+                 message.channel.send(message.member.toString()+' Снимаются роли доступа');
                  await module.exports.insertMmbRoles(client,message,message.member,2*1000*60,bcs);
                 message.channel.send(' Накладывается печать немоты 🤐');
                 await module.exports.log(client,message,{name:'Игрался с мутом ',description:message.member.user.username+message.member.user.discriminator +' неправильно использовал команду и был за это замучен на 2 минуты',color:'violet'});
@@ -206,8 +206,8 @@ module.exports.commands.timemute={ on:true, aliase:'мут', run:async(client,me
               args=base_part.trim().split(' ');
               //args=args.slice(2);
               if(args.length==0){
-                      //message.channel.send(mmb+' вечный мут, мля!'); 
-                      message.channel.send(mmb+' Снимаются роли доступа');
+                      //message.channel.send(mmb.toString()+' вечный мут, мля!'); 
+                      message.channel.send(mmb.toString()+' Снимаются роли доступа');
                       await module.exports.insertMmbRoles(client,message,mmb,limiter,bcs);
                       
                      //await module.exports.delay(1000);
@@ -224,7 +224,7 @@ module.exports.commands.timemute={ on:true, aliase:'мут', run:async(client,me
               };//for end
               if(Number.isNaN(times)||times==0){message.reply('Не верно указанное время, или не добавлено -- два дефиса после ника нарушителя.'); return;};
              
-             message.channel.send(mmb+' Снимаются роли доступа.');
+             message.channel.send(mmb.toString()+' Снимаются роли доступа.');
              let more=false;
              if(Number(times)>limiter) {times=limiter;more=true;}; 
   

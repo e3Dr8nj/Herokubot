@@ -137,7 +137,7 @@ module.exports.commands.duelStart={ on:true, aliase:module.exports.d.duel[module
     client.duel_count=0;
   //await message.channel.send(loser+' '+winner+' '+module.exports.d.both[client.lang]);
       let lia = message.guild.members.cache.get('436917208560435211');
-    lia=(lia)?lia:' ';
+    lia=(lia)?lia.toString():' ';
  await message.channel.send(winner+loser+'<:29:589907121370431592><:29:589907121370431592>    💥 🔫'+lia+" "+module.exports.d.both[client.lang]);
  
   await module.exports.mute(client,message,loser);
