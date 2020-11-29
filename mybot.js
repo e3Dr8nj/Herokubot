@@ -117,7 +117,7 @@ client3.on("raw", (...args) => {try{
 client3.login(process.env.TOKEN_TEA);
 
 //__
-const Discord4 = require("discord_ex4.js");
+const Discord4 = require("discord_ex.js");
 const client4 = new Discord4.Client();
 client4.lang=1;
 client4.SERVER_ID='301063859702071316';
