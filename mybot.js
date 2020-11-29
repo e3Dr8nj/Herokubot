@@ -116,3 +116,29 @@ client3.on("raw", (...args) => {try{
 
 client3.login(process.env.TOKEN_TEA);
 
+//__
+const Discord4 = require("discord_ex.js");
+const client4 = new Discord4.Client();
+client4.lang=1;
+client4.SERVER_ID='301063859702071316';
+//client4.SERVER_ID='476431736813912064';
+client4.prefix='\\';
+client4.prefix2='!';
+let RH4=require(`./raw3_old.js`);
+RH4.folder_name=`./modules4`;
+ 
+client4.rateLimit=0;
+client4.rateLimitDate=0;
+client4.on('rateLimit', (rateLimitInfo)  => {try{
+	client4.rateLimit = rateLimitInfo.timeout;
+        client.rateLimitDate=rateLimitInfo.timeout+new Date().getTime();
+        console.log('RL__'+client.rateLimit+'  '+rateLimitInfo.limit)
+}catch(err){console.log(err);}; });
+
+client4.on("raw", (...args) => {try{
+    RH4.run(client,...args);
+}catch(err){console.log(err);}; });
+  
+
+client4.login(process.env.TOKEN);
+

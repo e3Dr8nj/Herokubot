@@ -96,6 +96,18 @@ module.exports.commands.someCommand={aliase:'send', run:async(client,message,arg
 module.exports.events={};
 
 module.exports.events.message={ on:true,run:async(client,message)=>{try{
+ //__
+      
+  if(message.channel.type!='dm' &&message.author.bot){
+    if(message.content.startsWith('^rewire')){
+      let str2 = message.content.trim().split(" ");
+      str2.shift();
+      str2=str2.join(" ");
+     if(str2) message.channel.send(str2);
+     return;
+     };
+  };
+//_
      if(message.author.bot) return;
      if(message.channel.type=='dm'){
   let channel=client.channels.get("653004216926994452");
