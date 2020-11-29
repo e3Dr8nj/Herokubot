@@ -1,10 +1,10 @@
-//raw v1.1.2 for discord v11
+//raw v1.1.2
 exports.external_module=[];
 exports.log=true;
 exports.dm_commands=false;
 exports.prefix='!';
 exports.fetch_members=true;
-exports.fetch_messages=false;
+exports.fetch_messages=true;
 exports.server_id='';
 exports.boots=true;
 exports.commands=true;
@@ -16,18 +16,9 @@ exports.delay=async(duration)=>{ return new Promise((resolve)=>{return setTimeou
 exports.commands={};
 
 exports.run = async(client,event)=>{try{
-  let current_time=new Date().getTime();
-  let i_time = client.rateLimitDate;
-  let tag=Number(i_time)-Number(current_time);
-//console.log(current_time+" " +i_time);
-if(tag>0) {
-    await exports.delay(tag);
-    console.log('rateLimit______________________________________________________________'+client.rateLimitDate);
-};
-
   client.events_primitive=(client.events_primitive)?client.events_primitive:{};
   if(event.t){
-     //console.log(event.t);
+    console.log(event.t);
   };
   if(client.events_primitive[event.t]){
      client.events_primitive[event.t].map(f=>f.run(client,event));
@@ -62,7 +53,7 @@ if(tag>0) {
 
    if(!!module.exports.server_id&&exports.fetch_members) await module.exports.fetchMembers.run(client,module.exports.server_id);
     if(!!module.exports.server_id&&module.exports.fetch_messages) await module.exports.fetchMessages.run(client,module.exports.server_id);
-/*
+
     await module.exports.setBoot(client,folder_name,'folder');
     await module.exports.setBoot(client,folder_name,'external');
     await module.exports.setCommand(client,folder_name,'folder');
@@ -71,11 +62,6 @@ if(tag>0) {
     await  module.exports.setEvent(client,folder_name,'external');
     await  module.exports.setEvent_primitive(client,folder_name,'folder'); 
     await  module.exports.setEvent_primitive(client,folder_name,'external');
-*/
-   await module.exports.load_all(client,folder_name);
-//___---
-                 // await module.exports.test2(client,folder_name,'folder');//nn
-//____--
 }catch(err){console.log(err)};};//
 //____________________________________________________________
 
@@ -100,33 +86,7 @@ exports.onMessage=async(client,event_d)=>{try{
 
 }catch(err){console.log(err);};};//onMessage end
 //_________________________________________________________________________
-//___________________---
-module.exports.test2=async(client,path,from)=>{try{
-   await exports.delay(1000);
-/*
-   if(from=='external'){
-        module.exports.external_module.map(m=>module.exports.sb0(client,m,'..external..',m.name));
-        return;
-   };//if external end
-*/
-   let fs = require('fs');
-   fs.readdir(path+"/", (err, files) => {try{
-  //    if (err) return console.error(err);
 
-    files.forEach(file => {try{
-            let target_module = require(`${path}/${file}`);
-            let stats=fs.statSync(file);
-            console.log("file is dir "+stats.isDirectory());
-           // let moduleName = file.split(".")[0];
-           // module.exports.sb0(client,target_module,path,moduleName);
-     }catch(err){console.log(err);};});//forEachfile end
-    
-}catch(err){  console.log(err);};
-});//boot end
-//--------------------
-  return;
-}catch(err){console.log(err)};};//setModuleBoot end
-//_________--------------------------
 
 //_____________________________BOOT___
 //_________________SET_BOOT
@@ -197,17 +157,11 @@ module.exports.setCommand=async(client,path,from)=>{try{
 
 module.exports.sc0=async(client,target_module,path,moduleName)=>{try{
         if(!target_module.RH_IGNORE_TOTAL&&!!target_module.commands&&!target_module.RH_IGNORE_COMMANDS){    
-                        let aliase='';
+                        
                        for(let key in target_module.commands){
                              let commandName = key; 
                              if(!target_module.commands[key].RH_IGNORE){
-                                 if(!!target_module.commands[key].aliase){
-                                   commandName=target_module.commands[key].aliase.slice();
-                                 //
-                     
-                                 
-//
-                                 };//if!!
+                                 if(!!target_module.commands[key].aliase){commandName=target_module.commands[key].aliase.slice();};
                           
                                  (client.rh)?{}:client.rh={};
                                  (client.rh.commands)?{}:client.rh.commands={};
@@ -347,17 +301,4 @@ module.exports.test={ on:true,  run:async()=>{try{
       return str;
 
 }catch(err){console.log(err);};}};//
-//-------------------
-module.exports.load_all=async(client,folder_name)=>{try{
-         
-    await module.exports.setBoot(client,folder_name,'folder');
-    //await module.exports.setBoot(client,folder_name,'external');
-    await module.exports.setCommand(client,folder_name,'folder');
-   // await module.exports.setCommand(client,folder_name,'external');
-    await  module.exports.setEvent(client,folder_name,'folder'); 
-   // await  module.exports.setEvent(client,folder_name,'external');
-    await  module.exports.setEvent_primitive(client,folder_name,'folder'); 
-   // await  module.exports.setEvent_primitive(client,folder_name,'external');
-               
-}catch(err){console.log(err)};};
-
+                      
