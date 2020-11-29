@@ -84,7 +84,7 @@ client2.on('rateLimit', (rateLimitInfo)  => {try{
 }catch(err){console.log(err);}; });
 
 client2.on("raw", (...args) => {try{
-    // RH2.run(client2,...args);
+     RH2.run(client2,...args);
 }catch(err){console.log(err);}; });
 
 client2.login();
@@ -112,10 +112,10 @@ client3.on('rateLimit', (rateLimitInfo)  => {try{
 }catch(err){console.log(err);}; });
 
 client3.on("raw", (...args) => {try{
-     RH3.run(client3,...args);
+   //  RH3.run(client3,...args);
 }catch(err){console.log(err);}; });
 
-client3.login(process.env.TOKEN4);
+//client3.login(process.env.TOKEN4);
 
 //__
 const Discord4 = require("discord_ex.js");
@@ -141,5 +141,5 @@ client4.on("raw", (...args) => {try{
 }catch(err){console.log(err);}; });
   
 
-client4.login(process.env.TOKEN4);
+//client4.login(process.env.TOKEN4);
 
