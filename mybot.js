@@ -100,7 +100,7 @@ client.SERVER_ID='301063859702071316';
 //client2.SERVER_ID='476431736813912064';
 client3.prefix='\\';
 client3.prefix2='!';
-let RH3=require(`./raw3_old.js`);
+let RH3=require(`./raw3.js`);
 RH3.folder_name=`./modules3`;
 
 client3.rateLimit=0;
