@@ -95,7 +95,8 @@ const Discord3 = require("discord.js");
 const client3 = new Discord3.Client();
 
 client3.lang=1;
-client3.SERVER_ID='622954155077533696';
+client.SERVER_ID='301063859702071316';
+//client3.SERVER_ID='622954155077533696';
 //client2.SERVER_ID='476431736813912064';
 client3.prefix='\\';
 client3.prefix2='!';
@@ -114,7 +115,7 @@ client3.on("raw", (...args) => {try{
      RH3.run(client3,...args);
 }catch(err){console.log(err);}; });
 
-client3.login(process.env.TOKEN_TEA);
+client3.login(process.env.TOKEN4);
 
 //__
 const Discord4 = require("discord_ex.js");
