@@ -91,7 +91,7 @@ client2.login();
 
 //_______________
 
-const Discord3 = require("discord.js");
+const Discord3 = require("discord_ex.js");
 const client3 = new Discord3.Client();
 
 client3.lang=1;
