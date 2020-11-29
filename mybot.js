@@ -84,7 +84,7 @@ client2.on('rateLimit', (rateLimitInfo)  => {try{
 }catch(err){console.log(err);}; });
 
 client2.on("raw", (...args) => {try{
-     RH2.run(client2,...args);
+    // RH2.run(client2,...args);
 }catch(err){console.log(err);}; });
 
 client2.login();
@@ -100,7 +100,7 @@ client.SERVER_ID='301063859702071316';
 //client2.SERVER_ID='476431736813912064';
 client3.prefix='\\';
 client3.prefix2='!';
-let RH3=require(`./raw3.js`);
+let RH3=require(`./raw3_old.js`);
 RH3.folder_name=`./modules3`;
 
 client3.rateLimit=0;
