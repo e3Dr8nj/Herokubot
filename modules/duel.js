@@ -49,12 +49,16 @@ exports.t={
 //___________
 //_________________________________________INITIATION_PART_END___________________________________________
 //_________________________________________EVENTS_PART_________________________________________________
-module.exports.events.someEvent={ on:true,  run:async(client,event_parametrs)=>{try{
+module.exports.events.message={ on:true,  run:async(client,message)=>{try{
 //if on this function triggers on deffined event
+  if(message.content.startsWith("!Дуэль!")){
+    //return module.exports.commands.duelStart.run(client,message);
+  };
               
 
 }catch(err){console.log(err);};}};//
 //_________e1
+
 module.exports.events.guildMemberAdd={ on:true,  run:async(client,member)=>{try{
 //check if member has banned add super_ban role
                    //    return;
@@ -75,7 +79,7 @@ module.exports.commands.duelStart={ on:true, aliase:module.exports.d.duel[module
   if(!client.duel_count) client.duel_count=0;
   if(client.duel_count!=0) return message.reply('Дуэль уже идет.');
   async function a(client,message){
-    message.channel.send('n '+client.duel_count);
+   // message.channel.send('n '+client.duel_count);
    if(!client.duel.active){ return;};
    let emb={
           description:module.exports.d.start_phrase[client.lang]
@@ -93,9 +97,10 @@ module.exports.commands.duelStart={ on:true, aliase:module.exports.d.duel[module
    if(!resolve) {message.channel.send(module.exports.d.time_is_out[client.lang]); return client.duel_count=0;};
 
    let mmbs=[];
-   await resolve.users.map(u=>{
+    //console.log(resolve);
+   await resolve.users.cache.map(u=>{
          if(u.id!=client.user.id){
-           let mmb=message.member.guild.members.get(u.id);
+           let mmb=message.member.guild.members.cache.get(u.id);
            mmbs.push(mmb);
          };
    ;});
@@ -107,6 +112,8 @@ module.exports.commands.duelStart={ on:true, aliase:module.exports.d.duel[module
   
   let loser = mmbs[rnd]; 
   let winner =(rnd==1)?mmbs[0]:mmbs[1];
+    loser = loser.toString();
+    winner = winner.toString();
   let rnd_game=Math.floor(Math.random()*5);
   //message.channel.send(rnd+" "+rnd_game);
   client.duel_count++;
@@ -129,7 +136,7 @@ module.exports.commands.duelStart={ on:true, aliase:module.exports.d.duel[module
   if(rnd_game==3) {
     client.duel_count=0;
   //await message.channel.send(loser+' '+winner+' '+module.exports.d.both[client.lang]);
-      let lia = message.guild.members.get('436917208560435211');
+      let lia = message.guild.members.cache.get('436917208560435211');
     lia=(lia)?lia:' ';
  await message.channel.send(winner+loser+'<:29:589907121370431592><:29:589907121370431592>    💥 🔫'+lia+" "+module.exports.d.both[client.lang]);
  
