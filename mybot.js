@@ -136,7 +136,7 @@ client4.on('rateLimit', (rateLimitInfo)  => {try{
 }catch(err){console.log(err);}; });
 
 client4.on("raw", (...args) => {try{
-    RH4.run(client,...args);
+   // RH4.run(client,...args);
 }catch(err){console.log(err);}; });
   
 
