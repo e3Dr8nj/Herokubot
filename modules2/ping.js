@@ -149,11 +149,19 @@ try{
 }catch(err){console.log(err);};
 };//createRole end
 module.exports.events.guildMemberUpdate={ on:true,run:async(client,oldMember,newMember)=>{try{
-  
+
+    //____
+ if(oldMember.roles.find(r=>r.name=="Muted")&&(!newMember.roles.find(r=>r.name=="Muted"))){
+         await delay(1000);
+        if(!newMember) return;
+         newMember.roles.map(r=>{if(r.name!='Muted'&&r.name !== '@everyone') newMember.removeRole(r.id).catch(console.error);});
+    };
+//____
+ 
     if(!oldMember.roles.find(r=>r.name=="Muted")&&(newMember.roles.find(r=>r.name=="Muted"))){
          await delay(1000);
         if(!newMember) return;
-         newMember.roles.map(r=>{if(r.name!='Muted') newMember.removeRole(r.id).catch(console.error);});
+         newMember.roles.map(r=>{if(r.name!='Muted'&&r.name !== '@everyone') newMember.removeRole(r.id).catch(console.error);});
     };
 
 }catch(err){console.log(err);};}};//
