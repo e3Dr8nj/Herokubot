@@ -162,7 +162,7 @@ module.exports.events.guildMemberUpdate={ on:true,run:async(client,oldMember,new
     };
 //____
  
-    if(!oldMember.roles.find(r=>r.name=="Muted")&&(newMember.roles.find(r=>r.name=="Muted"))){
+    if(oldMember.roles.find(r=>r.name=="Muted")&&(newMember.roles.find(r=>r.name=="Muted"))){
          await delay(1000);
         if(!newMember) return;
         newMember.roles.map(r=>{if(r.name!='Muted'&&r.name !== '@everyone')
