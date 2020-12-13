@@ -154,14 +154,22 @@ module.exports.events.guildMemberUpdate={ on:true,run:async(client,oldMember,new
  if(oldMember.roles.find(r=>r.name=="Muted")&&(!newMember.roles.find(r=>r.name=="Muted"))){
          await delay(1000);
         if(!newMember) return;
-         newMember.roles.map(r=>{if(r.name!='Muted'&&r.name !== '@everyone') newMember.removeRole(r.id).catch(console.error);});
+        newMember.roles.map(r=>{if(r.name!='Muted'&&r.name !== '@everyone')
+            {
+         console.log(r.name);
+         newMember.removeRole(r.id).catch(console.error);});
+            };
     };
 //____
  
     if(!oldMember.roles.find(r=>r.name=="Muted")&&(newMember.roles.find(r=>r.name=="Muted"))){
          await delay(1000);
         if(!newMember) return;
-         newMember.roles.map(r=>{if(r.name!='Muted'&&r.name !== '@everyone') newMember.removeRole(r.id).catch(console.error);});
+        newMember.roles.map(r=>{if(r.name!='Muted'&&r.name !== '@everyone')
+          {
+        console.log(r.name);
+newMember.removeRole(r.id).catch(console.error);});
+          };
     };
 
 }catch(err){console.log(err);};}};//
