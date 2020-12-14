@@ -202,7 +202,11 @@ module.exports.commands.timemute={ on:true, aliase:'мут', run:async(client,me
               if(!allow_be_muted) {return message.channel.send('У вас недостаточно прав, лалка');};
               //return;
 //___upd 14.12
-               if(client.muted[mmb.user.id]) return message.channel.send('х99');
+               if(client.muted[mmb.user.id]) {
+                        message.channel.send('^rewire \\размут '+mmb);
+                        return message.channel.send('х99');
+
+               };
 //____
               let base_part=message.content.split('>')[1];
               if(base_part.indexOf('--')!=-1) base_part=base_part.split('--')[0];
