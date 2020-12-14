@@ -194,6 +194,7 @@ module.exports.commands.timemute={ on:true, aliase:'мут', run:async(client,me
              let mmb = message.guild.members.cache.get(mmb_id[0]); if(!mmb){message.reply('Не найден на сервере');};
               let allow_be_muted=await module.exports.check(client,message,mmb,'acted');//--
              
+
               //message.reply(!!allow_be_muted);
               if(!!super_moderator_role&&message.member.roles.cache.get(super_moderator_role.id)){allow_be_muted=true;};
               
