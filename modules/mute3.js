@@ -333,6 +333,9 @@ exports.unmute=async(client,message,mmbID,time)=>{try{
             
             return console.log('no mmb delete record'); };
           await module.exports.roleMute(client,mmb,'remove');
+//__upd 14.12
+          await module.exports.delay(3*1000);
+//__
           console.log('unmuting member '+mmb.user.username);
           //let sqlite = require('../modules/aa-sqlite');
           
@@ -431,7 +434,7 @@ exports.roleMute=async(client,mmb,action)=>{try{
 
          let role = mmb.guild.roles.cache.find(r=>r.name==module.exports.e.mute_role_name);
          if(!role) {console.log('there are not that role'); return;};
-         await module.exports.delay(3*1000);
+         await module.exports.delay(1*1000);
          (action=="add")?mmb.roles.add(role).catch(err=>console.log(err)):mmb.roles.remove(role).catch(err=>console.log(err));
 
 }catch(err){console.log(err);};};//exports roleMute end
