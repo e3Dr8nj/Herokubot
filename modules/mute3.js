@@ -204,7 +204,7 @@ module.exports.commands.timemute={ on:true, aliase:'мут', run:async(client,me
               //return;
 //___upd 14.12
                if(client.muted[mmb.user.id]) {
-                        message.channel.send('Объект был замучен ранее, дождитесь пока адепт пустоты размутит его и замутит заново, это может занять где то от 0.001 секунды до вечности');
+                        message.channel.send('Нарушитель был замучен ранее, дождитесь пока Лия перезамутит его.');
                         let  msg989 = await message.channel.send('^rewire \\размут '+mmb.toString());
                         await msg989.delete();
                         await module.exports.delay(30*1000);
