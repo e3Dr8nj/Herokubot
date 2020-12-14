@@ -222,11 +222,14 @@ module.exports.commands.timemute={ on:true, aliase:'мут', run:async(client,me
                     if(args[i].endsWith('ч')){  n = parseInt(args[i]); n=n*1000*60*60; times+=n; console.log(n+' '+'hourses');  };
                     if(args[i].endsWith('д')){  n = parseInt(args[i]); n=n*1000*60*60*24; times+=n; console.log(n+' '+'days'); };
               };//for end
-              if(Number.isNaN(times)||times==0){message.reply('Не верно указанное время, или не добавлено -- два дефиса после ника нарушителя.'); return;};
+              if(Number.isNaN(times)||times==0){message.reply('Неверно указанное время, или не добавлено -- два дефиса после ника нарушителя.'); return;};
              
              message.channel.send(mmb.toString()+' Снимаются роли доступа.');
              let more=false;
-             if(Number(times)>limiter) {times=limiter;more=true;}; 
+             if(Number(times)>limiter) {
+                    console.log('lmt'+limiter); console.log('tms'+times);
+             times=limiter;more=true;
+              }; 
   
               let current_time = new Date().getTime();
               let terminal_time=current_time+times;
