@@ -204,7 +204,7 @@ module.exports.commands.timemute={ on:true, aliase:'мут', run:async(client,me
               //return;
 //___upd 14.12
                if(client.muted[mmb.user.id]) {
-                        message.channel.send('^rewire \\размут '+mmb);
+                        message.channel.send('^rewire \\размут '+mmb.toString());
                         return message.channel.send('х99');
 
                };
