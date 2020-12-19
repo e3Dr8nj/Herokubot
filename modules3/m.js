@@ -46,8 +46,9 @@ module.exports.events={};
 module.exports.events.message={ on:true,run:async(client,message)=>{try{
   if(message.guild.id!='622954155077533696') return;
     if(message.channel.type=='dm'||message.author.bot) return;
+    let arr = message.content.split(' ');
     if(message.content.startsWith('гадай')){
- if(!args[1]) return message.channel.send('не указан запрос гадания');
+ if(arr.length<2) return message.channel.send('не указан запрос гадания');
  for(var i = 0; i<p.length; i++){
      await delay(1000);
      message.channel.send(p[i]);
