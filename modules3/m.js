@@ -47,10 +47,10 @@ module.exports.events.message={ on:true,run:async(client,message)=>{try{
   if(message.guild.id!='622954155077533696') return;
     if(message.channel.type=='dm'||message.author.bot) return;
     if(message.content.startsWith('гадай')){
- //if(!args[1]) return;
+ if(!args[1]) return message.channel.send('не указан запрос гадания');
  for(var i = 0; i<p.length; i++){
      await delay(1000);
-     console.log(p[i]);
+     message.channel.send(p[i]);
   };
  
 
