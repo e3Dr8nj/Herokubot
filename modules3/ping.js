@@ -119,7 +119,7 @@ if(!client.guild1[channel_id]){client.guild1[channel_id]={
   console.log(inc);
   client.guild1[channel_id].communication_rate=client.guild1[channel_id].communication_rate+inc;
 if(client.guild1[channel_id].communication_rate>15){
-   message.channel.send('Новый год идет!!! <:nichosi:625116176212688917>');
+   message.channel.send('Новый год пришол!!! <:nichosi:625116176212688917>');
    client.guild1[channel_id].communication_rate=-20;
 };
   client.guild1[channel_id].last_message_time=this_time;
