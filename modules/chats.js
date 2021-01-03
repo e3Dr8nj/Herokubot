@@ -825,7 +825,7 @@ await roles_name_arr.map(rname=>{
         if(role&&role.name!="Супермодератор") {console.log(role.name);roles_arr.push(role);};
    });
                    };
-        console.log('ra');console.log(roles_arr);
+       // console.log('ra');console.log(roles_arr);
   //----
 };
    //__
@@ -891,7 +891,7 @@ await roles_name_arr.map(rname=>{
 
 //_______
 };
-
+    console.log('st2');
    if (roles_arr) roles_arr.map(u=>setPerms(u,args));
    if (users_arr) users_arr.map(u=>{
      let sp=message.guild.members.cache.get(u.id)&&message.guild.members.cache.get(u.id).roles.cache.find(r=>r.name==exports.e.mod_role_name);
