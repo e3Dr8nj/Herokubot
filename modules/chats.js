@@ -801,8 +801,8 @@ exports.setPerms=async(client,message,args)=>{try{
     let m_c=message.content;
     let users_arr=message.mentions.users;
     let roles_arr = message.mentions.roles;
-
-    /*
+    if(!roles_arr){
+    //----
   let roles_arr=[];
     m_c=m_c.split(' '); m_c.shift(); m_c=m_c.join(" ");
     m_c=m_c.replace(/<@\u0021?\d{1,}>/g,"").trim();
@@ -823,7 +823,8 @@ await roles_name_arr.map(rname=>{
         if(role&&role.name!="Супермодератор") roles_arr.push(role);
    });
                    };
-  */
+  //----
+};
    //__
     let afk=message.guild.channels.cache.get(exports.e.afk_channel_id);
     let obj={размут:'+',разбан:'++','мут':'-','бан':'--'};
