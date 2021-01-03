@@ -135,7 +135,7 @@ module.exports.text_channels={};
 module.exports.owners={};
   //
   //await a.LCH.messages.fetch({limit:100}).catch(console.error);
-  let msg_arr= await a.LCH.messages.fetch({limit:50}).then(messages => {
+  let msg_arr= await a.LCH.messages.fetch({limit:100}).then(messages => {
              let msgs =  messages.filter(m=>m.content.indexOf('chatVR')!=-1);// return msgs.first().content.match(/\d{3,}/)[0];
               return msgs;
          }).catch(console.error);
