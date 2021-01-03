@@ -808,7 +808,7 @@ console.log('test case');
   
     m_c=m_c.split(' '); m_c.shift(); m_c=m_c.join(" ");
     m_c=m_c.replace(/<@\u0021?\d{1,}>/g,"").trim();
-let roles_name_arr=false;
+let roles_name_arr=true;
 console.log(m_c);
 if(m_c.indexOf(',')!=-1&&m_c.length>0){
    let str = m_c.split(','); roles_name_arr=str;
@@ -822,7 +822,7 @@ if(m_c.indexOf(',')!=-1&&m_c.length>0){
   
 await roles_name_arr.map(rname=>{
         let role=message.guild.roles.cache.find(r=>r.name.toLowerCase()==rname.toLowerCase().trim());
-        if(role&&role.name!="Супермодератор") roles_arr.push(role);
+        if(role&&role.name!="Супермодератор") {console.log(role.name);roles_arr.push(role);};
    });
                    };
 
