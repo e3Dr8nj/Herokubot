@@ -801,7 +801,7 @@ exports.setPerms=async(client,message,args)=>{try{
     let m_c=message.content;
     let users_arr=message.mentions.users;
     let roles_arr = message.mentions.roles;
-    if(!roles_arr&&!users_arr&&args[1]){
+    if(!roles_arr&&!users_arr){
     //----
 console.log('test case');
   let roles_arr=[];
