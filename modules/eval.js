@@ -28,11 +28,11 @@ let process=async()=>{
 try {
       const code = args.slice(1).join(" ");
       console.log(code);
-      
-    // await delay(1000); 
+      await message.delete().catch(err=>console.log(err));
+     await delay(1000); 
      // let lstMsg = await message.channel.fetchMessages();
       let evaled = await asyncEval(code);
-      await message.delete().catch(err=>console.log(err));
+      
       if (typeof evaled !== "string")
         evaled = await require("util").inspect(evaled);
       
