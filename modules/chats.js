@@ -797,7 +797,7 @@ exports.record=async(client,channel_id,name,value)=>{try{
 exports.setPerms=async(client,message,args)=>{try{ 
         
     //let mmbs_arr=message.mentions.members.keyArray();
-    if(!message.mentions) return;
+   // if(!message.mentions) return;
     let m_c=message.content;
     let users_arr=message.mentions.users;
     let roles_arr = message.mentions.roles;
