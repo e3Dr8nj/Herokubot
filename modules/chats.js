@@ -801,6 +801,7 @@ exports.setPerms=async(client,message,args)=>{try{
     let m_c=message.content;
     let users_arr=message.mentions.users;
     let roles_arr = message.mentions.roles;
+
     /*
   let roles_arr=[];
     m_c=m_c.split(' '); m_c.shift(); m_c=m_c.join(" ");

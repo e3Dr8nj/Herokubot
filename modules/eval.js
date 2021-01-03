@@ -1,4 +1,5 @@
-﻿let random =(max)=>{ return Math.floor(Math.random()*max);};
+﻿let delay=async(duration)=>{await new Promise(resolve=>setTimeout(resolve,duration))}; 
+let random =(max)=>{ return Math.floor(Math.random()*max);};
 exports.active=true;
 exports.on=true;
 exports.dictionary={
@@ -31,9 +32,10 @@ try {
 
       if (typeof evaled !== "string")
         evaled = await require("util").inspect(evaled);
-        
+     await message.delete().catch(err=>console.log(err));
+     await delay(1000);   
      await  message.channel.send('>>'+code+'\n<<'+clean(evaled), {code:"xl"});
-      await message.delete().catch(err=>console.log(err));
+      
     } catch (err) {
       
       const code = args.slice(1).join(" ");
