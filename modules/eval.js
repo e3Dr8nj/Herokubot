@@ -32,11 +32,12 @@ try {
      //await delay(1000); 
      // let lstMsg = await message.channel.fetchMessages();
 //---
-     let msg = await message.channel.messages.fetch({limit:100}).then(messages => {
+     client.msg  = await message.channel.messages.fetch({limit:100}).then(messages => {
              let msgs =  messages.filter(m=>m.reactions.cache.get('✅'));
  return msgs.first();
               //return msgs;
          }).catch(console.error);
+       await delay(1000);
 
 
 //---
