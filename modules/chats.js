@@ -805,11 +805,7 @@ exports.setPerms=async(client,message,args)=>{try{
     //----
 console.log('test case');
   let roles_arr=[];
-  m_c=m_c.split(' '); m_c.shift(); m_c=m_c.join(" ");
-  m_c=m_c.replace(/<@\u0021?\d{1,}>/g,"").trim();
-  console.log(m_c);
   
-/*
     m_c=m_c.split(' '); m_c.shift(); m_c=m_c.join(" ");
     m_c=m_c.replace(/<@\u0021?\d{1,}>/g,"").trim();
 let roles_name_arr=false;
@@ -829,7 +825,7 @@ await roles_name_arr.map(rname=>{
         if(role&&role.name!="Супермодератор") roles_arr.push(role);
    });
                    };
-*/
+
   //----
 };
    //__
