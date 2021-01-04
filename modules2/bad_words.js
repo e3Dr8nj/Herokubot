@@ -49,7 +49,9 @@ module.exports.events.message={ on:true,  run:async(client,message)=>{try{
      
          let user_info=message.member.user.tag+' '+message.member.nickname;
         let str = "<@"+message.member.id+">"+":"+message.content.trim()+" [link]("+link+")";
-  if(chnl_log) await chnl_log.send({embed:{fields:[{name:user_info+" "+message.channel.name,value:str}]}});
+  if(chnl_log) 
+      await chnl_log.send({embed:{fields:[{name:user_info+" "+message.channel.name,value:str}]}});
+      
            //await  message.delete();
 
            return;
