@@ -51,7 +51,7 @@ module.exports.p={
  ,undeleted:[ ' Войс неудаляем теперь ',' Voice is undeleted now ']
  ,deleted:[' Войс удаляем снова ',' Voice is deleted '] 
   ,accessed:[[' Допущен (размучен и разбанен) '],[' accessed(unmuted&unbaned)']]
-  ,r:(msg,name,n,mmb)=>{let str=(mmb&&mmb.user)?mmb.toString():mmb.name;msg.reply(exports.p[name][n]+str);}
+  ,r:(msg,name,n,mmb)=>{let str=(mmb&&mmb.name)?mmb.name:mmb.toString();msg.reply(exports.p[name][n]+str);}
 };
 module.exports.err={
    d:[' Секретная ошибка возникла ',' An secret Error occurs ']
