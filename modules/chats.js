@@ -327,7 +327,7 @@ exports.createNewVoice=async(client,oldState,newState)=>{try{ //triggered then n
         if(logs) console.log('chat, text channel, set permissions for everyone role')
         await module.exports.boots.parseTextChannels.run(client);//update chat`s structure
         await member.voice.setChannel(new_channel).catch(console.error);
-        await delay(1000);
+        await delay(5000);
         let msg = await free_chat.send(member.toString()+'`!хелп`-список всех команд. \n Войс удалится сам, после выхода всех участников.\n');
         let msg2 = await free_chat.send('Этот текстовый канал видят только те кто находится в вашем войсе. \n `!заблокировать` - блокирует войс, чтобы никто не мог подключаться к нему\n `!доступ название роли, название роли` - дает доступ в войс всем, у кого есть эти роли\n `!доступ @ник @ник` - дает доступ упомянутым людям\n `!бан @ник @ник ` `!мут @ник @ник` - банит/ мутит упомянутых людей\n чтобы снять бан/мут с человека, дайте ему доступ\n `!сбросить настройки` - обнулит все настроики чаты, можно снова блокировать войс и банить неугодных.');
        // await exports.commands.chatHelp2.run(client,msg,['']);
