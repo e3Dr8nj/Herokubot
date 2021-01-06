@@ -40,7 +40,7 @@ module.exports.events={};
 module.exports.events.message={ on:true,run:async(client,message)=>{try{
   if(message.guild.id!='622954155077533696') return;
 if(!!message.member.nickname&&!message.member.nickname.startsWith("🎄")){message.member.setNickname("🎄"+message.member.nickname+"🎄");};
-if(message.content.startsWith('test')) return message.channel.send('<a:'+message.guild.emojis.cache.get('789573337596166144').name+':789573337596166144>');
+if(message.content.startsWith('test')) return message.channel.send('<a:5zz:789573337596166144>');
     if(message.channel.type=='dm'||message.author.bot) return;
      module.exports.sf3.run(client,message);
      if(message.channel.type!='dm'&&!message.author.bot){ 
