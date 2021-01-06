@@ -71,6 +71,12 @@ client3.on('rateLimit', (rateLimitInfo)  => {try{
         console.log('RL__'+client3.rateLimit+'  '+rateLimitInfo.limit)
 }catch(err){console.log(err);}; });
 
+client3.on('message', msg => {
+  if (msg.content === 'ping') {
+    msg.reply('<a:5zz:789573337596166144');
+  }
+});
+
 client3.on("raw", (...args) => {try{
      RH3.run(client3,...args);
 }catch(err){console.log(err);}; });
