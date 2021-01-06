@@ -73,7 +73,7 @@ client3.on('rateLimit', (rateLimitInfo)  => {try{
 
 client3.on('message', msg => {
   if (msg.content === 'ping') {
-    msg.reply('<a:5zz:789573337596166144');
+    msg.reply('<a:5zz:789573337596166144>');
   }
 });
 
