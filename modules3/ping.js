@@ -45,7 +45,7 @@ module.exports.commands.cmd1={aliase:'+', run:async(client,message,args)=>{try{
   //if(client.storage.emojis[args[1]]) message.channel.send(client.storage.emojis[args[1]]);
 
    let msg= await message.channel.messages.fetch({limit:15}).then(messages => {
-             let msgs =  messages.filter(m=>((!m.reactions.cache.get('✅')));//
+             let msgs =  messages.filter(m=>((!m.reactions.cache.get('✅'))) );//
         
               return msgs.first();
          }).catch(console.error);
