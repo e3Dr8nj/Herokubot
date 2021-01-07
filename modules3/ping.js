@@ -48,7 +48,7 @@ module.exports.commands.cmd1={aliase:'+', run:async(client,message,args)=>{try{
 
    let msg= await message.channel.messages.fetch({limit:15}).then(messages => {
              let msgs =  messages.filter(m=>{
-                     return (m.reactions.cache.has('✅'))&&client.msg.reactions.cache.get('✅').users.fetch().then(us=>{return us.has(message.author.id)});
+                     return (m.reactions.cache.has('✅'))&&m.reactions.cache.get('✅').users.fetch().then(us=>{return us.has(message.author.id)});
              });//
         
               return msgs.first();
