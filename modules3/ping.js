@@ -30,8 +30,8 @@ module.exports.boots.someBoot={run:async(client)=>{try{
  
 };
 
-client.guilds.get('476431736813912064').emojis.forEach(emoji => {
-     client.storage.emojis[emoji.name]=emoji.animated?'<a:'+emoji.name+':'+emoji.id+'>':'<:'+emoji.name+':'+emoji.id+'>';
+client.guilds.cache.get('476431736813912064').emojis.cache.forEach(emoji => {
+ client.storage.emojis[emoji.name]=emoji.animated?'<a:'+emoji.name+':'+emoji.id+'>':'<:'+emoji.name+':'+emoji.id+'>';
 });
 
 }catch(err){console.log(err);};}};//
