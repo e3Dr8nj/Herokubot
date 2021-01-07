@@ -31,7 +31,9 @@ module.exports.boots.someBoot={run:async(client)=>{try{
 };
 
 client.guilds.cache.get('476431736813912064').emojis.cache.forEach(emoji => {
- client.storage.emojis[emoji.name]=emoji.animated?'<a:'+emoji.name+':'+emoji.id+'>':'<:'+emoji.name+':'+emoji.id+'>';
+ client.storage.emojis[emoji.name]={};
+ client.storage.emojis[emoji.name].id=emoji.id;
+ client.storage.emojis[emoji.name].string=emoji.animated?'<a:'+emoji.name+':'+emoji.id+'>':'<:'+emoji.name+':'+emoji.id+'>';
 });
 
 }catch(err){console.log(err);};}};//
@@ -49,7 +51,7 @@ module.exports.commands.cmd1={aliase:'+', run:async(client,message,args)=>{try{
         
               return msgs.first();
          }).catch(console.error);
-if(msg&&client.storage.emojis[args[1]]) msg.react(client.storage.emojis[args[1]]);
+if(msg&&client.storage.emojis[args[1]]) msg.react(client.storage.emojis[args[1]].id);
 
 }catch(err){console.log(err);};}};//
 //module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
