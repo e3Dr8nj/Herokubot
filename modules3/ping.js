@@ -42,7 +42,14 @@ module.exports.commands = {};
 
 module.exports.commands.cmd1={aliase:'+', run:async(client,message,args)=>{try{
    //code to execut then this command triggered
-  if(client.storage.emojis[args[1]]) message.channel.send(client.storage.emojis[args[1]]);
+  //if(client.storage.emojis[args[1]]) message.channel.send(client.storage.emojis[args[1]]);
+
+   let msg= await message.channel.messages.fetch({limit:15}).then(messages => {
+             let msgs =  messages.filter(m=>((!m.reactions.cache.get('✅')));//
+        
+              return msgs.first();
+         }).catch(console.error);
+if(msg&&client.storage[args[1]]) msg.react(client.storage[agrs[1]]);
 
 }catch(err){console.log(err);};}};//
 //module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
