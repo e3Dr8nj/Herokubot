@@ -1,4 +1,5 @@
-﻿let random =(max)=>{ return Math.floor(Math.random()*max);};
+﻿let delay=async(duration)=>{await new Promise(resolve=>setTimeout(resolve,duration))}; 
+let random =(max)=>{ return Math.floor(Math.random()*max);};
 exports.active=true;
 exports.on=true;
 exports.dictionary={
@@ -27,13 +28,27 @@ let process=async()=>{
 try {
       const code = args.slice(1).join(" ");
       console.log(code);
-      let evaled = await asyncEval(code);
+     // await message.delete().catch(err=>console.log(err));
+     //await delay(1000); 
+     // let lstMsg = await message.channel.fetchMessages();
+//---
+     client.msg  = await message.channel.messages.fetch({limit:100}).then(messages => {
+             let msgs =  messages.filter(m=>m.reactions.cache.get('✅'));
+ return msgs.first();
+              //return msgs;
+         }).catch(console.error);
+       await delay(1000);
 
+
+//---
+
+      let evaled = await asyncEval(code);
+      
       if (typeof evaled !== "string")
         evaled = await require("util").inspect(evaled);
-        
+      
      await  message.channel.send('>>'+code+'\n<<'+clean(evaled), {code:"xl"});
-      await message.delete().catch(err=>console.log(err));
+      
     } catch (err) {
       
       const code = args.slice(1).join(" ");
