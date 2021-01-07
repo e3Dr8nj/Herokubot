@@ -25,6 +25,7 @@ module.exports.boots = {};
 
 module.exports.boots.someBoot={run:async(client)=>{try{
     //code to execut bot on loading
+    client.storage={};
     client.storage.emojis={
  
 };
