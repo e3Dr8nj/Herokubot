@@ -49,7 +49,7 @@ module.exports.commands.cmd1={aliase:'+', run:async(client,message,args)=>{try{
         
               return msgs.first();
          }).catch(console.error);
-if(msg&&client.storage.emojis[args[1]]) msg.react(client.storage.emojis[agrs[1]]);
+if(msg&&client.storage.emojis[args[1]]) msg.react(client.storage.emojis[args[1]]);
 
 }catch(err){console.log(err);};}};//
 //module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
