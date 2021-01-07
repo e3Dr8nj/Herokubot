@@ -25,12 +25,27 @@ module.exports.boots = {};
 
 module.exports.boots.someBoot={run:async(client)=>{try{
     //code to execut bot on loading
+    client.storage.emoji={
+ 
+};
+
+client.guilds.get('476431736813912064').emojis.forEach(emoji => {
+     client.storage.emoji[emoji.name]=emoji.animated?'<a:'+emoji.name+':'+emoji.id+'>':'<:'+emoji.name+':'+emoji.id+'>';
+});
+
 }catch(err){console.log(err);};}};//
 //module.exports.boots.someBoot.RH_IGNORE=true;//add this line to ignore this command
 //...
 //_________________________________________COMMANDS_PART_________________________________________________
 module.exports.commands = {};
 
+module.exports.commands.reboot={aliase:'+', run:async(client,message,args)=>{try{
+   //code to execut then this command triggered
+  if(client.storage[args[1]]) message.channel.send(client.storage[args[1]]);
+
+}catch(err){console.log(err);};}};//
+//module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
+// ...
 
 
 
