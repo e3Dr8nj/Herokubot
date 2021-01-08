@@ -32,13 +32,16 @@ module.exports.boots.someBoot={run:async(client)=>{try{
 //___
 //await client.guilds.fetch();
 client.guilds.cache.map(g=>g.emojis.cache.forEach(emoji => {
- let aliase = emoji.animated?emoji.name+"_":emoji.name;
- client.storage.emojis[aliase]={};
+ //let aliase = emoji.animated?emoji.name+"_":emoji.name;
+ if(emoji_animated){
+ client.storage.emojis[emoji.name]={};
  client.storage.emojis[emoji.name].id=emoji.id;
  client.storage.emojis[emoji.name].name=emoji.name;
  client.storage.emojis[emoji.name].animated=emoji.animated;
  client.storage.emojis[emoji.name].string=emoji.animated?'<a:'+emoji.name+':'+emoji.id+'>':'<:'+emoji.name+':'+emoji.id+'>';
+  };
 })
+
 );
 //___
  
@@ -71,7 +74,7 @@ module.exports.commands.cmd2={aliase:'эмоджи', run:async(client,message,ar
          let value = client.storage.emojis[key];
       if(value.animated){
           str_a+= key+":"+value.string+";"; 
-       }else{  str+= key+":"+value.string; };
+       }//else{  str+= key+":"+value.string; };
    };
    message.channel.send(str_a.slice(0,1900));
    message.channel.send(str.slice(0,1900));
