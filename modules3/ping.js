@@ -31,7 +31,8 @@ module.exports.boots.someBoot={run:async(client)=>{try{
 };
 //___
 client.guilds.cache.map(g=>g.emojis.cache.forEach(emoji => {
- emoji.animated?client.storage.emojis[emoji.name+"*"]={}:client.storage.emojis[emoji.name]={};
+ let aliase = emoji.animated?emoji.name+"*":emoji.name;
+ client.storage.emojis[aliase]={};
  client.storage.emojis[emoji.name].id=emoji.id;
  client.storage.emojis[emoji.name].name=emoji.name;
  client.storage.emojis[emoji.name].animated=emoji.animated;
