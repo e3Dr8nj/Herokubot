@@ -30,7 +30,7 @@ module.exports.boots.someBoot={run:async(client)=>{try{
  
 };
 //___
-await client.guilds.fetch();
+//await client.guilds.fetch();
 client.guilds.cache.map(g=>g.emojis.cache.forEach(emoji => {
  //let aliase = emoji.animated?emoji.name+"_":emoji.name;
  client.storage.emojis[emoji.name]={};
@@ -41,7 +41,7 @@ client.guilds.cache.map(g=>g.emojis.cache.forEach(emoji => {
 })
 );
 //___
-
+ 
 }catch(err){console.log(err);};}};//
 //module.exports.boots.someBoot.RH_IGNORE=true;//add this line to ignore this command
 //...
