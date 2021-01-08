@@ -72,7 +72,7 @@ module.exports.commands.cmd2={aliase:'эмоджи', run:async(client,message,ar
        }else{  str+= key+":"+value.string; };
    };
    message.channel.send(str_a.slice(0,1900));
-   message.channel.send(str.slice(0,1900);
+   message.channel.send(str.slice(0,1900));
 }catch(err){console.log(err);};}};//
 //module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
 
