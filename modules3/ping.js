@@ -68,8 +68,8 @@ module.exports.commands.cmd2={aliase:'эмоджи', run:async(client,message,ar
    for (let key in client.storage.emojis){
          let value = client.storage.emojis[key];
       if(value.animated){
-          str_a+= key+":"+value+";"; 
-       }else{  str+= key+":"+value+";  "; };
+          str_a+= key+":"+value.string+";"; 
+       }else{  str+= key+":"+value.string+";  "; };
    };
    message.channel.send(str_a);
    message.channel.send(str);
