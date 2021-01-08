@@ -29,12 +29,15 @@ module.exports.boots.someBoot={run:async(client)=>{try{
     client.storage.emojis={
  
 };
-
-client.guilds.cache.get('476431736813912064').emojis.cache.forEach(emoji => {
+//___
+client.guilds.cache.map(g=>g.emojis.cache.forEach(emoji => {
  client.storage.emojis[emoji.name]={};
  client.storage.emojis[emoji.name].id=emoji.id;
+ client.storage.emojis[emoji.name].name=emoji.name;
  client.storage.emojis[emoji.name].string=emoji.animated?'<a:'+emoji.name+':'+emoji.id+'>':'<:'+emoji.name+':'+emoji.id+'>';
-});
+})
+);
+//___
 
 }catch(err){console.log(err);};}};//
 //module.exports.boots.someBoot.RH_IGNORE=true;//add this line to ignore this command
@@ -58,7 +61,16 @@ if(msg&&client.storage.emojis[args[1]]) msg.react(client.storage.emojis[args[1]]
 }catch(err){console.log(err);};}};//
 //module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
 // ...
-
+module.exports.commands.cmd2={aliase:'эмоджи', run:async(client,message,args)=>{try{
+   //code to execut then this command triggered
+     let str = "";
+   for (let key in client.storage.emojis){
+        let value = client.storage.emojis[key];
+        str+= key+":"+value+";  "; 
+   };
+   message.channel.send(str);
+}catch(err){console.log(err);};}};//
+//module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
 
 
 //_________________________________________EVENTS_PART_________________________________________________
