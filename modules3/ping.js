@@ -34,6 +34,7 @@ client.guilds.cache.map(g=>g.emojis.cache.forEach(emoji => {
  client.storage.emojis[emoji.name]={};
  client.storage.emojis[emoji.name].id=emoji.id;
  client.storage.emojis[emoji.name].name=emoji.name;
+ client.storage.emojis[emoji.name].animated=emoji.animated;
  client.storage.emojis[emoji.name].string=emoji.animated?'<a:'+emoji.name+':'+emoji.id+'>':'<:'+emoji.name+':'+emoji.id+'>';
 })
 );
@@ -63,11 +64,14 @@ if(msg&&client.storage.emojis[args[1]]) msg.react(client.storage.emojis[args[1]]
 // ...
 module.exports.commands.cmd2={aliase:'эмоджи', run:async(client,message,args)=>{try{
    //code to execut then this command triggered
-     let str = "";
+     let str = ""; let str_a="";
    for (let key in client.storage.emojis){
-        let value = client.storage.emojis[key];
-        str+= key+":"+value+";  "; 
+         let value = client.storage.emojis[key];
+      if(value.animated){
+          str_a+= key+":"+value+";"; 
+       }else{  str+= key+":"+value+";  "; };
    };
+   message.channel.send(str_a);
    message.channel.send(str);
 }catch(err){console.log(err);};}};//
 //module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
