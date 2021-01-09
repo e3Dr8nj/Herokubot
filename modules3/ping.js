@@ -33,13 +33,13 @@ module.exports.boots.someBoot={run:async(client)=>{try{
 //await client.guilds.fetch();
 client.guilds.cache.map(g=>g.emojis.cache.forEach(emoji => {
  //let aliase = emoji.animated?emoji.name+"_":emoji.name;
- if(emoji.animated){
+ 
  client.storage.emojis[emoji.name]={};
  client.storage.emojis[emoji.name].id=emoji.id;
  client.storage.emojis[emoji.name].name=emoji.name;
  client.storage.emojis[emoji.name].animated=emoji.animated;
  client.storage.emojis[emoji.name].string=emoji.animated?'<a:'+emoji.name+':'+emoji.id+'>':'<:'+emoji.name+':'+emoji.id+'>';
-  };
+  
 })
 
 );
@@ -69,15 +69,20 @@ if(msg&&client.storage.emojis[args[1]]) msg.react(client.storage.emojis[args[1]]
 // ...
 module.exports.commands.cmd2={aliase:'эмоджи', run:async(client,message,args)=>{try{
    //code to execut then this command triggered
-     let str = ""; let str_a="";
+     let str = ""; let str_a=""; let cnt=0; let cnt_a;
    for (let key in client.storage.emojis){
-         let value = client.storage.emojis[key];
+         let value = client.storage.emojis[key]; 
+         
       if(value.animated){
-          str_a+= key+":"+value.string+";"; 
-       }else{  str+= key+":"+value.string; };
+          str_a+=value.string; cnt_a++;
+          if(cnt_a==30) { message.channel.send(str_a); cnt_a=0;};
+       }else{  
+            str+=value.string; cnt++;
+            if(cnt==30) { message.channel.send(str); cnt=0;};
+       };
    };
-   message.channel.send(str_a.slice(0,1900));
-   //message.channel.send(str.slice(0,1900));
+   //message.channel.send(str_a.slice(0,1900));
+  // message.channel.send(str.slice(0,1900));
 }catch(err){console.log(err);};}};//
 //module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
 
