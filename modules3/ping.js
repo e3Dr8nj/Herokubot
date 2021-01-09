@@ -75,10 +75,10 @@ module.exports.commands.cmd2={aliase:'эмоджи', run:async(client,message,ar
          
       if(value.animated){
           str_a+=value.string; cnt_a++;
-          if(cnt_a==30) { message.channel.send(str_a); cnt_a=0;};
+          if(cnt_a==25) { message.channel.send(str_a); cnt_a=0;};
        }else{  
             str+=value.string; cnt++;
-            if(cnt==30) { message.channel.send(str); cnt=0;};
+            if(cnt==25) { message.channel.send(str); cnt=0;};
        };
    };
    //message.channel.send(str_a.slice(0,1900));
