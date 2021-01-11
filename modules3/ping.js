@@ -33,7 +33,7 @@ module.exports.boots.someBoot={run:async(client)=>{try{
 //await client.guilds.fetch();
 client.guilds.cache.map(g=>g.emojis.cache.forEach(emoji => {
  //let aliase = emoji.animated?emoji.name+"_":emoji.name;
- 
+ if(client.storage.emojis[emoji.name]&&!!client.storage.emojis[emoji.name].animated) return;
  client.storage.emojis[emoji.name]={};
  client.storage.emojis[emoji.name].id=emoji.id;client.storage.emojis[emoji.name].server_id=g.id;
  client.storage.emojis[emoji.name].name=emoji.name;
@@ -54,7 +54,7 @@ module.exports.commands = {};
 module.exports.commands.cmd1={aliase:'+', run:async(client,message,args)=>{try{
    //code to execut then this command triggered
   //if(client.storage.emojis[args[1]]) message.channel.send(client.storage.emojis[args[1]]);
-
+//let args = ['','15'];
    let msg= await message.channel.messages.fetch({limit:15}).then(messages => {
              let msgs =  messages.filter(m=>{
                      return (m.reactions.cache.has('✅'))&&m.reactions.cache.get('✅').users.fetch().then(us=>{return us.has(message.author.id)});
@@ -69,7 +69,7 @@ if(msg&&client.storage.emojis[args[1]]) msg.react(client.storage.emojis[args[1]]
 // ...
 module.exports.commands.cmd2={aliase:'эмоджи', run:async(client,message,args)=>{try{
    //code to execut then this command triggered
-    let str = ""; let str_a=""; let cnt=0; let cnt_a=0;
+   let str = ""; let str_a=""; let cnt=0; let cnt_a=0;
  for (let key in client.storage.emojis){
  let value = client.storage.emojis[key]; 
  if(!value.animated&&value.server_id==message.guild.id) continue;
@@ -81,7 +81,10 @@ module.exports.commands.cmd2={aliase:'эмоджи', run:async(client,message,ar
  if(cnt==30) { message.channel.send(str); cnt=0; str='';};
  };
  };
-   
+//__
+ if(str_a.length!=0) {message.channel.send(str_a);} ;
+ if(str.length!=0) {message.channel.send(str);} ; 
+//__ 
 }catch(err){console.log(err);};}};//
 //module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
 
