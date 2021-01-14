@@ -55,7 +55,7 @@ module.exports.commands.cmd1={aliase:'+', run:async(client,message,args)=>{try{
    //code to execut then this command triggered
   //if(client.storage.emojis[args[1]]) message.channel.send(client.storage.emojis[args[1]]);
   //___
-    
+ await message.delete().catch(err=>console.log(err));   
  let msg= await message.channel.messages.fetch({limit:15}).then(messages => {
  let msg1= messages.find(m=>{
  // return (m.reactions.cache.has('✅'))&&m.reactions.cache.get('✅').users.fetch().then(us=>{return us.has(message.author.id)});
@@ -66,7 +66,7 @@ module.exports.commands.cmd1={aliase:'+', run:async(client,message,args)=>{try{
  
  return msg1;
  }).catch(console.error);
-await message.delete().catch(err=>console.log(err));
+
 if(msg&&client.storage.emojis[args[1]]) {
  let reaction = await msg.react(client.storage.emojis[args[1]].id);
  await delay(5000);
