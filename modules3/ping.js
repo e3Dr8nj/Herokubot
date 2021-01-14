@@ -25,25 +25,9 @@ module.exports.boots = {};
 
 module.exports.boots.someBoot={run:async(client)=>{try{
     //code to execut bot on loading
-    client.storage={};
-    client.storage.emojis={
+    
  
-};
-//___
-//await client.guilds.fetch();
-client.guilds.cache.map(g=>g.emojis.cache.forEach(emoji => {
- //let aliase = emoji.animated?emoji.name+"_":emoji.name;
- if(client.storage.emojis[emoji.name]&&!!client.storage.emojis[emoji.name].animated) return;
- client.storage.emojis[emoji.name]={};
- client.storage.emojis[emoji.name].id=emoji.id;client.storage.emojis[emoji.name].server_id=g.id;
- client.storage.emojis[emoji.name].name=emoji.name;
- client.storage.emojis[emoji.name].animated=emoji.animated;
- client.storage.emojis[emoji.name].string=emoji.animated?'<a:'+emoji.name+':'+emoji.id+'>':'<:'+emoji.name+':'+emoji.id+'>';
- 
- })
 
-);
-//___
  
 }catch(err){console.log(err);};}};//
 //module.exports.boots.someBoot.RH_IGNORE=true;//add this line to ignore this command
@@ -53,47 +37,9 @@ module.exports.commands = {};
 
 module.exports.commands.cmd1={aliase:'+', run:async(client,message,args)=>{try{
    //code to execut then this command triggered
-  //if(client.storage.emojis[args[1]]) message.channel.send(client.storage.emojis[args[1]]);
-  //___
- await message.delete().catch(err=>console.log(err));   
- let msg= await message.channel.messages.fetch({limit:15}).then(messages => {
- let msg1= messages.find(m=>{
- // return (m.reactions.cache.has('✅'))&&m.reactions.cache.get('✅').users.fetch().then(us=>{return us.has(message.author.id)});
- return (m.reactions.cache.find(r=>r.users.fetch().then(us=>{return us.has(message.author.id)}) ) );
 
 
- });//
  
- return msg1;
- }).catch(console.error);
-
-if(msg&&client.storage.emojis[args[1]]) {
- let reaction = await msg.react(client.storage.emojis[args[1]].id);
- await delay(5000);
- await reaction.users.remove(client.user);
-};
-//---
-}catch(err){console.log(err);};}};//
-//module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
-// ...
-module.exports.commands.cmd2={aliase:'эмоджи', run:async(client,message,args)=>{try{
-   //code to execut then this command triggered
-   let str = ""; let str_a=""; let cnt=0; let cnt_a=0;
- for (let key in client.storage.emojis){
- let value = client.storage.emojis[key]; 
- if(!value.animated&&value.server_id==message.guild.id) continue;
- if(!!value.animated){
- str_a+=value.string; cnt_a++;
- if(cnt_a==30) { message.channel.send(str_a); cnt_a=0; str_a='';};
- }else{ 
- str+=value.string; cnt++;
- if(cnt==30) { message.channel.send(str); cnt=0; str='';};
- };
- };
-//__
- if(str_a.length!=0) {message.channel.send(str_a);} ;
- if(str.length!=0) {message.channel.send(str);} ; 
-//__ 
 }catch(err){console.log(err);};}};//
 //module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
 
