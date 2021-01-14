@@ -54,16 +54,25 @@ module.exports.commands = {};
 module.exports.commands.cmd1={aliase:'+', run:async(client,message,args)=>{try{
    //code to execut then this command triggered
   //if(client.storage.emojis[args[1]]) message.channel.send(client.storage.emojis[args[1]]);
-//let args = ['','15'];
-   let msg= await message.channel.messages.fetch({limit:15}).then(messages => {
-             let msgs =  messages.filter(m=>{
-                     return (m.reactions.cache.has('✅'))&&m.reactions.cache.get('✅').users.fetch().then(us=>{return us.has(message.author.id)});
-             });//
-        
-              return msgs.first();
-         }).catch(console.error);
-if(msg&&client.storage.emojis[args[1]]) msg.react(client.storage.emojis[args[1]].id);
+  //___
+    
+ let msg= await message.channel.messages.fetch({limit:15}).then(messages => {
+ let msg1= messages.find(m=>{
+ // return (m.reactions.cache.has('✅'))&&m.reactions.cache.get('✅').users.fetch().then(us=>{return us.has(message.author.id)});
+ return (m.reactions.cache.find(r=>r.users.fetch().then(us=>{return us.has(message.author.id)}) ) );
 
+
+ });//
+ 
+ return msg1;
+ }).catch(console.error);
+await message.delete().catch(err=>console.log(err));
+if(msg&&client.storage.emojis[args[1]]) {
+ let reaction = await msg.react(client.storage.emojis[args[1]].id);
+ await delay(5000);
+ await reaction.users.remove(client.user);
+};
+//---
 }catch(err){console.log(err);};}};//
 //module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
 // ...
@@ -224,3 +233,5 @@ module.exports.sf=async(client,message,args)=>{try{
 
    return result[random(result.length-1)]+' '+str;
 }catch(err){console.log(err);};};//
+
+//let msg = msgs.find(m=>{m.reactions.cache.find(r=>r.users.fetch().then(u=>u.has(message.author.id) ) )})
