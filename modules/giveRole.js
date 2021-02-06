@@ -55,7 +55,7 @@ module.exports.commands.cmd2={aliase:'выдать', run:async(client,message,ar
    //code to execut then this command triggered
   if(args[1]=="роль"){
     //check if mmb has roles
-    message.channel.send('ok');
+    //message.channel.send('ok');
    let member = message.member;
    let is_able= await member.roles.cache.find(r=>exports.e.roles_arr.includes(r.name)||member.user.id==message.channel.guild.owner.id);
    
