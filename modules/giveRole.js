@@ -27,6 +27,7 @@ module.exports.active=true;//for previous rh_handler version(true=module on/fals
 module.exports.e={
   bot_name:'tea'
   ,bot_info:' чай'
+  ,roles_arr:['Сумеречные','Странники']
 }
 
 //_________________________________________BOOTS_PART___________________________________________________
@@ -54,6 +55,9 @@ module.exports.commands.cmd2={aliase:'выдать', run:async(client,message,ar
    //code to execut then this command triggered
   if(args[1]=="роль"){
     //check if mmb has roles
+   let member = message.member;
+   let is_able= await member.roles.cache.find(r=>exports.e.roles_arr.includes(r.name))||member.user.id==channel.guild.owner.id;
+   if(!is_able) return message.channel.send('Недостаточно прав!');
     let now = new Date().getTime();
 let tag = now - client.role.lastTime; 
     let limit = 60*1000*60;
@@ -72,6 +76,7 @@ if(tag < limit) return message.channel.send('Можешь воспользова
     //role_name=role_name?role_name:role.name;
     //console.log(role_name);
     if(bool) return; 
+    await role.members.map(m=> m.roles.remove(role).catch(err=>console.log(err)) );
     await rsv_mmb.roles.add(role).then(x=>message.channel.send('Роль выдана')).catch(err=>console.error(err));
      client.role.lastTime=now;//
 };
