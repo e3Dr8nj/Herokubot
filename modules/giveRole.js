@@ -56,7 +56,7 @@ module.exports.commands.cmd2={aliase:'выдать', run:async(client,message,ar
   if(args[1]=="роль"){
     //check if mmb has roles
    let member = message.member;
-   let is_able= await member.roles.cache.find(r=>exports.e.roles_arr.includes(r.name))||member.user.id==channel.guild.owner.id;
+   let is_able= await member.roles.cache.find(r=>exports.e.roles_arr.includes(r.name))||member.user.id==message.channel.guild.owner.id;
    if(!is_able) return message.channel.send('Недостаточно прав!');
     let now = new Date().getTime();
 let tag = now - client.role.lastTime; 
