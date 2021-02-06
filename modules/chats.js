@@ -23,7 +23,7 @@ exports.e={
   afk_channel_id:'587191278039466004'
   ,main_voice_id:'807707873252868156',
   free_chat_category_id:'677188676572414011'
-  ,create_voice_id:'677227933747642393'
+  ,create_voice_id:'807707873252868156'
   ,create_voice_name:'создать войс'
  ,text_category_id:'677188676572414011'
   ,voice_category_id:'677226281724805120'
