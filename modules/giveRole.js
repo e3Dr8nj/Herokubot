@@ -55,15 +55,18 @@ module.exports.commands.cmd2={aliase:'выдать', run:async(client,message,ar
    //code to execut then this command triggered
   if(args[1]=="роль"){
     //check if mmb has roles
+    message.channel.send('ok');
    let member = message.member;
-   let is_able= await member.roles.cache.find(r=>exports.e.roles_arr.includes(r.name))||member.user.id==message.channel.guild.owner.id).catch(err=>console.log(err));
-   if(!is_able) return message.channel.send('Недостаточно прав!');
+   let is_able= await member.roles.cache.find(r=>exports.e.roles_arr.includes(r.name)||member.user.id==message.channel.guild.owner.id);
+   
+    if(!is_able) return message.channel.send('Недостаточно прав!');
     let now = new Date().getTime();
 let tag = now - client.role.lastTime; 
     let limit = 60*1000*60;
 if(tag < limit) return message.channel.send('Можешь воспользовать командой через '+Math.round((limit-tag)/1000/60)+' минут');
     
     let ROLE_ID = '807350473862021140';
+   // let ROLE_ID = '807006473858973796';
     let role = message.guild.roles.cache.get(ROLE_ID);
     if(!role) return;
     let rsv_mmb= message.mentions.members.first();
