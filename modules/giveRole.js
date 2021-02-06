@@ -55,8 +55,8 @@ module.exports.commands.cmd2={aliase:'выдать', run:async(client,message,ar
   if(args[1]=="роль"){
     //check if mmb has roles
     let now = new Date().getTime();
-let tag = now - client.role.lastTime; message.channel.send(tag+'d'+now+'d'+client.role.lastTime);
-    let limit = 2*1000*60;
+let tag = now - client.role.lastTime; 
+    let limit = 60*1000*60;
 if(tag < limit) return message.channel.send('Можешь воспользовать командой через '+Math.round((limit-tag)/1000/60)+' минут');
     
     let ROLE_ID = '807350473862021140';
@@ -72,7 +72,7 @@ if(tag < limit) return message.channel.send('Можешь воспользова
     //role_name=role_name?role_name:role.name;
     //console.log(role_name);
     if(bool) return; 
-    await rsv_mmb.roles.add(role).then(x=>message.channel.send('роль выдана'+bool)).catch(err=>console.error(err));
+    await rsv_mmb.roles.add(role).then(x=>message.channel.send('Роль выдана')).catch(err=>console.error(err));
      client.role.lastTime=now;//
 };
 //__ 
