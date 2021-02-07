@@ -96,7 +96,7 @@ module.exports.commands.postAll={ on:true, aliase:'rcPrint', run:async(client,me
 //________________c2
 module.exports.commands.rolesProfile={ on:true, aliase:'rcReload', run:async(client,message,args)=>{try{
 //if on this function triggers on deffined command
-                      
+                       message.channel.send('ok0');
                        return module.exports.run(client,message,args);
 }catch(err){console.log(err);};}};//
 //___________________________________________COMMANDS_PART_END___________________________________________
