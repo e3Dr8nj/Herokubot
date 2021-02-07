@@ -1,7 +1,7 @@
 ﻿//________________________________________INITIATION_PART__________________________________________
 //_____________SETTINGS
-//exports.RH_IGNORE_TOTAL=true;//add this line to ignore this module 
-exports.active=false;//this module activate (deactivate module and all events,commands,boot in it if value is false)
+exports.RH_IGNORE_TOTAL=true;//add this line to ignore this module 
+exports.active=true;//this module activate (deactivate module and all events,commands,boot in it if value is false)
 exports.events={};// {} - activate/false - deactive
 exports.commands={};// {} - activate/false -deactive
 exports.boots={};// {} - activate/false -deactive
@@ -10,23 +10,23 @@ let delay=async(duration)=>{await new Promise(resolve=>setTimeout(resolve,durati
 //exports.m=require('./this_project_main.js'); //inculde this project`s main file if present (same directory)
 //____________DICTIONARY//dictionary set, elements by accesed by module.exports.d.some_phase[client.lang] 
 exports.d={
-      profile_roles:['!color roles','!цветные роли']
+      profile_roles:['!profile roles','!анкетные роли']
      ,roles_count:['there roles count is  ','ролей ']
      ,need_msgs:['need count messages is ','необходимое колличество сообщений ']
 };//d end
 //___________ENVORIMENTAL//envorimental set, elements accesed by module.exports.e.some_envorimental
 exports.e={
-     time_limit:1000*60*60,
+     amount_limit:8,
      some_envorimental:'value'  
 };//e end
 exports.system={
  
      //channel_name:'🔎info-help',
       channel_name:'⚛роли-и-каналы✺',
-  //  prefix:'.',
+    // prefix:'.',
      step:10,
-     divider_roleList_word:'roles2',
-   // main_command_name:'roles1',
+     divider_roleList_word:'roles1',
+    // main_command_name:'roles1',
     
      channelID:'301319871981944834',
     // part1:{ messageID:'490587062488006667'},
@@ -35,8 +35,8 @@ exports.system={
    
    
 };
-
 exports.digit={"0⃣":'0',"1⃣":'1' ,"2⃣":'2',"3⃣":'3',"4⃣":'4',"5⃣":'5',"6⃣":'6',"7⃣":'7',"8⃣":'8',"9⃣":'9',"🇹":'10',"🇱":'11',"🇪":'12',"🇳":'13' ,"🖤":'14',"🔚":'15',"🇬":'16',"🇭":'17',"🇮":'18',"🇯":'19'};
+
 //_________________________________________INITIATION_PART_END___________________________________________
 
 //_________________________________________EVENTS_PART_________________________________________________
@@ -53,25 +53,25 @@ module.exports.events.messageReactionRemove={ on:true,  run:async(client,message
 //___________________________________________EVENTS_PART_END__________________________________________
 //_________________________________________COMMANDS_PART_________________________________________________
 //__________________c0
-module.exports.commands.rpHelp={ on:true, aliase:'rcHelp', run:async(client,message,args)=>{try{
+module.exports.commands.rpHelp={ on:true, aliase:'rpHelp', run:async(client,message,args)=>{try{
 //if on this function triggers on deffined command
 
-              let str='['+client.prefix+'] [rcHelp] Цветные роли инфо';
+              let str='['+client.prefix+'] [rpHelp] Анкетные роли инфо';
               str+='['+module.exports.system.channel_name+']-название канала\n';
               str+='['+module.exports.system.divider_roleList_word+']-название ролей разделителей в дискорд списке ролей\n';
-              str+='['+client.prefix+'rcPrint x'+']-запостить интерактивные списки ролей по x ролей в каждом\n команда также удаляет предыдущие списки \n';
-              str+='['+client.prefix+'rcReload x'+']-обновить списки ролей поместив по x ролей в каждый\n';
+              str+='['+client.prefix+'rpPrint x'+']-запостить интерактивные списки ролей по x ролей в каждом\n команда также удаляет предыдущие списки \n';
+              str+='['+client.prefix+'rpReload x'+']-обновить списки ролей поместив по x ролей в каждый\n';
               message.channel.send(str,{code:'ini'});
 
 }catch(err){console.log(err);};}};//
 //________________c1
-module.exports.commands.postAll={ on:true, aliase:'rcPrint', run:async(client,message,args)=>{try{
+module.exports.commands.postAll={ on:true, aliase:'rpPrint', run:async(client,message,args)=>{try{
 //if on this function triggers on deffined command
                        if(module.exports.system.messagesID){
                            let t_msg={};  let id='';
                            for(let i=0;i<module.exports.system.messagesID.length;i++){
                             id=module.exports.system.messagesID[i];
-                            t_msg=await message.channel.message.fetch(id);
+                            t_msg=await message.channel.messages.fetch(id);
                             await t_msg.delete();
                              console.log(id+' delete');
                             };
@@ -94,7 +94,7 @@ module.exports.commands.postAll={ on:true, aliase:'rcPrint', run:async(client,me
                        await m_d1.delete(); await m_d2.delete();
 }catch(err){console.log(err);};}};//
 //________________c2
-module.exports.commands.rolesProfile={ on:true, aliase:'rcReload', run:async(client,message,args)=>{try{
+module.exports.commands.rolesProfile={ on:true, aliase:'rpReload', run:async(client,message,args)=>{try{
 //if on this function triggers on deffined command
                       
                        return module.exports.run(client,message,args);
@@ -104,7 +104,6 @@ module.exports.commands.rolesProfile={ on:true, aliase:'rcReload', run:async(cli
 
 module.exports.boots.someBoot={ on:true,  run:async(client)=>{try{
 //if on this function triggers on ready event (with some delay)
-             client.lang=1;
              return module.exports.onGuildCreate(client);
 }catch(err){console.log(err);};}};//
 
@@ -116,28 +115,21 @@ module.exports.boots.someBoot={ on:true,  run:async(client)=>{try{
 
 exports.onGuildCreate=async(client)=>{try{
 //_______________________
-     console.log('ogc');
      let v_chnl = client.channels.cache.find(ch=>ch.name==module.exports.system.channel_name);
      let msg_arr=await v_chnl.messages.fetch({limit:100}).then(collected=>{return collected;}).catch(err=>console.log(err));
              module.exports.system.messagesID=[];
              let color_list=false;
-             msg_arr.map(m=>{ 
+             msg_arr.map(m=>{
               if(m.embeds&&m.embeds[0]&&m.embeds[0].fields&&m.embeds[0].fields[0]){
                   client.emit('message',m);
-                  console.log(m.embeds[0].fields[0].name);
                   color_list=(m.embeds[0].fields[0].name.indexOf(module.exports.d.profile_roles[client.lang])!=-1)&&(m.author==client.user);
                   if(color_list){
-                    console.log('color');
                   module.exports.system.messagesID.push(m.id);
                   console.log(m.id+' color list');
                  };//if has embeds
                };//if end
              });//map end
-//___________________________add
-        await exports.getRoleArr(client,'',[0,0],module.exports.system.divider_roleList_word);
-        return;
 //________________________
-
 }catch(err){console.log(err);};};//onGuildCreate end
 //________________________________
 
@@ -160,7 +152,7 @@ exports.reset=async(client,message,args)=>{try{
       roleList=roleList[0]; 
       if(roleList==' '){roleList='no data';};
       let msg = await message.channel.messages.fetch(args[2]);
-       await msg.clearReactions();
+       await msg.reactions.removeAll().catch(error => console.error('Failed to clear reactions: ', error));
       msg = await msg.edit({
       embed:{
          title:'',
@@ -179,8 +171,7 @@ exports.getRoleArr=async(client,message,count,keyWord)=>{try{
      
      let roles_arr=[];
      let bool=false;
-     let roles_arr2= await client.guilds.cache.get(client.SERVER_ID).roles.cache;
-     
+     let roles_arr2= await message.guild.roles.cache;
      let pos=[];
      roles_arr2.map(r=>{if(r.name==keyWord){ pos.push(r.position);}; return;});
          console.log('primitive '+pos);
@@ -191,6 +182,8 @@ exports.getRoleArr=async(client,message,count,keyWord)=>{try{
                if(bool) {roles_arr.push(r); }   
                bool=false;        
                              });
+     
+     roles_arr = roles_arr.sort(function(a, b){return a.position-b.position}).reverse();//---
      module.exports.system.temple.roles_arr_id=await roles_arr.map(r=>r.id);
      roles_arr = roles_arr.slice(count[0],count[1]);
      
@@ -226,7 +219,6 @@ exports.getRoleEmojiArr=async(client,msg)=>{try{
  }catch(err){console.log(err);};};//getRoleEmojiArr end
 
 //_____________________c5
-/*
 exports.onclickEmoji=async(client,messageReaction,user,action)=>{try{
 
      
@@ -235,66 +227,23 @@ exports.onclickEmoji=async(client,messageReaction,user,action)=>{try{
      console.log('roles add/remove action');
    
      let roleEmojiArr = await  module.exports.getRoleEmojiArr(client,messageReaction.message);
-     let member =messageReaction.message.guild.members.get(user.id);
+     let member =messageReaction.message.guild.members.cache.get(user.id);
      let roleID = await roleEmojiArr[messageReaction.emoji.name];
-     let role = messageReaction.message.guild.roles.get(roleID);
+     let role = messageReaction.message.guild.roles.cache.get(roleID);
      if(!role){return console.log('this role is apsend');};
      if(member.user.id==client.user.id) return;
-     if(action=='remove'){ member.removeRole(role);  }else{member.addRole(role);};
+     if(action=='remove'){ if(member.roles.cache.get(role.id)){member.roles.remove(role); }; }else{
+       
+       exports.e[user.id]=(exports.e[user.id])?exports.e[user.id]+1:1;
+       //console.log(exports.e);
+       let num = Number(exports.e.amount_limit);
+       if(exports.e[user.id]<num) {member.roles.add(role)}else{console.log('x rate limit');};
+     };
     return;
      
      
 }catch(err){console.log(err);};};//onclickEmoji end
-*/
-//_______________________________________test
-exports.onclickEmoji=async(client,messageReaction,user,action)=>{try{
- async function f(){
-     
-       if ( module.exports.system.messagesID.indexOf(messageReaction.message.id)==-1) return;
-   console.log('emoji_role');
-     //if(messageReaction.message.id!=module.exports.system.part1.messageID) return;
-     let roleEmojiArr = await  module.exports.getRoleEmojiArr(client,messageReaction.message);
-     let member =messageReaction.message.guild.members.cache.get(user.id);
-   
-     let roleID = await roleEmojiArr[messageReaction.emoji.name];
-     let role = messageReaction.message.guild.roles.cache.get(roleID);
-     if(!role){return console.log('this role is apsend');};
-   
-     if(member.user.id==client.user.id) return;
-    // if(member.roles.get(roleID)){ member.removeRole(role);  }else{member.addRole(role);};
-       if(action=='remove'){ 
-        if(member.roles.cache.get(role.id)) {console.log('rh');member.roles.remove(role); };
-       }else{
-                 
-if(module.exports.e[user.id]&&exports.e[user.id]>new Date().getTime()) return console.log('due time limit'+exports.e[user.id]);
-                 //console.log(module.exports.system.temple.roles_arr_id);
-                if(module.exports.system.temple.roles_arr_id.length!=0){
-                      let roles_arr_id=module.exports.system.temple.roles_arr_id.slice();
-                   async function check(){  
-                      for(let i=0;i<roles_arr_id.length;i++){
-                               //console.log(roles_arr_id[i])
-                               let item_role=messageReaction.message.guild.roles.cache.get(roles_arr_id[i]);
-                               if(item_role && item_role.id!=role.id&&member.roles.cache.get(roles_arr_id[i])){ member.roles.remove(item_role).then(console.log(role.name+'  add')).catch(err=>console.log(err+'222 '+role.name));}; 
-                       };//for end
-                     };//ch
-                   await check();
-                };
-           
-                let res = await member.roles.add(role).then(r=>{exports.e[user.id]=new Date().getTime()+exports.e.time_limit;}).catch(err=>{console.log(err+'111');return 2;});
-               await console.log(role.name+' '+res);
-//await delay(1000);
-         
-//await module.exports.e[user.id]=1;
-                
-                };
-             //console.log(module.exports.system.temple.roles_arr_id);
-     return;
-     //if member has role remove it else add
- };
- return await f();
-     
- }catch(err){console.log(err);};};//onclickEmoji end
-//____________________________________________test end
+
 
 exports.autoreload=async(client,message,args)=>{try{
 if(args[1]&&!isNaN(args[1])){module.exports.system.step =Number(args[1])};
