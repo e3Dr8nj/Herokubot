@@ -89,10 +89,10 @@ exports.onMessage=async(client,event_d)=>{try{
    if(channel.type=='dm'){if (module.exports.dm_commands==false) return;};//
    let message = await channel.messages.fetch(event_d.id).then(collected=>{return collected;});
    let args = message.content.slice(module.exports.prefix.length).trim().split(/ +/g);
-   let cmd_name = args[0];
+   let cmd_name = args[0].toLowerCase();//---07.02.21
 
   
-  if(client.rh.commands[cmd_name]){
+  if(client.rh.commands[cmd_name.toLowerCase()]){//---07.02.21
    
       if(message.author==client.user) return;
       client.rh.commands[cmd_name].map(f=>f.exe(client,message,args));
