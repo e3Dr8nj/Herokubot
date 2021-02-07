@@ -182,6 +182,8 @@ exports.getRoleArr=async(client,message,count,keyWord)=>{try{
                if(bool) {roles_arr.push(r); }   
                bool=false;        
                              });
+     
+     roles_arr = roles_arr.sort(function(a, b){return a.position-b.position});//---
      module.exports.system.temple.roles_arr_id=await roles_arr.map(r=>r.id);
      roles_arr = roles_arr.slice(count[0],count[1]);
      
