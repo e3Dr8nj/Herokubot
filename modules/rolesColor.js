@@ -300,10 +300,12 @@ if(module.exports.e[user.id]&&exports.e[user.id]>new Date().getTime()) return co
 exports.autoreload=async(client,message,args)=>{try{
 if(args[1]&&!isNaN(args[1])){module.exports.system.step =Number(args[1])};
   try{
+   message.channel.send('ok1');
    if(module.exports.system.messagesID.length==0) return;
    for(let i = 0 ;i<module.exports.system.messagesID.length;i++){
       let channel = message.guild.channels.cache.find(ch=>ch.name==module.exports.system.channel_name);
       args=[' ',i,module.exports.system.messagesID[i]];
+       message.channel.send('ok2');
       await module.exports.reset(client,message,args);
     };//for end
     module.exports.system.step =10;
