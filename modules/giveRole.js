@@ -71,9 +71,13 @@ if(tag < limit) return message.channel.send('Можешь воспользова
     if(!role) return;
     let rsv_mmb= message.mentions.members.first();
     if(!rsv_mmb) return message.channel.send("Не указан счастливый обладатель роли");
+       if(message.mentions.members.size>1) return message.channel.send("Только одного человека можно указать, будешь баловаться с массовыми пингами, Войд отшлепает тебя!!!");
+
 //    let rsv_mmb = message.guild.members.chache.get(rsv_id);
  
-    let role_name = args.slice(3).join(" ");
+    let role_name0 = args.slice(2).join(" ");
+    let patt1 = /<\@!?\d+>/g;
+   let role_name = role_name0.replace(patt1,' ').trim();
     let bool = false;
     if(!!role_name) await role.edit({name:role_name}).catch(err=>{bool=true;message.reply('Слишком длинное название');});
     //role_name=role_name?role_name:role.name;
