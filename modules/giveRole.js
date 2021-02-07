@@ -71,7 +71,7 @@ if(tag < limit) return message.channel.send('Можешь воспользова
     if(!role) return;
     let rsv_mmb= message.mentions.members.first();
     if(!rsv_mmb) return message.channel.send("Не указан счастливый обладатель роли");
-       if(message.mentions.members.size>1) return message.channel.send("Только одного человека можно указать, будешь баловаться с массовыми пингами, Войд отшлепает тебя!!!");
+       if(message.mentions.members.size>1) return message.channel.send("Ок, тогда: Указать можно только одного.");
 
 //    let rsv_mmb = message.guild.members.chache.get(rsv_id);
  
