@@ -92,7 +92,7 @@ exports.onMessage=async(client,event_d)=>{try{
    let cmd_name = args[0].toLowerCase();//---07.02.21
 
   
-  if(client.rh.commands[cmd_name.toLowerCase()]){//---07.02.21
+  if(client.rh.commands[cmd_name]){//---07.02.21
    
       if(message.author==client.user) return;
       client.rh.commands[cmd_name].map(f=>f.exe(client,message,args));
@@ -202,7 +202,7 @@ module.exports.sc0=async(client,target_module,path,moduleName)=>{try{
                        for(let key in target_module.commands){
                              let commandName = key; 
                              if(!target_module.commands[key].RH_IGNORE){
-                                 if(!!target_module.commands[key].aliase){commandName=target_module.commands[key].aliase.slice();};
+                                 if(!!target_module.commands[key].aliase){commandName=target_module.commands[key].aliase.slice().toLowerCase();};//---upd 070221
                           
                                  (client.rh)?{}:client.rh={};
                                  (client.rh.commands)?{}:client.rh.commands={};
