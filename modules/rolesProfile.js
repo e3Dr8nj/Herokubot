@@ -249,7 +249,8 @@ exports.autoreload=async(client,message,args)=>{try{
 if(args[1]&&!isNaN(args[1])){module.exports.system.step =Number(args[1])};
   try{
    if(module.exports.system.messagesID.length==0) return;
-   for(let i = 0 ;i<module.exports.system.messagesID.length;i++){
+   let rev = await module.exports.system.messagesID.reverse();//---
+   for(let i =0; i<rev.length;i++){//---90221
       let channel = message.guild.channels.cache.find(ch=>ch.name==module.exports.system.channel_name);
       args=[' ',i,module.exports.system.messagesID[i]];
       await module.exports.reset(client,message,args);
