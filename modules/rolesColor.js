@@ -160,9 +160,10 @@ exports.reset=async(client,message,args)=>{try{
       let rolesCount=roleList[1];
       roleList=roleList[0]; 
       if(roleList==' '){roleList='no data';};
-console.log(args[2]);
+
       let msg = await message.channel.messages.fetch(args[2]);
-       await msg.clearReactions();
+       await msg.reactions.removeAll().catch(error => console.error('Failed to clear reactions: ', error));
+      
       msg = await msg.edit({
       embed:{
          title:'',
@@ -306,7 +307,7 @@ if(args[1]&&!isNaN(args[1])){module.exports.system.step =Number(args[1])};
    if(module.exports.system.messagesID.length==0) return;
 //message.channel.send('st4');
    for(let i = 0 ;i<module.exports.system.messagesID.length;i++){
-      message.channel.send('st5');
+      //message.channel.send('st5');
       let channel = message.guild.channels.cache.find(ch=>ch.name==module.exports.system.channel_name);
       args=[' ',i,module.exports.system.messagesID[i]];
       await module.exports.reset(client,message,args);
