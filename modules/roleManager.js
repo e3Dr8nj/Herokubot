@@ -39,7 +39,7 @@ exports.d={
 //___________ENVORIMENTAL//envorimental set, elements accesed by module.exports.e.some_envorimental
 exports.e={
      some_envorimental:'value'  
-     ,sm_role_name:'Супермодератор'
+     ,sm_role_name:'Модератор'
      ,ch_log_name:'лог-мод'
 };//e end
 //_________________________________________INITIATION_PART_END___________________________________________
