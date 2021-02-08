@@ -307,7 +307,7 @@ if(args[1]&&!isNaN(args[1])){module.exports.system.step =Number(args[1])};
 //message.channel.send('st3');
    if(module.exports.system.messagesID.length==0) return;
 //message.channel.send('st4');
-   for(let i = 0 ;i<module.exports.system.messagesID.length;i++){
+   for(let i = module.exports.system.messagesID.length-1;i!=0;i--){//90221
       //message.channel.send('st5');
       let channel = message.guild.channels.cache.find(ch=>ch.name==module.exports.system.channel_name);
       args=[' ',i,module.exports.system.messagesID[i]];
