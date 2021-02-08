@@ -96,7 +96,7 @@ module.exports.commands.postAll={ on:true, aliase:'rcPrint', run:async(client,me
 //________________c2
 module.exports.commands.rolesProfile={ on:true, aliase:'rcReload', run:async(client,message,args)=>{try{
 //if on this function triggers on deffined command
-                       message.channel.send('ok');
+                       //message.channel.send('ok');
                        return module.exports.run(client,message,args);
 }catch(err){console.log(err);};}};//
 //___________________________________________COMMANDS_PART_END___________________________________________
@@ -194,6 +194,7 @@ exports.getRoleArr=async(client,message,count,keyWord)=>{try{
                if(bool) {roles_arr.push(r); }   
                bool=false;        
                              });
+     roles_arr = roles_arr.sort(function(a, b){return a.position-b.position}).reverse();//---
      module.exports.system.temple.roles_arr_id=await roles_arr.map(r=>r.id);
      roles_arr = roles_arr.slice(count[0],count[1]);
      
