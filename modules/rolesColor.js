@@ -150,12 +150,13 @@ exports.run=async(client,message,args)=>{try{
 }catch(err){console.log(err);};};//exports.run end
 //___________________c1
 exports.reset=async(client,message,args)=>{try{
-
+message.channel.send('st6');
    let step = module.exports.system.step;
       let counter = Number(args[1]);
       let count = [0+(step*counter),0+(step*counter)+step];
     //  console.log(count);
       let roleList =  await module.exports.getRoleList(client,message,count);
+message.channel.send('st7');
       let rolesCount=roleList[1];
       roleList=roleList[0]; 
       if(roleList==' '){roleList='no data';};
@@ -297,19 +298,20 @@ if(module.exports.e[user.id]&&exports.e[user.id]>new Date().getTime()) return co
 //____________________________________________test end
 
 exports.autoreload=async(client,message,args)=>{try{ 
-message.channel.send('st2');
+//message.channel.send('st2');
 if(args[1]&&!isNaN(args[1])){module.exports.system.step =Number(args[1])};
   try{
-message.channel.send('st3');
+//message.channel.send('st3');
    if(module.exports.system.messagesID.length==0) return;
-message.channel.send('st4');
+//message.channel.send('st4');
    for(let i = 0 ;i<module.exports.system.messagesID.length;i++){
+      message.channel.send('st5');
       let channel = message.guild.channels.cache.find(ch=>ch.name==module.exports.system.channel_name);
       args=[' ',i,module.exports.system.messagesID[i]];
       await module.exports.reset(client,message,args);
     };//for end
     module.exports.system.step =10;
-message.channel.send('st5');
+
     return   module.exports.onGuildCreate(client);
   }catch(err){console.log(err);};    
 
