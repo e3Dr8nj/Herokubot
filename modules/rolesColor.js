@@ -150,16 +150,17 @@ exports.run=async(client,message,args)=>{try{
 }catch(err){console.log(err);};};//exports.run end
 //___________________c1
 exports.reset=async(client,message,args)=>{try{
-message.channel.send('st6');
+//message.channel.send('st6');
    let step = module.exports.system.step;
       let counter = Number(args[1]);
       let count = [0+(step*counter),0+(step*counter)+step];
     //  console.log(count);
       let roleList =  await module.exports.getRoleList(client,message,count);
-message.channel.send('st7');
+//message.channel.send('st7');
       let rolesCount=roleList[1];
       roleList=roleList[0]; 
       if(roleList==' '){roleList='no data';};
+console.log(args[2]);
       let msg = await message.channel.messages.fetch(args[2]);
        await msg.clearReactions();
       msg = await msg.edit({
