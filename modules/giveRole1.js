@@ -45,7 +45,7 @@ client.role1.lastTime=0;
 module.exports.commands = {};
 
 
-module.exports.commands.cmd2={aliase:'!выдать', run:async(client,message,args)=>{try{
+module.exports.commands.cmd1={aliase:'!выдать', run:async(client,message,args)=>{try{
    //code to execut then this command triggered
   if(args[1]=="роль"){
     //check if mmb has roles

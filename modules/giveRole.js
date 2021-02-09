@@ -44,14 +44,10 @@ client.role.lastTime=0;
 //_________________________________________COMMANDS_PART_________________________________________________
 module.exports.commands = {};
 
-module.exports.commands.cmd1={disable:false,aliase:'+', run:async(client,message,args)=>{try{
-   //code to execut then this command triggered
-  //if(client.storage.emojis[args[1]]) message.channel.send(client.storage.emojis[args[1]]);
 
-}catch(err){console.log(err);};}};//
 //module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
 // ...
-module.exports.commands.cmd2={aliase:'выдать', run:async(client,message,args)=>{try{
+module.exports.commands.cmd0={aliase:'выдать', run:async(client,message,args)=>{try{
    //code to execut then this command triggered
   if(args[1]=="роль"){
     //check if mmb has roles
