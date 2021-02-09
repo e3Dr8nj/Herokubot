@@ -35,8 +35,8 @@ module.exports.boots = {};
 
 module.exports.boots.someBoot={run:async(client)=>{try{
     //code to execut bot on loading
-    client.role = {};
-client.role.lastTime=0;
+    client.role1 = {};
+client.role1.lastTime=0;
  
 }catch(err){console.log(err);};}};//
 //module.exports.boots.someBoot.RH_IGNORE=true;//add this line to ignore this command
@@ -44,14 +44,8 @@ client.role.lastTime=0;
 //_________________________________________COMMANDS_PART_________________________________________________
 module.exports.commands = {};
 
-module.exports.commands.cmd1={disable:false,aliase:'+', run:async(client,message,args)=>{try{
-   //code to execut then this command triggered
-  //if(client.storage.emojis[args[1]]) message.channel.send(client.storage.emojis[args[1]]);
 
-}catch(err){console.log(err);};}};//
-//module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
-// ...
-module.exports.commands.cmd2={aliase:'выдать', run:async(client,message,args)=>{try{
+module.exports.commands.cmd2={aliase:'!выдать', run:async(client,message,args)=>{try{
    //code to execut then this command triggered
   if(args[1]=="роль"){
     //check if mmb has roles
@@ -61,11 +55,11 @@ module.exports.commands.cmd2={aliase:'выдать', run:async(client,message,ar
    
     if(!is_able) return message.channel.send('Недостаточно прав!');
     let now = new Date().getTime();
-let tag = now - client.role.lastTime; 
+let tag = now - client.role1.lastTime; 
     let limit = 60*1000*60;
 if(tag < limit) return message.channel.send('Можешь воспользовать командой через '+Math.round((limit-tag)/1000/60)+' минут');
     
-    let ROLE_ID = '807350473862021140';
+    let ROLE_ID = '808799141916049458';
    // let ROLE_ID = '807006473858973796';
     let role = message.guild.roles.cache.get(ROLE_ID);
     if(!role) return;
@@ -85,7 +79,7 @@ if(tag < limit) return message.channel.send('Можешь воспользова
     if(bool) return; 
     await role.members.map(m=> m.roles.remove(role).catch(err=>console.log(err)) );
     await rsv_mmb.roles.add(role).then(x=>message.channel.send('Роль выдана')).catch(err=>console.error(err));
-     client.role.lastTime=now;//
+     client.role1.lastTime=now;//
 };
 //__ 
 }catch(err){console.log(err);};}};//
