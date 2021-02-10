@@ -1,4 +1,4 @@
-﻿
+﻿//
 exports.rh={
   disable:false,
   commands:{disable:false},
@@ -37,16 +37,7 @@ module.exports.e={
   ,roles_arr:['Сумеречные','Странники','☥']
 }
 
-//_________________________________________BOOTS_PART___________________________________________________
-module.exports.boots = {}; 
 
-module.exports.boots.someBoot={run:async(client)=>{try{
-    //code to execut bot on loading
-   
- 
-}catch(err){console.log(err);};}};//
-//module.exports.boots.someBoot.RH_IGNORE=true;//add this line to ignore this command
-//...
 //_________________________________________COMMANDS_PART_________________________________________________
 module.exports.commands = {};
 
@@ -120,26 +111,8 @@ module.exports.commands.x000cmd1={aliase:'x000', run:async(client,message,args)=
    };
   
 }catch(err){console.log(err);};}};//
-//_________________________________________EVENTS_PART_________________________________________________
-module.exports.events={};
-
-module.exports.events.message={ on:true,run:async(client,message)=>{try{
- //
-}catch(err){console.log(err);};}};//
-//module.exports.events.someEvent.RH_IGNORE=true;//add this line to ignore this event trigger
-// ...
 
 
 
- 
-//_________________________________________EVENTS_PART_END__________________________________________
-
-//______________________________EVENTS PRIMITIVE
-module.exports.events_primitive={};
-
-module.exports.events_primitive.SOME_EVENT_NAME={run:async(client,event)=>{try{
-      //some code here
-}catch(err){console.log(err);};}};//
-//module.exports.events_primitive.SOME_EVENT_NAME.RH_IGNORE = true;//add this line to ignore this primitive event trigger
 
 
