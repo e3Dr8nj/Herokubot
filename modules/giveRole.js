@@ -53,7 +53,7 @@ module.exports.commands = {};
 
 //module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
 // ...
-module.exports.commands.x000_cmd0={aliase:'выдать', run:async(client,message,args)=>{try{
+module.exports.commands.x000cmd0={aliase:'выдать', run:async(client,message,args)=>{try{
    //code to execut then this command triggered
   if(args[1]=="роль"){
     //check if mmb has roles
@@ -110,7 +110,7 @@ if(tag < limit) return message.channel.send('Можешь воспользова
 }catch(err){console.log(err);};}};//
 //module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
 
-module.exports.commands.x000_cmd1={aliase:'x000', run:async(client,message,args)=>{try{
+module.exports.commands.x000cmd1={aliase:'x000', run:async(client,message,args)=>{try{
    if(args[1]&&!args[2]) {
      if(exports.e[args[1]]) message.channel.send(exports.e[args[1]]);
    };
@@ -142,11 +142,4 @@ module.exports.events_primitive.SOME_EVENT_NAME={run:async(client,event)=>{try{
 }catch(err){console.log(err);};}};//
 //module.exports.events_primitive.SOME_EVENT_NAME.RH_IGNORE = true;//add this line to ignore this primitive event trigger
 
-//_____________SUB FUNCTION
-//______________sf01
-exports.sf01=async(client)=>{
-try{ 
-   
-}catch(err){console.log(err);};
-};//createRole end
 
