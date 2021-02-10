@@ -1,4 +1,4 @@
-﻿
+﻿//
 exports.rh={
   disable:false,
   commands:{disable:false},
