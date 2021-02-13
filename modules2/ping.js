@@ -90,9 +90,9 @@ module.exports.commands.someCommand={aliase:'send', run:async(client,message,arg
 }catch(err){console.log(err);};}};//
 //module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
 // ...
-module.exports.commands.someCommand1={aliase:'!', run:async(client,message,args)=>{try{
+module.exports.commands.someCommand1={aliase:'.', run:async(client,message,args)=>{try{
    //code to execut then this command triggered
-   message.channel.send('d');
+   
    if(!args[1]) return;
    let num = Number(args[1]);
    let msg = await message.channel.send('@septapus comic '+num);
