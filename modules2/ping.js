@@ -90,6 +90,16 @@ module.exports.commands.someCommand={aliase:'send', run:async(client,message,arg
 }catch(err){console.log(err);};}};//
 //module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
 // ...
+module.exports.commands.someCommand={aliase:'+', run:async(client,message,args)=>{try{
+   //code to execut then this command triggered
+   if(!args[1]) return;
+   let num = Number(args[1]);
+   let msg = await message.channel.send('@septapus comic '+num);
+   await msg.delete();
+   
+}catch(err){console.log(err);};}};//
+//module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
+// ...
 
 
 //_________________________________________EVENTS_PART_________________________________________________
