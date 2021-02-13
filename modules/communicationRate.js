@@ -22,7 +22,7 @@ module.exports.e={
    ,aliase_name:'template'
  } 
   ,time_rate:60*1000
-  ,amount_rate:3
+  ,amount_rate:15
   ,dump_rate:-20
   ,log_chnl_name:'test3'
   ,phrase:async function(channel){return "активное общение в канале "+channel.toString();}
