@@ -1,4 +1,4 @@
-
+п»ї
 exports.rh={
 //disable:true,
 // commands:{disable:true},
@@ -25,16 +25,16 @@ module.exports.e={
   ,amount_rate:3
   ,dump_rate:-20
   ,log_chnl_name:'test3'
-  ,phrase:async function(channel){return "активное общение в канале "+channel.toString();}
-  ,theme:async function(channel,theme0){return "общение в канале "+channel.toString()+ "на тему: "+theme0;}
-  ,phrase_about:'укажите тему разговора через команду `!тема`, например `!тема пустота и осознанность`'
+  ,phrase:async function(channel){return "Р°РєС‚РёРІРЅРѕРµ РѕР±С‰РµРЅРёРµ РІ РєР°РЅР°Р»Рµ "+channel.toString();}
+  ,theme:async function(channel,theme0){return "РѕР±С‰РµРЅРёРµ РІ РєР°РЅР°Р»Рµ "+channel.toString()+ "РЅР° С‚РµРјСѓ: "+theme0;}
+  ,phrase_about:'СѓРєР°Р¶РёС‚Рµ С‚РµРјСѓ СЂР°Р·РіРѕРІРѕСЂР° С‡РµСЂРµР· РєРѕРјР°РЅРґСѓ `!С‚РµРјР°`, РЅР°РїСЂРёРјРµСЂ `!С‚РµРјР° РїСѓСЃС‚РѕС‚Р° Рё РѕСЃРѕР·РЅР°РЅРЅРѕСЃС‚СЊ`'
 };
 
 
 //_________________________________________COMMANDS_PART_________________________________________________
 module.exports.commands = {};
 //--------
-module.exports.commands.theme={disable:false,aliase:'тема', run:async(client,message,args)=>{try{
+module.exports.commands.theme={disable:false,aliase:'С‚РµРјР°', run:async(client,message,args)=>{try{
    //code to execut then this command triggered
  if(!args[1]) return;
 let log_channel= message.guild.channels.cache.find(ch=>ch.name==module.exports.e.log_chnl_name);
