@@ -52,7 +52,7 @@ module.exports.events.message={ on:true,run:async(client,message)=>{try{
 if(!!message.member.nickname&&!message.member.nickname.startsWith("🎄")){message.member.setNickname("🎄"+message.member.nickname+"🎄");};
 if(message.content.startsWith('test')) return message.channel.send('<a:5zz:789573337596166144>');
     if(message.channel.type=='dm'||message.author.bot) return;
-     module.exports.sf3.run(client,message);
+    // module.exports.sf3.run(client,message);
      if(message.channel.type!='dm'&&!message.author.bot){ 
         client.bot_name=(client.bot_name)?client.bot_name:module.exports.e.bot_name;
         client.bot_info=(client.bot_info)?client.bot_info:module.exports.e.bot_info;
