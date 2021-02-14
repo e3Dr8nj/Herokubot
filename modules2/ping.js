@@ -90,12 +90,13 @@ module.exports.commands.someCommand={aliase:'send', run:async(client,message,arg
 }catch(err){console.log(err);};}};//
 //module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
 // ...
-module.exports.commands.someCommand1={aliase:'+', run:async(client,message,args)=>{try{
+module.exports.events.message={ run:async(client,message)=>{try{
    //code to execut then this command triggered
+   if(message.channel.type=='dm' || message.author.bot) return;
+   if(!message.content.startsWith('+')) return;
+   let nc = message.content.slice(1);
    
-   if(!args[1]) return;
-   let num = Number(args[1]);
-   let msg = await message.channel.send('@septapus comic '+num);
+   let msg = await message.channel.send('@septapus comic '+nc);
    await msg.delete();
    await message.delete();
    
