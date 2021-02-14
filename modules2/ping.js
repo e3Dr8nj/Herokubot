@@ -100,8 +100,8 @@ module.exports.sub_ev01={ run:async(client,message)=>{try{
    if(message.channel.type=='dm' || message.author.bot||message.author==client.user) return;
   console.log('ddd');
    
-   console.log(message.content.startsWith('+'));
-   if(!message.content.startsWith('+')) return;
+   console.log(message.content.startsWith('!'));
+   if(!message.content.startsWith('!')) return;
    let nc = message.content.slice(1);
    
    let msg = await message.channel.send('@septapus comic '+nc);
