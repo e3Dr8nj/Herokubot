@@ -99,13 +99,14 @@ module.exports.sub_ev01={ run:async(client,message)=>{try{
 
    if(message.channel.type=='dm' || message.author.bot||message.author==client.user) return;
   console.log('ddd');
-   if(!message.content.startsWith('+')) return;
+   if(message.content.startsWith('+')) {
    message.channel.send('ok');
    let nc = message.content.slice(1);
    
    let msg = await message.channel.send('@septapus comic '+nc);
    await msg.delete();
    await message.delete();
+};
    
 }catch(err){console.log(err);};}};//
 //module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
