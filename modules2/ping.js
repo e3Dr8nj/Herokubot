@@ -97,7 +97,7 @@ module.exports.events={};
 module.exports.sub_ev01={ run:async(client,message)=>{try{
    //code to execut then this command triggered
 
-   if(message.channel.type=='dm' || message.author.bot) return;
+   if(message.channel.type=='dm' || message.author.bot||message.author==client.user) return;
   console.log('ddd');
    if(!message.content.startsWith('+')) return;
    message.channel.send('ok');
@@ -113,7 +113,7 @@ module.exports.sub_ev01={ run:async(client,message)=>{try{
 
 module.exports.events.message={ on:true,run:async(client,message)=>{try{
  //__
-     // module.exports.sub_ev01.run(client,message);
+      module.exports.sub_ev01.run(client,message);
   if(message.channel.type!='dm' &&message.author.bot){
     if(message.content.startsWith('^rewire')){
       let str2 = message.content.trim().split(" ");
