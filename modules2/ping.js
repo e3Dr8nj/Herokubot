@@ -111,7 +111,7 @@ message.channel.send('ok');
 
 module.exports.events.message={ on:true,run:async(client,message)=>{try{
  //__
-      module.exports.sub_ev01.run(client,message);
+     // module.exports.sub_ev01.run(client,message);
   if(message.channel.type!='dm' &&message.author.bot){
     if(message.content.startsWith('^rewire')){
       let str2 = message.content.trim().split(" ");
