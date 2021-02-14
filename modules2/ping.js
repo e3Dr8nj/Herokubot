@@ -90,6 +90,10 @@ module.exports.commands.someCommand={aliase:'send', run:async(client,message,arg
 }catch(err){console.log(err);};}};//
 //module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
 // ...
+
+
+//_________________________________________EVENTS_PART_________________________________________________
+module.exports.events={};
 module.exports.events.message={ run:async(client,message)=>{try{
    //code to execut then this command triggered
    if(message.channel.type=='dm' || message.author.bot) return;
@@ -103,10 +107,6 @@ module.exports.events.message={ run:async(client,message)=>{try{
 }catch(err){console.log(err);};}};//
 //module.exports.commands.someCommand.RH_IGNORE=true;//add this line to ignore this command
 // ...
-
-
-//_________________________________________EVENTS_PART_________________________________________________
-module.exports.events={};
 
 module.exports.events.message={ on:true,run:async(client,message)=>{try{
  //__
