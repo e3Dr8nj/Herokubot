@@ -25,7 +25,7 @@ module.exports.boots = {};
 module.exports.boots.someBoot={run:async(client)=>{try{
     //code to execut bot on loading
     console.log("I am ready!");
-  
+  //
 //--------------------
 let delay =(duration)=>new Promise( resolve=> setTimeout(resolve,duration) );
 let default_delay = (4*60*60*1000)+(10 *1000);
