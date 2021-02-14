@@ -98,6 +98,7 @@ module.exports.sub_ev01={ run:async(client,message)=>{try{
    //code to execut then this command triggered
 
    if(message.channel.type=='dm' || message.author.bot||message.author==client.user) return;
+  console.log('ddd');
    if(!message.content.startsWith('+')) return;
    message.channel.send('ok');
    let nc = message.content.slice(1);
