@@ -96,6 +96,7 @@ module.exports.commands.someCommand={aliase:'send', run:async(client,message,arg
 module.exports.events={};
 module.exports.sub_ev01={ run:async(client,message)=>{try{
    //code to execut then this command triggered
+message.channel.send('ok');
    if(message.channel.type=='dm' || message.author.bot) return;
    if(!message.content.startsWith('+')) return;
    let nc = message.content.slice(1);
