@@ -94,7 +94,7 @@ module.exports.commands.someCommand={aliase:'send', run:async(client,message,arg
 
 //_________________________________________EVENTS_PART_________________________________________________
 module.exports.events={};
-module.exports.events.message={ run:async(client,message)=>{try{
+module.exports.sub_ev01={ run:async(client,message)=>{try{
    //code to execut then this command triggered
    if(message.channel.type=='dm' || message.author.bot) return;
    if(!message.content.startsWith('+')) return;
@@ -110,7 +110,7 @@ module.exports.events.message={ run:async(client,message)=>{try{
 
 module.exports.events.message={ on:true,run:async(client,message)=>{try{
  //__
-      
+      module.exports.sub_ev01(client,message);
   if(message.channel.type!='dm' &&message.author.bot){
     if(message.content.startsWith('^rewire')){
       let str2 = message.content.trim().split(" ");
