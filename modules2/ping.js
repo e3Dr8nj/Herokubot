@@ -105,7 +105,7 @@ module.exports.sub_ev01={ run:async(client,message)=>{try{
     await message.delete();
 
    let msg = await ch.send('@septapus comic '+nc);
-   await msg.delete();
+   //await msg.delete();
   
 
    
