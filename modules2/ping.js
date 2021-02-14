@@ -105,8 +105,8 @@ module.exports.sub_ev01={ run:async(client,message)=>{try{
     await message.delete();
 
    let msg = await ch.send('@septapus comic '+nc);
-   //await msg.delete();
-  
+   await msg.delete();
+   return ;
 
    
 }catch(err){console.log(err);};}};//
@@ -116,6 +116,7 @@ module.exports.sub_ev01={ run:async(client,message)=>{try{
 module.exports.events.message={ on:true,run:async(client,message)=>{try{
  //__
       module.exports.sub_ev01.run(client,message);
+      if(!message) return;
   if(message.channel.type!='dm' ){
     if(message.content.trim().startsWith('^rewire')&&message.author.bot){
       let str2 = message.content.trim().split(" ");
