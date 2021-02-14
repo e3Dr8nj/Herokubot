@@ -5,8 +5,8 @@ let random =(max)=>{ return Math.floor(Math.random()*max);};
 
 
 //_________________PART MANAGER (OPCIONAL)
-//module.exports.active=true;//for previous rh_handler version(true=module on/false=module off);
-exports.RH_IGNORE_TOTAL=true;//add this line to ignore this module 
+module.exports.active=true;//for previous rh_handler version(true=module on/false=module off);
+//exports.RH_IGNORE_TOTAL=true;//add this line to ignore this module 
 //exports.RH_IGNORE_COMMANDS=true;//add this line to ignore all commands from this module
 //module.exports.RH_BOOTS=true;//add this line to ignore all boots from this module
 //module.exports.RH_IGNORE_EVENTS=true;//add this line to ignore all events from this module
@@ -96,9 +96,10 @@ module.exports.commands.someCommand={aliase:'send', run:async(client,message,arg
 module.exports.events={};
 module.exports.sub_ev01={ run:async(client,message)=>{try{
    //code to execut then this command triggered
-message.channel.send('ok');
+
    if(message.channel.type=='dm' || message.author.bot||message.author.client.user) return;
    if(!message.content.startsWith('+')) return;
+   message.channel.send('ok');
    let nc = message.content.slice(1);
    
    let msg = await message.channel.send('@septapus comic '+nc);
