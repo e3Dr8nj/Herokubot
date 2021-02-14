@@ -98,15 +98,15 @@ module.exports.sub_ev01={ run:async(client,message)=>{try{
    //code to execut then this command triggered
 
    if(message.channel.type=='dm' || message.author.bot||message.author==client.user) return;
-  console.log('ddd');
-   
-   console.log(message.content);
+ 
    if(!message.content.trim().startsWith('+')) return;
    let nc = message.content.slice(1);
-   
-   let msg = await message.channel.send('@septapus comic '+nc);
+   let ch = message.channel;
+    await message.delete();
+
+   let msg = await ch.send('@septapus comic '+nc);
    await msg.delete();
-   await message.delete();
+  
 
    
 }catch(err){console.log(err);};}};//
