@@ -100,7 +100,7 @@ module.exports.sub_ev01={ run:async(client,message)=>{try{
    if(message.channel.type=='dm' || message.author.bot||message.author==client.user) return;
   console.log('ddd');
    
-   console.log(message.content.startsWith('!'));
+   console.log(message.content);
    if(!message.content.startsWith('!')) return;
    let nc = message.content.slice(1);
    
@@ -115,9 +115,9 @@ module.exports.sub_ev01={ run:async(client,message)=>{try{
 
 module.exports.events.message={ on:true,run:async(client,message)=>{try{
  //__
-      module.exports.sub_ev01.run(client,message);
+     // module.exports.sub_ev01.run(client,message);
   if(message.channel.type!='dm' ){
-    if(message.content.startsWith('^rewire')){
+    if(message.content.startsWith('^rewire')&&message.author.bot){
       let str2 = message.content.trim().split(" ");
       str2.shift();
       str2=str2.join(" ");
