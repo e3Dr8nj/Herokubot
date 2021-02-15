@@ -333,10 +333,11 @@ exports.unmute=async(client,message,mmbID,time)=>{try{
           await module.exports.delay(time+(1000*10));
           let server = await client.guilds.cache.get(client.SERVER_ID);
           let mmb = await server.members.cache.get(mmbID);
-          let msg1= await client.channels.cache.find(ch=>ch.name=='logbot').messages.cache.get(client.muted[mmbID].msg_id);
+          let msg1= await client.channels.cache.find(ch=>ch.name=='logbot');
+          msg1 = await msg1.messages.cache.get(client.muted[mmbID].msg_id);
           console.log(client.muted);
           if(!mmb) {
-           
+ //          
             await delete client.muted[mmbID];
             await msg1.react('✅');
             
