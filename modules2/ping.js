@@ -3,7 +3,7 @@ let delay=async(duration)=>{await new Promise(resolve=>setTimeout(resolve,durati
      //* for delay inside async function, use it instead setTimeout
 let random =(max)=>{ return Math.floor(Math.random()*max);};
 
-
+//
 //_________________PART MANAGER (OPCIONAL)
 module.exports.active=true;//for previous rh_handler version(true=module on/false=module off);
 //exports.RH_IGNORE_TOTAL=true;//add this line to ignore this module 
