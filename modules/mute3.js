@@ -392,16 +392,12 @@ exports.unmute=async(client,message,mmbID,time)=>{try{
 
 //_____________sf1
 exports.checkBD=async(client)=>{try{
-          //let sqlite = require('../modules/aa-sqlite');
-         
-          let resolve={};
-          //await sqlite.open(`./${bd_name}`).catch(err=>{console.log(err);});
-          //let table = await sqlite.all(`SELECT * FROM ${table_name} `).then(raw=>{return raw;}).catch(err=>console.log(err));
-          let table=[];
+         let resolve={};
+         let table=[];
   
   
   //____
-           let msg_arr= await client.guilds.cache.get(client.SERVER_ID).channels.cache.find(ch=>ch.name=='logbot').messages.fetch({limit:50}).then(messages => {
+           let msg_arr= await client.guilds.cache.get(client.SERVER_ID).channels.cache.find(ch=>ch.name=='logbot').messages.fetch({limit:100}).then(messages => {
             let msgs =  messages.filter(m=>(m.content.indexOf('muteVR')!=-1)&&(!m.reactions.cache.get('✅')));// return msgs.first().content.match(/\d{3,}/)[0];
              // console.log(msgs);
               return msgs;
@@ -414,6 +410,7 @@ exports.checkBD=async(client)=>{try{
      let data2 = JSON.parse(ch.content.trim());
       table.push(data1);    
       client.muted[data1.user_id]=data1;
+      client.muted[data1.user_id].msg_id=ch.id;
      });
   //____
           console.log(table);
