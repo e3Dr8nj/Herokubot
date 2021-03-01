@@ -81,7 +81,7 @@ module.exports.sf3={ run:async(client,message)=>{try{
     //code to execut then event occurs
   if(message.author.bot) return;
 if(module.exports.e.cmn_ctg_ids.indexOf(message.channel.parent.id)==-1) return;
-if(module.exports.e.exp_chnl_ids.indexOf(message.channel.id)!=-1) return;
+if(module.exports.e.exp_cnhl_ids.indexOf(message.channel.id)!=-1) return;
   let channel_id=message.channel.id;
   // console.log(message.content);
   if(!client.guild1){client.guild1={}};
