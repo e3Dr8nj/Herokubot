@@ -22,12 +22,14 @@ module.exports.e={
    ,aliase_name:'template'
  } 
   ,time_rate:60*1000
-  ,amount_rate:15
-  ,dump_rate:-20
-  ,log_chnl_name:'test3'
+  ,amount_rate:3
+  ,dump_rate:-100
+  ,log_chnl_id:'416255611819524097'
   ,phrase:async function(channel){return "активное общение в канале "+channel.toString();}
   ,theme:async function(channel,theme0){return "общение в канале "+channel.toString()+ "на тему: "+theme0;}
   ,phrase_about:'укажите тему разговора через команду `!тема`, например `!тема пустота и осознанность`'
+ ,cmn_ctg_ids:['527546905526534144','500939838191697930','383902206149001217','410486009076121621','410571103862521866']
+,exp_cnhl_ids:['383928250440744960']
 };
 
 
@@ -37,7 +39,7 @@ module.exports.commands = {};
 module.exports.commands.theme={disable:false,aliase:'тема', run:async(client,message,args)=>{try{
    //code to execut then this command triggered
  if(!args[1]) return;
-let log_channel= message.guild.channels.cache.find(ch=>ch.name==module.exports.e.log_chnl_name);
+let log_channel= message.guild.channels.cache.get(module.exports.e.log_chnl_id);
 
 let theme = args.slice(1).join(" ");
   let data = await module.exports.e.theme(message.channel,theme);
@@ -78,6 +80,8 @@ try{
 module.exports.sf3={ run:async(client,message)=>{try{
     //code to execut then event occurs
   if(message.author.bot) return;
+if(module.exports.e.cmn_ctg_ids.indexOf(message.channel.parent.id)==-1) return;
+if(module.exports.e.exp_chnl_ids.indexOf(message.channel.id)!=-1) return;
   let channel_id=message.channel.id;
   // console.log(message.content);
   if(!client.guild1){client.guild1={}};
@@ -97,7 +101,7 @@ if(!client.guild1[channel_id]){client.guild1[channel_id]={
   //console.log(inc);
   client.guild1[channel_id].communication_rate=client.guild1[channel_id].communication_rate+inc;
 if(client.guild1[channel_id].communication_rate>module.exports.e.amount_rate){
-  let log_channel= message.guild.channels.cache.find(ch=>ch.name==module.exports.e.log_chnl_name);
+  let log_channel= message.guild.channels.cache.get(module.exports.e.log_chnl_id);
   let data = await module.exports.e.phrase(message.channel);
    await log_channel.send(data);
  // await message.channel.send(module.exports.e.phrase_about);
