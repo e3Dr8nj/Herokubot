@@ -88,7 +88,7 @@ if(module.exports.e.exp_cnhl_ids.indexOf(message.channel.id)!=-1) return;
   if(!client.guild1){client.guild1={}};
 if(!client.guild1[channel_id]){client.guild1[channel_id]={
    last_message_time:0
-   ,communication_rate:1
+   ,communication_rate:2
    
 };};
 
