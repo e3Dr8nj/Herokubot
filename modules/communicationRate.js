@@ -21,9 +21,9 @@ module.exports.e={
    code_name:'rh00'
    ,aliase_name:'template'
  } 
-  ,time_rate:60*1000
-  ,amount_rate:3
-  ,dump_rate:-100
+  ,time_rate:2*60*1000
+  ,amount_rate:2
+  ,dump_rate:-50
   ,log_chnl_id:'416255611819524097'
   ,phrase:async function(channel){return "активное общение в канале "+channel.toString();}
   ,theme:async function(channel,theme0){return "общение в канале "+channel.toString()+ "на тему: "+theme0;}
