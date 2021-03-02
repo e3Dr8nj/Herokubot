@@ -22,7 +22,7 @@ module.exports.e={
    ,aliase_name:'template'
  } 
   ,time_rate:1*60*1000
-  ,amount_rate:1
+  ,amount_rate:2
   ,dump_rate:-50
   ,log_chnl_id:'416255611819524097'
   ,phrase:async function(channel){return "активное общение в канале "+channel.toString();}
@@ -88,7 +88,7 @@ if(module.exports.e.exp_cnhl_ids.indexOf(message.channel.id)!=-1) return;
   if(!client.guild1){client.guild1={}};
 if(!client.guild1[channel_id]){client.guild1[channel_id]={
    last_message_time:0
-   ,communication_rate:0
+   ,communication_rate:1
    
 };};
 
