@@ -23,13 +23,13 @@ module.exports.e={
  } 
   ,time_rate:2*60*1000
   ,amount_rate:2
-  ,dump_rate:-50
-  ,log_chnl_id:'416255611819524097'
+  ,dump_rate:-100
+  ,log_chnl_id:'383928250440744960'
   ,phrase:async function(channel){return "активное общение в канале "+channel.toString();}
   ,theme:async function(channel,theme0){return "общение в канале "+channel.toString()+ "на тему: "+theme0;}
   ,phrase_about:'укажите тему разговора через команду `!тема`, например `!тема пустота и осознанность`'
  ,cmn_ctg_ids:['527546905526534144','500939838191697930','383902206149001217','410486009076121621','410571103862521866']
-,exp_cnhl_ids:['383928250440744960','487632718025326602']
+,exp_cnhl_ids:['383928250440744960','487632718025326602','416255611819524097','383928250440744960']
 //chaos chram.secret room
 };
 
