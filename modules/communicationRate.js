@@ -21,8 +21,8 @@ module.exports.e={
    code_name:'rh00'
    ,aliase_name:'template'
  } 
-  ,time_rate:2*60*1000
-  ,amount_rate:2
+  ,time_rate:5*60*1000
+  ,amount_rate:10
   ,dump_rate:-100
   ,log_chnl_id:'383928250440744960'
   ,phrase:async function(channel){return "активное общение в канале "+channel.toString();}
