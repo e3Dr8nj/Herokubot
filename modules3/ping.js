@@ -66,14 +66,15 @@ if(message.content.startsWith('test')) return message.channel.send('<a:5zz:78957
   var result = patt.exec(mc);
   //let args = mc.split(' ');
 //let str_tea=result+' '+args[random(args.lenght-1)]+' ';
-  if(result){
+let rnd = await random(2);
+  if(result&&(rnd==1)){
   let args = mc.split(' ');  
 let str_tea=result[0]+" "+args[random(args.length-1)]+" ";
    //  let reply = await exports.sf(client,message,args); 
 if(result) message.channel.send(str_tea+'<:nichosi:625116176212688917>');
 };
-  if (mc.toLowerCase().indexOf("нит")!=-1){ message.channel.send(mc.replace(/нит/ig,'дат'));};
-if (mc.toLowerCase().indexOf("дат")!=-1){ message.channel.send(mc.replace(/дат/ig,'нит'));};
+  if (mc.toLowerCase().indexOf("нит ")!=-1){ message.channel.send(mc.replace(/нит/ig,'дат'));};
+if (mc.toLowerCase().indexOf("дат ")!=-1){ message.channel.send(mc.replace(/дат/ig,'нит'));};
 if (mc.startsWith("кто")&&mc.indexOf('?')!=-1){
    let str1= /кто \W{1,}/;
    let result=mc.match(str1);
