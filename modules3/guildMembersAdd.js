@@ -195,7 +195,7 @@ try{
    async function checkBot(){  
          let secret_arr=module.exports.secret_arr.slice();
          let new_arr = [];
-         for (let i = 0;i<10;i++){
+         for (let i = 0;i<exports.secret_arr.length-1;i++){
          let xrnd_ = Math.ceil(Math.random() * secret_arr.length-2);
          new_arr.push(secret_arr.splice(xrnd_,1));
          };
