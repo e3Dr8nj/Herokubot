@@ -212,6 +212,8 @@ try{
       let xrnd = Math.ceil(Math.random() * secret_arr.length-1);
       let desc=secret_arr[xrnd][0];
       let emo=secret_arr[xrnd][1];
+console.log(desc);
+console.log(emo);
     let desc_msg = module.exports.phrases.enter_phrase;
     let file_name = desc;
      let check_msg = await channel.send(member.toString(),{embed: {
@@ -246,7 +248,7 @@ try{
                  // console.log(obj);
                  let random1 = Math.floor(Math.random() * module.exports.phrases.fail_phrase.length-1);
                  let wrong_answer=obj[collection.first().emoji.name][2];
-                 let str = module.exports.phrases.fail_phrase[random1].replace('#wrong_answer',wrong_answer);
+                 let str = module.exports.phrases.fail_phrase[1].replace('#wrong_answer',wrong_answer);
                  let right_answer=obj[emo][2];
                  str = str.replace('#right_answer',right_answer);
                 channel.send(member.toString()+str);  
