@@ -58,9 +58,9 @@ exports.delay={
 
 
 exports.secret_arr=[
-
-
+/*
 ['https://raw.githubusercontent.com/e3Dr8nj/file_storage/master/Unicorn-galloping-sky-clouds-full-moon-Desktop-Wallpaper-HD-for-mobile-phones-and-laptops-1280x1024.jpg','🦄','единорог'],
+*/
 ['https://raw.githubusercontent.com/e3Dr8nj/file_storage/master/sq.jpeg','🐿️','белка'],
 ['https://raw.githubusercontent.com/e3Dr8nj/file_storage/master/spider.jpg','🕷️','паук'],
  ['https://raw.githubusercontent.com/e3Dr8nj/file_storage/master/snake.jpg','🐍','змей'] ,
@@ -244,9 +244,9 @@ try{
           
            return true;}else{
                  // console.log(obj);
-                 let random = Math.ceil(Math.random() * module.exports.phrases.fail_phrase.length);
+                 let random1 = random(module.exports.phrases.fail_phrase.length-1);
                  let wrong_answer=obj[collection.first().emoji.name][2];
-                 let str = module.exports.phrases.fail_phrase[0].replace('#wrong_answer',wrong_answer);
+                 let str = module.exports.phrases.fail_phrase[random1].replace('#wrong_answer',wrong_answer);
                  let right_answer=obj[emo][2];
                  str = str.replace('#right_answer',right_answer);
                 channel.send(member.toString()+str);  
