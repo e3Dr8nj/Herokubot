@@ -61,7 +61,7 @@ exports.secret_arr=[
 /*
 ['https://raw.githubusercontent.com/e3Dr8nj/file_storage/master/Unicorn-galloping-sky-clouds-full-moon-Desktop-Wallpaper-HD-for-mobile-phones-and-laptops-1280x1024.jpg','🦄','единорог'],
 */
-['https://raw.githubusercontent.com/e3Dr8nj/file_storage/master/sq.jpeg','🐿️','белка'],
+['https://raw.githubusercontent.com/e3Dr8nj/file_storage/master/sq.jpg','🐿️','белка'],
 ['https://raw.githubusercontent.com/e3Dr8nj/file_storage/master/spider.jpg','🕷️','паук'],
  ['https://raw.githubusercontent.com/e3Dr8nj/file_storage/master/snake.jpg','🐍','змей'] ,
 ['https://raw.githubusercontent.com/e3Dr8nj/file_storage/master/snail.jpg','🐌','улитка'],
