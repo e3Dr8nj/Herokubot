@@ -37,15 +37,15 @@ module.exports.RH_IGNORE_EVENTS_PRIMITIVE=false;//add this line to ignore all ev
 //___________
 
 exports.phrases={
- enter_phrase: 'Каналы сервера скрыты.\nДля доступа пройдите тест на бота в течение 15 минут, нажав на реакцию, похожую на картинку ниже.',
- wrong_phrase:' Выбрана неверная реакция.',
- timeout_phrase:' Время ожидания истекло.',
- waitingForRole_phrase:' Через 2 минуты доступ будет открыт.\n А пока почитайте о сервере.',
+ enter_phrase: 'Привет! Чтобы увидеть каналы сервера, пожалуйста, в течение 15 минут пройди простой тест: нажми на реакцию, похожую на картинку ниже.',
+ wrong_phrase:' Не туда тыцкаешь!',
+ timeout_phrase:' Ой, ну я не могу ждать тебя вечность!',
+ waitingForRole_phrase:' Почитай еще пару минут о сервере и добро пожаловать на чаепитие.) ',
  tryAgain_phrase:' Попробуй пройти тест еще раз',
- ifFail_phrase:' Перезайди или напиши что-нибудь в этот канал',
+ ifFail_phrase:' Перезайди на сервер или напиши что-нибудь в этот канал. ',
  fail_phrase:[
-            ' По-твоему, на картинке изображен #wrong_answer ?.. :50: ',
-             ' Видимо, ты все-таки бот? #wrong_answer с #right_answer спутал'
+            ' Ты что, бот? На картинке совсем не #wrong_answer ?.. :50: ',
+             ' Вас раскрыли! #wrong_answer с #right_answer  путают только боты. Даже ежики не путают!'
               ],
   ifFail_phrase:' Перезайди на сервер (инвайт отправлен в лс)',
   dm_msg:'Вы не прошли проверку на бота для доступа ко всем каналам сервера, перезайдите и попробуйте еще раз.\n ',
@@ -60,7 +60,7 @@ exports.delay={
 exports.secret_arr=[
 
 
-['https://raw.githubusercontent.com/e3Dr8nj/file_storage/master/sun.jpg','⛅','солнце в тучах'],
+['https://raw.githubusercontent.com/e3Dr8nj/file_storage/master/Unicorn-galloping-sky-clouds-full-moon-Desktop-Wallpaper-HD-for-mobile-phones-and-laptops-1280x1024.jpg','🦄','единорог'],
 ['https://raw.githubusercontent.com/e3Dr8nj/file_storage/master/sq.jpeg','🐿️','белка'],
 ['https://raw.githubusercontent.com/e3Dr8nj/file_storage/master/spider.jpg','🕷️','паук'],
  ['https://raw.githubusercontent.com/e3Dr8nj/file_storage/master/snake.jpg','🐍','змей'] ,
@@ -244,7 +244,7 @@ try{
           
            return true;}else{
                  // console.log(obj);
-                 let random = Math.ceil(Math.random() * module.exports.phrases.fail_phrase.length-1);
+                 let random = Math.ceil(Math.random() * module.exports.phrases.fail_phrase.length);
                  let wrong_answer=obj[collection.first().emoji.name][2];
                  let str = module.exports.phrases.fail_phrase[0].replace('#wrong_answer',wrong_answer);
                  let right_answer=obj[emo][2];
