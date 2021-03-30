@@ -244,7 +244,7 @@ try{
           
            return true;}else{
                  // console.log(obj);
-                 let random1 = random(module.exports.phrases.fail_phrase.length-1);
+                 let random1 = Math.floor(Math.random() * module.exports.phrases.fail_phrase.length-1);
                  let wrong_answer=obj[collection.first().emoji.name][2];
                  let str = module.exports.phrases.fail_phrase[random1].replace('#wrong_answer',wrong_answer);
                  let right_answer=obj[emo][2];
