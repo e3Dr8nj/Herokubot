@@ -173,7 +173,7 @@ exports.getTime=async(client)=>{try{
                    let role = client.guilds.cache.get(client.SERVER_ID).roles.cache.find(r=>r.name==module.exports.e.role_name);
                     role=(!role)?'':role.toString();
                     
-                    chnl.send(role+' го бампить!<:28:589907105717157909> (!bump   s.up) (1)');
+                    chnl.send(role+' го бампить!<:28:589907105717157909> !bump   s.up  /like');
                  // s_up=false;
                 };
                 await chnl.edit({name:str}).catch(err=>console.log(err));
