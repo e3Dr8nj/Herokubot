@@ -41,7 +41,7 @@ module.exports.events.message={ on:true,  run:async(client,message)=>{try{
 */
              
                 if(message.author.bot&& message.embeds[0]&&message.embeds[0].title&&message.embeds[0].title.startsWith('Сервер Up') ){ client.suped=true;
-message.channel.send('<:28:589907105717157909>');
+message.channel.send('<:28:589907105717157909> а теперь /like ');
  return;
 };
 
