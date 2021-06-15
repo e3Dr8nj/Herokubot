@@ -40,8 +40,8 @@ module.exports.events.message={ on:true,  run:async(client,message)=>{try{
              // if(message.embeds[0]&&message.embeds[0].author&&message.embeds[0].author.name&&( message.embeds[0].author.name.startsWith('Сервер Up'))) { s_up=true;return;};
 */
              
-                if(message.author.bot&& message.embeds[0]&&message.embeds[0].title&&message.embeds[0].title.startsWith('Сервер Up') ){ client.suped=true;
-message.channel.send('<:28:589907105717157909> а теперь /like ');
+                if((message.author.bot&& message.embeds[0]&&message.embeds[0].title&&message.embeds[0].title.startsWith('Сервер Up'))||(message.content=='sup test'&&!message.author.bot )){ client.suped=true;
+message.channel.send('а теперь /like  <:28:589907105717157909>');
  return;
 };
 
