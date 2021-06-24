@@ -502,6 +502,28 @@ module.exports.commands.chatBlock={aliase:'заблокировать2'
        await module.exports.p.r(message,'blocked',0);
         return;
 }catch(err){console.log(err);};}};//
+//________mute_all
+//__________________block chat
+module.exports.commands.muteAll={aliase:'тиховсе'
+,description:[[" ","Лишает возможности говорить в войсе всех, кроме избранных",'0']]
+,help_type:'base'
+,run:async(client,message,args)=>{try{
+        let obj=await exports.getProps(client,message,args); if(!obj.any) return obj.any_no();
+        let voice_chat = message.guild.channels.cache.get(exports.text_channels[message.channel.id].voice_channel.id); if(!voice_chat) return; console.log('2');
+        //exports.onChatBlockPerms(client,message.channel,voice_chat);
+         await voice_chat.updateOverwrite(voice_chat.guild.roles.everyone, { SPEAK: false }).catch(console.error);
+/*
+      let afk=await voice_chat.guild.channels.cache.get(exports.e.afk_channel_id);
+	    voice_chat.members.map(m=>{
+	  	    if(m&&m.id!=exports.voice_channels[voice_chat.id].owner_id&&m.voiceChannelID==voice_chat.id&&!m.roles.find(r=>r.name==exports.e.mod_role_name)) {
+     		    	m.voice.setChannel(afk.id).then(() => console.log(`Moved ${m.displayName}`)).catch(console.error);
+	      	};
+      });
+*/
+      // await module.exports.p.r(message,'blocked',0);
+        return;
+}catch(err){console.log(err);};}};//
+//__________________unblock chat
 //__________________unblock chat
 module.exports.commands.chatUnBlock={aliase:'разблокировать'
 ,description:[[" "," Позволить заходить в войс всем желающим.",'0']]
