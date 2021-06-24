@@ -329,7 +329,7 @@ exports.createNewVoice=async(client,oldState,newState)=>{try{ //triggered then n
         await member.voice.setChannel(new_channel).catch(console.error);
         await delay(5000);
         let msg = await free_chat.send(member.toString()+'`!хелп`-список всех команд. \n Войс удалится сам, после выхода всех участников.\n');
-        let msg2 = await free_chat.send('Этот текстовый канал видят только те кто находится в вашем войсе. \n `!заблокировать` делает войс недоступным для подключения, без специального права подключатся\n  `!тиховсе` - устанавливает режим при котором могут говорить, только те, у кого есть право игнорировать этот режим \n `!слушатель название роли, название роли` - дает право подключатся в войс всем, у кого есть эти роли \n  `!спикер название роли, название роли` - дает право подключатся, право игнорировать режим *тиховсе* \n `!слушатель @ник @ник` -  право подключатся \n `!спикер @ник @ник` -  право подключатся, право игнорировать режим *тиховсе*\n `!бан @ник @ник ` `!мут @ник @ник` - банит/ мутит упомянутых людей\n чтобы снять бан/мут с человека, дайте ему право слушателя/спикера \n `!сбросить настройки` - обнулит все настроики чата, можно снова блокировать войс и банить неугодных!');
+        let msg2 = await free_chat.send('Этот текстовый канал видят только те кто находится в вашем войсе. \n `!заблокировать` делает войс недоступным для подключения, без специального права подключатся\n `!заблокировать3` делает войс недоступным для подключения, без специального права подключатся, мут для всех, у кого нет права игнорирования режима *тиховсе*\n  `!тиховсе` - устанавливает режим при котором могут говорить, только те, у кого есть право игнорировать этот режим \n `!слушатель название роли, название роли` - дает право подключатся в войс всем, у кого есть эти роли \n  `!спикер название роли, название роли` - дает право подключатся, право игнорировать режим *тиховсе* \n `!слушатель @ник @ник` -  право подключатся \n `!спикер @ник @ник` -  право подключатся, право игнорировать режим *тиховсе*\n `!бан @ник @ник ` `!мут @ник @ник` - банит/ мутит упомянутых людей\n чтобы снять бан/мут с человека, дайте ему право слушателя/спикера \n `!сбросить настройки` - обнулит все настроики чата, можно снова блокировать войс и банить неугодных!');
        // await exports.commands.chatHelp2.run(client,msg,['']);
         
   
@@ -473,6 +473,28 @@ module.exports.commands.chatBlock2={aliase:'заблокировать'
         let voice_chat = message.guild.channels.cache.get(exports.text_channels[message.channel.id].voice_channel.id); if(!voice_chat) return; console.log('2');
       //  exports.onChatBlockPerms2(client,message.channel,voice_chat);
   await voice_chat.updateOverwrite(voice_chat.guild.roles.everyone, { CONNECT: false }).catch(console.error);
+          voice_chat.members.map(m=>{
+		          if(m&&m.id!=exports.voice_channels[voice_chat.id].owner_id&&m.voiceChannelID==voice_chat.id) {
+     		          	voice_chat.updateOverwrite(m.user, { CONNECT:true }).then(() => console.log(`${m.displayName}`)).catch(console.error);;
+		           };
+          });
+        await module.exports.p.r(message,'blocked',0);
+        return message.reply('Войс заблокирован, права подключатся и говорить выданы всем, кто находится в нем');  ;
+}catch(err){console.log(err);};}};//
+module.exports.commands.chatBlock2.data={
+  class:'help', sub_class:'base'
+};
+//_______
+//__________________block chat
+module.exports.commands.chatBlock22={aliase:'заблокировать3'                          
+,description:[[" "," Сделать закрытый всем маня мирок в войсе. (*ПО УМОЛЧАНИЮ РАЗБЛОКИРОВАН*)(Уже находящимся в войсе выдадутся права на подключение без возможности говорить, автоматически активируется режим *тиховсе*)",'0']]
+,help_type:'base'
+,run:async(client,message,args)=>{try{
+        let obj=await exports.getProps(client,message,args);  if(!obj.any) return obj.any_no();
+        let voice_chat = message.guild.channels.cache.get(exports.text_channels[message.channel.id].voice_channel.id); if(!voice_chat) return; console.log('2');
+      //  exports.onChatBlockPerms2(client,message.channel,voice_chat);
+  await voice_chat.updateOverwrite(voice_chat.guild.roles.everyone, { CONNECT: false }).catch(console.error);
+  await voice_chat.updateOverwrite(voice_chat.guild.roles.everyone, { SPEAK: false }).catch(console.error);
           voice_chat.members.map(m=>{
 		          if(m&&m.id!=exports.voice_channels[voice_chat.id].owner_id&&m.voiceChannelID==voice_chat.id) {
      		          	voice_chat.updateOverwrite(m.user, { CONNECT:true }).then(() => console.log(`${m.displayName}`)).catch(console.error);;
