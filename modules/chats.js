@@ -910,7 +910,7 @@ await roles_name_arr.map(rname=>{
         await voice_channel.updateOverwrite(item_mmb, { SPEAK:null,CONNECT:null}).then(exports.p.r(message,'unmuted',0,item_mmb)).catch(err=>console.log(err));
         return;
      }else if(args[1]=='++войс'){//unban on voice channel
-       await voice_channel.updateOverwrite(item_mmb, { CONNECT:null}).then(exports.p.r(message,'unbanned',0,item_mmb)).catch(err=>console.log(err));
+       await voice_channel.updateOverwrite(item_mmb, { CONNECT:true}).then(exports.p.r(message,'unbanned',0,item_mmb)).catch(err=>console.log(err));
        return;
      }else if(args[1]=='+++войс'){//unban on voice channel
        await voice_channel.updateOverwrite(item_mmb, { CONNECT:true,SPEAK:true}).then(exports.p.r(message,'accessed',0,item_mmb)).catch(err=>console.log(err));
