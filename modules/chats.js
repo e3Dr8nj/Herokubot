@@ -45,12 +45,12 @@ module.exports.p={
  ,unblocked:[' Текстовый и Войсовый канал разаблокировны ',' Тext & Voice channel unblocked ']
  ,muted:[' Замучен ',' is muted ']
  ,banned:[' Забанен ',' is banned']
- ,unbanned:[' Разбанен ',' is unbanned ']
+ ,unbanned:[' +право подключатся ',' is unbanned ']
  ,right:[' Права переданы ',' Right is redirected ']
  ,reset:[ 'Настройки сброшены ', ' Settings is reseted']
  ,undeleted:[ ' Войс неудаляем теперь ',' Voice is undeleted now ']
  ,deleted:[' Войс удаляем снова ',' Voice is deleted '] 
-  ,accessed:[[' Допущен (размучен и разбанен) '],[' accessed(unmuted&unbaned)']]
+  ,accessed:[[' +право подключатся и говорить '],[' accessed(unmuted&unbaned)']]
   ,r:(msg,name,n,mmb)=>{let str=(mmb&&mmb.name)?mmb.name:mmb.toString();msg.reply(exports.p[name][n]+str);}
 };
 module.exports.err={
@@ -329,7 +329,7 @@ exports.createNewVoice=async(client,oldState,newState)=>{try{ //triggered then n
         await member.voice.setChannel(new_channel).catch(console.error);
         await delay(5000);
         let msg = await free_chat.send(member.toString()+'`!хелп`-список всех команд. \n Войс удалится сам, после выхода всех участников.\n');
-        let msg2 = await free_chat.send('Этот текстовый канал видят только те кто находится в вашем войсе. \n `!заблокировать` - блокирует войс, чтобы никто не мог подключаться к нему\n `!слушатель название роли, название роли` - дает право подключатся в войс всем, у кого есть эти роли\n `!спикер название роли, название роли` - дает право подключатся в войс и говорить всем, у кого есть эти роли\n `!слушатель @ник @ник` - дает право подключатся упомянутым людям\n `!спикер @ник @ник` - дает право подключатся и говорить упомянутым людям\n `!бан @ник @ник ` `!мут @ник @ник` - банит/ мутит упомянутых людей\n чтобы снять бан/мут с человека, дайте ему право слушателя/спикера \n `!сбросить настройки` - обнулит все настроики чата, можно снова блокировать войс и банить неугодных!');
+        let msg2 = await free_chat.send('Этот текстовый канал видят только те кто находится в вашем войсе. \n `!заблокировать` - блокирует войс, чтобы никто не мог подключаться к нему, без специального права подключатся\n `!слушатель название роли, название роли` - дает право подключатся в войс всем, у кого есть эти роли\n `!спикер название роли, название роли` - дает право подключатся, участники этой роли могут говорить, даже если установлен режим *тиховсе* \n `!слушатель @ник @ник` - дает право подключатся упомянутым людям\n `!спикер @ник @ник` - дает право подключатся, эти люди могут говорить несмотря на режим *тиховсе*\n `!бан @ник @ник ` `!мут @ник @ник` - банит/ мутит упомянутых людей\n чтобы снять бан/мут с человека, дайте ему право слушателя/спикера \n `!сбросить настройки` - обнулит все настроики чата, можно снова блокировать войс и банить неугодных!');
        // await exports.commands.chatHelp2.run(client,msg,['']);
         
   
@@ -479,7 +479,7 @@ module.exports.commands.chatBlock2={aliase:'заблокировать'
 		           };
           });
         await module.exports.p.r(message,'blocked',0);
-        return;
+        return message.reply('Войс заблокирован, права подключатся и говорить выданы всем, кто находится в нем');  ;
 }catch(err){console.log(err);};}};//
 module.exports.commands.chatBlock2.data={
   class:'help', sub_class:'base'
@@ -500,7 +500,7 @@ module.exports.commands.chatBlock={aliase:'заблокировать2'
 	      	};
       });
        await module.exports.p.r(message,'blocked',0);
-        return;
+        return message.reply('Войс заблокирован');
 }catch(err){console.log(err);};}};//
 //________mute_all
 //__________________block chat
@@ -521,7 +521,7 @@ module.exports.commands.muteAll={aliase:'тиховсе'
       });
 */
       // await module.exports.p.r(message,'blocked',0);
-        return;
+        return message.reply('Установлен запрет на говорение, всех у кото нет специального прав говорить в вашем войсе. (`!спикер @ник/название роли` - дать право говорения человеку или роли) ');  ;
 }catch(err){console.log(err);};}};//
 //__________________unblock chat
 //__________________unblock chat
@@ -533,7 +533,7 @@ module.exports.commands.chatUnBlock={aliase:'разблокировать'
         let voice_chat = message.guild.channels.cache.get(exports.text_channels[message.channel.id].voice_channel.id); if(!voice_chat) return;
         exports.onChatUnBlockPerms(client,message.channel,voice_chat);
         await module.exports.p.r(message,'unblocked',0);
-        return;
+        return message.reply('Войсовый канал разблокирован, все желающие могут подключатся к нему');  ;
 }catch(err){console.log(err);};}};//
 
 //_________________ban mmbs and roles
