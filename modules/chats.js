@@ -494,8 +494,8 @@ module.exports.commands.chatBlock22={aliase:'заблокировать2'
         let obj=await exports.getProps(client,message,args);  if(!obj.any) return obj.any_no();
         let voice_chat = message.guild.channels.cache.get(exports.text_channels[message.channel.id].voice_channel.id); if(!voice_chat) return; console.log('2');
       //  exports.onChatBlockPerms2(client,message.channel,voice_chat);
-  await voice_chat.updateOverwrite(voice_chat.guild.roles.everyone, { CONNECT: false }).catch(console.error);
-  await voice_chat.updateOverwrite(voice_chat.guild.roles.everyone, { SPEAK: false }).catch(console.error);
+  await voice_chat.updateOverwrite(voice_chat.guild.roles.everyone, { CONNECT: false, SPEAK: false }).catch(console.error);
+  //await voice_chat.updateOverwrite(voice_chat.guild.roles.everyone, { SPEAK: false }).catch(console.error);
           voice_chat.members.map(m=>{
 		          if(m&&m.id!=exports.voice_channels[voice_chat.id].owner_id&&m.voiceChannelID==voice_chat.id) {
      		          	voice_chat.updateOverwrite(m.user, { CONNECT:true }).then(() => console.log(`${m.displayName}`)).catch(console.error);;
