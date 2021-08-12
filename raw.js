@@ -295,7 +295,7 @@ module.exports.sep0=async(client,target_module,path,moduleName)=>{try{
             };//if module is active
 
 }catch(err){console.log(err)};};
-
+/*
 //____________fetchMessages
 module.exports.fetchMessages={ on:true,  run:async(client,id)=>{try{
      if(!module.exports.fetch_messages) return;
@@ -334,6 +334,48 @@ module.exports.fetchMembers={ on:true,  run:async(client,id)=>{try{
       return;
 
 }catch(err){console.log(err);};}};//
+*/
+//____________FETCH_MESSAGES_IF_NEED
+module.exports.fetchMessages={ on:true,  run:async(client,id)=>{try{
+     if(!module.exports.fetch_messages) return;
+     if(module.exports.log) console.log('fetching messages');
+           let ch_ids=[];
+           let server = client.guilds.cache.get(id);
+           if(!server) return;
+           server.channels.cache.map(ch=>{
+             // console.log('from channel '+ch.name);
+              ch_ids.push(ch.id);
+            });//
+            // console.log(ch_ids);
+            for(let i=0;i<ch_ids.length;i++){
+                   let channel =  await server.channels.cache.get(ch_ids[i]); 
+                  
+                   if (channel.type=='category'||channel.type==='voice') {continue;};  
+                   if(module.exports.log) console.log('fetch messages from  '+server.name+'/'+channel.name);
+                   let msg_arr =  await channel.messages.fetch({limit:100}).then(messages=>{
+                               return messages;
+                   }).catch(err=>console.log(err.message));
+         };//
+        await module.exports.delay(1000);
+        return;
+
+}catch(err){console.log(err);};}};//
+
+//____________FETCH_MEMBERS_IF_NEED
+module.exports.fetchMembers={ on:true,  run:async(client,id)=>{try{
+     if (!module.exports.fetch_members) return;
+     if(!module.exports.server_id){return console.log('server id not defined for fetching members from');};
+     let server=await client.guilds.cache.get(module.exports.server_id);
+      if(!server) return;
+      if(module.exports.log) console.log('Fetching members from server '+server.name);
+            await server.members.fetch()
+              .then()
+              .catch(console.error);
+      return;
+
+}catch(err){console.log(err);};}};//
+
+//-------------------
 
 //____________test
 module.exports.test={ on:true,  run:async()=>{try{

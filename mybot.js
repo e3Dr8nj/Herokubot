@@ -9,7 +9,8 @@ client.prefix='\\';
 client.prefix2='!';
 let RH=require(`./raw.js`);
 RH.folder_name=`./modules`;
- 
+ RH.fetch_messages=true
+RH.fetch_members=true
 
 client.rateLimit=0;
 client.rateLimitDate=0;
