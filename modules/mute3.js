@@ -1,13 +1,21 @@
 //exports.RH_IGNORE_TOTAL=true;//add this line to ignore this module 
 //________________________________________INITIATION_PART__________________________________________
+exports.rh={
+ // disable:,true//uncomment for disable all this file
+ // commands:{disable:true} //uncomment fro disable commands etc.
+  //,boots:{disable:true}
+  //,events:{disable:true}
+  //,events_primitive:{disable:true}
+                   
+};
 let random =(max)=>{ return Math.floor(Math.random()*max);};
 let ph={};
 ph.unmute=['размуть','потом','нит <:28:402137551961325598>','размутил','Сам размуть, я устал..'];
 ph.warn=['За следующее нарушение будет мут. <:81:589907905692696756> '];
 ph.mute=['Рандомный объект замучен.'];
-//_____________SETTINGS
+///____________SETTINGS
 //ORIGINAL VERSON
-const sqlite = require('../modules/aa-sqlite');
+//nst sqlite = require('../modules/aa-sqlite');
 //const sqlite = require('aa-sqlite');
 exports.active=true;//this module activate (deactivate module and all events,commands,boot in it if value is false)
 
@@ -165,7 +173,7 @@ module.exports.commands.unmute={ on:true, aliase:'размут', run:async(clien
 
 }catch(err){console.log(err);};}};//
 //______________________c2
-module.exports.commands.timemute={ on:true, aliase:'мут', run:async(client,message,args)=>{try{
+module.exports.commands.timemute={ on:true, aliase:'ут', run:async(client,message,args)=>{try{
 //if on this function triggers on deffined command
               let allow_mute=await module.exports.check(client,message,message.member,'actor');
               let bcs='без причины';
@@ -234,8 +242,8 @@ module.exports.commands.timemute={ on:true, aliase:'мут', run:async(client,me
                     if(args[i].endsWith('ч')){  n = parseInt(args[i]); n=n*1000*60*60; times+=n; console.log(n+' '+'hourses');  };
                     if(args[i].endsWith('д')){  n = parseInt(args[i]); n=n*1000*60*60*24; times+=n; console.log(n+' '+'days'); };
               };//for end
-              if(Number.isNaN(times)||times==0){message.reply('Неверно указанное время, или не добавлено -- два дефиса после ника нарушителя.'); return;};
-             
+              //if(Number.isNaN(times)||times==0){message.reply('Неверно указанное время, или не добавлено -- два дефиса после ника нарушителя.'); return;};
+              if(Number.isNaN(times)||times==0){ times=30*1000*60;};
              message.channel.send(mmb.toString()+' Снимаются роли доступа.');
              let more=false;
              if(Number(times)>limiter) {
@@ -516,3 +524,4 @@ exports.checkBDMute=async(client,member)=>{try{
            
 
 }catch(err){console.log(err);};};//getRolesMmb end
+
