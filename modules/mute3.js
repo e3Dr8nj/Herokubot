@@ -62,7 +62,7 @@ module.exports.events.guildMemberUpdate={ on:true,run:async(client,oldMember,new
 //___________________________________________EVENTS_PART_END__________________________________________
 //_________________________________________COMMANDS_PART________________________________________________
 //______________________c-2
-module.exports.commands.muteWarn={ on:true, aliase:'предупреждение', run:async(client,message,args)=>{try{
+module.exports.commands.muteWarn={ on:true, aliase:'редупреждение', run:async(client,message,args)=>{try{
 //if on this function triggers on deffined command
              
              let allow_warn=await module.exports.check(client,message,message.member,'actor');
@@ -83,17 +83,17 @@ module.exports.commands.muteWarn={ on:true, aliase:'предупреждение
 }catch(err){console.log(err);};}};//
 
 //______________________c-1
-module.exports.commands.muteHelp={ on:true, aliase:'мутхелп', run:async(client,message,args)=>{try{
+module.exports.commands.muteHelp={ on:true, aliase:'утхелп', run:async(client,message,args)=>{try{
 //if on this function triggers on deffined command
               let prefix='\\';
-              let str='`'+prefix+'мутхелп` -инфо \n';
-              str+='`'+prefix+'бот-лалка` -самомут на рнд. время (30м-3ч) \n';
-              str+='`'+prefix+'размут @ник`-размут \n';
+              let str='`мутхелп` -инфо \n';
+              str+='`бот-лалка` -самомут на рнд. время (30м-3ч) \n';
+              str+='`размут @ник`-размут \n';
               
-              str+='`'+prefix+'мут @ник (1д 10ч 30м)* --причина` -мут/временный* \n';
-              str+='`'+prefix+'мут id> (1д 10ч 30м)* --причина` -мут/временный* \n';
-              str+='`'+prefix+'предупреждение @ник --причина` -предупреждение участнику сервера \n';
-              str+='`'+prefix+'пс:Команды работают и без упоминаний, но это не точно.`';
+              str+='`мут @ник (1д 10ч 30м)* --причина` -мут/временный* \n';
+              str+='`мут id> (1д 10ч 30м)* --причина` -мут/временный* \n';
+              str+='`предупреждение @ник --причина` -предупреждение участнику сервера \n';
+              str+='`пс:Команды работают и без упоминаний, но это не точно.`';
       let str2="\\мутхелп - инфо \n`\\бот-лалка` -самомут на рандомное время (30м-3ч) \n`\\размут @ник` -размут \n`\\мут @ник 30м -- причина`  - временный мут. (1д 10ч 30м)\nИли:\n`\\мут id> 30м -- причина`\n`\\предупреждение @ник -- причина` -предупреждение участнику сервера \n```\пс: Команда мута без упоминания нарушителя - мутит модератора на 2м ```";
               message.channel.send(str2);
               
@@ -102,7 +102,7 @@ module.exports.commands.muteHelp={ on:true, aliase:'мутхелп', run:async(c
 }catch(err){console.log(err);};}};//
 
 //______________________c0
-module.exports.commands.selfmute={ on:true, aliase:'бот-лалка', run:async(client,message,args)=>{try{
+module.exports.commands.selfmute={ on:true, aliase:'от-лалка', run:async(client,message,args)=>{try{
 //if on this function triggers on deffined command
               let emoji = message.guild.emojis.cache.get('402137670345687050');
               if(!!emoji)  await message.react(emoji); 
@@ -141,7 +141,7 @@ module.exports.commands.selfmute={ on:true, aliase:'бот-лалка', run:asyn
 
 }catch(err){console.log(err);};}};//
 //_______________________c1
-module.exports.commands.unmute={ on:true, aliase:'размут', run:async(client,message,args)=>{try{
+module.exports.commands.unmute={ on:true, aliase:'азмут', run:async(client,message,args)=>{try{
 //if on this function triggers on deffined command
               
              let allow_unmute=await module.exports.check(client,message,message.member,'actor');
@@ -213,7 +213,7 @@ module.exports.commands.timemute={ on:true, aliase:'ут', run:async(client,mess
 //___upd 14.12
                if(client.muted[mmb.user.id]) {
                         message.channel.send('Нарушитель был замучен ранее, дождитесь пока Лия перезамутит его.');
-                        let  msg989 = await message.channel.send('^rewire \\размут '+mmb.toString());
+                        let  msg989 = await message.channel.send('^rewire размут '+mmb.toString());
                         await msg989.delete();
                         await module.exports.delay(60*1000);
                         
