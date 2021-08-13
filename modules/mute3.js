@@ -243,7 +243,7 @@ module.exports.commands.timemute={ on:true, aliase:'ут', run:async(client,mess
                     if(args[i].endsWith('д')){  n = parseInt(args[i]); n=n*1000*60*60*24; times+=n; console.log(n+' '+'days'); };
               };//for end
               //if(Number.isNaN(times)||times==0){message.reply('Неверно указанное время, или не добавлено -- два дефиса после ника нарушителя.'); return;};
-              if(Number.isNaN(times)||times==0){ times=30*1000*60;};
+              if(Number.isNaN(times)||times==0){ times=30*1000*60;base_part='30 минут';};
              message.channel.send(mmb.toString()+' Снимаются роли доступа.');
              let more=false;
              if(Number(times)>limiter) {
