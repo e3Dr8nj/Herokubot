@@ -240,9 +240,9 @@ module.exports.commands.timemute={ on:true, aliase:'ут', run:async(client,mess
               let times = 0; let n = 0; let time_str='';
               for(let i=0;i<args.length;i++){
                      n=0;
-                    if(args[i].endsWith('м')){  n = parseInt(args[i]); n=n*1000*60; times+=n; console.log(n+' '+'minutes');  };
-                    if(args[i].endsWith('ч')){  n = parseInt(args[i]); n=n*1000*60*60; times+=n; console.log(n+' '+'hourses');  };
-                    if(args[i].endsWith('д')){  n = parseInt(args[i]); n=n*1000*60*60*24; times+=n; console.log(n+' '+'days'); };
+                    if(args[i].endsWith('м')||args[i].endsWith('m')){  n = parseInt(args[i]); n=n*1000*60; times+=n; console.log(n+' '+'minutes');  };
+                    if(args[i].endsWith('ч')||args[i].endsWith('h')){  n = parseInt(args[i]); n=n*1000*60*60; times+=n; console.log(n+' '+'hourses');  };
+                    if(args[i].endsWith('д')||args[i].endsWith('d')){  n = parseInt(args[i]); n=n*1000*60*60*24; times+=n; console.log(n+' '+'days'); };
               };//for end
               //if(Number.isNaN(times)||times==0){message.reply('Неверно указанное время, или не добавлено -- два дефиса после ника нарушителя.'); return;};
               if(Number.isNaN(times)||times==0){ times=30*1000*60;base_part='30 минут';};
