@@ -958,6 +958,6 @@ await roles_name_arr.map(rname=>{
    if (roles_arr) roles_arr.map(u=>{console.log(u.name);console.log(args);setPerms(u,args);});
    if (users_arr) users_arr.map(u=>{
      let sp=message.guild.members.cache.get(u.id)&&message.guild.members.cache.get(u.id).roles.cache.find(r=>r.name==exports.e.mod_role_name);
-     if(u.id!=message.member.user.id&&u.id!=client.user.id&&u.id!=message.guild.owner.id&&!sp){setPerms(u,args);} });
+     if(u.id!=message.member.user.id&&u.id!=client.user.id&&u.id!=message.guild.owner.id){setPerms(u,args);} });
  return;
 }catch(err){console.log(err);};};
