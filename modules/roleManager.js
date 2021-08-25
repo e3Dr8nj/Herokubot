@@ -74,7 +74,7 @@ module.exports.commands.roleHelp={ on:true, aliase:'рольхелп', run:async
                   str+='['+px+'роль @nick1 -роль1] -снять роль \n';
                   str+='['+px+'роль @nick1 *роль1] *cоздать роль и выдать \n';
                   str+='['+px+'роль @nick1 %роль1] %снять роль и удалить ее \n';
-                  str+='['+px+'роль @nick1 @nick2 +роль1,-роль2,-роль3,*роль4,%роль5 ]\n';
+                  str+='['+px+'роль @nick1 @nick2 +роль1 -роль2 -роль3 *роль4 %роль5 ]\n';
                   str+='* применить несколько действий к нескольким участникам\n';
                   str+='  +/-Адепты Хаоса\n  +/-Кто все эти люди\n  +/-Странники\n  -Временная роль\n  +/-Лампочка\n  +/-Звездочка\n';
                   str+='  -Модератор\n  -Сумеречные\n';
@@ -118,7 +118,7 @@ module.exports.commands.manipuleRole={ on:true, aliase:'роль', run:async(cli
             let msg_cnt =message.content.split('>');
             //let role_names = msg_cnt[msg_cnt.length-1].trim().split(',');
 //test
-            let role_names = msg_cnt[msg_cnt.length-1].trim().split(/[(\+||\-),]+/);
+            let role_names = msg_cnt[msg_cnt.length-1].trim().split(/[(\+||\-||\%||\*)]+/);
              role_names.shift()
              var patt_s = /(\+|\-)/g; 
              var signs = message.content.match(patt_s);
@@ -133,6 +133,7 @@ module.exports.commands.manipuleRole={ on:true, aliase:'роль', run:async(cli
                             let mmb= await message.member.guild.members.fetch(mmbs[ii]).catch(err=>console.log(err));
                             console.log(mmb.user.username);
                             role_names[i]=signs[i]+role_names[i].trim();
+                            
                             let r_n = (role_names[i].startsWith(' '))?role_names[i].slice(1):role_names[i];
                           console.log(r_n);
                             if(r_n.startsWith('-')){
