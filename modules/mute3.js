@@ -107,13 +107,14 @@ module.exports.commands.muteHelp={ on:true, aliase:'утхелп', run:async(cli
 //______________________c0
 module.exports.commands.selfmute={ on:true, aliase:'от-лалка', run:async(client,message,args)=>{try{
 //if on this function triggers on deffined command
+              
               let emoji = message.guild.emojis.cache.get('402137670345687050');
               if(!!emoji)  await message.react(emoji); 
               let rnd_time=Math.ceil((Math.random()*24)+6)*10*60*1000; 
              //message.channel.send(rnd_time);
               let mmb = message.member;
                // let rnd = Math.floor(Math.random()*3);
-               
+               if(client.muted[mmb.user.id])  return message.reply('ты уже замучен, лалка!')
             let rnd= random(7);
           
            if (!client.self_mute_last_rnd) client.self_mute_last_rnd=[0,0];
@@ -134,12 +135,27 @@ module.exports.commands.selfmute={ on:true, aliase:'от-лалка', run:async(
               //if(!mmb){message.channel.send('щас буду мутить, мля'); return;};
               message.channel.send(mmb.toString()+' Замучен на '+Number(rnd_time)/(60*1000)+' минут'); 
               //return;
+//test 
+            if(rnd==7){
+/*
+              let current_time = new Date().getTime();
+              let terminal_time=current_time+6*60*60*1000;
+              let time = terminal_time;
+              await module.exports.insertMmbRoles(client,message,mmb,time);
+           
+              await module.exports.log(client,message,{name:'Оскорбление бота',description:mmb.user.username+mmb.user.discriminator +' оскорбил бота и был за это замучен на '+Number(rnd_time)/(60*1000)+' минут',color:'violet'});
+                   return
+*/
+               }
+
+//
               let current_time = new Date().getTime();
               let terminal_time=current_time+rnd_time;
               let time = terminal_time;
               await module.exports.insertMmbRoles(client,message,mmb,time);
            
               await module.exports.log(client,message,{name:'Оскорбление бота',description:mmb.user.username+mmb.user.discriminator +' оскорбил бота и был за это замучен на '+Number(rnd_time)/(60*1000)+' минут',color:'violet'});
+
               return;        
 
 }catch(err){console.log(err);};}};//
@@ -217,10 +233,10 @@ module.exports.commands.timemute={ on:true, aliase:'ут', run:async(client,mess
               //return;
 //___upd 14.12
                if(client.muted[mmb.user.id]) {
-                        message.channel.send('Нарушитель был замучен ранее, дождитесь пока Лия перезамутит его.');
-                        let  msg989 = await message.channel.send('^rewire размут '+mmb.toString());
-                        await msg989.delete();
-                        await module.exports.delay(60*1000);
+                        message.channel.send(' Сначала размуть, лалка');
+                        //let  msg989 = await message.channel.send('^rewire размут '+mmb.toString());
+                        //await msg989.delete();
+                        //await module.exports.delay(60*1000);
                         
                        // return;
 

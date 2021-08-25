@@ -72,14 +72,14 @@ module.exports.commands.roleHelp={ on:true, aliase:'рольхелп', run:async
                   
                   str+='['+px+'роль @nick1 +роль1] +выдать роль \n';
                   str+='['+px+'роль @nick1 -роль1] -снять роль \n';
-                  str+='['+px+'роль @nick1 *роль1] *cоздать роль и выдать \n';
-                  str+='['+px+'роль @nick1 %роль1] %снять роль и удалить ее \n';
+                 // str+='['+px+'роль @nick1 *роль1] *cоздать роль и выдать \n';
+                 // str+='['+px+'роль @nick1 %роль1] %снять роль и удалить ее \n';
                   str+='['+px+'роль @nick1 @nick2 +роль1 -роль2 -роль3 *роль4 %роль5 ]\n';
                   str+='* применить несколько действий к нескольким участникам\n';
                   str+='  +/-Адепты Хаоса\n  +/-Кто все эти люди\n  +/-Странники\n  -Временная роль\n  +/-Лампочка\n  +/-Звездочка\n';
                   str+='  -Модератор\n  -Сумеречные\n';
-                  str+='+/- все созданные ранее роли (['+px+'роль ?*] -список ролей)\n';
-                  str+='['+px+'роль удалить название роли(без точки в конце)] +удалить роль \n';
+                 // str+='+/- все созданные ранее роли (['+px+'роль ?*] -список ролей)\n';
+                 // str+='['+px+'роль удалить название роли(без точки в конце)] +удалить роль \n';
               };//isAble true;
               //if(!isAble) {return;};
               message.channel.send(str,{code:'ini'});
@@ -145,13 +145,17 @@ module.exports.commands.manipuleRole={ on:true, aliase:'роль', run:async(cli
                                 r_n = (r_n.startsWith(' '))?r_n.slice(1):r_n;
                                 await module.exports.giveRole(client,message,mmb,r_n,aliase); 
                             }else if(r_n.startsWith('*')){
+                              
                                 r_n=r_n.slice(1); 
                                 r_n = (r_n.startsWith(' '))?r_n.slice(1):r_n;
                                 await module.exports.createRole(client,message,mmb,r_n,aliase); 
+                               
                             }else if(r_n.startsWith('%')){
+                               
                                 r_n=r_n.slice(1); 
                                 r_n = (r_n.startsWith(' '))?r_n.slice(1):r_n;
                                 await module.exports.deleteRole(client,message,mmb,r_n,aliase); 
+                                
                             }else{
                                 r_n=r_n.slice(1);
                                 r_n = (r_n.startsWith(' '))?r_n.slice(1):r_n;
