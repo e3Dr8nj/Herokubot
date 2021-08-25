@@ -120,7 +120,7 @@ module.exports.commands.manipuleRole={ on:true, aliase:'роль', run:async(cli
             let role_names = msg_cnt[msg_cnt.length-1].trim().split(/[(\+||\-),]+/);
              
              var patt_s = /(\+|\-)/g; 
-              var signs = msg_cnt.match(patt_s);
+              var signs = message.content.match(patt_s);
 
             console.log(role_names);
             for(let i=0;i<role_names.length;i++){ console.log(role_names[i]);
