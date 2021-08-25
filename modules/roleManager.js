@@ -116,10 +116,10 @@ module.exports.commands.manipuleRole={ on:true, aliase:'роль', run:async(cli
            
             let mmbs = message.mentions.members.keyArray();
             let msg_cnt =message.content.split('>');
-            let role_names = msg_cnt[msg_cnt.length-1].trim().split(',');
+            //let role_names = msg_cnt[msg_cnt.length-1].trim().split(',');
 //test
-            let role_names2 = msg_cnt[msg_cnt.length-1].trim().split(/[(\+||\-),]+/);
-             console.log(role_names2)
+            let role_names = msg_cnt[msg_cnt.length-1].trim().split(/[(\+||\-),]+/);
+             role_names.shift()
              var patt_s = /(\+|\-)/g; 
              var signs = message.content.match(patt_s);
              console.log(signs)
@@ -132,7 +132,7 @@ module.exports.commands.manipuleRole={ on:true, aliase:'роль', run:async(cli
                         try{
                             let mmb= await message.member.guild.members.fetch(mmbs[ii]).catch(err=>console.log(err));
                             console.log(mmb.user.username);
-                            role_names[i]=role_names[i].trim();
+                            role_names[i]=signs[i]+role_names[i].trim();
                             let r_n = (role_names[i].startsWith(' '))?role_names[i].slice(1):role_names[i];
                           console.log(r_n);
                             if(r_n.startsWith('-')){
