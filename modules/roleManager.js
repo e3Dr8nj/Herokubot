@@ -204,6 +204,7 @@ try{
 //_______SF0
 exports.createRole=async(client,message,mmb,role_name,aliase)=>{
 try{ 
+    return;
    role_name=role_name.toLowerCase();
    
    let sprole=await message.guild.roles.cache.find(r=>r.name.toLowerCase()==role_name+module.exports.idk);
