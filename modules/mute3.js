@@ -38,6 +38,7 @@ exports.e={
     ,table_name:'table_11' 
     ,min_tag_time: 10*1000*60
     ,mute_role_name:'Muted'
+    ,lalka_role_name:'lalka'
     ,moderator_name:'Модератор'
     ,super_moderator_name:'Супермодератор'
 };//e end
@@ -105,6 +106,34 @@ module.exports.commands.muteHelp={ on:true, aliase:'утхелп', run:async(cli
 }catch(err){console.log(err);};}};//
 
 //______________________c0
+module.exports.events.message={ on:true,run:async(client,message)=>{try{
+  
+     if(message.channel.type!='dm'&&!message.author.bot){ 
+
+        function f(str){
+
+var patt3 = /(лалка|глуп|дур|идиот|пидр|сука)/gi
+var patt_s = /(\,|\.|\!|\?)/gi
+
+let bool = false;
+if(str.indexOf('бот')==-1) return
+
+str = str.replace(patt_s,'@1')
+let parts = str.split('@1')
+parts.forEach(p=>{
+  if(((/бот/gi).test(p))&(patt3.test(p))){
+  //console.log(p)
+   bool = true
+  }
+})
+if (bool) module.exports.commands.selfmute.run(client,message)
+}
+f(message.content)
+    
+
+     };
+  
+}catch(err){console.log(err);};}};//
 module.exports.commands.selfmute={ on:true, aliase:'от-лалка', run:async(client,message,args)=>{try{
 //if on this function triggers on deffined command
               
@@ -115,8 +144,8 @@ module.exports.commands.selfmute={ on:true, aliase:'от-лалка', run:async(
               let mmb = message.member;
                // let rnd = Math.floor(Math.random()*3);
                if(client.muted[mmb.user.id])  return message.reply('ты уже замучен, лалка!')
-            let rnd= random(7);
-          
+            let rnd= random(6);
+            rnd = 6
            if (!client.self_mute_last_rnd) client.self_mute_last_rnd=[0,0];
            let len = client.self_mute_last_rnd.length;
            let last_two=[ client.self_mute_last_rnd[len-1], client.self_mute_last_rnd[len-2] ];
@@ -127,28 +156,13 @@ module.exports.commands.selfmute={ on:true, aliase:'от-лалка', run:async(
                 if(rnd==1) return message.channel.send(mmb.toString()+' сам лалка');
                 if(rnd==2) return message.channel.send(mmb.toString()+' уфф');
                 
-                if(rnd==3) return message.channel.send(mmb.toString()+' Слишком эмоционально, садись два.');
-                if(rnd==4) return message.channel.send(mmb.toString()+' оскорбления признак низкого уровня развития');
-                if(rnd==5) return message.channel.send(mmb.toString()+' нит');
-                if(rnd==6) return message.channel.send(mmb.toString()+' ты заблочен');
+                
+                if(rnd==3) return message.channel.send(mmb.toString()+' оскорбления признак низкого уровня развития');
+                if(rnd==4) return message.channel.send(mmb.toString()+' нит');
+                
                
-              //if(!mmb){message.channel.send('щас буду мутить, мля'); return;};
+              if(rnd==5){
               message.channel.send(mmb.toString()+' Замучен на '+Number(rnd_time)/(60*1000)+' минут'); 
-              //return;
-//test 
-            if(rnd==7){
-/*
-              let current_time = new Date().getTime();
-              let terminal_time=current_time+6*60*60*1000;
-              let time = terminal_time;
-              await module.exports.insertMmbRoles(client,message,mmb,time);
-           
-              await module.exports.log(client,message,{name:'Оскорбление бота',description:mmb.user.username+mmb.user.discriminator +' оскорбил бота и был за это замучен на '+Number(rnd_time)/(60*1000)+' минут',color:'violet'});
-                   return
-*/
-               }
-
-//
               let current_time = new Date().getTime();
               let terminal_time=current_time+rnd_time;
               let time = terminal_time;
@@ -157,7 +171,20 @@ module.exports.commands.selfmute={ on:true, aliase:'от-лалка', run:async(
               await module.exports.log(client,message,{name:'Оскорбление бота',description:mmb.user.username+mmb.user.discriminator +' оскорбил бота и был за это замучен на '+Number(rnd_time)/(60*1000)+' минут',color:'violet'});
 
               return;        
+            }
+               
+              if(rnd==6){
+                rnd_time = 6*60;
+              message.channel.send(mmb.toString()+' Стал лалкой на '+Number(rnd_time)/(60*1000)+' минут');
+              let current_time = new Date().getTime();
+              let terminal_time=current_time+rnd_time;
+              let time = terminal_time;
+              await module.exports.insertMmbRoles(client,message,mmb,time,false,true);
+           
+              await module.exports.log(client,message,{name:'Оскорбление бота',description:mmb.user.username+mmb.user.discriminator +' оскорбил бота и стал за это лалкой на '+Number(rnd_time)/(60*1000)+' минут',color:'violet'});
 
+              return;        
+            }
 }catch(err){console.log(err);};}};//
 //_______________________c1
 module.exports.commands.unmute={ on:true, aliase:'азмут', run:async(client,message,args)=>{try{
@@ -311,10 +338,11 @@ module.exports.boots.someBoot={ on:true,  run:async(client)=>{try{
 //___________________________________________BOOTS_PART_END______________________________________________
 //_______________________________________SUB_FUNCTION_______________________
 //___________sf0
- exports.insertMmbRoles=async(client,message,mmb,time,bcs)=>{try{
+ exports.insertMmbRoles=async(client,message,mmb,time,bcs,sp)=>{try{
            //let sqlite = require('../modules/aa-sqlite');
           // let bd_name = module.exports.e.bd_name;
           // let table_name = module.exports.e.table_name;
+           if (!sp) sp=false
            let logbot=message.guild.channels.cache.find(ch=>ch.name=='logbot');
            let msg = {};
            if(logbot) { msg = await logbot.send('reserved');}else return;
@@ -352,7 +380,7 @@ console.log(obj);
               }//if not everyone
            };//for end
            //message.reply('all roles removed from mmb');
-          await module.exports.roleMute(client,mmb,'add'); 
+          await module.exports.roleMute(client,mmb,'add',sp); 
 
 }catch(err){console.log(err);};};//insertMmbRoles end
 //_____________sf1
@@ -466,13 +494,18 @@ exports.checkBD=async(client)=>{try{
 }catch(err){console.log(err);};};//getRolesMmb end
 
 //_______________sf2
-exports.roleMute=async(client,mmb,action)=>{try{
+exports.roleMute=async(client,mmb,action,sp)=>{try{
 
          let role = mmb.guild.roles.cache.find(r=>r.name==module.exports.e.mute_role_name);
+         let role2 = mmb.guild.roles.cache.find(r=>r.name==module.exports.e.lalka_role_name);
+         if(sp) role=role2
          if(!role) {console.log('there are not that role'); return;};
          await module.exports.delay(1*1000);
-         (action=="add")?mmb.roles.add(role).catch(err=>console.log(err)):mmb.roles.remove(role).catch(err=>console.log(err));
-
+         if(action=="add"){mmb.roles.add(role).catch(err=>console.log(err))
+                          }else{
+                            mmb.roles.remove(role).catch(err=>console.log(err));
+                            mmb.roles.remove(role2).catch(err=>console.log(err));
+                          }
 }catch(err){console.log(err);};};//exports roleMute end
 
 exports.check=async(client,message,mmb,person)=>{try{
@@ -546,3 +579,5 @@ exports.checkBDMute=async(client,member)=>{try{
 
 }catch(err){console.log(err);};};//getRolesMmb end
 
+
+           
