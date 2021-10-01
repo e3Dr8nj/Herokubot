@@ -174,7 +174,7 @@ module.exports.commands.selfmute={ on:true, aliase:'от-лалка', run:async(
             }
                
               if(rnd==6){
-                rnd_time = 6*60;
+                rnd_time = 6*60*60*1000;;
               message.channel.send(mmb.toString()+' Стал лалкой на '+Number(rnd_time)/(60*1000)+' минут');
               let current_time = new Date().getTime();
               let terminal_time=current_time+rnd_time;
