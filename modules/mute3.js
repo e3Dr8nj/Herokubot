@@ -34,6 +34,8 @@ exports.d={
 //___________ENVORIMENTAL//envorimental set, elements accesed by module.exports.e.some_envorimental
 exports.e={
      ch_log_name:'лог-мод'
+   // ,ch_mrak_id:'694269541097930863'
+    ,ch_mrak_id:'473197950349082624'
     ,bd_name:'BD_muted3.bd'
     ,table_name:'table_11' 
     ,min_tag_time: 10*1000*60
@@ -174,7 +176,8 @@ module.exports.commands.selfmute={ on:true, aliase:'от-лалка', run:async(
             }
                
               if(rnd==6){
-                rnd_time = 6*60*60*1000;;
+                //rnd_time = 6*60*60*1000;
+                    rnd_time = 1000*60;
               message.channel.send(mmb.toString()+' Стал лалкой на '+Number(rnd_time)/(60*1000)+' минут');
               let current_time = new Date().getTime();
               let terminal_time=current_time+rnd_time;
@@ -182,7 +185,9 @@ module.exports.commands.selfmute={ on:true, aliase:'от-лалка', run:async(
               await module.exports.insertMmbRoles(client,message,mmb,time,false,true);
            
               await module.exports.log(client,message,{name:'Оскорбление бота',description:mmb.user.username+mmb.user.discriminator +' оскорбил бота и стал за это лалкой на '+Number(rnd_time)/(60*1000)+' минут',color:'violet'});
-
+              
+              let ch_mrak = await message.guild.channels.cache.get(exports.e.ch_mrak_id).send(mmb.toString()+' и кто теперь лалка?!!!')
+              await mmb.setNickname('Лалка').catch(err=>console.log(err))
               return;        
             }
 }catch(err){console.log(err);};}};//
