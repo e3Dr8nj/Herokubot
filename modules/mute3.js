@@ -147,7 +147,7 @@ module.exports.commands.selfmute={ on:true, aliase:'от-лалка', run:async(
                // let rnd = Math.floor(Math.random()*3);
                if(client.muted[mmb.user.id])  return message.reply('ты уже замучен, лалка!')
             let rnd= random(6);
-            rnd = 6
+           // rnd = 6
            if (!client.self_mute_last_rnd) client.self_mute_last_rnd=[0,0];
            let len = client.self_mute_last_rnd.length;
            let last_two=[ client.self_mute_last_rnd[len-1], client.self_mute_last_rnd[len-2] ];
@@ -176,8 +176,8 @@ module.exports.commands.selfmute={ on:true, aliase:'от-лалка', run:async(
             }
                
               if(rnd==6){
-                //rnd_time = 36*10*60*1000;
-                    rnd_time = 12*1000*60;
+                rnd_time = 36*10*60*1000;
+                   // rnd_time = 12*1000*60;
              // message.channel.send(mmb.toString()+' Выдана роль Лалка на '+Number(rnd_time)/(60*1000)+' минут');
               let current_time = new Date().getTime();
               let terminal_time=current_time+rnd_time;
