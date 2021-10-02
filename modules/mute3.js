@@ -584,7 +584,7 @@ exports.rh={
 
 
 
-let random =(max)=>{ return Math.floor(Math.random()*max);};
+//let random =(max)=>{ return Math.floor(Math.random()*max);};
 let ph={};
 ph.unmute=['размуть','потом','нит <:28:402137551961325598>','размутил','Сам размуть, я устал..'];
 ph.warn=['За следующее нарушение будет мут. <:81:589907905692696756> '];
