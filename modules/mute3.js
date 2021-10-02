@@ -369,6 +369,7 @@ obj.mute_by_mmb_id=message.author.id;
 obj.mute_becouse=bcs;
  let a= JSON.stringify(obj);
 console.log(obj);
+
    
    msg = await msg.edit(a);
    client.muted[obj.user_id]=obj
