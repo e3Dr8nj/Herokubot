@@ -70,7 +70,8 @@ module.exports.events.guildMemberUpdate={ on:true,run:async(client,oldMember,new
 //______________________c-2
 module.exports.commands.muteWarn={ on:true, aliase:'редупреждение', run:async(client,message,args)=>{try{
 //if on this function triggers on deffined command
-             
+          
+   
              let allow_warn=await module.exports.check(client,message,message.member,'actor');
               
               let super_moderator_role = message.member.guild.roles.cache.find(r=>r.name==module.exports.e.super_moderator_name);
