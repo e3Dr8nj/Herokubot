@@ -34,13 +34,13 @@ exports.d={
 //___________ENVORIMENTAL//envorimental set, elements accesed by module.exports.e.some_envorimental
 exports.e={
      ch_log_name:'лог-мод'
-   // ,ch_mrak_id:'694269541097930863'
-    ,ch_mrak_id:'473197950349082624'
+    ,ch_mrak_id:'694269541097930863'
+    //,ch_mrak_id:'473197950349082624'
     ,bd_name:'BD_muted3.bd'
     ,table_name:'table_11' 
     ,min_tag_time: 10*1000*60
     ,mute_role_name:'Muted'
-    ,lalka_role_name:'lalka'
+    ,lalka_role_name:'Лалка'
     ,moderator_name:'Модератор'
     ,super_moderator_name:'Супермодератор'
 };//e end
