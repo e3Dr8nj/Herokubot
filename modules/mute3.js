@@ -40,7 +40,7 @@ exports.e={
     ,table_name:'table_11' 
     ,min_tag_time: 10*1000*60
     ,mute_role_name:'Muted'
-    ,lalka_role_name:'lalka'
+    ,lalka_role_name:'Лалка'
     ,moderator_name:'Модератор'
     ,super_moderator_name:'Супермодератор'
 };//e end
