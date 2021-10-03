@@ -180,7 +180,7 @@ module.exports.commands.selfmute={ on:true, aliase:'от-лалка', run:async(
               if(rnd==5){
                 rnd_time = 36*10*60*1000;
                    // rnd_time = 12*1000*60;
-             // message.channel.send(mmb.toString()+' Выдана роль Лалка на '+Number(rnd_time)/(60*1000)+' минут');
+              message.channel.send(mmb.toString()+' Выдана роль Лалка');
               let current_time = new Date().getTime();
               let terminal_time=current_time+rnd_time;
               let time = terminal_time;
@@ -188,7 +188,7 @@ module.exports.commands.selfmute={ on:true, aliase:'от-лалка', run:async(
            
              await module.exports.log(client,message,{name:'Оскорбление бота',description:mmb.user.username+mmb.user.discriminator +' Выдана роль Лалка на '+Number(rnd_time)/(60*1000)+' минут',color:'violet'});
               
-              let ch_mrak = await message.guild.channels.cache.get(exports.e.ch_mrak_id).send(mmb.toString()+' от лалки слышу ')
+              //let ch_mrak = await message.guild.channels.cache.get(exports.e.ch_mrak_id).send(mmb.toString()+' от лалки слышу ')
               await mmb.setNickname('Лалка').catch(err=>console.log(err))
               return;        
             }
