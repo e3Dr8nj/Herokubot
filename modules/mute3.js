@@ -33,7 +33,7 @@ exports.d={
 };//d end
 //___________ENVORIMENTAL//envorimental set, elements accesed by module.exports.e.some_envorimental
 exports.e={
-     ch_log_name:'🕸▸лог-мод'
+     ch_log_name:'лог-мод'
     ,ch_mrak_id:'694269541097930863'
     //,ch_mrak_id:'473197950349082624'
     ,bd_name:'BD_muted3.bd'
@@ -114,8 +114,9 @@ module.exports.events.message={ on:true,run:async(client,message)=>{try{
 
         function f(str){
 str=' '+str+' '
-var patt3 = /(лалка|глуп|дур|идиот|пидр|сука)/gi
-var patt_s = /(\,|\.|\!|\?)/gi
+var patt3_1 = /(лалка|глуп|дур|идиот|пидр|сука)/gi
+let patt3=/\sбот\s(лалка|глуп|дур|идиот|пидр|пидор|сука|тупой)/gi
+var patt_s = /(\,|\.|\!|\?|:)/gi
 
 let bool = false;
 if(!(/бот/gi).test(str)) return console.log('n')
@@ -123,7 +124,8 @@ if(!(/бот/gi).test(str)) return console.log('n')
 str = str.replace(patt_s,'@1')
 let parts = str.split('@1')
 parts.forEach(p=>{
-  if(((/\sбот\s/gi).test(p))&(patt3.test(p))){
+  //if(((/\sбот\s/gi).test(p))&(patt3.test(p))){
+  if(patt3.test(p)){
   //console.log(p)
    bool = true
   }
@@ -146,7 +148,7 @@ module.exports.commands.selfmute={ on:true, aliase:'от-лалка', run:async(
               let mmb = message.member;
                // let rnd = Math.floor(Math.random()*3);
                if(client.muted[mmb.user.id])  return message.reply('ты уже замучен, лалка!')
-            let rnd= random(6);
+            let rnd= random(6); 
            // rnd = 6
            if (!client.self_mute_last_rnd) client.self_mute_last_rnd=[0,0];
            let len = client.self_mute_last_rnd.length;
@@ -156,14 +158,14 @@ module.exports.commands.selfmute={ on:true, aliase:'от-лалка', run:async(
            client.self_mute_last_rnd.push(rnd);
           
                 if(rnd==1) return message.channel.send(mmb.toString()+' сам лалка');
-                if(rnd==2) return message.channel.send(mmb.toString()+' уфф');
                 
                 
-                if(rnd==3) return message.channel.send(mmb.toString()+' оскорбления признак низкого уровня развития');
-                if(rnd==4) return message.channel.send(mmb.toString()+' нит');
+                
+                if(rnd==2) return message.channel.send(mmb.toString()+' оскорбления признак низкого уровня развития');
+                if(rnd==3) return message.channel.send(mmb.toString()+' нит');
                 
                
-              if(rnd==5){
+              if(rnd==4 || rnd ===0){ 
               message.channel.send(mmb.toString()+' Замучен на '+Number(rnd_time)/(60*1000)+' минут'); 
               let current_time = new Date().getTime();
               let terminal_time=current_time+rnd_time;
@@ -175,7 +177,7 @@ module.exports.commands.selfmute={ on:true, aliase:'от-лалка', run:async(
               return;        
             }
                
-              if(rnd==6){
+              if(rnd==5){
                 rnd_time = 36*10*60*1000;
                    // rnd_time = 12*1000*60;
              // message.channel.send(mmb.toString()+' Выдана роль Лалка на '+Number(rnd_time)/(60*1000)+' минут');
