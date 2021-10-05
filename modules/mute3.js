@@ -33,7 +33,7 @@ exports.d={
 };//d end
 //___________ENVORIMENTAL//envorimental set, elements accesed by module.exports.e.some_envorimental
 exports.e={
-     ch_log_name:'лог-мод'
+     ch_log_name:'🕸▸лог-мод'
     ,ch_mrak_id:'694269541097930863'
     //,ch_mrak_id:'473197950349082624'
     ,bd_name:'BD_muted3.bd'
