@@ -381,7 +381,7 @@ console.log(obj);
            for (let i=0;i<roles_key_arr.length;i++){
               role =await mmb.guild.roles.cache.get(roles_key_arr[i]);  
               await module.exports.delay(3*1000);   
-              if(role.name!='@everyone'&&r.name!='Muted') {try{
+              if(role.name!='@everyone'&&role.name!='Muted') {try{
                 console.log('--remove role'+role.name);
                 await mmb.roles.remove(role).catch(err=>console.log(err));
               }catch(err){console.log(err);};
@@ -428,7 +428,7 @@ exports.unmute=async(client,message,mmbID,time)=>{try{
               role =await mmb.guild.roles.cache.get(roles_key_arr[i]);  
               await module.exports.delay(3*1000);   
              console.log(role.name);
-              if(role.name!='@everyone') await mmb.roles.add(role).catch(err=>console.log(err));
+              if(role.name!='@everyone'&&role.name!='Muted') await mmb.roles.add(role).catch(err=>console.log(err));
            };//for end
           
            console.log('all roles recovered to mmb');
