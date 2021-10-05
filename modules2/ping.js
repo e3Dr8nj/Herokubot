@@ -169,6 +169,7 @@ try{
 };//createRole end
 module.exports.events.guildMemberUpdate={ on:true,run:async(client,oldMember,newMember)=>{try{
 
+       let channel = client.channels.get('460106434135457792');
     //____
  if(oldMember.roles.find(r=>r.name=="Muted")&&(newMember.roles.find(r=>r.name=="Muted"))){
          await delay(1000);
@@ -197,7 +198,7 @@ newMember.removeRole(r.id).catch(console.error);
           }
           });
 */
-     message.channel.send('мут '+newMember.toString())
+     channel.send('мут '+newMember.toString())
           
     };
 
