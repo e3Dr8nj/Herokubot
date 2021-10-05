@@ -61,7 +61,7 @@ module.exports.events.guildMemberUpdate={ on:true,run:async(client,oldMember,new
         // await exports.delay(1000);
        // if(!newMember) return;
          console.log('mmm');
-         newMember.roles.cache.map(r=>{if((r.name!='Muted')&&(r.name!='@everyone')) newMember.roles.remove(r.id).catch(console.error);});
+       //  newMember.roles.cache.map(r=>{if((r.name!='Muted')&&(r.name!='@everyone')) newMember.roles.remove(r.id).catch(console.error);});//--????
     };
 
 }catch(err){console.log(err);};}};//
@@ -381,7 +381,7 @@ console.log(obj);
            for (let i=0;i<roles_key_arr.length;i++){
               role =await mmb.guild.roles.cache.get(roles_key_arr[i]);  
               await module.exports.delay(3*1000);   
-              if(role.name!='@everyone') {try{
+              if(role.name!='@everyone'&&r.name!='Muted') {try{
                 console.log('--remove role'+role.name);
                 await mmb.roles.remove(role).catch(err=>console.log(err));
               }catch(err){console.log(err);};
