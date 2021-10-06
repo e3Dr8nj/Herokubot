@@ -228,8 +228,8 @@ module.exports.commands.unmute={ on:true, aliase:'азмут', run:async(client,
 //______________________c2
 module.exports.commands.timemute={ on:true, aliase:'ут', run:async(client,message,args)=>{try{
 //if on this function triggers on deffined command
-              //if(!message.content.toLowerCase().startsWith("м")) return;//RECOVERY
-              if(message.content.toLowerCase().startsWith("т")){ message.channel.send('хватит туткать тут! ишь какой!'); return;}
+              if(!message.content.toLowerCase().startsWith("м")) return;//RECOVERY
+             // if(message.content.toLowerCase().startsWith("т")){ message.channel.send('хватит туткать тут! ишь какой!'); return;}
               let allow_mute=await module.exports.check(client,message,message.member,'actor');
               let bcs='без причины';
              
