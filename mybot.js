@@ -1,7 +1,7 @@
 ﻿require('dotenv').config();
 //___
 let env = {}
-cnl_roles='👤▸выбрать_роль'
+env.cnl_roles='👤▸выбрать_роль'
 //___
 const Discord = require("discord.js");
 const client = new Discord.Client();
