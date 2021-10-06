@@ -272,7 +272,7 @@ module.exports.commands.timemute={ on:true, aliase:'ут', run:async(client,mess
                         //await msg989.delete();
                         //await module.exports.delay(60*1000);
                         
-                       // return;
+                        return;
 
                };
 //____
