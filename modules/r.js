@@ -23,7 +23,7 @@ exports.d={
 //___________ENVORIMENTAL//envorimental set, elements accesed by module.exports.e.some_envorimental
 exports.e={
  
-    tag_time:(1000*60*60*4)-(1000*60)
+    tag_time:(1000*60*60*4)-(1000*10)
      //tag_time:1000*60*1
     ,chnl_name:'🔘▸spam-b◉t'
     ,role_name : '💥'
