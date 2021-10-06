@@ -57,7 +57,7 @@ module.exports.commands.rpHelp={ on:true, aliase:'rcHelp', run:async(client,mess
 //if on this function triggers on deffined command
 
               let str='['+client.prefix+'] [rcHelp] Цветные роли инфо';
-              str+='['+module.exports.system.channel_name+']-название канала\n';
+              str+='['+client.env.cnl_roles+']-название канала\n';
               str+='['+module.exports.system.divider_roleList_word+']-название ролей разделителей в дискорд списке ролей\n';
               str+='['+client.prefix+'rcPrint x'+']-запостить интерактивные списки ролей по x ролей в каждом\n команда также удаляет предыдущие списки \n';
               str+='['+client.prefix+'rcReload x'+']-обновить списки ролей поместив по x ролей в каждый\n';
@@ -117,7 +117,7 @@ module.exports.boots.someBoot={ on:true,  run:async(client)=>{try{
 exports.onGuildCreate=async(client)=>{try{
 //_______________________
      console.log('ogc');
-     let v_chnl = client.channels.cache.find(ch=>ch.name==module.exports.system.channel_name);
+     let v_chnl = client.channels.cache.find(ch=>ch.name==client.env.cnl_roles);
      let msg_arr=await v_chnl.messages.fetch({limit:100}).then(collected=>{return collected;}).catch(err=>console.log(err));
              module.exports.system.messagesID=[];
              let color_list=false;
@@ -310,7 +310,7 @@ if(args[1]&&!isNaN(args[1])){module.exports.system.step =Number(args[1])};
 let rev = await module.exports.system.messagesID.reverse();//---
    for(let i =0; i<rev.length;i++){//---90221
       
-      let channel = message.guild.channels.cache.find(ch=>ch.name==module.exports.system.channel_name);
+      let channel = message.guild.channels.cache.find(ch=>ch.name==client.env.cnl_roles);
       args=[' ',i,module.exports.system.messagesID[i]];
       await module.exports.reset(client,message,args);
     };//for end
