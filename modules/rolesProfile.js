@@ -81,7 +81,7 @@ module.exports.commands.postAll={ on:true, aliase:'raPrint', run:async(client,me
                        
                        let msg='';  module.exports.system.step=num; let msg_arr_id=[];
                        for(let i=0;i<num2;i++){
-                             msg=await message.channel.send('msg');
+                             msg=await message.channel.send('_');
                              msg_arr_id.push(msg.id);
                        };//for end
                        module.exports.system.messagesID=msg_arr_id.slice();
