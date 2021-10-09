@@ -64,7 +64,8 @@ module.exports.commands.raHelp={ on:true, aliase:'raHelp', run:async(client,mess
 module.exports.commands.postAll={ on:true, aliase:'raPrint', run:async(client,message,args)=>{try{
 //if on this function triggers on deffined command
                        if(module.exports.system.messagesID){
-                           let t_msg={};  let id='';
+                          
+                           
                            for(let i=0;i<module.exports.system.messagesID.length;i++){
                             id=module.exports.system.messagesID[i];
                             t_msg=await message.channel.messages.fetch(id);
@@ -80,8 +81,11 @@ module.exports.commands.postAll={ on:true, aliase:'raPrint', run:async(client,me
                        let m_d2=await message.reply(module.exports.d.need_msgs[client.lang]+num2);
                        
                        let msg='';  module.exports.system.step=num; let msg_arr_id=[];
+                       let ds = args.slice(2).join(' ');
+                       (!ds)?ds='------':ds;
+                           let t_msg={};  let id='';
                        for(let i=0;i<num2;i++){
-                             msg=await message.channel.send('msg');
+                             msg=await message.channel.send(ds);
                              msg_arr_id.push(msg.id);
                        };//for end
                        module.exports.system.messagesID=msg_arr_id.slice();
