@@ -1,7 +1,7 @@
 ﻿//________________________________________INITIATION_PART__________________________________________
 //_____________SETTINGS
 //exports.RH_IGNORE_TOTAL=true;//add this line to ignore this module 
-exports.active=true;//this module activate (deactivate module and all events,commands,boot in it if value is false)
+exports.active=false;//this module activate (deactivate module and all events,commands,boot in it if value is false)
 exports.events={};// {} - activate/false - deactive
 exports.commands={};// {} - activate/false -deactive
 exports.boots={};// {} - activate/false -deactive
@@ -10,26 +10,22 @@ let delay=async(duration)=>{await new Promise(resolve=>setTimeout(resolve,durati
 //exports.m=require('./this_project_main.js'); //inculde this project`s main file if present (same directory)
 //____________DICTIONARY//dictionary set, elements by accesed by module.exports.d.some_phase[client.lang] 
 exports.d={
-      profile_roles:['!profile roles','!анкетные роли']
+      access_roles:['!access roles','!доступ роли']
      ,roles_count:['there roles count is  ','ролей ']
      ,need_msgs:['need count messages is ','необходимое колличество сообщений ']
 };//d end
 //___________ENVORIMENTAL//envorimental set, elements accesed by module.exports.e.some_envorimental
 exports.e={
-     amount_limit:8,
+     amount_limit:7,
      some_envorimental:'value'  
 };//e end
 exports.system={
  
-     //channel_name:'🔎info-help',
+     
       channel_name:'⚛роли-и-каналы✺',
-    // prefix:'.',
-     step:10,
-     divider_roleList_word:'roles1',
-    // main_command_name:'roles1',
-    
-     channelID:'301319871981944834',
-    // part1:{ messageID:'490587062488006667'},
+      step:10,
+      divider_roleList_word:'roles3',
+      channelID:'301319871981944834',
      messagesID:[],
      temple:{roles_arr_id:[]}
    
@@ -53,19 +49,19 @@ module.exports.events.messageReactionRemove={ on:true,  run:async(client,message
 //___________________________________________EVENTS_PART_END__________________________________________
 //_________________________________________COMMANDS_PART_________________________________________________
 //__________________c0
-module.exports.commands.rpHelp={ on:true, aliase:'rpHelp', run:async(client,message,args)=>{try{
+module.exports.commands.raHelp={ on:true, aliase:'raHelp', run:async(client,message,args)=>{try{
 //if on this function triggers on deffined command
 
-              let str='['+client.prefix+'] [rpHelp] Анкетные роли инфо';
+              let str='['+client.prefix+'] [raHelp] Доступа роли инфо';
               str+='['+client.env.cnl_roles+']-название канала\n';
               str+='['+module.exports.system.divider_roleList_word+']-название ролей разделителей в дискорд списке ролей\n';
-              str+='['+client.prefix+'rpPrint x'+']-запостить интерактивные списки ролей по x ролей в каждом\n команда также удаляет предыдущие списки \n';
-              str+='['+client.prefix+'rpReload x'+']-обновить списки ролей поместив по x ролей в каждый\n';
+              str+='['+client.prefix+'raPrint x'+']-запостить интерактивные списки ролей по x ролей в каждом\n команда также удаляет предыдущие списки \n';
+              str+='['+client.prefix+'raReload x'+']-обновить списки ролей поместив по x ролей в каждый\n';
               message.channel.send(str,{code:'ini'});
 
 }catch(err){console.log(err);};}};//
 //________________c1
-module.exports.commands.postAll={ on:true, aliase:'rpPrint', run:async(client,message,args)=>{try{
+module.exports.commands.postAll={ on:true, aliase:'raPrint', run:async(client,message,args)=>{try{
 //if on this function triggers on deffined command
                        if(module.exports.system.messagesID){
                            let t_msg={};  let id='';
@@ -94,7 +90,7 @@ module.exports.commands.postAll={ on:true, aliase:'rpPrint', run:async(client,me
                        await m_d1.delete(); await m_d2.delete();
 }catch(err){console.log(err);};}};//
 //________________c2
-module.exports.commands.rolesProfile={ on:true, aliase:'rpReload', run:async(client,message,args)=>{try{
+module.exports.commands.rolesProfile={ on:true, aliase:'raReload', run:async(client,message,args)=>{try{
 //if on this function triggers on deffined command
                       
                        return module.exports.run(client,message,args);
@@ -122,7 +118,7 @@ exports.onGuildCreate=async(client)=>{try{
              msg_arr.map(m=>{
               if(m.embeds&&m.embeds[0]&&m.embeds[0].fields&&m.embeds[0].fields[0]){
                   client.emit('message',m);
-                  color_list=(m.embeds[0].fields[0].name.indexOf(module.exports.d.profile_roles[client.lang])!=-1)&&(m.author==client.user);
+                  color_list=(m.embeds[0].fields[0].name.indexOf(module.exports.d.access_roles[client.lang])!=-1)&&(m.author==client.user);
                   if(color_list){
                   module.exports.system.messagesID.push(m.id);
                   console.log(m.id+' color list');
@@ -156,7 +152,7 @@ exports.reset=async(client,message,args)=>{try{
       msg = await msg.edit({
       embed:{
          title:'',
-         fields:[{name:module.exports.d.profile_roles[client.lang],value:roleList}]
+         fields:[{name:module.exports.d.access_roles[client.lang],value:roleList}]
        }
       });
           let j=0;
@@ -182,7 +178,6 @@ exports.getRoleArr=async(client,message,count,keyWord)=>{try{
                if(bool) {roles_arr.push(r); }   
                bool=false;        
                              });
-     
      roles_arr = roles_arr.sort(function(a, b){return a.position-b.position}).reverse();//---
      module.exports.system.temple.roles_arr_id=await roles_arr.map(r=>r.id);
      roles_arr = roles_arr.slice(count[0],count[1]);
@@ -208,7 +203,6 @@ exports.getRoleList=async(client,message,count)=>{try{
 //______________________c4
 exports.getRoleEmojiArr=async(client,msg)=>{try{
 
-  
    let emb = msg.embeds[0].fields[0].value;
    let roles_arr = emb.split('\n');
    roles_arr=roles_arr.map(e=>e.replace('>','').trim().split(' <@&'));
@@ -261,4 +255,3 @@ if(args[1]&&!isNaN(args[1])){module.exports.system.step =Number(args[1])};
   }catch(err){console.log(err);};    
 
 }catch(err){console.log(err);};};//autoreload end
-
