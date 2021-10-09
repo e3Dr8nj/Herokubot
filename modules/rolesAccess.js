@@ -81,11 +81,10 @@ module.exports.commands.postAll={ on:true, aliase:'raPrint', run:async(client,me
                        let m_d2=await message.reply(module.exports.d.need_msgs[client.lang]+num2);
                        
                        let msg='';  module.exports.system.step=num; let msg_arr_id=[];
-                       let ds = args.slice(2).join(' ');
-                       (!ds)?ds='------':ds;
+                       
                            let t_msg={};  let id='';
                        for(let i=0;i<num2;i++){
-                             msg=await message.channel.send(ds);
+                             msg=await message.channel.send('-');
                              msg_arr_id.push(msg.id);
                        };//for end
                        module.exports.system.messagesID=msg_arr_id.slice();
