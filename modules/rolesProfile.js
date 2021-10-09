@@ -208,6 +208,7 @@ exports.getRoleList=async(client,message,count)=>{try{
 //______________________c4
 exports.getRoleEmojiArr=async(client,msg)=>{try{
 
+  
    let emb = msg.embeds[0].fields[0].value;
    let roles_arr = emb.split('\n');
    roles_arr=roles_arr.map(e=>e.replace('>','').trim().split(' <@&'));
