@@ -39,7 +39,7 @@ exports.e={
     ,bd_name:'BD_muted3.bd'
     ,table_name:'table_11' 
     ,min_tag_time: 10*1000*60
-    ,mute_role_name:'Muted'
+    ,mute_role_name:'☣'
     ,lalka_role_name:'Лалка'
     ,moderator_name:'Модератор'
     ,super_moderator_name:'Супермодератор'
