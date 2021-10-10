@@ -22,7 +22,7 @@ exports.e={
 exports.system={
  
      
-      channel_name:'⚛роли-и-каналы✺',
+      channel_name:'👤▸выбрать_роль',
       step:10,
       divider_roleList_word:'roles3',
       channelID:'301319871981944834',
