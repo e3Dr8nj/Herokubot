@@ -260,15 +260,3 @@ if(args[1]&&!isNaN(args[1])){module.exports.system.step =Number(args[1])};
   }catch(err){console.log(err);};    
 
 }catch(err){console.log(err);};};//autoreload end
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
