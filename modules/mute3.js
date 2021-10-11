@@ -494,6 +494,7 @@ exports.roleMute=async(client,mmb,action,sp)=>{try{
 
          let role = mmb.guild.roles.cache.find(r=>r.name==module.exports.e.mute_role_name);
          let role2 = mmb.guild.roles.cache.find(r=>r.name==module.exports.e.lalka_role_name);
+         let role3 = mmb.guild.roles.cache.find(r=>r.name==client.env.rl_mute);
          if(sp) role=role2
          if(!role) {console.log('there are not that role'); return;};
          await module.exports.delay(1*1000);
@@ -501,6 +502,7 @@ exports.roleMute=async(client,mmb,action,sp)=>{try{
                           }else{
                             mmb.roles.remove(role).catch(err=>console.log(err));
                             mmb.roles.remove(role2).catch(err=>console.log(err));
+                            mmb.roles.remove(role3).catch(err=>console.log(err));
                           }
 }catch(err){console.log(err);};};//exports roleMute end
 
