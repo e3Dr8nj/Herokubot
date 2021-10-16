@@ -570,6 +570,7 @@ exports.checkBDMute=async(client,member)=>{try{
           let tag=Number(resolve.time)-Number(current_time);
           console.log(tag);
           if(tag<=0) return;
+           await module.exports.delay(1*1000);//---
            await  member.roles.remove(member.roles).catch((error) => {
       console.log(error);
     });//TEST
