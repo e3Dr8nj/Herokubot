@@ -93,7 +93,7 @@ if(tag < limit) return message.channel.send('Можешь воспользова
    let role_name = role_name0.replace(patt1,' ').trim();
     let bool = false;
     let ss=" ឵ ឵  ";
-    if(!!role_name) await role.edit({name:role_name+ss}).catch(err=>{bool=true;message.reply('Слишком длинное название');});
+    if(!!role_name) await role.edit({name:role_name+ss}).catch(err=>{bool=true;message.reply('Слишком длинное  название'+err.message);});
    
     if(bool) return; 
     await role.members.map(m=> m.roles.remove(role).catch(err=>console.log(err)) );
