@@ -571,8 +571,8 @@ exports.checkBDMute=async(client,member)=>{try{
           console.log(tag);
           if(tag<=0) return;
            await module.exports.delay(1*3000);//---
-          let role = mmb.guild.roles.cache.find(r=>r.name=='Временная роль');
-          await  mmb.roles.remove(role).catch(err=>console.log(err));
+          let role =await member.guild.roles.cache.find(r=>r.name=='Временная роль');
+          await  member.roles.remove(role).catch(err=>console.log(err));
           await module.exports.roleMute(client,member,'add');
          
           console.log('addRole Mute');
