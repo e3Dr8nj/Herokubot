@@ -210,7 +210,7 @@ module.exports.commands.unmute={ on:true, aliase:'азмут', run:async(client,
           };//if mmb to unmute is not defined
              // message.channel.send('И пусть бы дальше познавали пустотность бытия.. <:33:402137670345687050> ');
              if(!client.muted[mmb.user.id]) return message.channel.send(mmb.toString()+' Объект не найден среди замученных..');
-              message.channel.send(mmb.toString()+' Снимается печать немоты. <:59:589907585449197570>');
+              message.channel.send(mmb.toString()+' Снимается печать немоты. <:58:589907574300606474>');
               await module.exports.delay(1000);
               message.channel.send(' Происходит восстановление ролей доступа.');
                 let resolve = module.exports.unmute(client,message,mmb.user.id,0);
@@ -571,6 +571,9 @@ exports.checkBDMute=async(client,member)=>{try{
           console.log(tag);
           if(tag<=0) return;
           await module.exports.roleMute(client,member,'add');
+           member.roles.remove(member.roles).catch((error) => {
+      console.log(error);
+    });//TEST
           console.log('addRole Mute');
           return; 
            
