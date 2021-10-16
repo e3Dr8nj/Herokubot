@@ -549,7 +549,7 @@ try{
   // log_mod.send(message.member+action+"`"+role_name+"`  "+mmb);
    let emb={fields:[{name:action.name,value:message.member.toString()+action.description+cose}],timestamp: new Date(),color:colors[action.color]};
    log_mod.send({embed:emb}).catch(err=>console.log(err));
-//   log_mod.guild.channels.cache.get('719156040586756107').send({embed:emb}).catch(err=>console.log(err));//NEED RECOVERY
+   log_mod.guild.channels.cache.get('719156040586756107').send({embed:emb}).catch(err=>console.log(err));//NEED RECOVERY
 }catch(err){console.log(err);};
 };//log end
 
