@@ -4,8 +4,8 @@ exports.rh={
   disable:false,
   commands:{disable:false},
   boots:{disable:false},
-  events:{disable:true},
-  events_primitive:{disable:true}
+ // events:{disable:true},
+  //events_primitive:{disable:true}
 };
 
 //________________________________________TOOLS__________________________________________
@@ -46,8 +46,7 @@ module.exports.commands = {};
 module.exports.commands.x000cmd0={aliase:'выдать', run:async(client,message,args)=>{try{
    //code to execut then this command triggered
   //-----------------------test
-  exports.e.roles = await rhRoles.getRoles(message.guild.roles.cache,{keyword:'rolecastom',getValues:'id',type:"object"})
-  await console.log(exports.e.roles)
+ 
   //--------------------------test
   if(args[1]=="роль"){
     //check if mmb has roles
@@ -115,6 +114,15 @@ module.exports.commands.x000cmd1={aliase:'x000', run:async(client,message,args)=
   
 }catch(err){console.log(err);};}};//
 
+
+//_________________________________________BOOTS_PART___________________________________________________
+
+module.exports.boots = {}; 
+module.exports.boots.someBoot1={disable:false,run:async(client)=>{try{
+    //code to execut bot on loading
+   exports.e.roles = await rhRoles.getRoles(message.guild.roles.cache,{keyword:'rolecastom',getValues:'id',type:"object"})
+  await console.log(exports.e.roles)
+}catch(err){console.log(err);};}};//
 
 
 
