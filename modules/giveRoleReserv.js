@@ -1,7 +1,6 @@
 ﻿////
-let rhRoles = require(`./rhRolesModule.js`);//t
 exports.rh={
-  disable:false,
+  disable:true,
   commands:{disable:false},
   boots:{disable:false},
   events:{disable:true},
@@ -31,7 +30,14 @@ module.exports.e={
   ,bot_name:'tea'
   ,mmb:{}
   ,roles:{
-    
+    '807350473862021140':0
+    ,'808799141916049458':0
+    ,'808799790485602335':0
+   ,'880199436687515699':0
+   ,'880200418150469682':0
+   ,'894338769677877339':0
+   ,'894338875361726484':0
+   ,'894338939895300117':0
   }
   ,roles_arr:['Сумеречные','Странники','☥','Адепты Хаоса']
 }
@@ -45,16 +51,12 @@ module.exports.commands = {};
 // ...
 module.exports.commands.x000cmd0={aliase:'выдать', run:async(client,message,args)=>{try{
    //code to execut then this command triggered
-  //-----------------------test
-  exports.e.roles = await rhRoles.getRoles(message.guild.roles.cache,{keyword:'rolecastom',getValues:'id',type:"object"})
-  await console.log(exports.e.roles)
-  //--------------------------test
   if(args[1]=="роль"){
     //check if mmb has roles
     //message.channel.send('ok');
    let member = message.member;
-//   let is_able= await member.roles.cache.find(r=>exports.e.roles_arr.includes(r.name)||member.user.id==message.channel.guild.owner.id);
-   let is_able = true
+   let is_able= await member.roles.cache.find(r=>exports.e.roles_arr.includes(r.name)||member.user.id==message.channel.guild.owner.id);
+   
     if(!is_able) return message.channel.send('Недостаточно прав!');
   let now = new Date().getTime();
     //--
@@ -114,12 +116,6 @@ module.exports.commands.x000cmd1={aliase:'x000', run:async(client,message,args)=
    };
   
 }catch(err){console.log(err);};}};//
-
-
-
-
-
-
 
 
 
