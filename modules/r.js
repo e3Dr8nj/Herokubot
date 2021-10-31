@@ -48,7 +48,7 @@ message.channel.send('а теперь /like  <:28:589907105717157909>');
               if(message.content.startsWith('!bump')){return;};
               if(!message.embeds[0]) return;
               if(message.embeds[0].description&&message.embeds[0].description.startsWith(':alarm_clock: Next bump point will be available')){message.channel.send('<:54:589907518080286731>'); return;};
-              if(message.embeds[0].description&&message.embeds[0].description.startsWith('[Top Discord Servers]') && message.author.bot){
+              if(message.embeds[0].description&&message.embeds[0].description.startsWith('[Top Discord Servers]')){
            
 //put data next bump time to db
 // change channel name
