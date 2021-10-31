@@ -40,7 +40,7 @@ module.exports.events.message={ on:true,  run:async(client,message)=>{try{
              // if(message.embeds[0]&&message.embeds[0].author&&message.embeds[0].author.name&&( message.embeds[0].author.name.startsWith('Сервер Up'))) { s_up=true;return;};
 */
              
-                if((message.author.bot&& message.embeds[0]&&message.embeds[0].description&&message.embeds[0].description.startsWith('**Успешный Up!**'))||(message.content=='sup test'&&!message.author.bot )){ client.suped=true;
+                if((message.author.bot&& message.embeds[0]&&message.embeds[0].description&&message.embeds[0].description.startsWith('**Успешный Up!**'))||(message.content=='sup test'&&!message.author.bot )  ||(message.author.user.id=='464272403766444044')){ client.suped=true;
 message.channel.send('а теперь /like  <:28:589907105717157909>');
  return;
 };
