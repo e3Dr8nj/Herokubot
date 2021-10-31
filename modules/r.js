@@ -23,7 +23,7 @@ exports.d={
 //___________ENVORIMENTAL//envorimental set, elements accesed by module.exports.e.some_envorimental
 exports.e={
  
-    tag_time:(1000*60*60*4)-(1000*10)
+    tag_time:(1000*60*60*4)-(1000*60)
      //tag_time:1000*60*1
     ,chnl_name:'🔘▸spam-b◉t'
     ,role_name : '💥'
@@ -40,7 +40,7 @@ module.exports.events.message={ on:true,  run:async(client,message)=>{try{
              // if(message.embeds[0]&&message.embeds[0].author&&message.embeds[0].author.name&&( message.embeds[0].author.name.startsWith('Сервер Up'))) { s_up=true;return;};
 */
              
-                if((message.author.bot&& message.embeds[0]&&message.embeds[0].description&&message.embeds[0].description.startsWith('**Успешный Up!**'))||(message.content=='sup test'&&!message.author.bot )  ||(message.author.user.id=='464272403766444044')){ client.suped=true;
+                if((message.author.bot&& message.embeds[0]&&message.embeds[0].title&&message.embeds[0].title.startsWith('Сервер Up'))||(message.content=='sup test'&&!message.author.bot )){ client.suped=true;
 message.channel.send('а теперь /like  <:28:589907105717157909>');
  return;
 };
@@ -48,7 +48,7 @@ message.channel.send('а теперь /like  <:28:589907105717157909>');
               if(message.content.startsWith('!bump')){return;};
               if(!message.embeds[0]) return;
               if(message.embeds[0].description&&message.embeds[0].description.startsWith(':alarm_clock: Next bump point will be available')){message.channel.send('<:54:589907518080286731>'); return;};
-              if(message.embeds[0].description&&message.embeds[0].description.startsWith('[Top Discord Servers]')){
+              if(message.embeds[0].description&&message.embeds[0].description.startsWith('[Top Discord Servers]') && message.author.bot){
            
 //put data next bump time to db
 // change channel name
