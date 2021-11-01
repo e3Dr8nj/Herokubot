@@ -292,7 +292,7 @@ exports.createNewVoice=async(client,oldState,newState)=>{try{ //triggered then n
          let member=channel.guild.members.cache.get(newState.member.id);
          let is_able= await member.roles.cache.find(r=>exports.e.roles_arr.includes(r.name))||member.user.id==channel.guild.owner.id;
          if(!is_able) {
- let sv_name=await channel.name;await channel.edit({name:exports.e.no_rights_for_creating}).catch(console.error);await delay(exports.e.delay_time);await channel.edit({name:sv_name}).catch(console.error);
+ //let sv_name=await channel.name;await channel.edit({name:exports.e.no_rights_for_creating}).catch(console.error);await delay(exports.e.delay_time);await channel.edit({name:sv_name}).catch(console.error);
          return;}; 
          let more=member.roles.cache.find(r=>r.name==exports.e.mod_role_name)||member.user.id==channel.guild.owner.id;
          if(exports.owners[member.user.id]&&!more){ return ;};
