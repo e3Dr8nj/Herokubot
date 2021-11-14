@@ -27,13 +27,14 @@ module.exports.boots.someBoot={run:async(client)=>{try{
     console.log("I am ready!");
   //
 //--------------------
+return
 let delay =(duration)=>new Promise( resolve=> setTimeout(resolve,duration) );
 let default_delay = (4*60*60*1000)+(10 *1000);
 let hour_delay=(1*60*60*1000);
 
 
 async function process(){
-      
+        
        let channel = client.channels.get('460106434135457792');
        
        await channel.send('=bump'); await delay(2000);
