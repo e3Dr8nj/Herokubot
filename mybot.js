@@ -90,3 +90,22 @@ client3.on("raw", (...args) => {try{
 
 client3.login(process.env.TOKEN_TEA);
 
+//________________
+const Discord13= require("discord13.js")
+const {Intents:Intents13}= require("discord13.js")
+const client13 = new Discord13.Client({
+    disableEveryone: true
+   //,intents:[Intents13]
+   ,intents: [Intents13.FLAGS.GUILDS
+             , Intents13.FLAGS.GUILD_MEMBERS, Intents13.FLAGS.GUILD_BANS, Intents13.FLAGS.GUILD_EMOJIS_AND_STICKERS, Intents13.FLAGS.GUILD_INTEGRATIONS, Intents13.FLAGS.GUILD_WEBHOOKS, Intents13.FLAGS.GUILD_INVITES, Intents13.FLAGS.GUILD_VOICE_STATES, Intents13.FLAGS.GUILD_PRESENCES, Intents13.FLAGS.GUILD_MESSAGES, Intents13.FLAGS.GUILD_MESSAGE_REACTIONS, Intents13.FLAGS.GUILD_MESSAGE_TYPING, Intents13.FLAGS.DIRECT_MESSAGES, Intents13.FLAGS.DIRECT_MESSAGE_REACTIONS, Intents13.FLAGS.DIRECT_MESSAGE_TYPING
+             ],
+});
+client13.prefix = "--";
+client13.SERVER_ID = "301063859702071316";
+let RH13 = require(`./raw13.js`);
+RH13.folder_name = `./modules13`; // RH.folder_name='C:/user/discord/bot4/modules';- for pc running
+//RH13.prefix = client13.prefix; //prefix for commands; default value: '!'
+RH13.build(client13)
+client13.login();
+
+
