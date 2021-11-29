@@ -92,6 +92,7 @@ client3.login(process.env.TOKEN_TEA);
 
 //________________
 
+
 const Discord13= require("discord13.js")
 const {Intents:Intents13}= require("discord13.js")
 const client13 = new Discord13.Client({
