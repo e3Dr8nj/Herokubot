@@ -1,4 +1,5 @@
-﻿//________________________________________TOOLS__________________________________________
+﻿exports.rh={}
+//________________________________________TOOLS__________________________________________
 let delay=async(duration)=>{await new Promise(resolve=>setTimeout(resolve,duration))}; 
      //* for delay inside async function, use it instead setTimeout
 let random =(max)=>{ return Math.floor(Math.random()*max);};
