@@ -1,4 +1,4 @@
-﻿//----
+﻿//
 let store={
   
   chats:{
@@ -13,7 +13,7 @@ let baseRow = {lock:0,lecture:0,textlock:0}
 const { MessageActionRow, MessageEmbed, MessageButton, MessageSelectMenu } = require('discord13.js');
 //----
 exports.rh={
- // disable:true//uncomment for disable all this file
+  //disable:true//uncomment for disable all this file
  // commands:{disable:true} //uncomment fro disable commands etc.
   //,boots:{disable:true}
   //,events:{disable:true}
@@ -290,24 +290,3 @@ try{
     return module.exports.buildRow(client,store.chats[message.channel.id].baseRow,message)
 }catch(err){console.log(err);};
 };//
-
-//----------------------------------------------------------------------------------------------
-module.exports.events.interactionCreate={ disable:false,run:async(client,interaction)=>{try{
- //code to execut then this event triggered
-  //return
-          if(interaction.isButton()) return
-      
-          const {commandName, options} = interaction
-
-  if(commandName === 'usertest'){
-  
-    const user = await client.users.fetch(interaction.targetId)
-const embed = new MessageEmbed()
-   .setAuthor(user.tag)
-   .setImage(user.displayAvatarURL({dynamic:true}))
-   await interaction.reply({embeds:[embed]})
-    //await interaction.reply({content:"you click it!"})
-    
-}
-           
-}catch(err){console.log(err);};}};//
