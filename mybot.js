@@ -91,6 +91,7 @@ client3.on("raw", (...args) => {try{
 client3.login(process.env.TOKEN_TEA);
 
 //________________
+/*
 const Discord13= require("discord13.js")
 const {Intents:Intents13}= require("discord13.js")
 const client13 = new Discord13.Client({
@@ -107,5 +108,6 @@ RH13.folder_name = `./modules13`; // RH.folder_name='C:/user/discord/bot4/module
 //RH13.prefix = client13.prefix; //prefix for commands; default value: '!'
 RH13.build(client13)
 client13.login();
+*/
 
 
