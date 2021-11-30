@@ -61,7 +61,7 @@ module.exports.err={
   ,r:(msg,name,n)=>{msg.reply(exports.err[name][n]);}
 };
 //_________global
-function Ch(){
+function Ch(client){
   
   this.record = async () =>{
       let data={ voice_id:this.voice_id, owner_id:this.owner_id, role_id:this.role_id };
@@ -69,6 +69,7 @@ function Ch(){
        chats.voice_channels[this.voice_id]={data:data};
        chats.owners[this.owner_id]={data:data};
        a.LCH.send(JSON.stringify(this));
+       if(client.rh.modules&&client.rh.modules.chats) client.rh.modules.chats.data_chat=chats //----test
  };
   this.construct = async(room)=>{
     this.text_id=room.text_id||null;
@@ -125,6 +126,7 @@ module.exports.boots.someBoot2={on:true,run:async(client)=>{try{
  a.LCH = await a.SRV.channels.cache.find(ch=>ch.name=='logbot');
 //__________test
   client.rh.chats={
+       
        getChats:async ()=>{ return chats}
   }
   client.rh.modules={}
@@ -175,7 +177,16 @@ module.exports.owners={};
  // console.log(exports.voice_channels);
   console.log(exports.text_channels);
  // console.log(exports.owners);
+//____ test30.11.21
+if(client.rh&&client.rh.modules&&client.rh.modules.chats){
+    client.rh.modules.chats.data = {
+           voice_channels:module.exports.voice_channels
+           ,text_channels:module.exports.text_channels
+           owners:module.exports.owners
+     }
+}
 
+//_____
    return;
 
 }catch(err){console.log(err);};}};//
@@ -280,7 +291,7 @@ obj.voice_id=voice_channel.id;
  
 
 
-let ch = new Ch();
+let ch = new Ch(client);
   ch.ini(channel, owner);
 
 console.log(chats);
