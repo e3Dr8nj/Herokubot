@@ -202,7 +202,7 @@ module.exports.events.message={ on:true,run:async(client,message)=>{try{
 if(message.content.startsWith=='xxx$chats$mute'){
 //$chats$mute$guild_id$owner_id$member_id
       let mc = message.content
-     let props = message.content.split($)
+     let props = message.content.split('$')
      let module_name = mc[1]
      let command_name = mc[2]
      let guild_id= mc[3]
