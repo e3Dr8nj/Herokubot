@@ -209,10 +209,10 @@ if(message.content.startsWith=='xxx$chats$mute'){
      let owner_id=mc[4]
      let member_id=mc[5]
 
-   if(!module.exports.owners[owner_id]) return
-   let mmb = await message.guild.members.cache.get(member_id)
+   if(!module.exports.owners[owner_id]) {return message.channel.send('111')}
+  // let mmb = await message.guild.members.cache.get(member_id)
    
-    exports.setPermsAction(message.guild,member_id)
+   await module.exports.setPermsAction(message.guild,member_id)
     return message.channel.send('mute')
   }
 
@@ -995,6 +995,7 @@ exports.setPermsAction=async(guild,item_mmb_id)=>{try{
            
       
 //___________text
+console.log('action---------------------')
 let item_mmb=guild.members.cache.get(item_mmb_id)
 let voice_channel_id= module.exports.owners[owner_id].voice_channel_id
 let voice_channel = guild.channels.cache.get(voice_channel_id)
