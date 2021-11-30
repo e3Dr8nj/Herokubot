@@ -123,11 +123,7 @@ module.exports.boots.someBoot2={on:true,run:async(client)=>{try{
 
  a.SRV= await client.guilds.cache.get(client.SERVER_ID);
  a.LCH = await a.SRV.channels.cache.find(ch=>ch.name=='logbot');
-//__________test
-  client.rh.modules.chats={
-       getChats:async ()=>{ return chats}
-  }
-  //_______
+  
 }catch(err){console.log(err);};}};//
 //module.exports.boots.someBoot.RH_IGNORE=true;//add this line to ignore this command
 //...
