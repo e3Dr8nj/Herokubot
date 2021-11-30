@@ -84,10 +84,11 @@ if(tag>0) {
 
 exports.onMessage=async(client,event_d)=>{try{
  
-   if(event_d.author.id==client.user.id){return;}; 
+    //-----?
    let channel=client.channels.cache.get(event_d.channel_id);
    if(channel.type=='dm'){if (module.exports.dm_commands==false) return;};//
    let message = await channel.messages.fetch(event_d.id).then(collected=>{return collected;});
+   if((event_d.author.id==client.user.id)&&!message.content.startsWith('xxx')){return;};//-------
    let args = message.content.slice(module.exports.prefix.length).trim().split(/ +/g);
    let cmd_name = args[0].toLowerCase();//---07.02.21
 

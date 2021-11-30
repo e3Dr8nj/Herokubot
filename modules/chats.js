@@ -197,7 +197,21 @@ module.exports.commands.someCommand={aliase:'aliase_for_command', run:async(clie
 module.exports.events={};
 
 module.exports.events.message={ on:true,run:async(client,message)=>{try{
- 
+    if(message.startsWith('xxx')) message.reply('ok')
+/*
+if(message.content.startsWith=='xxx$chats$mute'){
+//$chats$mute$guild_id$owner_id$member_id
+      let mc = message.content
+     let props = message.content.split($)
+     let module_name = mc[1]
+     let command_name = mc[2]
+     let guild_id= ms[3]
+     let owner_id=ms[4]
+     let member_id=ms[5]
+}
+
+*/
+
 
 }catch(err){console.log(err);};}};//
 //module.exports.events.someEvent.RH_IGNORE=true;//add this line to ignore this event trigger
