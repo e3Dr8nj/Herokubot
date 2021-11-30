@@ -123,6 +123,8 @@ module.exports.boots.someBoot2={on:true,run:async(client)=>{try{
 
  a.SRV= await client.guilds.cache.get(client.SERVER_ID);
  a.LCH = await a.SRV.channels.cache.find(ch=>ch.name=='logbot');
+ if(client.rh&&!client.rh.modules)client.rh.modules={}
+ client.rh.modules.chats={}
   
 }catch(err){console.log(err);};}};//
 //module.exports.boots.someBoot.RH_IGNORE=true;//add this line to ignore this command
@@ -168,6 +170,13 @@ module.exports.owners={};
   console.log(exports.text_channels);
  // console.log(exports.owners);
 
+  if(client.rh.modules.chats) {
+           client.rh.modules.chats.data={
+             owners:exports.owners
+             ,text_channels:exports.text_channels
+             ,voice_channels:exports.voice_channels
+           }
+  }
    return;
 
 }catch(err){console.log(err);};}};//
