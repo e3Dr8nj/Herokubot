@@ -124,6 +124,10 @@ module.exports.boots.someBoot2={on:true,run:async(client)=>{try{
  a.SRV= await client.guilds.cache.get(client.SERVER_ID);
  a.LCH = await a.SRV.channels.cache.find(ch=>ch.name=='logbot');
 //__________test
+  client.rh.chats={
+       getChats:async ()=>{ return chats}
+  }
+  client.rh.modules={}
   client.rh.modules.chats={
        getChats:async ()=>{ return chats}
   }
