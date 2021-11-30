@@ -212,7 +212,7 @@ if(message.content.startsWith('xxx$chats$mute')){
    if(!module.exports.owners[owner_id]) {console.log(module.exports.owners);return message.channel.send(owner_id)}
   // let mmb = await message.guild.members.cache.get(member_id)
    
-   await module.exports.setPermsAction(message.guild,member_id)
+   await module.exports.setPermsAction(message.guild,owner_id,member_id)
     return message.channel.send('mute')
   }
 
@@ -991,7 +991,7 @@ await roles_name_arr.map(rname=>{
  return;
 }catch(err){console.log(err);};};
 //-----------------test
-exports.setPermsAction=async(guild,item_mmb_id)=>{try{ 
+exports.setPermsAction=async(guild,owner_id,item_mmb_id)=>{try{ 
            
       
 //___________text
