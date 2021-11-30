@@ -182,7 +182,7 @@ if(client.rh&&client.rh.modules&&client.rh.modules.chats){
     client.rh.modules.chats.data = {
            voice_channels:module.exports.voice_channels
            ,text_channels:module.exports.text_channels
-           owners:module.exports.owners
+           ,owners:module.exports.owners
      }
 }
 
