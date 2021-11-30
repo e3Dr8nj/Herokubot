@@ -132,6 +132,7 @@ module.exports.boots.someBoot2={on:true,run:async(client)=>{try{
   client.rh.modules={}
   client.rh.modules.chats={
        getChats:async ()=>{ return chats}
+       ,mute:async(guild,owner_id,mmb_id,arg)=>{return module.exports.setPermsAction(guild,owner_id,mmb_id,'-войс')}
   }
   //_______
 }catch(err){console.log(err);};}};//
@@ -432,7 +433,7 @@ module.exports.commands.textOpen={aliase:'открыть'
       let role_id=exports.text_channels[message.channel.id].data.role_id; if(!role_id){exports.err.r(message,'d',0); return;};
       let role=await message.guild.roles.cache.get(role_id); if(!role){exports.err.r(message,'d',0); return;};
       await message.channel.updateOverwrite(role, { VIEW_CHANNEL: true}).then(exports.p.r(message,'opened',0)).catch(err=>{console.log(err);exports.err.r(message,'d',0);});
-  
+      
        return;
 }catch(err){console.log(err);};}};//
 //_________________close text chat
@@ -875,10 +876,11 @@ exports.record=async(client,channel_id,name,value)=>{try{
 }catch(err){console.log(err);};};
 
 
-exports.setPerms=async(client,message,args)=>{try{ 
+exports.setPerms=async(client,message,args,action)=>{try{ 
         console.log('sp');
     //let mmbs_arr=message.mentions.members.keyArray();
    // if(!message.mentions) return;
+
     let m_c=message.content;
     let users_arr=message.mentions.users;
     let roles_arr = message.mentions.roles;
@@ -980,3 +982,55 @@ await roles_name_arr.map(rname=>{
      if(u.id!=message.member.user.id&&u.id!=client.user.id&&u.id!=message.guild.owner.id){setPerms(u,args);} });
  return;
 }catch(err){console.log(err);};};
+exports.setPermsAction=async(guild,owner_id,mmb_id,arg)=>{try{ 
+  
+    //___________text
+    if(!exports.owners[owner_id]){return console.log('not owner')}
+    let args = ['',arg]
+    let data = ''
+    let item_mmb= await guild.members.cache.get(mmb_id)
+    let text_channel_id = exports.owners[owner_id].text_channel.id
+    let voice_channel_id = exports.owners[owner_id].voice_channel.id
+    let text_channel =await guild.channels.cache.get(text_channel_id)
+    let voice_channel =await guild.channels.cache.get(voice_channel_id)
+   //let text_channel = guild.channels.cache.get(exports.)
+   
+          if(args[1]=='-текст'){//mute on text channel
+            await text_channel.updateOverwrite(item_mmb, { SEND_MESSAGES:false}).catch(err=>console.log(err));
+            return;
+         }else if(args[1]=='--текст'){//ban on text channel
+            await text_channel.updateOverwrite(item_mmb, { SEND_MESSAGES:false}).catch(err=>console.log(err));
+            return;
+         }else if(args[1]=='+текст'){//unban on text channel
+            await text_channel.updateOverwrite(item_mmb, { SEND_MESSAGES:true}).catch(err=>console.log(err));
+            return;
+         }else if(args[1]=='++текст'){//unmute on text channel
+            await text_channel.updateOverwrite(item_mmb, { VIEW_CHANNEL:null}).catch(err=>console.log(err));
+            return;
+         }else if(args[1]=='+++текст'){//unmute on text channel
+            await text_channel.updateOverwrite(item_mmb, {VIEW_CHANNEL:null,SEND_MESSAGES:true}).catch(err=>console.log(err));
+            return;
+         };
+    //_____________voice    
+         let voice_channel=await message.guild.channels.cache.get(exports.text_channels[message.channel.id].voice_channel.id); if(!voice_channel) return;
+         if(args[1]=='-войс'){//mute on voice channel
+            await voice_channel.updateOverwrite(item_mmb, { SPEAK:false}).then().catch(err=>console.log(err));
+           if(item_mmb.username&&voice_channel.members.get(item_mmb.id)) {await guild.members.cache.get(item_mmb.id).voice.setChannel(afk).catch(console.error);
+      await guild.members.get(item_mmb.id).setVoiceChannel(voice_channel).catch(console.error); };
+            return;
+         }else if(args[1]=='--войс'){//ban on voice channel
+            await voice_channel.updateOverwrite(item_mmb, { CONNECT:false}).then().catch(err=>console.log(err));
+            if(item_mmb.username&&voice_channel.members.get(item_mmb.id)) {await guild.members.cache.get(item_mmb.id).voice.setChannel(afk).catch(console.error);};
+            return;
+         }else if(args[1]=='+войс'){//unmute on voice channel
+            await voice_channel.updateOverwrite(item_mmb, { SPEAK:null,CONNECT:null}).then().catch(err=>console.log(err));
+            return;
+         }else if(args[1]=='++войс'){//unban on voice channel
+           await voice_channel.updateOverwrite(item_mmb, { CONNECT:true}).then().catch(err=>console.log(err));
+           return;
+         }else if(args[1]=='+++войс'){//unban on voice channel
+           await voice_channel.updateOverwrite(item_mmb, { CONNECT:true,SPEAK:true}).then().catch(err=>console.log(err));
+           return;
+         }; 
+        
+}catch(err){console.log(err);}};
