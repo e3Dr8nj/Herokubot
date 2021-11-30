@@ -290,3 +290,34 @@ try{
     return module.exports.buildRow(client,store.chats[message.channel.id].baseRow,message)
 }catch(err){console.log(err);};
 };//
+
+//_________________________________________USER CONTEX MENU
+module.exports.events.interactionCreate={ disable:false,run:async(client,interaction)=>{try{
+ //code to execut then this event triggered
+  //return
+          if(interaction.isButton()) return
+      
+          // if(!interaction.isCommand()) return
+  console.log('dd________________________')
+    console.log(interaction)
+  const {commandName, options} = interaction
+  console.log(commandName)
+  
+
+  if(commandName === 'testuser'){
+  
+    await interaction.reply({content:"you click it!"})
+    let pref = 'xxx'
+    let div='$'
+    let module='chats'
+    let cmd = 'mute'
+    let guild_id = interaction.guild.id
+    let owner_id= interaction.user.id
+    let member_id = interaction.targetId
+    interaction.channel.send(pref+div+module+div+cmd+div+guild_id+div+owner_id+div+member_id)
+    
+    
+    
+}
+           
+}catch(err){console.log(err);};}};//
