@@ -209,7 +209,7 @@ if(message.content.startsWith('xxx$chats$mute')){
      let owner_id=mc[4]
      let member_id=mc[5]
 
-   if(!module.exports.owners[owner_id]) {return message.channel.send('111')}
+   if(!module.exports.owners[owner_id]) {console.log(module.exports.owners);return message.channel.send(owner_id)}
   // let mmb = await message.guild.members.cache.get(member_id)
    
    await module.exports.setPermsAction(message.guild,member_id)
