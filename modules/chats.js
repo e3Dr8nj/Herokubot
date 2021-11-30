@@ -123,7 +123,8 @@ module.exports.boots.someBoot2={on:true,run:async(client)=>{try{
 
  a.SRV= await client.guilds.cache.get(client.SERVER_ID);
  a.LCH = await a.SRV.channels.cache.find(ch=>ch.name=='logbot');
- if(client.rh&&!client.rh.modules)client.rh.modules={}
+ //if(client.rh&&!client.rh.modules)
+ if(!client.rh.modules) client.rh.modules={}
  client.rh.modules.chats={}
   
 }catch(err){console.log(err);};}};//
