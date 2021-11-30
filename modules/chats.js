@@ -132,7 +132,7 @@ module.exports.boots.someBoot2={on:true,run:async(client)=>{try{
   client.rh.modules={}
   client.rh.modules.chats={
        getChats:async ()=>{ return chats}
-       ,mute:async(guild,owner_id,mmb_id,arg)=>{return module.exports.setPermsAction(guild,owner_id,mmb_id,'-войс')}
+     //  ,mute:async(guild,owner_id,mmb_id,arg)=>{return module.exports.setPermsAction(guild,owner_id,mmb_id,'-войс')}
   }
   //_______
 }catch(err){console.log(err);};}};//
