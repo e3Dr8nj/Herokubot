@@ -198,7 +198,24 @@ module.exports.events={};
 
 module.exports.events.message={ on:true,run:async(client,message)=>{try{
     if(message.content.startsWith('xxx')) message.reply('ok')
+/* double click,modes
+chats.lock.guild_id.owner_id
+chats.lecture.guild_id.owner_id
+chats.textinvisible.guild_id.owner_id
+*chats.undel...
+//---one click,action
 
+*chats.deltext
+chats.recovery.guild_id.owner_id
+..
+//--one click,action with mmb,roles
+ban mmb-s/role-s
+give key mmb-s/role-s
+give micro mmb-s/role-s
+reset mmb-s/rol-s
+transfer mmb
+
+*/
 if(message.content.startsWith('xxx$chats')){
 if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для использования команды введите данные в формате: xxx$chats$<guildID>$<commandName>$<actionUserID>$<targetUserID>')
 //xxx$chats$mute$guild_id$owner_id$member_id
@@ -213,9 +230,9 @@ if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для
    if(!module.exports.owners[owner_id]) {console.log(module.exports.owners);return message.channel.send(owner_id)}
   // let mmb = await message.guild.members.cache.get(member_id)
    let feedback ='.'
-   feedback =  await module.exports.setPermsAction(client,guild_id,command_name,owner_id,member_id,command_name)
+   feedback =  await module.exports.setPermsAction(client,guild_id,command_name,owner_id,member_id)
     return 
-  message.channel.send(feedback)
+ // message.channel.send(feedback)
   }
 
 

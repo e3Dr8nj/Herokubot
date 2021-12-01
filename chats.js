@@ -199,7 +199,8 @@ module.exports.events={};
 module.exports.events.message={ on:true,run:async(client,message)=>{try{
     if(message.content.startsWith('xxx')) message.reply('ok')
 
-if(message.content.startsWith('xxx$chats$mute')){
+if(message.content.startsWith('xxx$chats')){
+if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для использования команды введите данные в формате: xxx$chats$<guildID>$<commandName>$<actionUserID>$<targetUserID>')
 //xxx$chats$mute$guild_id$owner_id$member_id
       let mc = message.content
      let props = message.content.split('$')
@@ -211,9 +212,10 @@ if(message.content.startsWith('xxx$chats$mute')){
 
    if(!module.exports.owners[owner_id]) {console.log(module.exports.owners);return message.channel.send(owner_id)}
   // let mmb = await message.guild.members.cache.get(member_id)
-   
-   await module.exports.setPermsAction(message.guild,owner_id,member_id)
-    return message.channel.send('mute')
+   let feedback ='.'
+   feedback =  await module.exports.setPermsAction(client,guild_id,command_name,owner_id,member_id)
+    return 
+ // message.channel.send(feedback)
   }
 
 
@@ -991,19 +993,38 @@ await roles_name_arr.map(rname=>{
  return;
 }catch(err){console.log(err);};};
 //-----------------test
-exports.setPermsAction=async(guild,owner_id,item_mmb_id)=>{try{ 
-           
+exports.setPermsAction=async(client,guild_id,type,owner_id,item_mmb_id)=>{try{ 
+           console.log(type)
       
 //___________text
 console.log('action---------------------')
-let item_mmb=guild.members.cache.get(item_mmb_id)
-let voice_channel_id= module.exports.owners[owner_id].voice_channel.id
-let voice_channel = guild.channels.cache.get(voice_channel_id)
+const guild = client.guilds.cache.get(guild_id)
+const item_mmb=guild.members.cache.get(item_mmb_id)
+const voice_channel_id= module.exports.owners[owner_id].voice_channel.id
+const voice_channel = guild.channels.cache.get(voice_channel_id)
+let str=''
+if(type=='mute'){
 await voice_channel.updateOverwrite(item_mmb, { SPEAK:false}).then().catch(err=>console.log(err));
        if(item_mmb.username&&voice_channel.members.get(item_mmb.id)) {await guild.members.cache.get(item_mmb.id).voice.setChannel(afk).catch(console.error);
   await guild.members.get(item_mmb.id).setVoiceChannel(voice_channel).catch(console.error); };
-
-
+    set = 'Успешно замучен'
+}else if(type=='ban'){
+await voice_channel.updateOverwrite(item_mmb, { CONNECT:false}).then().catch(err=>console.log(err));
+       if(item_mmb.username&&voice_channel.members.get(item_mmb.id)) {await guild.members.cache.get(item_mmb.id).voice.setChannel(afk).catch(console.error);
+  await guild.members.get(item_mmb.id).setVoiceChannel(voice_channel).catch(console.error); };
+    str='Успешно забанен'
+}
+else if(type=='key'){
+await voice_channel.updateOverwrite(item_mmb, { CONNECT:true}).then().catch(err=>console.log(err));
+     str='Выдан секретный ключ для подключения к закрытому войсу'
+}else if(type=='micro'){
+await voice_channel.updateOverwrite(item_mmb, { SPEAK:true}).then().catch(err=>console.log(err));
+    str='Выдан секретный микрофон для возможности говорить при активированном режиме тиховсе'
+}else if(type==='null'){
+await voice_channel.updateOverwrite(item_mmb, { SPEAK:null, CONNECT:null}).then().catch(err=>console.log(err));
+    str='Все настройки для данного участника сброшены'
+}
+ return str
 /*
        let args=['',arg]
       if(args[1]=='-текст'){//mute on text channel
