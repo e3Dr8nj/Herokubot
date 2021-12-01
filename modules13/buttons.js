@@ -142,7 +142,7 @@ module.exports.boots.someBoot1={disable:false,run:async(client)=>{try{
     //code to execut bot on loading
 }catch(err){console.log(err);};}};//
 //_________________________________________EVENTS_PART_________________________________________________
-module.exports.events={};
+ module.exports.events={};
 module.exports.events.message={ disable:false,run:async(client,message)=>{try{
  //code to execut then this event triggered
 }catch(err){console.log(err);};}};//
