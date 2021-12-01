@@ -200,7 +200,7 @@ module.exports.events.message={ on:true,run:async(client,message)=>{try{
     if(message.content.startsWith('xxx')) message.reply('ok')
 
 if(message.content.startsWith('xxx$chats')){
-if(message.content.startsWith'xxx$chats?') return message.channel.send('Для использования команды введите данные в формате: xxx$chats$<guildID>$<commandName>$<actionUserID>$<targetUserID>')
+if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для использования команды введите данные в формате: xxx$chats$<guildID>$<commandName>$<actionUserID>$<targetUserID>')
 //xxx$chats$mute$guild_id$owner_id$member_id
       let mc = message.content
      let props = message.content.split('$')
