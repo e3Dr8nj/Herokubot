@@ -212,9 +212,10 @@ if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для
 
    if(!module.exports.owners[owner_id]) {console.log(module.exports.owners);return message.channel.send(owner_id)}
   // let mmb = await message.guild.members.cache.get(member_id)
-   
-  let feedback =  await module.exports.setPermsAction(client,guild_id,command_name,owner_id,member_id,command_name)
-    return message.channel.send(feedback)
+   let feedback ='.'
+   feedback =  await module.exports.setPermsAction(client,guild_id,command_name,owner_id,member_id,command_name)
+    return 
+  message.channel.send(feedback)
   }
 
 
@@ -997,7 +998,7 @@ exports.setPermsAction=async(client,guild_id,type,owner_id,item_mmb_id)=>{try{
       
 //___________text
 console.log('action---------------------')
-const guild = client.guilds.cache.get('guild_id')
+const guild = client.guilds.cache.get(guild_id)
 const item_mmb=guild.members.cache.get(item_mmb_id)
 const voice_channel_id= module.exports.owners[owner_id].voice_channel.id
 const voice_channel = guild.channels.cache.get(voice_channel_id)
