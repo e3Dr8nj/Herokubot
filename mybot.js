@@ -111,8 +111,13 @@ let RH13 = require(`./raw13.js`);
 RH13.folder_name = `./modules13`; // RH.folder_name='C:/user/discord/bot4/modules';- for pc running
 //RH13.prefix = client13.prefix; //prefix for commands; default value: '!'
 RH13.build(client13)
-client13.x={}
-client13.x.channels={transfer:'transfer'}
+
+
+client13.x={
+  ch:{
+    transfer:'transfer'
+  }
+}
 
 client13.login();
 

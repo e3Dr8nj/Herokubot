@@ -101,6 +101,13 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,interac
     cmd = 'micro' 
     str='Микрофон, позволяющий говорить учатнику, при активированном режиме "Тиховсе"'
   }
-     await interaction.channel.send(pref+div+module+div+cmd+div+guild_id+div+owner_id+div+member_id)
+     //----2.12.21
+       let data = pref+div+module+div+cmd+div+guild_id+div+owner_id+div+member_id
+       let ch = interaction.guild.channels.cache.find(n=>n.name==client.x.ch.transfer)
+  
+      if(ch){ ch.send(data)}else{ interaction.channel.send(data)}
+   //---
+       
+   //  await interaction.channel.send(pref+div+module+div+cmd+div+guild_id+div+owner_id+div+member_id)
       return interaction.reply({content:str+": "+mmb.toString(),ephemeral:true})       
 }catch(err){console.log(err);};}};//
