@@ -997,7 +997,7 @@ exports.setPermsAction=async(guild,owner_id,item_mmb_id)=>{try{
 //___________text
 console.log('action---------------------')
 let item_mmb=guild.members.cache.get(item_mmb_id)
-let voice_channel_id= module.exports.owners[owner_id].voice_channel_id
+let voice_channel_id= module.exports.owners[owner_id].voice_channel.id
 let voice_channel = guild.channels.cache.get(voice_channel_id)
 await voice_channel.updateOverwrite(item_mmb, { SPEAK:false}).then().catch(err=>console.log(err));
        if(item_mmb.username&&voice_channel.members.get(item_mmb.id)) {await guild.members.cache.get(item_mmb.id).voice.setChannel(afk).catch(console.error);
