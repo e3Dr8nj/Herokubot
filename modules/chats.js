@@ -992,7 +992,7 @@ await roles_name_arr.map(rname=>{
 }catch(err){console.log(err);};};
 //-----------------test
 exports.setPermsAction=async(guild,owner_id,item_mmb_id,type)=>{try{ 
-           
+           console.log(type)
       
 //___________text
 console.log('action---------------------')
@@ -1021,7 +1021,7 @@ await voice_channel.updateOverwrite(item_mmb, { SPEAK:true}).then().catch(err=>c
 await voice_channel.updateOverwrite(item_mmb, { SPEAK:false, CONNECT:false}).then().catch(err=>console.log(err));
     str='Все настройки для данного участника сброшены'
 }
-
+ return str
 /*
        let args=['',arg]
       if(args[1]=='-текст'){//mute on text channel
