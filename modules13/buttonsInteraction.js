@@ -72,7 +72,9 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{tr
   //return
            console.log('it___________________________-')
  
-           console.log('it___________________________-')
+            console.log('but int')
+ 
+           
            if(!i.isButton()) return
            
  
@@ -89,13 +91,19 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{tr
      let curvalue=Number(v[3])
      let newvalue = Number(v[4])
      
-    
+     let user_id=i.user.id
+      let div = '$'
      store.chats[channel_id].baseRow[param]=newvalue
 
   row2 = await module.exports.BaseRow(client,i.message)
  if(row2) await i.message.edit({components:[row2]})
+  let str = 'xxx$chats$'+param+div+newvalue+div+user_id
+ 
+ 
+  let ch = i.guild.channels.cache.find(n=>n.name==client.x.ch.transfer)
+  
+  ch.send(str)
   return
-  //---
 
    
   
