@@ -304,7 +304,7 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,interac
   console.log(commandName)
   
 
-  if((commandName === 'testuser')||(commandName === '☥Забанить')){
+  if(commandName === '☥Забанить'){
   
     await interaction.reply({content:"you click it!"})
     let pref = 'xxx'
@@ -315,9 +315,45 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,interac
     let owner_id= interaction.user.id
     let member_id = interaction.targetId
     interaction.channel.send(pref+div+module+div+cmd+div+guild_id+div+owner_id+div+member_id)
-    
-    
-    
-}
+    return
+  }
+  if(commandName === '☥Обнулить'){
+  
+    await interaction.reply({content:"you click it!"})
+    let pref = 'xxx'
+    let div='$'
+    let module='chats'
+    let cmd = 'null'
+    let guild_id = interaction.guild.id
+    let owner_id= interaction.user.id
+    let member_id = interaction.targetId
+    interaction.channel.send(pref+div+module+div+cmd+div+guild_id+div+owner_id+div+member_id)
+    return
+  }
+   if(commandName === '☥Дать ключ'){
+  
+    await interaction.reply({content:"you click it!"})
+    let pref = 'xxx'
+    let div='$'
+    let module='chats'
+    let cmd = 'key'
+    let guild_id = interaction.guild.id
+    let owner_id= interaction.user.id
+    let member_id = interaction.targetId
+    interaction.channel.send(pref+div+module+div+cmd+div+guild_id+div+owner_id+div+member_id)
+    return
+  }if(commandName === '☥Дать микрофон'){
+  
+    await interaction.reply({content:"you click it!"})
+    let pref = 'xxx'
+    let div='$'
+    let module='chats'
+    let cmd = 'micro'
+    let guild_id = interaction.guild.id
+    let owner_id= interaction.user.id
+    let member_id = interaction.targetId
+    interaction.channel.send(pref+div+module+div+cmd+div+guild_id+div+owner_id+div+member_id)
+    return
+  }
            
 }catch(err){console.log(err);};}};//

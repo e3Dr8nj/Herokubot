@@ -212,8 +212,8 @@ if(message.content.startsWith('xxx$chats$ban')){
    if(!module.exports.owners[owner_id]) {console.log(module.exports.owners);return message.channel.send(owner_id)}
   // let mmb = await message.guild.members.cache.get(member_id)
    
-   await module.exports.setPermsAction(message.guild,owner_id,member_id,'бан')
-    return message.channel.send('mute')
+  let feedback =  await module.exports.setPermsAction(message.guild,owner_id,member_id,command_name)
+    return message.channel.send(feedback)
   }
 
 
@@ -999,14 +999,27 @@ console.log('action---------------------')
 let item_mmb=guild.members.cache.get(item_mmb_id)
 let voice_channel_id= module.exports.owners[owner_id].voice_channel.id
 let voice_channel = guild.channels.cache.get(voice_channel_id)
-if(type=='мут'){
+let str=''
+if(type=='mute'){
 await voice_channel.updateOverwrite(item_mmb, { SPEAK:false}).then().catch(err=>console.log(err));
        if(item_mmb.username&&voice_channel.members.get(item_mmb.id)) {await guild.members.cache.get(item_mmb.id).voice.setChannel(afk).catch(console.error);
   await guild.members.get(item_mmb.id).setVoiceChannel(voice_channel).catch(console.error); };
-}else if(type=='бан'){
+    set = 'Успешно замучен'
+}else if(type=='ban'){
 await voice_channel.updateOverwrite(item_mmb, { CONNECT:false}).then().catch(err=>console.log(err));
        if(item_mmb.username&&voice_channel.members.get(item_mmb.id)) {await guild.members.cache.get(item_mmb.id).voice.setChannel(afk).catch(console.error);
   await guild.members.get(item_mmb.id).setVoiceChannel(voice_channel).catch(console.error); };
+    str='Успешно забанен'
+}
+else if(type=='key'){
+await voice_channel.updateOverwrite(item_mmb, { CONNECT:true}).then().catch(err=>console.log(err));
+     str='Выдан секретный ключ для подключения к закрытому войсу'
+}else if(type=='micro'){
+await voice_channel.updateOverwrite(item_mmb, { SPEAK:true}).then().catch(err=>console.log(err));
+    str='Выдан секретный микрофон для возможности говорить при активированном режиме тиховсе'
+}else if(type==='null'){
+await voice_channel.updateOverwrite(item_mmb, { SPEAK:false, CONNECT:false}).then().catch(err=>console.log(err));
+    str='Все настройки для данного участника сброшены'
 }
 
 /*
