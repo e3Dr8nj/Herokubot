@@ -41,89 +41,7 @@ module.exports.e={
 //_________________________________________COMMANDS_PART_________________________________________________
 module.exports.commands = {};
 //--------
-module.exports.commands.command1={disable:false,aliase:'b', run:async(client,message,args)=>{try{
-   //code to execut then this command triggered
-  return
-  //
-  const row = new MessageActionRow()
-			.addComponents(
-     new MessageButton().setCustomId('0').setLabel('').setStyle('PRIMARY').setEmoji('📢')
-    ,new MessageButton().setCustomId('1').setLabel('Primary').setStyle('PRIMARY')  
-    ,new MessageButton().setCustomId('2').setLabel('Primary').setStyle('PRIMARY')
-     ,new MessageButton().setCustomId('3').setLabel('Primary').setStyle('PRIMARY')
-    ,new MessageButton().setCustomId('4').setLabel('Primary').setStyle('PRIMARY')  
-    
-  )
- let iMsg=await  message.channel.send({content:'1',components:[row]})
-  
- 
-   const filter = interaction=>{
-     //if(interaction.user.id===message.author.id) return true
-     return true
-     return interaction.reply({content:'is not'})
-   }
- const collector =await  message.channel.createMessageComponentCollector({filter,max:1})
- 
- collector.on('collect', async i=> {
-	//if (i.customId === 'primary') {
-              
-		            // Change the style of received button component
-       //   await  i.component.setStyle("DANGER");
 
-            // Respond to the interaction,
-            // and send updated component to the Discord API
-   /*
-            interaction.update({
-                components: [
-                    new MessageActionRow().addComponents(interaction.component)
-                ]
-            });
-            */
-        
-      //   let id = parseInt(i.component.customId)
-       //   let c= i.message.components[id]
-       //    let msgProto= {content:message.content,components:message.components}
-       //  msgProto.components[id]=i.component
-        //  await i.message.edit({content:msgProto.content,components:i.components})
-        await i.editReply({ content: 'A button was clicked!', components: [] });
-	
-
-
-   return
-	//}
-});
-
- 
- collector.on('end',async(interaction)=>{
-   
-return
-   let button =  interaction.first()
-   const id = button.customId
-   //console.log(interaction)
-   
-   /*
-               // Change the style of received button component
-            button.component.setStyle("DANGER");
-
-            // Respond to the interaction,
-            // and send updated component to the Discord API
-            button.update({
-                components: [
-                    new MessageActionRow().addComponents(interaction.component)
-                ]
-            });
-
-   */
-   
-  // if (id===1) return  interaction.first().reply('yes')
-  // if(id===2) return interaction.first().reply('no')
-   
- })
-                                                                                            
-                                                                                          
-  
-  //
-}catch(err){console.log(err);};}};//
 //--------
 module.exports.commands.command2={disable:false,aliase:'testb', run:async(client,message,args)=>{try{
    //code to execut then this command triggered
@@ -152,6 +70,8 @@ module.exports.events.message={ disable:false,run:async(client,message)=>{try{
 module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{try{
  //code to execut then this event triggered
   //return
+           console.log('it___________________________-')
+ 
            console.log('it___________________________-')
            if(!i.isButton()) return
             // const filter = i => i.customId === 'b1' ;
@@ -292,6 +212,7 @@ try{
 };//
 
 //_________________________________________USER CONTEX MENU
+/*
 module.exports.events.interactionCreate={ disable:false,run:async(client,interaction)=>{try{
  //code to execut then this event triggered
   //return
@@ -343,3 +264,4 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,interac
      await interaction.channel.send(pref+div+module+div+cmd+div+guild_id+div+owner_id+div+member_id)
       return interaction.reply({content:str+": "+mmb.toString(),ephemeral:true})       
 }catch(err){console.log(err);};}};//
+*/
