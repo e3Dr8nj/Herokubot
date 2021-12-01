@@ -304,7 +304,7 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,interac
   console.log(commandName)
   
 
-  if(commandName === 'testuser'){
+  if((commandName === 'testuser')||(commandName === '☥мут')){
   
     await interaction.reply({content:"you click it!"})
     let pref = 'xxx'
