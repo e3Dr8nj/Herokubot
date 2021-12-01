@@ -310,7 +310,7 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,interac
     let guild_id = interaction.guild.id
     let owner_id= interaction.user.id
     let member_id = interaction.targetId
-    let mmb = interaction.guild.membes.cache.get(member_id)
+    let mmb = interaction.guild.members.cache.get(member_id)
   if(commandName === '☥Забанить'){
   
     let cmd = 'ban'
