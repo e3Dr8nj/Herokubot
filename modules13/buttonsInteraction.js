@@ -74,15 +74,11 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{tr
  
            console.log('it___________________________-')
            if(!i.isButton()) return
-            // const filter = i => i.customId === 'b1' ;
-  //--- 
- // if(interaction.customId!='b1') return
- // console.log(interaction)
-  //await interaction.editReply({ content: 'A button was clicked!', components: [] });
+           
+ 
 	
   await i.reply({content:`${i.user.tag} ${i.customId}`,ephemeral: true})
-//if(i.component.customId.indexOf('$')==-1) return
-//  if(i.component.customId==='0') {
+
   let row2={}
   
     
@@ -93,29 +89,15 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{tr
      let curvalue=Number(v[3])
      let newvalue = Number(v[4])
      
-    // if(store.chats['1'].baseRow[v]==null) return
+    
      store.chats[channel_id].baseRow[param]=newvalue
-//  console.log(store)
+
   row2 = await module.exports.BaseRow(client,i.message)
  if(row2) await i.message.edit({components:[row2]})
   return
   //---
 
-    /*
-const collector = interaction.message.createMessageComponentCollector({ componentType: 'BUTTON', time: 15000 });
-
-collector.on('collect', i => {
-	if (i.user.id === interaction.user.id) {
-		i.reply(`${i.user.id} clicked on the ${i.customId} button.`);
-	} else {
-		i.reply({ content: `These buttons aren't for you!`, ephemeral: true });
-	}
-});
-
-collector.on('end', collected => {
-	console.log(`Collected ${collected.size} interactions.`);
-});
-*/
+   
   
            
 }catch(err){console.log(err);};}};//
@@ -211,57 +193,3 @@ try{
 }catch(err){console.log(err);};
 };//
 
-//_________________________________________USER CONTEX MENU
-/*
-module.exports.events.interactionCreate={ disable:false,run:async(client,interaction)=>{try{
- //code to execut then this event triggered
-  //return
-          if(interaction.isButton()) return
-      
-          // if(!interaction.isCommand()) return
-  console.log('dd________________________')
-    console.log(interaction)
-  const {commandName, options} = interaction
-  console.log(commandName)
-  
-    let pref = 'xxx'
-    let div='$'
-    let module='chats'
-    let str='.'
-    let guild_id = interaction.guild.id
-    let owner_id= interaction.user.id
-    let member_id = interaction.targetId
-    let mmb = interaction.guild.members.cache.get(member_id)
-    let cmd =''
-  if(commandName === '☥Забанить'){
-  
-     cmd = 'ban'
-    str = 'Забанен'
-  }
-  if(commandName === '☥Обнулить'){
-  
-    
-   
-    cmd = 'null'
-    str = 'Обнулен'
-    
-   
-  }
-   if(commandName === '☥Дать ключ'){
-  
-  
-    
-    cmd = 'key'
-    str = 'Ключ доступа в закрытый войс выдан'
-   
-  }if(commandName === '☥Дать микрофон'){
-  
-  
-   
-    cmd = 'micro' 
-    str='Микрофон, позволяющий говорить учатнику, при активированном режиме "Тиховсе"'
-  }
-     await interaction.channel.send(pref+div+module+div+cmd+div+guild_id+div+owner_id+div+member_id)
-      return interaction.reply({content:str+": "+mmb.toString(),ephemeral:true})       
-}catch(err){console.log(err);};}};//
-*/
