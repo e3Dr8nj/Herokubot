@@ -200,6 +200,7 @@ module.exports.events.message={ on:true,run:async(client,message)=>{try{
     if(message.content.startsWith('xxx')) message.reply('ok')
 
 if(message.content.startsWith('xxx$chats')){
+if(message.content.startsWith'xxx$chats?') return message.channel.send('Для использования команды введите данные в формате: xxx$chats$<guildID>$<commandName>$<actionUserID>$<targetUserID>')
 //xxx$chats$mute$guild_id$owner_id$member_id
       let mc = message.content
      let props = message.content.split('$')
@@ -212,7 +213,7 @@ if(message.content.startsWith('xxx$chats')){
    if(!module.exports.owners[owner_id]) {console.log(module.exports.owners);return message.channel.send(owner_id)}
   // let mmb = await message.guild.members.cache.get(member_id)
    
-  let feedback =  await module.exports.setPermsAction(message.guild,owner_id,member_id,command_name)
+  let feedback =  await module.exports.setPermsAction(guild_id,type,owner_id,member_id,command_name)
     return message.channel.send(feedback)
   }
 
@@ -991,14 +992,15 @@ await roles_name_arr.map(rname=>{
  return;
 }catch(err){console.log(err);};};
 //-----------------test
-exports.setPermsAction=async(guild,owner_id,item_mmb_id,type)=>{try{ 
+exports.setPermsAction=async(guild_id,type,owner_id,item_mmb_id)=>{try{ 
            console.log(type)
       
 //___________text
 console.log('action---------------------')
-let item_mmb=guild.members.cache.get(item_mmb_id)
-let voice_channel_id= module.exports.owners[owner_id].voice_channel.id
-let voice_channel = guild.channels.cache.get(voice_channel_id)
+const guild = client.guilds.cache.get('guild_id')
+const item_mmb=guild.members.cache.get(item_mmb_id)
+const voice_channel_id= module.exports.owners[owner_id].voice_channel.id
+const voice_channel = guild.channels.cache.get(voice_channel_id)
 let str=''
 if(type=='mute'){
 await voice_channel.updateOverwrite(item_mmb, { SPEAK:false}).then().catch(err=>console.log(err));
@@ -1018,7 +1020,7 @@ await voice_channel.updateOverwrite(item_mmb, { CONNECT:true}).then().catch(err=
 await voice_channel.updateOverwrite(item_mmb, { SPEAK:true}).then().catch(err=>console.log(err));
     str='Выдан секретный микрофон для возможности говорить при активированном режиме тиховсе'
 }else if(type==='null'){
-await voice_channel.updateOverwrite(item_mmb, { SPEAK:false, CONNECT:false}).then().catch(err=>console.log(err));
+await voice_channel.updateOverwrite(item_mmb, { SPEAK:null, CONNECT:null}).then().catch(err=>console.log(err));
     str='Все настройки для данного участника сброшены'
 }
  return str
