@@ -27,6 +27,7 @@ exports.e={
      //tag_time:1000*60*1
     ,chnl_name:'🔘▸spam-b◉t'
     ,role_name : '💥'
+    ,role_id:'915638792034074654'
 };//e end
 //_________________________________________INITIATION_PART_END___________________________________________
 //_________________________________________EVENTS_PART_________________________________________________
@@ -170,7 +171,8 @@ exports.getTime=async(client)=>{try{
                 
                  }else if(newTime=='past'){
                     str=module.exports.e.chnl_name+'❗bump';
-                   let role = client.guilds.cache.get(client.SERVER_ID).roles.cache.find(r=>r.name==module.exports.e.role_name);
+                  // let role = client.guilds.cache.get(client.SERVER_ID).roles.cache.find(r=>r.name==module.exports.e.role_name);
+                    let role = client.guilds.cache.get(client.SERVER_ID).roles.cache.get(module.exports.e.role_id);
                     role=(!role)?'':role.toString();
                     
                    // chnl.send(role+' го бампить!<:28:589907105717157909> !bump   s.up  /like');
