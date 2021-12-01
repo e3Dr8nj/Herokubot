@@ -123,6 +123,9 @@ module.exports.boots.someBoot2={on:true,run:async(client)=>{try{
 
  a.SRV= await client.guilds.cache.get(client.SERVER_ID);
  a.LCH = await a.SRV.channels.cache.find(ch=>ch.name=='logbot');
+ //if(client.rh&&!client.rh.modules)
+ if(!client.rh.modules) client.rh.modules={}
+ client.rh.modules.chats={}
   
 }catch(err){console.log(err);};}};//
 //module.exports.boots.someBoot.RH_IGNORE=true;//add this line to ignore this command
@@ -168,6 +171,13 @@ module.exports.owners={};
   console.log(exports.text_channels);
  // console.log(exports.owners);
 
+  if(client.rh.modules.chats) {
+           client.rh.modules.chats.data={
+             owners:exports.owners
+             ,text_channels:exports.text_channels
+             ,voice_channels:exports.voice_channels
+           }
+  }
    return;
 
 }catch(err){console.log(err);};}};//
@@ -187,7 +197,26 @@ module.exports.commands.someCommand={aliase:'aliase_for_command', run:async(clie
 module.exports.events={};
 
 module.exports.events.message={ on:true,run:async(client,message)=>{try{
- 
+    if(message.content.startsWith('xxx')) message.reply('ok')
+
+if(message.content.startsWith('xxx$chats$mute')){
+//xxx$chats$mute$guild_id$owner_id$member_id
+      let mc = message.content
+     let props = message.content.split('$')
+     let module_name = props[1]
+     let command_name = props[2]
+     let guild_id= props[3]
+     let owner_id=props[4]
+     let member_id=props[5]
+
+   if(!module.exports.owners[owner_id]) {console.log(module.exports.owners);return message.channel.send(owner_id)}
+  // let mmb = await message.guild.members.cache.get(member_id)
+   
+   await module.exports.setPermsAction(message.guild,owner_id,member_id)
+    return message.channel.send('mute')
+  }
+
+
 
 }catch(err){console.log(err);};}};//
 //module.exports.events.someEvent.RH_IGNORE=true;//add this line to ignore this event trigger
@@ -960,4 +989,59 @@ await roles_name_arr.map(rname=>{
      let sp=message.guild.members.cache.get(u.id)&&message.guild.members.cache.get(u.id).roles.cache.find(r=>r.name==exports.e.mod_role_name);
      if(u.id!=message.member.user.id&&u.id!=client.user.id&&u.id!=message.guild.owner.id){setPerms(u,args);} });
  return;
+}catch(err){console.log(err);};};
+//-----------------test
+exports.setPermsAction=async(guild,owner_id,item_mmb_id)=>{try{ 
+           
+      
+//___________text
+console.log('action---------------------')
+let item_mmb=guild.members.cache.get(item_mmb_id)
+let voice_channel_id= module.exports.owners[owner_id].voice_channel.id
+let voice_channel = guild.channels.cache.get(voice_channel_id)
+await voice_channel.updateOverwrite(item_mmb, { SPEAK:false}).then().catch(err=>console.log(err));
+       if(item_mmb.username&&voice_channel.members.get(item_mmb.id)) {await guild.members.cache.get(item_mmb.id).voice.setChannel(afk).catch(console.error);
+  await guild.members.get(item_mmb.id).setVoiceChannel(voice_channel).catch(console.error); };
+
+
+/*
+       let args=['',arg]
+      if(args[1]=='-текст'){//mute on text channel
+        await message.channel.updateOverwrite(item_mmb, { SEND_MESSAGES:false}).catch(err=>console.log(err));
+        return;
+     }else if(args[1]=='--текст'){//ban on text channel
+        await message.channel.updateOverwrite(item_mmb, { SEND_MESSAGES:false}).catch(err=>console.log(err));
+        return;
+     }else if(args[1]=='+текст'){//unban on text channel
+        await message.channel.updateOverwrite(item_mmb, { SEND_MESSAGES:true}).catch(err=>console.log(err));
+        return;
+     }else if(args[1]=='++текст'){//unmute on text channel
+        await message.channel.updateOverwrite(item_mmb, { VIEW_CHANNEL:null}).catch(err=>console.log(err));
+        return;
+     }else if(args[1]=='+++текст'){//unmute on text channel
+        await message.channel.updateOverwrite(item_mmb, {VIEW_CHANNEL:null,SEND_MESSAGES:true}).catch(err=>console.log(err));
+        return;
+     };;
+//_____________voice    
+     let voice_channel=await message.guild.channels.cache.get(exports.text_channels[message.channel.id].voice_channel.id); if(!voice_channel) return;
+     if(args[1]=='-войс'){//mute on voice channel
+        await voice_channel.updateOverwrite(item_mmb, { SPEAK:false}).then(exports.p.r(message,'muted',0,item_mmb)).catch(err=>console.log(err));
+       if(item_mmb.username&&voice_channel.members.get(item_mmb.id)) {await message.guild.members.cache.get(item_mmb.id).voice.setChannel(afk).catch(console.error);
+  await message.guild.members.get(item_mmb.id).setVoiceChannel(voice_channel).catch(console.error); };
+        return;
+     }else if(args[1]=='--войс'){//ban on voice channel
+        await voice_channel.updateOverwrite(item_mmb, { CONNECT:false}).then(exports.p.r(message,'banned',0,item_mmb)).catch(err=>console.log(err));
+        if(item_mmb.username&&voice_channel.members.get(item_mmb.id)) {await message.guild.members.cache.get(item_mmb.id).voice.setChannel(afk).catch(console.error);};
+        return;
+     }else if(args[1]=='+войс'){//unmute on voice channel
+        await voice_channel.updateOverwrite(item_mmb, { SPEAK:null,CONNECT:null}).then(exports.p.r(message,'unmuted',0,item_mmb)).catch(err=>console.log(err));
+        return;
+     }else if(args[1]=='++войс'){//unban on voice channel
+       await voice_channel.updateOverwrite(item_mmb, { CONNECT:true}).then(exports.p.r(message,'unbanned',0,item_mmb)).catch(err=>console.log(err));
+       return;
+     }else if(args[1]=='+++войс'){//unban on voice channel
+       await voice_channel.updateOverwrite(item_mmb, { CONNECT:true,SPEAK:true}).then(exports.p.r(message,'accessed',0,item_mmb)).catch(err=>console.log(err));
+       return;
+     };
+*/
 }catch(err){console.log(err);};};

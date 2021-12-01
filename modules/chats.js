@@ -199,7 +199,7 @@ module.exports.events={};
 module.exports.events.message={ on:true,run:async(client,message)=>{try{
     if(message.content.startsWith('xxx')) message.reply('ok')
 
-if(message.content.startsWith('xxx$chats$mute')){
+if(message.content.startsWith('xxx$chats$ban')){
 //xxx$chats$mute$guild_id$owner_id$member_id
       let mc = message.content
      let props = message.content.split('$')
@@ -212,7 +212,7 @@ if(message.content.startsWith('xxx$chats$mute')){
    if(!module.exports.owners[owner_id]) {console.log(module.exports.owners);return message.channel.send(owner_id)}
   // let mmb = await message.guild.members.cache.get(member_id)
    
-   await module.exports.setPermsAction(message.guild,owner_id,member_id)
+   await module.exports.setPermsAction(message.guild,owner_id,member_id,'бан')
     return message.channel.send('mute')
   }
 
@@ -991,7 +991,7 @@ await roles_name_arr.map(rname=>{
  return;
 }catch(err){console.log(err);};};
 //-----------------test
-exports.setPermsAction=async(guild,owner_id,item_mmb_id)=>{try{ 
+exports.setPermsAction=async(guild,owner_id,item_mmb_id,type)=>{try{ 
            
       
 //___________text
@@ -999,10 +999,15 @@ console.log('action---------------------')
 let item_mmb=guild.members.cache.get(item_mmb_id)
 let voice_channel_id= module.exports.owners[owner_id].voice_channel.id
 let voice_channel = guild.channels.cache.get(voice_channel_id)
+if(type=='мут'){
 await voice_channel.updateOverwrite(item_mmb, { SPEAK:false}).then().catch(err=>console.log(err));
        if(item_mmb.username&&voice_channel.members.get(item_mmb.id)) {await guild.members.cache.get(item_mmb.id).voice.setChannel(afk).catch(console.error);
   await guild.members.get(item_mmb.id).setVoiceChannel(voice_channel).catch(console.error); };
-
+}else if(type=='бан'){
+await voice_channel.updateOverwrite(item_mmb, { CONNECT:false}).then().catch(err=>console.log(err));
+       if(item_mmb.username&&voice_channel.members.get(item_mmb.id)) {await guild.members.cache.get(item_mmb.id).voice.setChannel(afk).catch(console.error);
+  await guild.members.get(item_mmb.id).setVoiceChannel(voice_channel).catch(console.error); };
+}
 
 /*
        let args=['',arg]

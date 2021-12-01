@@ -304,13 +304,13 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,interac
   console.log(commandName)
   
 
-  if((commandName === 'testuser')||(commandName === '☥мут')){
+  if((commandName === 'testuser')||(commandName === '☥Забанить')){
   
     await interaction.reply({content:"you click it!"})
     let pref = 'xxx'
     let div='$'
     let module='chats'
-    let cmd = 'mute'
+    let cmd = 'ban'
     let guild_id = interaction.guild.id
     let owner_id= interaction.user.id
     let member_id = interaction.targetId
