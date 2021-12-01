@@ -311,16 +311,17 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,interac
     let owner_id= interaction.user.id
     let member_id = interaction.targetId
     let mmb = interaction.guild.members.cache.get(member_id)
+    let cmd =''
   if(commandName === '☥Забанить'){
   
-    let cmd = 'ban'
+     cmd = 'ban'
     str = 'Забанен'
   }
   if(commandName === '☥Обнулить'){
   
     
    
-    let cmd = 'null'
+    cmd = 'null'
     str = 'Обнулен'
     
    
@@ -329,14 +330,14 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,interac
   
   
     
-    let cmd = 'key'
+    cmd = 'key'
     str = 'Ключ доступа в закрытый войс выдан'
    
   }if(commandName === '☥Дать микрофон'){
   
   
    
-    let cmd = 'micro' 
+    cmd = 'micro' 
     str='Микрофон, позволяющий говорить учатнику, при активированном режиме "Тиховсе"'
   }
       interaction.channel.send(pref+div+module+div+cmd+div+guild_id+div+owner_id+div+member_id)
