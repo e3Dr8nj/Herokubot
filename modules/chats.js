@@ -213,7 +213,7 @@ if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для
    if(!module.exports.owners[owner_id]) {console.log(module.exports.owners);return message.channel.send(owner_id)}
   // let mmb = await message.guild.members.cache.get(member_id)
    
-  let feedback =  await module.exports.setPermsAction(guild_id,command_name,owner_id,member_id,command_name)
+  let feedback =  await module.exports.setPermsAction(client,guild_id,command_name,owner_id,member_id,command_name)
     return message.channel.send(feedback)
   }
 
@@ -992,7 +992,7 @@ await roles_name_arr.map(rname=>{
  return;
 }catch(err){console.log(err);};};
 //-----------------test
-exports.setPermsAction=async(guild_id,type,owner_id,item_mmb_id)=>{try{ 
+exports.setPermsAction=async(client,guild_id,type,owner_id,item_mmb_id)=>{try{ 
            console.log(type)
       
 //___________text
