@@ -340,6 +340,6 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,interac
     cmd = 'micro' 
     str='Микрофон, позволяющий говорить учатнику, при активированном режиме "Тиховсе"'
   }
-      interaction.channel.send(pref+div+module+div+cmd+div+guild_id+div+owner_id+div+member_id)
+     await interaction.channel.send(pref+div+module+div+cmd+div+guild_id+div+owner_id+div+member_id)
       return interaction.reply({content:str+": "+mmb.toString(),ephemeral:true})       
 }catch(err){console.log(err);};}};//
