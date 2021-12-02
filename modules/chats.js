@@ -231,7 +231,8 @@ if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для
    if(!module.exports.owners[owner_id]) {console.log(module.exports.owners);return message.channel.send('error:!module.exports.owners[owner_id]')}
   // let mmb = await message.guild.members.cache.get(member_id)
    let feedback ='.'
-   let guild = client.guilds.cache.get(guild_id) if(!guild) return
+   let guild = client.guilds.cache.get(guild_id)
+   if(!guild) return
    if(command_name=='lecture'){
       feedback=await module.exports.muteAllActivate(client,guild,owner_id,data)
    }else{feedback =  await module.exports.setPermsAction(client,guild,command_name,owner_id,data)}
