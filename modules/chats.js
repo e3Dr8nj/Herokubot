@@ -232,7 +232,7 @@ if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для
    let feedback ='.'
    let guild = client.guilds.cache.get(guild_id)
    if(command_name=='lecture'){
-      feedback=await module.exports muteAllActivate(client,guild,owner_id,data)
+      feedback=await module.exports.muteAllActivate(client,guild,owner_id,data)
    }else{feedback =  await module.exports.setPermsAction(client,guild,command_name,owner_id,data)}
     
    return message.channel.send(feedback)
