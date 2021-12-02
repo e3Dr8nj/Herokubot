@@ -199,8 +199,8 @@ module.exports.events={};
 module.exports.events.message={ on:true,run:async(client,message)=>{try{
     if(message.content.startsWith('xxx')) message.reply('ok')
 /* double click,modes
-chats.lock.guild_id.owner_id
-chats.lecture.guild_id.owner_id
+chats.lock.guild_id.owner_id  --  
+chats.lecture.guild_id.owner_id -- xxx$chats$lock$guildid$owner_id$parameter
 chats.textinvisible.guild_id.owner_id
 *chats.undel...
 //---one click,action
@@ -217,7 +217,7 @@ transfer mmb
 
 */
 if(message.content.startsWith('xxx$chats')){
-if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для использования команды введите данные в формате: xxx$chats$<guildID>$<commandName>$<actionUserID>$<targetUserID>')
+if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для использования команды введите данные в формате: xxx$chats$<guildID>$<commandName>$<actionUserID>$<data>')
 //xxx$chats$mute$guild_id$owner_id$member_id
       let mc = message.content
      let props = message.content.split('$')
@@ -225,14 +225,17 @@ if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для
      let command_name = props[2]
      let guild_id= props[3]
      let owner_id=props[4]
-     let member_id=props[5]
+     let data=props[5]
 
-   if(!module.exports.owners[owner_id]) {console.log(module.exports.owners);return message.channel.send(owner_id)}
+   if(!module.exports.owners[owner_id]) {console.log(module.exports.owners);return message.channel.send('error:!module.exports.owners[owner_id]')}
   // let mmb = await message.guild.members.cache.get(member_id)
    let feedback ='.'
-   feedback =  await module.exports.setPermsAction(client,guild_id,command_name,owner_id,member_id)
-    return 
- // message.channel.send(feedback)
+   let guild = client.guilds.cache.get(guild_id)
+   if(command_name=='lecture'){
+      feedback=await module.exports muteAllActivate(client,guild,owner_id,data)
+   }else{feedback =  await module.exports.setPermsAction(client,guild,command_name,owner_id,data)}
+    
+   return message.channel.send(feedback)
   }
 
 
@@ -802,7 +805,9 @@ exports.reset=async(client,member,new_channel,free_chat,role)=>{try{ //triggered
 
 exports.voiceSetOwnerPermissions=async(client,mmb,new_channel)=>{try{ //on voice chat create
 await new_channel.updateOverwrite(mmb.user,{ MANAGE_CHANNELS: true,PRIORITY_SPEAKER:true,CONNECT:true,MOVE_MEMBERS:true
-,USE_VAD:true,SPEAK:true,MOVE_MEMBERS:true}).catch(console.error);
+,USE_VAD:true,SPEAK:true,MOVE_MEMBERS:true
+,MUTE_MEMBERS:true,CREATE_INSTANT_INVITE:true,STREAM:true
+}).catch(console.error);
 let afk=await mmb.guild.channels.cache.get(exports.e.afk_channel_id); 
 if(!afk) return;await afk.updateOverwrite(mmb.user,{MOVE_MEMBERS:true}).catch(console.error);
 }catch(err){console.log(err);};};
@@ -1010,12 +1015,12 @@ await roles_name_arr.map(rname=>{
  return;
 }catch(err){console.log(err);};};
 //-----------------test
-exports.setPermsAction=async(client,guild_id,type,owner_id,item_mmb_id)=>{try{ 
+exports.setPermsAction=async(client,guild,type,owner_id,item_mmb_id)=>{try{ 
            console.log(type)
       
 //___________text
 console.log('action---------------------')
-const guild = client.guilds.cache.get(guild_id)
+
 const item_mmb=guild.members.cache.get(item_mmb_id)
 const voice_channel_id= module.exports.owners[owner_id].voice_channel.id
 const voice_channel = guild.channels.cache.get(voice_channel_id)
@@ -1082,4 +1087,15 @@ await voice_channel.updateOverwrite(item_mmb, { SPEAK:null, CONNECT:null}).then(
        return;
      };
 */
+}catch(err){console.log(err);};};
+
+
+exports.muteAllActivate=async(client,guild,owner_id,value)=>{try{ //
+            console.log('muteAllActive')
+           let voice_chat = guild.channels.cache.get(exports.owners[owner_id].voice_channel.id); if(!voice_chat) return 0; 
+        
+         let bool = (value =='0')?null:false
+           console.log(bool)
+         await voice_chat.updateOverwrite(voice_chat.guild.roles.everyone, { SPEAK: bool }).catch(console.error);
+          return 1;
 }catch(err){console.log(err);};};
