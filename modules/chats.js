@@ -1090,6 +1090,7 @@ await voice_channel.updateOverwrite(item_mmb, { SPEAK:null, CONNECT:null}).then(
 }catch(err){console.log(err);};};
 
 
+
 exports.muteAllActivate=async(client,guild,owner_id,value)=>{try{ //
             console.log('muteAllActive')
            let voice_chat = guild.channels.cache.get(exports.owners[owner_id].voice_channel.id); if(!voice_chat) return 0; 
