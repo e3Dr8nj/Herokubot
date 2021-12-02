@@ -101,7 +101,8 @@ try{
   let agr=[
     {0:{style:'PRIMARY'},1:{style:'DANGER'}}
   ]
-  let target = 'chat$'+message.channel.id+"$"
+  let target = 'chat$'+message.channel.id+'$'
+ // let target2=
   let obj ={
     lock:{0:{style:'PRIMARY','emoji':'🔓',id:target+'lock$0$1'},1:{style:'DANGER',emoji:'🔐',id:target+'lock$1$0'}}
     ,lecture:{0:{style:'PRIMARY',emoji:'📢',id:target+'lecture$0$1'},1:{style:'DANGER',emoji:'🔇',id:target+'lecture$1$0'}}
