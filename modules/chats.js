@@ -218,6 +218,7 @@ transfer mmb
 
 */
 if(message.content.startsWith('xxx$chats')){
+    let feedback ='.'
 if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для использования команды введите данные в формате: xxx$chats$<guildID>$<commandName>$<actionUserID>$<data>')
 //xxx$chats$mute$guild_id$owner_id$member_id
       let mc = message.content
@@ -230,11 +231,11 @@ if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для
 
    if(!module.exports.owners[owner_id]) {console.log(module.exports.owners);return message.channel.send('error:!module.exports.owners[owner_id]')}
   // let mmb = await message.guild.members.cache.get(member_id)
-   let feedback ='.'
+   
    let guild = client.guilds.cache.get(guild_id)
    if(!guild) return
-   if(command_name=='lecture'){
-      feedback=await module.exports.muteAllActivate(client,guild,owner_id,data)
+   if(['lecture','lock','textlock'].includes(command_name)){
+      feedback=await module.exports.modeActivate(client,command_name,guild,owner_id,data)
    }else{feedback =  await module.exports.setPermsAction(client,guild,command_name,owner_id,data)}
     
    return message.channel.send(feedback)
@@ -1093,12 +1094,16 @@ await voice_channel.updateOverwrite(item_mmb, { SPEAK:null, CONNECT:null}).then(
 
 
 
-exports.muteAllActivate=async(client,guild,owner_id,value)=>{try{ //
+exports.modeActivate=async(client,type,guild,owner_id,value)=>{try{ //
             console.log('muteAllActive')
            let voice_chat = guild.channels.cache.get(exports.owners[owner_id].voice_channel.id); if(!voice_chat) return 0; 
-        
-         let bool = (value =='0')?null:false
-           console.log(bool)
-         await voice_chat.updateOverwrite(voice_chat.guild.roles.everyone, { SPEAK: bool }).catch(console.error);
+          let bool =0
+         if(type=='lecture'){
+           bool = (value =='0')?null:false
+           await voice_chat.updateOverwrite(voice_chat.guild.roles.everyone, { SPEAK: bool }).catch(console.error);
+         }else   if(type=='lock'){
+           bool = (value =='0')?null:false
+           await voice_chat.updateOverwrite(voice_chat.guild.roles.everyone, { CONNECT: bool }).catch(console.error);
+         }
           return 1;
 }catch(err){console.log(err);};};
