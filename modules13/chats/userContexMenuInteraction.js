@@ -73,6 +73,7 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,interac
     let member_id = interaction.targetId
     let mmb = interaction.guild.members.cache.get(member_id)
     let cmd =''
+ 
   if(commandName === '☥Забанить'){
   
      cmd = 'ban'
