@@ -69,11 +69,7 @@ module.exports.events.messageCreate={ disable:false,run:async(client,message)=>{
 
 
 
-//______________________________EVENTS PRIMITIVE
-module.exports.events_primitive={};
-module.exports.events_primitive.SOME_EVENT_NAME={disable:false,run:async(client,event)=>{try{
-      //some code here
-}catch(err){console.log(err);};}};//
+
 //_____________SUB FUNCTION
 
 exports.buildRow=async(client,objStore,message)=>{
@@ -159,4 +155,73 @@ try{
     return module.exports.buildRow(client,store.chats[message.channel.id].baseRow,message)
 }catch(err){console.log(err);};
 };//
+
+//---------------------
+//______________________________EVENTS PRIMITIVE
+module.exports.events_primitive={};
+module.exports.events_primitive.SOME_EVENT_NAME={disable:false,run:async(client,event)=>{try{
+      //some code here
+}catch(err){console.log(err);};}};//
+//_____________SUB FUNCTION
+
+exports.s0=async(client)=>{
+try{ 
+ 
+  
+
+}catch(err){console.log(err);};
+};//
+//___
+exports.s1=async(client)=>{
+try{ 
+   
+}catch(err){console.log(err);};
+};//
+
+
+//_________________________________________INTERACTION_PART_________________________________________________
+//module.exports.events={};
+
+module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{try{
+ //code to execut then this event triggered
+  //return
+           console.log('it___________________________-')
+ 
+            console.log('but int')
+ 
+           
+           if(!i.isButton()) return
+           
+ 
+	
+  await i.reply({content:`${i.user.tag} ${i.customId}`,ephemeral: true})
+
+  let row2={}
+  
+    
+     let v = i.component.customId.split('$')//chat$8990$lock$0$1
+     let channel_id=v[1]
+     let target=v[0]
+     let param = v[2]
+     let curvalue=Number(v[3])
+     let newvalue = Number(v[4])
+     
+     let user_id=i.user.id
+      let div = '$'
+     store.chats[channel_id].baseRow[param]=newvalue
+
+  row2 = await module.exports.BaseRow(client,i.message)
+ if(row2) await i.message.edit({components:[row2]})
+  let str = 'xxx$chats$'+param+div+newvalue+div+user_id
+ 
+ 
+  let ch = i.guild.channels.cache.find(n=>n.name==client.x.ch.transfer)
+  
+  ch.send(str)
+  return
+
+   
+  
+           
+}catch(err){console.log(err);};}};//
 
