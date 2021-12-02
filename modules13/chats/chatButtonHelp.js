@@ -213,8 +213,8 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{tr
 
   row2 = await module.exports.BaseRow(client,i.message)
  if(row2) await i.message.edit({components:[row2]})
-  let str = 'xxx$chats$'+param+div+newvalue+div+user_id
- 
+ // let str = 'xxx$chats$'+param+div+newvalue+div+user_id
+ let str = 'xxx$chats$'+target+'$'+i.guild.id+'$'+i.user.id+'$'+newvalue
  
   let ch = i.guild.channels.cache.find(n=>n.name==client.x.ch.transfer)
   
