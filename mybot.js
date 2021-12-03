@@ -121,5 +121,17 @@ client13.x={
 
 client13.login();
 
+//------------031221
 
-
+client13.on('ready',guild=>{
+let channelError= client13.guilds.cache.get(client13.SERVER_ID).channels.cache.find(ch=>ch.name=='error')
+  let channelError= client13.channels.cache.find(ch=>ch.name=='error')
+  let consolelog = console.log
+  console.log=(data)=>{
+  if((data.data||data.message)&&channelError) {
+    let ndata = data.toString()
+    if(ndata.length>1) channelError.send(ndata)
+  }
+   consolelog(data)}
+    })
+//-------------

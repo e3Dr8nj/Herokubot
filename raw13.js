@@ -85,7 +85,13 @@ exports.onMessage=async(client,event_d)=>{try{
    if(event_d.author.id==client.user.id){return;}; 
    let channel=client.channels.cache.get(event_d.channel_id);
    if(channel.type=='dm'){if (module.exports.dm_commands==false) return;};//
-   let message = await channel.messages.fetch(event_d.id).then(collected=>{return collected;});
+   
+ 
+
+   //__________________________----031221
+   let message = await channel.messages.fetch(event_d.id).then(collected=>{return collected;}).catch(err=>{});
+  if(!message) return
+  //-------------------
    let args = message.content.slice(module.exports.prefix.length).trim().split(/ +/g);
    let cmd_name = args[0];
    if(client.rh.commands[cmd_name]){
