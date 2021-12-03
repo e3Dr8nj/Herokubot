@@ -47,6 +47,7 @@ module.exports.commands.command2={disable:false,aliase:'testb', run:async(client
    //code to execut then this command triggered
   
 //const row = await module.exports.buildRow(client,[['lock','0'],['lecture','0'],['textlock','0']])
+//console.log(console.log)
   const row = await module.exports.BaseRow(client,message)
   await message.channel.send({content:'test',components:[row]})
 
@@ -104,10 +105,12 @@ try{
   let target = 'chat$'+message.channel.id+'$'
  // let target2=
   let obj ={
-    lock:{0:{style:'PRIMARY','emoji':'🔓',id:target+'lock$0$1'},1:{style:'DANGER',emoji:'🔐',id:target+'lock$1$0'}}
-    ,lecture:{0:{style:'PRIMARY',emoji:'📢',id:target+'lecture$0$1'},1:{style:'DANGER',emoji:'🔇',id:target+'lecture$1$0'}}
-  ,textlock:{0:{style:'PRIMARY',emoji:'📖',id:target+'textlock$0$1'},1:{style:'DANGER',emoji:'📔',id:target+'textlock$1$0'}}
- 
+    lock:{0:{style:'SECONDARY','emoji':'🔓',id:target+'lock$0$1$key$1'},1:{style:'DANGER',emoji:'🔐',id:target+'lock$1$0$key$0'}}
+    ,lecture:{0:{style:'SECONDARY',emoji:'📢',id:target+'lecture$0$1$micro$1'},1:{style:'SUCCESS',emoji:'🔇',id:target+'lecture$1$0$micro$0'}}
+  ,textlock:{0:{style:'SECONDARY',emoji:'📖',id:target+'textlock$0$1'},1:{style:'DANGER',emoji:'📔',id:target+'textlock$1$0'}}
+ ,reset:{0:{style:'SECONDARY',emoji:'♻️',id:target+'reset$0$1'},1:{style:'PRIMARY',emoji:'♻️',id:target+'reset$1$1'}}
+    ,key:{0:{style:'SECONDARY',emoji:'🔑',id:target+'key$0$0',disabled:true},1:{style:'DANGER',emoji:'🔑',id:target+'key$1$1'}}
+    ,micro:{0:{style:'SECONDARY',emoji:'🎙️',id:target+'micro$0$0',disabled:true},1:{style:'SUCCESS',emoji:'🎙️',id:target+'micro$1$1'}}
   }
   //let arr = ['0','1']
   //let arr2 = [{name:'lock',value:'0'},{name:'lock',value:'1'}]
@@ -128,11 +131,11 @@ try{
    row.addComponents(Button(el))
                            })
                            */
-   console.log(objStore)
+   //console.log(objStore)
    for(let key in objStore){
      
      let el = obj[key][objStore[key]]
-     console.log(el)
+   //  console.log(el)
      row.addComponents(Button(el))
    }
   console.log('---------------------------')
@@ -150,9 +153,9 @@ try{
   //    arr:
       
     }
-    let bRow = {lock:0,lecture:0,textlock:0}
+    let bRow = {lock:0,lecture:0,reset:0,key:0,micro:0}
    if(!store.chats[message.channel.id]) store.chats[message.channel.id]={baseRow:bRow}
-  console.log(store.chats[message.channel.id].baseRow)
+ // console.log(store.chats[message.channel.id].baseRow)
     return module.exports.buildRow(client,store.chats[message.channel.id].baseRow,message)
 }catch(err){console.log(err);};
 };//
@@ -206,14 +209,30 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{tr
      let param = v[2]
      let curvalue=Number(v[3])
      let newvalue = Number(v[4])
-     
+     //---041221
+      let sync=v[5]
+      let syncval=v[6]
+     //---
      let user_id=i.user.id
       let div = '$'
-     store.chats[channel_id].baseRow[param]=newvalue
-
-  row2 = await module.exports.BaseRow(client,i.message)
- if(row2) await i.message.edit({components:[row2]})
+     
+      if(sync){store.chats[channel_id].baseRow[sync]=syncval} //----if button has sync parameter, set new value to this one
+     store.chats[channel_id].baseRow[param]=newvalue //set nev value
+     
+  
+       row2 = await module.exports.BaseRow(client,i.message)//build the button row
+       if(row2) await i.message.edit({components:[row2]})//render message
  // let str = 'xxx$chats$'+param+div+newvalue+div+user_id
+  //------------------
+     if(['key','micro','ban','null','transfer'].includes(param)){
+       
+        let filter = (message)=>{return message.author.id==i.user.id}
+       let msg_arr = await i.channel.messages.fetch({limit:5}).then(collected=>{return collected})
+       msg_arr= await msg_arr.filter((m)=>m.author.id==i.user.id)
+       let msg= msg_arr.first()
+       newvalue=msg.id
+        
+     }
  let str = 'xxx$chats$'+param+'$'+i.guild.id+'$'+i.user.id+'$'+newvalue
  
   let ch = i.guild.channels.cache.find(n=>n.name==client.x.ch.transfer)
@@ -225,4 +244,3 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{tr
   
            
 }catch(err){console.log(err);};}};//
-
