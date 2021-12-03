@@ -130,7 +130,7 @@ let channelError= client13.guilds.cache.get(client13.SERVER_ID).channels.cache.f
   console.log=(data)=>{
   if((data.data||data.message)&&channelError) {
     let ndata = data.toString()
-    if(ndata.length>1) channelError.send(ndata)
+   // if(ndata.length>1) channelError.send(ndata)
   }
    consolelog(data)}
     })
