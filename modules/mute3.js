@@ -108,8 +108,28 @@ module.exports.commands.muteHelp={ on:true, aliase:'утхелп', run:async(cli
 }catch(err){console.log(err);};}};//
 
 //______________________c0
-module.exports.events.message={ on:true,run:async(client,message)=>{try{
+module.exports.events.messageCreate={ on:true,run:async(client,message)=>{try{
+  //---------------
+           if(message.content.startsWith('zzz')){
+//zzz$cmd$member_id$target_id
+    message.reply('ok')
+               let props = message.content.split('$')
+               let cmd = props[1]
+               let member_id=props[2]
+               let target_id = props[3]
+            let action={}
+                
+                action.guild = message.guild
+                action.channel = message.channel
+                action.member = message.guild.members.cache.get(member_id)
+                action.target = message.guild.members.cache.get(target_id)
+               console.log(action)
+               return module.exports.commands.timemuteX(client,null,null,action)
+           }
   
+
+//-----------------
+
      if(message.channel.type!='dm'&&!message.author.bot){ 
 
         function f(str){
@@ -583,3 +603,105 @@ exports.checkBDMute=async(client,member)=>{try{
 
 
            
+//-----------
+//______________________c2
+module.exports.commands.timemuteX={ on:true, aliase:'ут', run:async(client,message,args,action)=>{try{
+
+if(action){
+
+          message = {}
+          message.guild=action.guild
+          message.channel = action.channel
+          message.member = action.member
+          message.content = 'ут '+action.target.toString() + ' 30м'
+          args = message.content.slice(module.exports.prefix.length).trim().split(/ +/g);
+}
+
+//if on this function triggers on deffined command
+              if(!message.content.toLowerCase().startsWith("м")) return;//RECOVERY
+             
+              let allow_mute=await module.exports.check(client,message,message.member,'actor');
+              let bcs='без причины';
+             
+              if(message.content.indexOf('--')!=-1) {bcs= '\n причина: '+message.content.split('--')[1];}; 
+              let super_moderator_role = message.member.guild.roles.cache.find(r=>r.name==module.exports.e.super_moderator_name);
+              if(!!super_moderator_role&&message.member.roles.cache.get(super_moderator_role.id)){allow_mute=true;};
+              
+              if(!allow_mute) {return message.channel.send('У вас недостаточно прав, лалка');};
+              let mmb_id=message.content.match(/\d{10,}/);
+             
+              
+             let mmb = message.guild.members.cache.get(mmb_id[0]); if(!mmb){message.reply('Не найден на сервере');};
+              let allow_be_muted=await module.exports.check(client,message,mmb,'acted');//--
+             
+
+              //message.reply(!!allow_be_muted);
+              if(!!super_moderator_role&&message.member.roles.cache.get(super_moderator_role.id)){allow_be_muted=true;};
+              
+              if(message.guild.owner.id==message.member.user.id){allow_be_muted=true;};
+              //if(!!super_moderator_role&&mmb.roles.get(super_moderator_role.id)){allow_be_muted=false;};
+              if(!allow_be_muted) {return message.channel.send('У вас недостаточно прав, лалка');};
+              //return;
+//___upd 14.12
+               if(client.muted[mmb.user.id]) {
+                        message.channel.send(' Сначала размуть, лалка');
+                        //let  msg989 = await message.channel.send('^rewire размут '+mmb.toString());
+                        //await msg989.delete();
+                        //await module.exports.delay(60*1000);
+                        
+                        return;
+
+               };
+//____
+              let base_part=message.content.split('>')[1];
+              if(base_part.indexOf('--')!=-1) base_part=base_part.split('--')[0];
+              args=base_part.trim().split(' ');
+              //args=args.slice(2);
+              if(args.length==0){
+                      //message.channel.send(mmb.toString()+' вечный мут, мля!'); 
+                      message.channel.send(mmb.toString()+' Снимаются роли доступа');
+                      await module.exports.insertMmbRoles(client,message,mmb,limiter,bcs);
+                      
+                     //await module.exports.delay(1000);
+                     message.channel.send(' Объект замучен на ∞ время.');
+                    
+                      return;
+              };//if no args 
+              let times = 0; let n = 0; let time_str='';
+              for(let i=0;i<args.length;i++){
+                     n=0;
+                    if(args[i].endsWith('м')||args[i].endsWith('m')){  n = parseInt(args[i]); n=n*1000*60; times+=n; console.log(n+' '+'minutes');  };
+                    if(args[i].endsWith('ч')||args[i].endsWith('h')){  n = parseInt(args[i]); n=n*1000*60*60; times+=n; console.log(n+' '+'hourses');  };
+                    if(args[i].endsWith('д')||args[i].endsWith('d')){  n = parseInt(args[i]); n=n*1000*60*60*24; times+=n; console.log(n+' '+'days'); };
+              };//for end
+              //if(Number.isNaN(times)||times==0){message.reply('Неверно указанное время, или не добавлено -- два дефиса после ника нарушителя.'); return;};
+              if(Number.isNaN(times)||times==0){ times=30*1000*60;base_part='30 минут';};
+             message.channel.send(mmb.toString()+' Снимаются роли доступа.');
+             let more=false;
+             if(Number(times)>limiter) {
+                    console.log('lmt'+limiter); console.log('tms'+times);
+             times=limiter;more=true;
+              }; 
+  
+              let current_time = new Date().getTime();
+              let terminal_time=current_time+times;
+              let time = terminal_time;
+              let limit = module.exports.e.min_tag_time;
+
+              await module.exports.insertMmbRoles(client,message,mmb,time,bcs);
+              message.channel.send(' Накладывается печать немоты 🤐');
+              base_part=(base_part!=' ')?base_part:'неопределенное время';
+              let a_time=(more)?'||10д||':'';
+              await module.exports.log(client,message,{name:'Мут',description:' замутил на '+base_part+a_time+' '+mmb.toString()+' '+mmb.user.username+mmb.user.discriminator,color:'red'});
+              if(Number(times)<=limit){
+                        console.log('les then limite run timer');
+                        await module.exports.delay(times);
+                        return module.exports.commands.unmute.run(client,message,mmb,0);
+                      return module.exports.unmute(client,message,mmb.user.id,0);
+              };//if less end
+              if(Number(times)>limit){
+                        console.log('more then limite break');
+                        return;
+              };//if more end
+                
+}catch(err){console.log(err);};}};//
