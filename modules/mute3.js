@@ -9,7 +9,7 @@ exports.rh={
                    
 };
 
-let log = true
+let log = false
 
 let random =(max)=>{ return Math.floor(Math.random()*max);};
 let ph={};
@@ -127,8 +127,8 @@ if(log) console.log(props)
                 action.channel = message.channel
                 action.member = message.guild.members.cache.get(member_id)
                 action.target = message.guild.members.cache.get(target_id)
-               console.log("action");
-               console.log(action)
+              // console.log("action");
+              // console.log(action)
                return module.exports.commands.timemuteX.run(client,"","",action)
           }
   return

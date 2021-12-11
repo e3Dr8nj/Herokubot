@@ -83,14 +83,14 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,interac
   }
   if(commandName === '☥Забанить'){
   
-     cmd = 'ban'
+     cmd = 'ban1'
     str = 'Забанен'
   }
   if(commandName === '☥Обнулить'){
   
     
    
-    cmd = 'null'
+    cmd = 'null1'
     str = 'Обнулен'
     
    
@@ -99,14 +99,14 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,interac
   
   
     
-    cmd = 'key'
+    cmd = 'key1'
     str = 'Ключ доступа в закрытый войс выдан'
    
   }if(commandName === '☥Дать микрофон'){
   
   
    
-    cmd = 'micro' 
+    cmd = 'micro1' 
     str='Микрофон, позволяющий говорить учатнику, при активированном режиме "Тиховсе"'
   }
      //----2.12.21

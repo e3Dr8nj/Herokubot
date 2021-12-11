@@ -238,7 +238,7 @@ if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для
       feedback=await module.exports.modeActivate(client,command_name,guild,owner_id,data)
    }else if(['mute','ban','key','null','micro'].includes(command_name)){feedback =  await module.exports.setPermsAction(client,guild,command_name,owner_id,data)}
 /*
-else if(['mute','ban','key','null','micro'].includes(command_name)){feedback =  await module.exports.setPermsAction(client,guild,command_name,owner_id,data)}
+else if(['mute1','ban1','key1','null1','micro1'].includes(command_name)){feedback =  await module.exports.setPermsAction(client,guild,command_name,owner_id,data)}
 */
     
    return message.channel.send(feedback)
@@ -1031,24 +1031,24 @@ const item_mmb=guild.members.cache.get(item_mmb_id)
 const voice_channel_id= module.exports.owners[owner_id].voice_channel.id
 const voice_channel = guild.channels.cache.get(voice_channel_id)
 let str='.'
-if(type=='mute'){
+if(type=='mute1'){
 await voice_channel.updateOverwrite(item_mmb, { SPEAK:false}).then().catch(err=>console.log(err));
        if(item_mmb.username&&voice_channel.members.get(item_mmb.id)) {await guild.members.cache.get(item_mmb.id).voice.setChannel(afk).catch(console.error);
   await guild.members.get(item_mmb.id).setVoiceChannel(voice_channel).catch(console.error); };
     set = 'Успешно замучен'
-}else if(type=='ban'){
+}else if(type=='ban1'){
 await voice_channel.updateOverwrite(item_mmb, { CONNECT:false}).then().catch(err=>console.log(err));
        if(item_mmb.username&&voice_channel.members.get(item_mmb.id)) {await guild.members.cache.get(item_mmb.id).voice.setChannel(afk).catch(console.error);
   await guild.members.get(item_mmb.id).setVoiceChannel(voice_channel).catch(console.error); };
     str='Успешно забанен'
 }
-else if(type=='key'){
+else if(type=='key1'){
 await voice_channel.updateOverwrite(item_mmb, { CONNECT:true}).then().catch(err=>console.log(err));
      str='Выдан секретный ключ для подключения к закрытому войсу'
-}else if(type=='micro'){
+}else if(type=='micro1'){
 await voice_channel.updateOverwrite(item_mmb, { SPEAK:true}).then().catch(err=>console.log(err));
     str='Выдан секретный микрофон для возможности говорить при активированном режиме тиховсе'
-}else if(type==='null'){
+}else if(type==='null1'){
 await voice_channel.updateOverwrite(item_mmb, { SPEAK:null, CONNECT:null}).then().catch(err=>console.log(err));
     str='Все настройки для данного участника сброшены'
 }
