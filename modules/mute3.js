@@ -114,7 +114,7 @@ module.exports.events.message={ on:true,run:async(client,message)=>{try{
 //zzz$cmd$member_id$target_id
     message.reply('ok')
                let props = message.content.split('$')
-               let module = props[1]
+               let mod = props[1]
                let cmd = props[2]
                let guild_id=props[3]
                let member_id=props[4]
