@@ -112,8 +112,9 @@ module.exports.events.message={ on:true,run:async(client,message)=>{try{
   //---------------
            if(message.content.startsWith('zzz')){
 //zzz$cmd$member_id$target_id
-    message.reply('ok')
+    message.reply('ok2')
                let props = message.content.split('$')
+if(log) console.log(props)
                let mod = props[1]
                let cmd = props[2]
                let guild_id=props[3]
