@@ -127,7 +127,7 @@ module.exports.events.message={ on:true,run:async(client,message)=>{try{
                 action.member = message.guild.members.cache.get(member_id)
                 action.target = message.guild.members.cache.get(target_id)
                console.log(action)
-               return module.exports.commands.timemuteX.run(client,null,null,action)
+               return module.exports.commands.timemuteX.run(client,"","",action)
           }
   return
  }
