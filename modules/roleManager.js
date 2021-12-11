@@ -19,6 +19,7 @@ const aliase ={
   ,'кто все эти люди':{name:'кто все эти люди',add:true,remove:true}
   ,'модератор':{name:'модератор',add:false,remove:true}
   ,'сумеречные':{name:'сумеречные',add:true,remove:true}
+  ,'анкх':{name:'☥',add:true,remove:true}
 };
 
 const self_roles ={

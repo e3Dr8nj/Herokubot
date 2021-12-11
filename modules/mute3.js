@@ -616,7 +616,7 @@ if(action){
           message.channel = action.channel
           message.member = action.member
           message.content = 'ут '+action.target.toString() + ' 30м'
-          args = message.content.slice(module.exports.prefix.length).trim().split(/ +/g);
+          args = message.content.slice(1).trim().split(/ +/g);
 }
 
 //if on this function triggers on deffined command
