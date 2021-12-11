@@ -236,7 +236,7 @@ if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для
    if(!guild) return
    if(['lecture','lock','textlock'].includes(command_name)){
       feedback=await module.exports.modeActivate(client,command_name,guild,owner_id,data)
-   }else if(['mute','ban','key','null','micro'].includes(command_name)){feedback =  await module.exports.setPermsAction(client,guild,command_name,owner_id,data)}
+   }else if(['mute1','ban1','key1','null1','micro1'].includes(command_name)){feedback =  await module.exports.setPermsAction(client,guild,command_name,owner_id,data)}
 /*
 else if(['mute1','ban1','key1','null1','micro1'].includes(command_name)){feedback =  await module.exports.setPermsAction(client,guild,command_name,owner_id,data)}
 */
