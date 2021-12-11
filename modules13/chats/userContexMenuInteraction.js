@@ -78,11 +78,8 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,interac
      module='base'
      cmd = 'mute30m'
     str = 'Команда мута обрабатывается'
-     let data = pref+div+module+div+cmd+div+guild_id+div+owner_id+div+member_id
-       let ch = interaction.guild.channels.cache.find(n=>n.name==client.x.ch.transfer)
+      pref=prefZ
   
-      if(ch){ ch.send(data)}else{ interaction.channel.send(data)}
-  return
   }
   if(commandName === '☥Забанить'){
   
