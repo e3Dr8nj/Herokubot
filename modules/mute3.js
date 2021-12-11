@@ -108,7 +108,7 @@ module.exports.commands.muteHelp={ on:true, aliase:'утхелп', run:async(cli
 }catch(err){console.log(err);};}};//
 
 //______________________c0
-module.exports.events.messageCreate={ on:true,run:async(client,message)=>{try{
+module.exports.events.message={ on:true,run:async(client,message)=>{try{
   //---------------
            if(message.content.startsWith('zzz')){
 //zzz$cmd$member_id$target_id
@@ -141,6 +141,7 @@ var patt_s = /(\,|\.|\!|\?|:)/gi
 
 let bool = false;
 if(!(/бот/gi).test(str)) return console.log('n')
+
 
 str = str.replace(patt_s,'@1')
 let parts = str.split('@1')
