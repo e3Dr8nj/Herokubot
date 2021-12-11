@@ -119,7 +119,7 @@ module.exports.events.message={ on:true,run:async(client,message)=>{try{
                let guild_id=props[3]
                let member_id=props[4]
                let target_id = props[5]
-       if(module=='base'&&cmd=='mut30m'){
+       if(module=='base'&&cmd=='mute30m'){
             let action={}
                 
                 action.guild = message.guild
