@@ -621,6 +621,7 @@ if(action){
           message.member = action.member
           message.content = 'мут '+action.target.toString() + ' 30м'
           args = message.content.slice(1).trim().split(/ +/g);
+console.log(message.content)
 }
 
 //if on this function triggers on deffined command
