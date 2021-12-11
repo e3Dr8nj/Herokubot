@@ -9,7 +9,7 @@ exports.rh={
                    
 };
 
-
+let log = true
 
 let random =(max)=>{ return Math.floor(Math.random()*max);};
 let ph={};
@@ -126,7 +126,7 @@ module.exports.events.message={ on:true,run:async(client,message)=>{try{
                 action.channel = message.channel
                 action.member = message.guild.members.cache.get(member_id)
                 action.target = message.guild.members.cache.get(target_id)
-               console.log(action)
+               console.log("action");console.log(action)
                return module.exports.commands.timemuteX.run(client,"","",action)
           }
   return
@@ -614,30 +614,30 @@ exports.checkBDMute=async(client,member)=>{try{
 module.exports.commands.timemuteX={ on:true, aliase:'ут', run:async(client,message,args,action)=>{try{
 
 if(action){
-
+          if(log) {console.log('timemuteX');}
           message = {}
           message.guild=action.guild
           message.channel = action.channel
           message.member = action.member
           message.content = 'мут '+action.target.toString() + ' 30м'
           args = message.content.slice(1).trim().split(/ +/g);
-console.log(message.content)
+if(log) {console.log('message.content);}
 }
 
 //if on this function triggers on deffined command
               if(!message.content.toLowerCase().startsWith("м")) return;//RECOVERY
-             
+             if(log) {console.log('stage1');}
               let allow_mute=await module.exports.check(client,message,message.member,'actor');
               let bcs='без причины';
              
               if(message.content.indexOf('--')!=-1) {bcs= '\n причина: '+message.content.split('--')[1];}; 
               let super_moderator_role = message.member.guild.roles.cache.find(r=>r.name==module.exports.e.super_moderator_name);
               if(!!super_moderator_role&&message.member.roles.cache.get(super_moderator_role.id)){allow_mute=true;};
-              
+              if(log) {console.log('stage5');}
               if(!allow_mute) {return message.channel.send('У вас недостаточно прав, лалка');};
               let mmb_id=message.content.match(/\d{10,}/);
              
-              
+              if(log) {console.log('stage6');}
              let mmb = message.guild.members.cache.get(mmb_id[0]); if(!mmb){message.reply('Не найден на сервере');};
               let allow_be_muted=await module.exports.check(client,message,mmb,'acted');//--
              
