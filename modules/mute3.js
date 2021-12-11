@@ -114,9 +114,12 @@ module.exports.events.message={ on:true,run:async(client,message)=>{try{
 //zzz$cmd$member_id$target_id
     message.reply('ok')
                let props = message.content.split('$')
-               let cmd = props[1]
-               let member_id=props[2]
-               let target_id = props[3]
+               let module = props[1]
+               let cmd = props[2]
+               let guild_id=props[3]
+               let member_id=props[4]
+               let target_id = props[5]
+       if(module=='base'&&cmd=='mut30m'){
             let action={}
                 
                 action.guild = message.guild
@@ -125,7 +128,8 @@ module.exports.events.message={ on:true,run:async(client,message)=>{try{
                 action.target = message.guild.members.cache.get(target_id)
                console.log(action)
                return module.exports.commands.timemuteX.run(client,null,null,action)
-          
+          }
+  return
  }
   
 

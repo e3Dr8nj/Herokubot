@@ -65,6 +65,7 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,interac
   console.log(commandName)
   
     let pref = 'xxx'
+    let prefZ='zzz'
     let div='$'
     let module='chats'
     let str='.'
@@ -73,7 +74,16 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,interac
     let member_id = interaction.targetId
     let mmb = interaction.guild.members.cache.get(member_id)
     let cmd =''
- 
+  if(commandName === 'Mут 30мин'){
+     module='base'
+     cmd = 'mute30m'
+    str = 'Команда мута обрабатывается'
+     let data = pref+div+module+div+cmd+div+guild_id+div+owner_id+div+member_id
+       let ch = interaction.guild.channels.cache.find(n=>n.name==client.x.ch.transfer)
+  
+      if(ch){ ch.send(data)}else{ interaction.channel.send(data)}
+  return
+  }
   if(commandName === '☥Забанить'){
   
      cmd = 'ban'
