@@ -615,7 +615,7 @@ if(action){
           message.guild=action.guild
           message.channel = action.channel
           message.member = action.member
-          message.content = 'ут '+action.target.toString() + ' 30м'
+          message.content = 'мут '+action.target.toString() + ' 30м'
           args = message.content.slice(1).trim().split(/ +/g);
 }
 
