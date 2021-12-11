@@ -120,14 +120,15 @@ if(log) console.log(props)
                let guild_id=props[3]
                let member_id=props[4]
                let target_id = props[5]
-       if(module=='base'&&cmd=='mute30m'){
+       if(mod=='base'&&cmd=='mute30m'){
             let action={}
                 
                 action.guild = message.guild
                 action.channel = message.channel
                 action.member = message.guild.members.cache.get(member_id)
                 action.target = message.guild.members.cache.get(target_id)
-               console.log("action");console.log(action)
+               console.log("action");
+               console.log(action)
                return module.exports.commands.timemuteX.run(client,"","",action)
           }
   return
