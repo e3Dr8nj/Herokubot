@@ -389,7 +389,7 @@ obj.tag=time-now;
 obj.user_id=mmb_id;
 obj.roles_ids=roles;
 
-obj.mute_by_mmb_id=message.author.id;
+obj.mute_by_mmb_id=message.member.id;
 obj.mute_becouse=bcs;
  let a= JSON.stringify(obj);
 console.log(obj);
