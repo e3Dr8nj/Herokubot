@@ -238,7 +238,9 @@ if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для
       feedback=await module.exports.modeActivate(client,command_name,guild,owner_id,data)
    }else if(['mute1','ban1','key1','null1','micro1'].includes(command_name)){
 console.log('e----------')
-feedback =  await module.exports.setPermsAction(client,guild,command_name,owner_id,data)}else if(['mute','ban','key','null','micro'].includes(command_name)){
+feedback =  await module.exports.setPermsAction(client,guild,command_name,owner_id,data)
+}else if(['mute','ban','key','null','micro'].includes(command_name)){
+console.log('e2')
 feedback =  await module.exports.buttonInteractionMessage(client,guild,command_name,owner_id,data)}
 
     
@@ -1101,7 +1103,7 @@ await voice_channel.updateOverwrite(item_mmb, { SPEAK:null, CONNECT:null}).then(
 //------------------
 exports.buttonInteractionMessage=async(client,type,guild,owner_id,value)=>{try{ //
             console.log('spb')
-           let arr = value.split(.)
+           let arr = value.split(".")
            let channel_id=arr[0]
            let message_id=arr[1]
            let message = guild.channels.cache.get(channel_id).cache.get(message_id)
