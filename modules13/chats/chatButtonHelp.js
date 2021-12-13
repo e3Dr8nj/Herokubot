@@ -1,17 +1,32 @@
 ﻿//
-let store={
+let checkon=0
+let mod = 'buttonsInteractionMode'
+let checkpoint=0
+let x=(checkon)?(val)=>console.log('check'+ checkpoint++ +" from "+mod+' '+val):()=>{}
+const { MessageActionRow, MessageEmbed, MessageButton, MessageSelectMenu } = require('discord13.js');
+//const componentButton = require('./components/Button.js')
+//const componentRow= require('./components/Row.js')
+const componentRows= require('./components/Rows.js')
+const store= require('./store.js')
+let target='#target'
+let state={
   
   chats:{
+    getButtons:store.in.chats.getButtons,
+    
     'buttons':{}
+    ,rows:{}
+    /*
    , '1':{
       rows:{}
-      ,baseRow2:[['lock','0'],['lecture','0'],['textlock','0']]
-      ,baseRow:{lock:0,lecture:0,textlock:0}
+      //,baseRow2:[['lock','0'],['lecture','0'],['textlock','0']]
+      //,baseRow:{lock:0,lecture:0,textlock:0}
     }
+    */
   }
 }
 let baseRow = {lock:0,lecture:0,textlock:0}
-const { MessageActionRow, MessageEmbed, MessageButton, MessageSelectMenu } = require('discord13.js');
+
 //----
 exports.rh={
   //disable:true//uncomment for disable all this file
@@ -44,18 +59,31 @@ module.exports.commands = {};
 //--------
 
 //--------
-module.exports.commands.command2={disable:false,aliase:'testb', run:async(client,message,args)=>{try{
-   //code to execut then this command triggered
+module.exports.commands.command2={disable:false,aliase:'t2', run:async(client,message,args)=>{try{
+   //--
+  x()
+ // return
+  let d = store.in.embed.d
+  //console.log(d)
+  const emb= new MessageEmbed()
+	
+	.addFields(
+		{ name: 'Кнопки для управления войс чатом', value: d
+    },
+		{ name: '\u200B', value: '\u200B' },
+		
+	)
+	//.addField('Inline field title', 'Some value here', true)
+//	.setImage('https://i.imgur.com/AfFp7pu.png')
+	//.setTimestamp()
+//	.setFooter('кнопки для управления войс чатом', 'https://i.imgur.com/AfFp7pu.png');
+  //__
+  let Rows = await componentRows.Rows(client,state,message.channel.id)
   
-//const row = await module.exports.buildRow(client,[['lock','0'],['lecture','0'],['textlock','0']])
-//console.log(console.log)
-  //const BaseRow = await module.exports.BaseRow(client,message)
-  //const PermsRow = await module.exports.PermsRow(client,message)
- // console.log(PermsRow)
- 
-  let Menu = await module.exports.Menu(client,message)
-  await message.channel.send({content:'test',"components": Menu})
-  return
+  await message.channel.send({embeds:[emb]})
+  await message.channel.send({content:'test',"components": Rows })
+  return 
+  //console.log(state)
 
 }catch(err){console.log(err);};}};//
 
@@ -71,105 +99,8 @@ module.exports.events.messageCreate={ disable:false,run:async(client,message)=>{
  //code to execut then this event triggered
 }catch(err){console.log(err);};}};//
 //_________________________________________INTERACTION_PART_________________________________________________
-//module.exports.events={};
 
 
-
-
-//_____________SUB FUNCTION
-
-exports.buildRow=async(client,message,row_name,ini)=>{
-try{ 
-  
-  //--
-  let bRow = ini
-   if(!store.chats[message.channel.id][row_name]) store.chats[message.channel.id][row_name]=ini
-  let objStore = store.chats[message.channel.id][row_name]
-  //--
-  let Button=(el)=>{
-    console.log('button')
-    console.log(el)
-    let id, label,style,disabled,emoji
-  id=(el.id)?el.id:'custom'
-   label= (el.lable)?el.lable:' '
-    style=(el.style)?el.style:'SECONDARY'
-    emoji=(el.emoji)?el.emoji:null
-    disabled=(el.disabled)?el.disabled:false
-    let b = new MessageButton()
-    .setCustomId(id)
-	.setLabel(label)
-	.setStyle(style)
-	.setDisabled(disabled)
-    .setEmoji(emoji)
-  
-    console.log(b)
-    
-    return b
-  }
-  const emoji = {
-  lock:'🔐'
-  ,unlock:'🔓'
-}
-  let agr=[
-    {0:{style:'PRIMARY'},1:{style:'DANGER'}}
-  ]
-  let target = 'chat$'+message.channel.id+'$'+row_name+'.'
- // let target2=
-  let obj ={
-    lock:{0:{style:'SECONDARY','emoji':'🔓',id:target+'lock$0$1$key$1'},1:{style:'DANGER',emoji:'🔐',id:target+'lock$1$0$key$0'}}
-    ,lecture:{0:{style:'SECONDARY',emoji:'📢',id:target+'lecture$0$1$micro$1'},1:{style:'SUCCESS',emoji:'🔇',id:target+'lecture$1$0$micro$0'}}
-  ,textlock:{0:{style:'SECONDARY',emoji:'📖',id:target+'textlock$0$1'},1:{style:'DANGER',emoji:'📔',id:target+'textlock$1$0'}}
- ,reset:{0:{style:'SECONDARY',emoji:'♻️',id:target+'reset$0$1'},1:{style:'PRIMARY',emoji:'♻️',id:target+'reset$1$1'}}
-    ,key:{0:{style:'SECONDARY',emoji:'🔑',id:target+'key$0$0',disabled:true},1:{style:'DANGER',emoji:'🔑',id:target+'key$1$1'}}
-    ,micro:{0:{style:'SECONDARY',emoji:'🎙️',id:target+'micro$0$0',disabled:true},1:{style:'SUCCESS',emoji:'🎙️',id:target+'micro$1$1'}}
-  ,ban:{0:{style:'SECONDARY',emoji:'🚫',id:target+'ban$0$0'},1:{style:'PRIMARY',emoji:'♻️',id:target+'ban$1$1'}}
-  ,trans:{0:{style:'SECONDARY',emoji:'👑',id:target+'trans$0$0'},1:{style:'PRIMARY',emoji:'♻️',id:target+'trans$1$1'}}
-    ,'null':{0:{style:'SECONDARY',emoji:'♻️',id:target+'null$0$0'},1:{style:'PRIMARY',emoji:'♻️',id:target+'null$1$1'}}
- 
-  }
-  
-  
-  let i=0
-   const row = await new MessageActionRow()
-	
-   
-   for(let key in objStore){
-     
-     let el = obj[key][objStore[key]]
-    console.log(el)
-     
-    store.chats.buttons[key]={row_name:row_name}
-     row.addComponents(Button(el))
-   }
-  console.log('---------------------------')
-  //console.log(row)
-   
-   row.custom_id=row_name
-  
- return row
-}catch(err){console.log(err);};
-};//
-//___
-
-
-
-
-//---------------------
-exports.Menu=async(client,message)=>{
-try{ 
-    let state = {
-  //    arr:
-      
-    }
-   
-  if(!store.chats[message.channel.id]) store.chats[message.channel.id]={}
-   let BaseRow = await module.exports.buildRow(client,message,'baseRow',{lock:0,lecture:0,reset:0})
-   let PermsRow = await module.exports.buildRow(client,message,'permsRow',{key:0,micro:0,ban:0,trans:0,'null':0})
-   
-   return [BaseRow,PermsRow]
-  
-}catch(err){console.log(err);};
-};//
 //___
 //______________________________EVENTS PRIMITIVE
 module.exports.events_primitive={};
@@ -202,7 +133,7 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{tr
            console.log('it___________________________-')
  
             console.log('but int')
- 
+ x('ic')
            
            if(!i.isButton()) return
            
@@ -225,34 +156,35 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{tr
       let sync=v[5]
       let sync_row=''
       let sync_param=sync
-      //if(sync&&sync.indexOf('.')!=-1) {let subarr = sync.split('.'); sync_row=subarr[0];sync_param=subarr[1]}
-console.log(store.chats)
-  console.log(sync)
-      sync_row = store.chats.buttons[sync].row_name
+      //
+      
+if(sync)      sync_row = state.chats.buttons[sync].row_name
       let syncval=v[6]
       
      //---
      let user_id=i.user.id
       let div = '$'
-    // console.log(store.chats[channel_id])
-  //console.log(sync_row)
-      if(sync){store.chats[channel_id][sync_row][sync_param]=syncval} //----if button has sync parameter, set new value to this one
-     store.chats[channel_id][row_name][param]=newvalue //set nev value
-     
+    
+      if(sync){state.chats[channel_id][sync_row][sync_param]=syncval} //----if button has sync parameter, set new value to this one
+   
   
-      // BaseRow = await module.exports.BaseRow(client,i.message)//build the button row
-  // PermsRow = await module.exports.PermsRow(client,i.message)//build the button row
-  let Menu = await module.exports.Menu(client,i.message)
-       if(Menu) await i.message.edit({components:Menu})//render message
- // let str = 'xxx$chats$'+param+div+newvalue+div+user_id
-  //------------------
-     if(['key','micro','ban','null','transfer'].includes(param)){
-       
+  state.chats[channel_id][row_name][param]=newvalue //set nev value
+
+  
+  
+  let Rows = await componentRows.Rows(client,state,i.message.channel.id)
+       if(Rows) await i.message.edit({components:Rows})//render message
+
+  let b = state.chats.getButtons(target)
+
+  b = b[param]
+ x(b)
+  if(b.type&&b.type=='message') {
         let filter = (message)=>{return message.author.id==i.user.id}
-       let msg_arr = await i.channel.messages.fetch({limit:5}).then(collected=>{return collected})
+       let msg_arr = await i.channel.messages.fetch({limit:50}).then(collected=>{return collected})
        msg_arr= await msg_arr.filter((m)=>m.author.id==i.user.id)
        let msg= msg_arr.first()
-       newvalue=msg.id
+       newvalue=msg.channel.id+"."+msg.id
         
      }
  let str = 'xxx$chats$'+param+'$'+i.guild.id+'$'+i.user.id+'$'+newvalue
@@ -260,7 +192,7 @@ console.log(store.chats)
   let ch = i.guild.channels.cache.find(n=>n.name==client.x.ch.transfer)
   
   ch.send(str)
-  return
+  return 
 
    
   
