@@ -1110,8 +1110,19 @@ exports.buttonInteractionMessage=async(client,type,guild,owner_id,value)=>{try{ 
            let message_id=arr[1]
            let message = await guild.channels.cache.get(channel_id).messages.fetch(message_id)
           await  console.log(message.content)
+           let mmb = message.mentions.members.first()
+           if(!mmb) return console.log('no mmb')
            if(type=='ban'){
-           await module.exports.setPermsAction(client,guild,type,owner_id,item_mmb_id)
+           await module.exports.setPermsAction(client,guild,[ban1],owner_id,mmb.id)
+           }
+          if(type=='key'){
+           await module.exports.setPermsAction(client,guild,[key1],owner_id,mmb.id)
+           }
+            if(type=='micro'){
+           await module.exports.setPermsAction(client,guild,[micro1],owner_id,mmb.id)
+           }
+            if(type=='null'){
+           await module.exports.setPermsAction(client,guild,[null1],owner_id,mmb.id)
            }
           return 1;
 }catch(err){console.log(err);};};
