@@ -1054,7 +1054,7 @@ await voice_channel.updateOverwrite(item_mmb, { CONNECT:true}).then().catch(err=
 }else if(type=='micro1'){
 await voice_channel.updateOverwrite(item_mmb, { SPEAK:true}).then().catch(err=>console.log(err));
     str='Выдан секретный микрофон для возможности говорить при активированном режиме тиховсе'
-}else if(type==='null1'){
+}else if(type=='null1'){
 await voice_channel.updateOverwrite(item_mmb, { SPEAK:null, CONNECT:null}).then().catch(err=>console.log(err));
     str='Все настройки для данного участника сброшены'
 }
