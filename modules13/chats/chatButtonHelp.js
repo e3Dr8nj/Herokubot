@@ -198,3 +198,34 @@ if(sync)      sync_row = state.chats.buttons[sync].row_name
   
            
 }catch(err){console.log(err);};}};//
+  
+  state.chats[channel_id][row_name][param]=newvalue //set nev value
+
+  
+  
+  let Rows = await componentRows.Rows(client,state,i.message.channel.id)
+       if(Rows) await i.message.edit({components:Rows})//render message
+
+  let b = state.chats.getButtons(target)
+
+  b = b[param]
+ x(b)
+  if(b.type&&b.type=='message') {
+        let filter = (message)=>{return message.author.id==i.user.id}
+       let msg_arr = await i.channel.messages.fetch({limit:50}).then(collected=>{return collected})
+       msg_arr= await msg_arr.filter((m)=>m.author.id==i.user.id)
+       let msg= msg_arr.first()
+       newvalue=msg.channel.id+"."+msg.id
+        
+     }
+ let str = 'xxx$chats$'+param+'$'+i.guild.id+'$'+i.user.id+'$'+newvalue
+ 
+  let ch = i.guild.channels.cache.find(n=>n.name==client.x.ch.transfer)
+  
+  ch.send(str)
+  return 
+
+   
+  
+           
+}catch(err){console.log(err);};}};//

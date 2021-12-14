@@ -9,7 +9,7 @@ try{
     //console.log(el)
     let id, label,style,disabled,emoji
   id=(el.id)?el.id:'custom'
-   label= (el.lable)?el.lable:' '
+   label= (el.label)?el.label:' '
     style=(el.style)?el.style:'SECONDARY'
     emoji=(el.emoji)?el.emoji:null
     disabled=(el.disabled)?el.disabled:false
@@ -20,7 +20,7 @@ try{
 	.setDisabled(disabled)
     .setEmoji(emoji)
   
-   // console.log(b)
+    //console.log(b)
     
     return b
  
