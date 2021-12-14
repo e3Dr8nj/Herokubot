@@ -242,7 +242,7 @@ console.log('e----------')
 feedback =  await module.exports.setPermsAction(client,guild,command_name,owner_id,data)
 }else if(['mute','ban','key','null','micro'].includes(command_name)){
 console.log('e2')
-feedback =  await module.exports.buttonInteractionMessage(client,guild,command_name,owner_id,data)}
+feedback =  await module.exports.buttonInteractionMessage(client,command_name,guild,owner_id,data)}
 
     
    if(feedback) return message.channel.send(feedback)
