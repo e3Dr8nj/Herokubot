@@ -1108,8 +1108,8 @@ exports.buttonInteractionMessage=async(client,type,guild,owner_id,value)=>{try{ 
            let arr = value.split(".")
            let channel_id=arr[0]
            let message_id=arr[1]
-           let message = guild.channels.cache.get(channel_id).cache.get(message_id)
-            console.log(message.content)
+           let message = await guild.channels.cache.get(channel_id).messages.fetch(message_id)
+          await  console.log(message.content)
            if(type=='ban'){
            await module.exports.setPermsAction(client,guild,type,owner_id,item_mmb_id)
            }
