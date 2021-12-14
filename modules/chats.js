@@ -245,7 +245,8 @@ console.log('e2')
 feedback =  await module.exports.buttonInteractionMessage(client,guild,command_name,owner_id,data)}
 
     
-   return message.channel.send(feedback)
+   if(feedback) return message.channel.send(feedback)
+   return
   }
 
 
