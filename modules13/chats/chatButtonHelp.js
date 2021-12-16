@@ -1,6 +1,8 @@
 ﻿let checkon=0
 let mod = 'buttonsInteractionMode'
 let checkpoint=0
+
+
 let x=(checkon)?(val)=>console.log('check'+ checkpoint++ +" from "+mod+' '+val):()=>{}
 const { MessageActionRow, MessageEmbed, MessageButton, MessageSelectMenu } = require('discord13.js');
 //const componentButton = require('./components/Button.js')
