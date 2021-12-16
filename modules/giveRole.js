@@ -1,5 +1,5 @@
 ﻿let rhRoles = require(`./rhRolesModule.js`);//t
-let rhJSON = require(`./rhJSON.js`);//t
+
 exports.rh={
   disable:false,
   commands:{disable:false},
