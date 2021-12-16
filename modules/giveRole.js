@@ -54,6 +54,7 @@ module.exports.commands.x000cmd0={aliase:'выдать', run:async(client,messag
   //-----------------------test
 // let t= await rhJSON.json.getTable(message.channel,'rolesCast')
   //--------------------------test
+  message.channel.send('test2')
   if(args[1]=="роль"){
     //check if mmb has roles
   
