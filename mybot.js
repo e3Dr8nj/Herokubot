@@ -1,4 +1,10 @@
-﻿require('dotenv').config();
+﻿let x={
+  ch:{
+    transfer:'transfer'
+    ,log_id:'691751315742654554'
+  }
+}
+require('dotenv').config();
 //___
 let env = {}
 env.cnl_roles='👤▸выбрать_роль'
@@ -6,6 +12,7 @@ env.rl_muted='☣'
 //___
 const Discord = require("discord.js");
 const client = new Discord.Client();
+client.x=x;
 client.lang=1;
 client.SERVER_ID='301063859702071316';
 //client.SERVER_ID='476431736813912064';
