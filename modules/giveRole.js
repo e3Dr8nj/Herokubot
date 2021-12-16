@@ -155,6 +155,7 @@ await delay(1000);
   //
   // let text_channels_arr= await client.guilds.cache.get(client.SERVER_ID).channels.cache.filter(ch=>ch.type=="text"&&ch.parent&&ch.parent.id==exports.e.voice_category_id);
    let obj = JSON.parse(msg_arr.first().content)
+  if(!obj) return
    exports.e.roles=obj.roles
   exports.e.mmb=obj.mmb
    return;
