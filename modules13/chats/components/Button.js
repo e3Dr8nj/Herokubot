@@ -5,8 +5,8 @@ const { MessageActionRow, MessageEmbed, MessageButton, MessageSelectMenu } = req
 try{ 
   
   
-    //console.log('button')
-    //console.log(el)
+   // console.log('button')
+   // console.log(el)
     let id, label,style,disabled,emoji
   id=(el.id)?el.id:'custom'
    label= (el.label)?el.label:' '
@@ -20,7 +20,7 @@ try{
 	.setDisabled(disabled)
     .setEmoji(emoji)
   
-    //console.log(b)
+   // console.log(b)
     
     return b
  

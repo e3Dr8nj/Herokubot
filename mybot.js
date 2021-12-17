@@ -125,7 +125,8 @@ client13.x={
     transfer:'transfer'
   }
 }
-
+client13.x.inputPrefix='x13'
+client13.x.rewirePrefix='rewx13'
 client13.login();
 
 //------------031221
