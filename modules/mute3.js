@@ -82,6 +82,7 @@ module.exports.commands.muteWarn={ on:true, aliase:'редупреждение',
                    message.channel.send( 'Незнание закона не освобождает от ответственности. <#301319871981944834>'); return;
               };
               let bec = args.slice(2).join(' ')
+              console.log(args)
               let rnd = Math.floor(Math.random()*ph.warn.length);           
                     message.channel.send(mmb.toString()+" "+ph.warn[rnd]);
                     await module.exports.log(client,message,{name:'Предупреждение',description:' предупредил '+mmb.toString()+' '+mmb.user.username+mmb.user.discriminator+' ',color:'red2',cose:bec});
@@ -267,6 +268,7 @@ module.exports.commands.timemute={ on:true, aliase:'ут', run:async(client,mess
 //___ 
 
              // if(bec) {bcs= '\n причина: '+bec;}; 
+               if(bec) bcs = bec
               let super_moderator_role = message.member.guild.roles.cache.find(r=>r.name==module.exports.e.super_moderator_name);
               if(!!super_moderator_role&&message.member.roles.cache.get(super_moderator_role.id)){allow_mute=true;};
               
