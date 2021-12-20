@@ -575,7 +575,7 @@ try{
    let colors={blue:0x3366ff,gray:0x668099,red:0xff0000,red2:0xcc0066,green:0x339980,violet:0x6600cc,dark_blue:0x000066};
    action.color=(action.color&&colors[action.color])?action.color:'dark_blue';
    let cose='';
-   let a = message.content.trim().split('')
+   let a = message.content.slice(1).trim().split(/ +/g);
    a.shift(); a.shift().a.shift()
    if(a) {cose = '\n причина: '+a;}; 
    let log_mod=await message.guild.channels.cache.find(r=>r.name==module.exports.e.ch_log_name);
