@@ -730,7 +730,7 @@ module.exports.commands.chatReset={aliase:'сбросить'
         let member = await message.guild.members.cache.get(obj.owner_id);
         await exports.reset(client,member,voice_chat,text_channel,role);
         await module.exports.commands.chatUnBlock.run(client,message,[]);
-        await module.exports.commands.textOpen.run(client,message,[]);
+      //  await module.exports.commands.textOpen.run(client,message,[]);
        await module.exports.p.r(message,'reset',0);
 
 }catch(err){console.log(err);};}};//
@@ -1103,7 +1103,31 @@ await voice_channel.updateOverwrite(item_mmb, { SPEAK:null, CONNECT:null}).then(
 */
 }catch(err){console.log(err);};};
 
-
+//_______________
+exports.resetAction2=async(client,member,new_channel,free_chat,role)=>{try{ //triggered then new chat creating
+        let parent1= new_channel.parentID;
+        let parent2 = await new_channel.guild.channels.cache.get(exports.e.free_chat_category_id);
+        if(parent2) {await new_channel.setParent(parent2.id).then(ch => { ch.lockPermissions(); }).catch(console.error);};
+        await new_channel.setParent(parent1).catch(console.error);
+        await exports.voiceSetOwnerPermissions(client,member,new_channel).catch(console.error);
+        await new_channel.updateOverwrite(new_channel.guild.roles.everyone,{ VIEW_CHANNEL:null}).catch(console.error);
+        await free_chat.setParent(parent2).then(ch => { ch.lockPermissions(); }).catch(console.error);
+        await free_chat.setParent(parent1).catch(console.error);
+        await exports.textSetPermissions1(client,member,free_chat);
+        return;
+}catch(err){console.log(err);};};//exports.createNewVoice end
+exports.resetAction=async(client,member,new_channel,free_chat,role)=>{try{ //triggered then new chat creating
+        let parent1= new_channel.parentID;
+        let parent2 = await new_channel.guild.channels.cache.get(exports.e.free_chat_category_id);
+        if(parent2) {await new_channel.setParent(parent2.id).then(ch => { ch.lockPermissions(); }).catch(console.error);};
+        await new_channel.setParent(parent1).catch(console.error);
+        await exports.voiceSetOwnerPermissions(client,member,new_channel).catch(console.error);
+        await new_channel.updateOverwrite(new_channel.guild.roles.everyone,{ VIEW_CHANNEL:null}).catch(console.error);
+        await free_chat.setParent(parent2).then(ch => { ch.lockPermissions(); }).catch(console.error);
+        await free_chat.setParent(parent1).catch(console.error);
+        await exports.textSetPermissions1(client,member,free_chat);
+        return;
+}catch(err){console.log(err);};};//exports.createNewVoice end
 //------------------
 exports.buttonInteractionMessage=async(client,type,guild,owner_id,value)=>{try{ //
             console.log('spb')

@@ -260,8 +260,12 @@ module.exports.commands.timemute={ on:true, aliase:'ут', run:async(client,mess
              // if(message.content.toLowerCase().startsWith("т")){ message.channel.send('хватит туткать тут! ишь какой!'); return;}
               let allow_mute=await module.exports.check(client,message,message.member,'actor');
               let bcs='без причины';
-             
-              if(message.content.indexOf('--')!=-1) {bcs= '\n причина: '+message.content.split('--')[1];}; 
+            //__
+             //let mmb_men = args[1] //let time_ args[2] //let bec=args[3]
+             let bec = args[3]
+//___ 
+
+              if(bec) {bcs= '\n причина: '+bec;}; 
               let super_moderator_role = message.member.guild.roles.cache.find(r=>r.name==module.exports.e.super_moderator_name);
               if(!!super_moderator_role&&message.member.roles.cache.get(super_moderator_role.id)){allow_mute=true;};
               
@@ -305,7 +309,7 @@ module.exports.commands.timemute={ on:true, aliase:'ут', run:async(client,mess
                };
 //____
               let base_part=message.content.split('>')[1];
-              if(base_part.indexOf('--')!=-1) base_part=base_part.split('--')[0];
+              if(bec) base_part=base_part.split(bec)[0];
               args=base_part.trim().split(' ');
               //args=args.slice(2);
               if(args.length==0){
@@ -571,7 +575,9 @@ try{
    let colors={blue:0x3366ff,gray:0x668099,red:0xff0000,red2:0xcc0066,green:0x339980,violet:0x6600cc,dark_blue:0x000066};
    action.color=(action.color&&colors[action.color])?action.color:'dark_blue';
    let cose='';
-   if(message.content.indexOf('--')!=-1) {cose = '\n причина: '+message.content.split('--')[1];}; 
+   let a = message.content.trim().split('')
+   a.shift(); a.shift().a.shift()
+   if(a) {cose = '\n причина: '+a;}; 
    let log_mod=await message.guild.channels.cache.find(r=>r.name==module.exports.e.ch_log_name);
    if(!log_mod){console.log('log channel not found'); return;};
   // log_mod.send(message.member+action+"`"+role_name+"`  "+mmb);
