@@ -582,7 +582,7 @@ try{
    
   
 
-   if(cose) {cose = '\n причина: '+b.join(' ');}; 
+   if(cose) {cose = '\n причина: '+cose;}; 
    let log_mod=await message.guild.channels.cache.find(r=>r.name==module.exports.e.ch_log_name);
    if(!log_mod){console.log('log channel not found'); return;};
   // log_mod.send(message.member+action+"`"+role_name+"`  "+mmb);
