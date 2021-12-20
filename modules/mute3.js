@@ -81,9 +81,10 @@ module.exports.commands.muteWarn={ on:true, aliase:'редупреждение',
                    //let rnd = Math.floor(Math.random()*ph.warn.length);           
                    message.channel.send( 'Незнание закона не освобождает от ответственности. <#301319871981944834>'); return;
               };
+              let bec = args.slice(2).join(' ')
               let rnd = Math.floor(Math.random()*ph.warn.length);           
                     message.channel.send(mmb.toString()+" "+ph.warn[rnd]);
-                    await module.exports.log(client,message,{name:'Предупреждение',description:' предупредил '+mmb.toString()+' '+mmb.user.username+mmb.user.discriminator+' ',color:'red2'});
+                    await module.exports.log(client,message,{name:'Предупреждение',description:' предупредил '+mmb.toString()+' '+mmb.user.username+mmb.user.discriminator+' ',color:'red2',cose:bec});
               return;        
           
 }catch(err){console.log(err);};}};//
@@ -265,7 +266,7 @@ module.exports.commands.timemute={ on:true, aliase:'ут', run:async(client,mess
              let bec = args.slice(3).join(' ')
 //___ 
 
-              if(bec) {bcs= '\n причина: '+bec;}; 
+             // if(bec) {bcs= '\n причина: '+bec;}; 
               let super_moderator_role = message.member.guild.roles.cache.find(r=>r.name==module.exports.e.super_moderator_name);
               if(!!super_moderator_role&&message.member.roles.cache.get(super_moderator_role.id)){allow_mute=true;};
               
@@ -279,7 +280,7 @@ module.exports.commands.timemute={ on:true, aliase:'ут', run:async(client,mess
                  message.channel.send(message.member.toString()+' Снимаются роли доступа');
                  await module.exports.insertMmbRoles(client,message,message.member,2*1000*60,bcs);
                 message.channel.send(' Накладывается печать немоты 🤐');
-                await module.exports.log(client,message,{name:'Игрался с мутом ',description:message.member.user.username+message.member.user.discriminator +' неправильно использовал команду и был за это замучен на 2 минуты',color:'violet'});
+                await module.exports.log(client,message,{name:'Игрался с мутом ',description:message.member.user.username+message.member.user.discriminator +' неправильно использовал команду и был за это замучен на 2 минуты',color:'violet',cose:bec});
               
                 await module.exports.delay(2*1000*60);
                        // return module.exports.commands.unmute.run(client,message,mmb,0);
@@ -574,12 +575,12 @@ exports.log=async(client,message,action,role_name,mmb)=>{
 try{ 
    let colors={blue:0x3366ff,gray:0x668099,red:0xff0000,red2:0xcc0066,green:0x339980,violet:0x6600cc,dark_blue:0x000066};
    action.color=(action.color&&colors[action.color])?action.color:'dark_blue';
-   let cose='';
+   let cose=(action.cose)?action.cose:'';
   
-   let a = message.content.slice(1).trim().split(/ +/g);
-  let b = a.slice(3)
+   
+  
 
-   if(b) {cose = '\n причина: '+b.join(' ');}; 
+   if(cose) {cose = '\n причина: '+b.join(' ');}; 
    let log_mod=await message.guild.channels.cache.find(r=>r.name==module.exports.e.ch_log_name);
    if(!log_mod){console.log('log channel not found'); return;};
   // log_mod.send(message.member+action+"`"+role_name+"`  "+mmb);
