@@ -262,7 +262,7 @@ module.exports.commands.timemute={ on:true, aliase:'ут', run:async(client,mess
               let bcs='без причины';
             //__
              //let mmb_men = args[1] //let time_ args[2] //let bec=args[3]
-             let bec = args[3]
+             let bec = args.slice(3).join(' ')
 //___ 
 
               if(bec) {bcs= '\n причина: '+bec;}; 
@@ -575,9 +575,11 @@ try{
    let colors={blue:0x3366ff,gray:0x668099,red:0xff0000,red2:0xcc0066,green:0x339980,violet:0x6600cc,dark_blue:0x000066};
    action.color=(action.color&&colors[action.color])?action.color:'dark_blue';
    let cose='';
+  
    let a = message.content.slice(1).trim().split(/ +/g);
-   a.shift(); a.shift().a.shift()
-   if(a) {cose = '\n причина: '+a;}; 
+  let b = a.slice(3)
+
+   if(b) {cose = '\n причина: '+b.join(' ');}; 
    let log_mod=await message.guild.channels.cache.find(r=>r.name==module.exports.e.ch_log_name);
    if(!log_mod){console.log('log channel not found'); return;};
   // log_mod.send(message.member+action+"`"+role_name+"`  "+mmb);
