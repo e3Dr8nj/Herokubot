@@ -39,7 +39,7 @@ client.on("raw", (...args) => {try{
 client.login();
 //____________
 
-const Discord2 = require("discord_ex.js");
+const Discord2 = require("discord.js");
 const client2 = new Discord2.Client();
 client2.env = env
 client2.lang=1;
@@ -47,8 +47,8 @@ client2.SERVER_ID='301063859702071316';
 //client2.SERVER_ID='476431736813912064';
 client2.prefix='\\';
 client2.prefix2='!';
-let RH2=require(`./raw2.js`);
-RH2.folder_name=`./modules2`;
+let RH2=require(`./raw.js`);
+RH2.folder_name=`./moduleslia`;
 
 client2.rateLimit=0;
 client2.rateLimitDate=0;
