@@ -62,7 +62,7 @@ client2.on("raw", (...args) => {try{
      RH2.run(client2,...args);
 }catch(err){console.log(err);}; });
 
-client2.login(process.env.LIA_TOKEN);
+client2.login(process.env.TOKEN4);
 
 //_______________
 
