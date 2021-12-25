@@ -38,7 +38,7 @@ client.on("raw", (...args) => {try{
 
 client.login();
 //____________
-
+/*
 const Discord2 = require("discord.js");
 const client2 = new Discord2.Client();
 client2.env = env
@@ -63,7 +63,7 @@ client2.on("raw", (...args) => {try{
 }catch(err){console.log(err);}; });
 
 //client2.login(process.env.TWINK);
-
+*/
 //_______________
 
 const Discord3 = require("discord.js");
