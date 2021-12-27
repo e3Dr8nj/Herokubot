@@ -200,6 +200,7 @@ module.exports.commands.someCommand={aliase:'aliase_for_command', run:async(clie
 //_________________________________________EVENTS_PART_________________________________________________
 module.exports.events={};
 
+
 module.exports.events.message={ on:true,run:async(client,message)=>{try{
     if(message.content.startsWith('xxx')) message.reply('ok')
 /* double click,modes
