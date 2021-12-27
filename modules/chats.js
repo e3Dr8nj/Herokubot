@@ -1171,7 +1171,7 @@ exports.modeActivate=async(client,type,guild,owner_id,value)=>{try{ //
           let afk=await voice_chat.guild.channels.cache.get(exports.e.afk_channel_id);
           
 	    voice_chat.members.map(m=>{
-	  	    if(afk&&m&&m.id!=exports.voice_channels[voice_chat.id].owner_id)) {
+	  	    if(afk&&m&&m.id!=exports.voice_channels[voice_chat.id].owner_id) {
      		    	m.voice.setChannel(afk.id).then(() => console.log(`Moved ${m.displayName}`)).catch(console.error);
 	      	};
       });
