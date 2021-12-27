@@ -1188,7 +1188,7 @@ exports.modeActivate=async(client,type,guild,owner_id,value)=>{try{ //
 }catch(err){console.log(err);};};
 //--
 //-------------
-/*
+
 exports.accessall=async(client,voice_chat)=>{try{ //
           voice_chat.members.map(m=>{
 		          if(m&&m.id!=exports.voice_channels[voice_chat.id].owner_id&&m.voiceChannelID==voice_chat.id) {
@@ -1196,4 +1196,3 @@ exports.accessall=async(client,voice_chat)=>{try{ //
 		           };
           });
 }catch(err){console.log(err);};};
-*/
