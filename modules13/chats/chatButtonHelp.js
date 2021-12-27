@@ -143,7 +143,7 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{tr
            
  
 	
-  await i.reply({content:`Команда обрабатывается`,ephemeral: true})
+ // await i.reply({content:`Команда обрабатывается`,ephemeral: true})
 
   let BaseRow,PermsRow={}
   
@@ -189,7 +189,11 @@ if(sync)      sync_row = state.chats.buttons[sync].row_name
        msg_arr= await msg_arr.filter((m)=>m.author.id==i.user.id)
         msg= msg_arr.first()
        newvalue=msg.channel.id+"."+msg.id
-        
+        //27.12
+      //  if(param)
+  
+    if(b.needmention&&!msg.mentions.members.first()) return i.reply({content:`Нужно прислать сообщение в этот канал с упоминанием ника или роли, лалка`,ephemeral: true})
+    //
      }
   if(b.report){
     
@@ -213,7 +217,7 @@ if(sync)      sync_row = state.chats.buttons[sync].row_name
   let ch = i.guild.channels.cache.find(n=>n.name==client.x.ch.transfer)
   
   ch.send(str)
-  return 
+  return i.reply({content:`Команда обрабатывается`,ephemeral: true})
 
    
   

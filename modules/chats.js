@@ -1162,7 +1162,37 @@ exports.modeActivate=async(client,type,guild,owner_id,value)=>{try{ //
            await voice_chat.updateOverwrite(voice_chat.guild.roles.everyone, { SPEAK: bool }).catch(console.error);
          }else   if(type=='lock'){
            bool = (value =='0')?null:false
+           //27.12.21
+             module.exoports.accessall(client,voice_chat)
+            //
            await voice_chat.updateOverwrite(voice_chat.guild.roles.everyone, { CONNECT: bool }).catch(console.error);
-         }
+         }else if(type=='broom'){
+//--27.12.21
+          let afk=await voice_chat.guild.channels.cache.get(exports.e.afk_channel_id);
+          
+	    voice_chat.members.map(m=>{
+	  	    if(afk&&m&&m.id!=exports.voice_channels[voice_chat.id].owner_id)) {
+     		    	m.voice.setChannel(afk.id).then(() => console.log(`Moved ${m.displayName}`)).catch(console.error);
+	      	};
+      });
+          
+
+        console.log('broomed')
+
+
+//--
+            }
+
           return 1;
 }catch(err){console.log(err);};};
+//--
+//-------------
+/*
+exports.accessall=async(client,m,voice_chat)=>{try{ //
+          voice_chat.members.map(m=>{
+		          if(m&&m.id!=exports.voice_channels[voice_chat.id].owner_id&&m.voiceChannelID==voice_chat.id) {
+     		          	voice_chat.updateOverwrite(m.user, { CONNECT:true }).then(() => console.log(`${m.displayName}`)).catch(console.error);;
+		           };
+          });
+}catch(err){console.log(err);};};
+*/
