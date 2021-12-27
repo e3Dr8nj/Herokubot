@@ -1164,7 +1164,7 @@ exports.modeActivate=async(client,type,guild,owner_id,value)=>{try{ //
          }else   if(type=='lock'){
            bool = (value =='0')?null:false
            //27.12.21
-             module.exoports.accessall(client,voice_chat)
+             module.exports.accessall(client,voice_chat)
             //
            await voice_chat.updateOverwrite(voice_chat.guild.roles.everyone, { CONNECT: bool }).catch(console.error);
          }else if(type=='broom'){
@@ -1189,7 +1189,7 @@ exports.modeActivate=async(client,type,guild,owner_id,value)=>{try{ //
 //--
 //-------------
 /*
-exports.accessall=async(client,m,voice_chat)=>{try{ //
+exports.accessall=async(client,voice_chat)=>{try{ //
           voice_chat.members.map(m=>{
 		          if(m&&m.id!=exports.voice_channels[voice_chat.id].owner_id&&m.voiceChannelID==voice_chat.id) {
      		          	voice_chat.updateOverwrite(m.user, { CONNECT:true }).then(() => console.log(`${m.displayName}`)).catch(console.error);;
