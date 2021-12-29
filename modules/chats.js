@@ -232,12 +232,22 @@ if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для
      let guild_id= props[3]
      let owner_id=props[4]
      let data=props[5]
+//----
 
+//--
    if(!module.exports.owners[owner_id]) {console.log(module.exports.owners);return message.channel.send('error:!module.exports.owners[owner_id]')}
   // let mmb = await message.guild.members.cache.get(member_id)
-   
-   let guild = client.guilds.cache.get(guild_id)
+  let guild = client.guilds.cache.get(guild_id)
    if(!guild) return
+
+  let fakeMessage = {
+    guild:guild
+    ,channel:guild.channels.cache.get(module.exports.owners[owner_id].text_channel.id)
+    ,member:guild.members.cache.get(owner_id)
+    ,author:client.users.cache.get(owner_id)
+    
+  }
+   
    if(['lecture','lock','textlock'].includes(command_name)){
       feedback=await module.exports.modeActivate(client,command_name,guild,owner_id,data)
    }else if(['mute1','ban1','key1','null1','micro1'].includes(command_name)){
@@ -251,10 +261,7 @@ feedback =  await module.exports.buttonInteractionMessage(client,command_name,gu
    if(feedback) return message.channel.send(feedback)
    return
   }else if(['reset']){
-    let fakeMessage = {
-      guild:guild
-      
-    }
+   
   
     feedback= await module.exports.commands.chatReset.run(client,fakeMessage)
   }
