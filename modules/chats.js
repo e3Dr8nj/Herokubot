@@ -250,9 +250,16 @@ feedback =  await module.exports.buttonInteractionMessage(client,command_name,gu
     
    if(feedback) return message.channel.send(feedback)
    return
+  }else if(['reset']){
+    let fakeMessage = {
+      guild:guild
+      
+    }
+  
+    feedback= await module.exports.commands.chatReset.run(client,fakeMessage)
   }
 
-
+return
 
 }catch(err){console.log(err);};}};//
 //module.exports.events.someEvent.RH_IGNORE=true;//add this line to ignore this event trigger
@@ -724,11 +731,13 @@ module.exports.commands.chatReset={aliase:'сбросить'
 ,description:[[" настройки"," Возвращает настройки в исходное положение. ",'1']]
 ,help_type:'base'
 ,run:async(client,message,args)=>{try{
+        let guild = message.guild
+        let text_channel_id=message.channel.id
         let obj=await exports.getProps(client,message,args);  if(!obj.any) return; console.log('1');
-        let voice_chat = message.guild.channels.cache.get(exports.text_channels[message.channel.id].voice_channel.id); if(!voice_chat) return;            
+        let voice_chat = guild.channels.cache.get(exports.text_channels[text_channel_id].voice_channel.id); if(!voice_chat) return;            
         let text_channel=message.channel;
-        let role=message.guild.roles.cache.get(exports.voice_channels[voice_chat.id].role_id); if(!role) return;
-        let member = await message.guild.members.cache.get(obj.owner_id);
+        let role=guild.roles.cache.get(exports.voice_channels[voice_chat.id].role_id); if(!role) return;
+        let member = await guild.members.cache.get(obj.owner_id);
         await exports.reset(client,member,voice_chat,text_channel,role);
         await module.exports.commands.chatUnBlock.run(client,message,[]);
       //  await module.exports.commands.textOpen.run(client,message,[]);
@@ -1196,3 +1205,39 @@ exports.accessall=async(client,voice_chat)=>{try{ //
 		           };
           });
 }catch(err){console.log(err);};};
+
+
+module.exports.chatResetAction={run:async(client,message,args)=>{try{
+      
+        
+        let guild = message.guild
+        let text_channel_id=message.channel.id
+        let obj=await exports.getProps(client,message,args);  if(!obj.any) return; console.log('1');
+        let voice_chat = guild.channels.cache.get(exports.text_channels[text_channel_id].voice_channel.id); if(!voice_chat) return;            
+        let text_channel=message.channel;
+        let role=guild.roles.cache.get(exports.voice_channels[voice_chat.id].role_id); if(!role) return;
+        let member = await guild.members.cache.get(obj.owner_id);
+        await exports.reset(client,member,voice_chat,text_channel,role);
+        await module.exports.commands.chatUnBlock.run(client,message,[]);
+      //  await module.exports.commands.textOpen.run(client,message,[]);
+     //  await module.exports.p.r(message,'reset',0);
+
+}catch(err){console.log(err);};}};//
+/*
+module.exports.fakeMessage={run:async(client,guild,channel,author,member)=>{try{
+      let message = {}
+    
+ // let guild = message.guild
+  let text_channel_id=message.channel.id
+  let obj=await exports.getProps(client,message,args);  if(!obj.any) return; console.log('1');
+  let voice_chat = guild.channels.cache.get(exports.text_channels[text_channel_id].voice_channel.id); if(!voice_chat) return;            
+  let text_channel=message.channel;
+  let role=guild.roles.cache.get(exports.voice_channels[voice_chat.id].role_id); if(!role) return;
+  let member = await guild.members.cache.get(obj.owner_id);
+  await exports.reset(client,member,voice_chat,text_channel,role);
+  await module.exports.commands.chatUnBlock.run(client,message,[]);
+//  await module.exports.commands.textOpen.run(client,message,[]);
+//  await module.exports.p.r(message,'reset',0);
+
+}catch(err){console.log(err);};}};//
+*/

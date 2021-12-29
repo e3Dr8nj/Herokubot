@@ -23,7 +23,7 @@ exports.d={
 //___________ENVORIMENTAL//envorimental set, elements accesed by module.exports.e.some_envorimental
 exports.e={
  
-    tag_time:(1000*60*60*4)-(1000*60)
+    tag_time:(1000*60*60*4)-(1000*1)
      //tag_time:1000*60*1
     ,chnl_name:'🔘▸spam-b◉t'
     ,role_name : '💥'
@@ -42,7 +42,7 @@ module.exports.events.message={ on:true,  run:async(client,message)=>{try{
 */
              
                 if((message.author.bot&& message.embeds[0]&&message.embeds[0].title&&message.embeds[0].title.startsWith('Сервер Up'))||(message.content=='sup test'&&!message.author.bot )||(message.author.id=='464272403766444044')){ client.suped=true;
-message.channel.send('а теперь /like  <:28:589907105717157909>');
+message.channel.send('а теперь /like  <:17:925640924451713044> ');
  return;
 };
 
@@ -73,9 +73,9 @@ message.channel.send('а теперь /like  <:28:589907105717157909>');
                 await delay(1000);
                 client.suped=false;
 */
-                message.channel.send('<:28:589907105717157909>'); 
+                message.channel.send('<:17:925640924451713044>'); 
                 
-                message.channel.send('а теперь напиши */up* пожалуйста <:28:589907105717157909> ');
+                message.channel.send('а теперь напиши */up* пожалуйста <:17:925640924451713044> ');
                // client.suped=false;
                 await  module.exports.changeChnlName(client,message.channel,'default');//change channel name to default
                 await module.exports.updateTime(client,message,time_msc);

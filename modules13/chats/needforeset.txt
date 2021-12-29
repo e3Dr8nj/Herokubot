@@ -1,0 +1,15 @@
+let message = {
+  guild:
+  channel:<relative>
+>>getProps
+
+
+}
+
+
+//__
+message.channel
+message.author
+message.member
+message.guild
+message.mentions
