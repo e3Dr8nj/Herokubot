@@ -162,7 +162,7 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{tr
       let sync_param=sync
       //
       console.log('s'+sync)
-if(sync)      sync_row = state.chats.buttons[sync].row_name
+if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
       let syncval=v[6]
       
      //---
