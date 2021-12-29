@@ -265,7 +265,7 @@ feedback =  await module.exports.buttonInteractionMessage(client,command_name,gu
 }else if(['reset'].includes(command_name)){
   console.log('reset')
  
-   feedback= await module.exports.chatResetAction(client,fakeMessage)
+   feedback= await module.exports.chatResetAction.run(client,fakeMessage)
  }
 
     
