@@ -168,8 +168,8 @@ if(sync)      sync_row = state.chats.buttons[sync].row_name
      //---
      let user_id=i.user.id
       let div = '$'
-    
-      if(sync&&sync!='resetall'){state.chats[channel_id][sync_row][sync_param]=syncval}else if(sync&&sync=='resetall'){
+    console.log(sync)
+      if(sync&&sync!='resetall'){state.chats[channel_id][sync_row][sync_param]=syncval}else if(sync=='resetall'){
         state.chats[channel_id]=false
         console.log('resetall case')
       }
