@@ -254,22 +254,23 @@ let author_ = client.users.cache.get(owner_id)
    
    if(['lecture','lock','textlock'].includes(command_name)){
       feedback=await module.exports.modeActivate(client,command_name,guild,owner_id,data)
-      return
+      
    }else if(['mute1','ban1','key1','null1','micro1'].includes(command_name)){
 console.log('e----------')
 feedback =  await module.exports.setPermsAction(client,guild,command_name,owner_id,data)
-return
+
 }else if(['mute','ban','key','null','micro'].includes(command_name)){
 console.log('e2')
-feedback =  await module.exports.buttonInteractionMessage(client,command_name,guild,owner_id,data)}
+feedback =  await module.exports.buttonInteractionMessage(client,command_name,guild,owner_id,data)
+}else if(['reset'].includes(command_name)){
+  console.log('reset')
+ 
+   feedback= await module.exports.commands.chatResetAction.run(client,fakeMessage)
+ }
 
     
    if(feedback) return message.channel.send(feedback)
    return
-  }else if(['reset'].includes(command_name)){
-   console.log('reset')
-  
-    feedback= await module.exports.commands.chatResetAction.run(client,fakeMessage)
   }
 
 return
