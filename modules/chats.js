@@ -239,12 +239,14 @@ if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для
   // let mmb = await message.guild.members.cache.get(member_id)
   let guild = client.guilds.cache.get(guild_id)
    if(!guild) return
-
+let channel_=guild.channels.cache.get(module.exports.owners[owner_id].text_channel.id)
+let member_ = guild.members.cache.get(owner_id)
+let authro = client.users.cache.get(owner_id)
   let fakeMessage = {
     guild:guild
-    ,channel:guild.channels.cache.get(module.exports.owners[owner_id].text_channel.id)
-    ,member:guild.members.cache.get(owner_id)
-    ,author:client.users.cache.get(owner_id)
+    ,channel:channel_
+    ,member:member_
+    ,author:author_
     
   }
    
