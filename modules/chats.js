@@ -641,8 +641,9 @@ module.exports.commands.chatUnBlock={aliase:'разблокировать'
         let obj=await exports.getProps(client,message,args);  if(!obj.any) return obj.any_no();
         let voice_chat = message.guild.channels.cache.get(exports.text_channels[message.channel.id].voice_channel.id); if(!voice_chat) return;
         exports.onChatUnBlockPerms(client,message.channel,voice_chat);
-        await module.exports.p.r(message,'unblocked',0);
-        return message.reply('Войсовый канал разблокирован, все желающие могут подключатся к нему');  ;
+       // await module.exports.p.r(message,'unblocked',0);
+        // message.reply('Войсовый канал разблокирован, все желающие могут подключатся к нему');  ;
+        return
 }catch(err){console.log(err);};}};//
 
 //_________________ban mmbs and roles
@@ -1235,7 +1236,7 @@ module.exports.chatResetAction={run:async(client,message,args)=>{try{
         await module.exports.commands.chatUnBlock.run(client,message,[]);
       //  await module.exports.commands.textOpen.run(client,message,[]);
      //  await module.exports.p.r(message,'reset',0);
-
+        return 'настройки войс чата и доступа сброшены'
 }catch(err){console.log(err);};}};//
 /*
 module.exports.fakeMessage={run:async(client,guild,channel,author,member)=>{try{
