@@ -41,7 +41,7 @@ module.exports.in={
     //lock:{0:{style:'SECONDARY',label:'тиховсе',emoji:'🔓',id:target+'lock$0$1$key$1'},1:{style:'DANGER',label:'обычный',emoji:'🔐',id:target+'lock$1$0$key$0'}}
     ,lecture:{0:{style:'SECONDARY',label:'🔇тиховсе',id:target+'lecture$0$1$micro$1'},1:{style:'SECONDARY',label:'🔇откл.тиховсе',id:target+'lecture$1$0$micro$0'}}
   ,textlock:{0:{style:'SECONDARY',emoji:'📖',id:target+'textlock$0$1'},1:{style:'DANGER',emoji:'📔',id:target+'textlock$1$0'}}
- ,reset:{0:{style:'SECONDARY',label:'♻️сбросить',id:target+'reset$0$1',disabled:false},1:{style:'PRIMARY',label:'♻️настройки сброшены',id:target+'reset$1$1'}}
+ ,reset:{0:{style:'SECONDARY',label:'♻️сбросить',id:target+'reset$0$1$lock$0',disabled:false},1:{style:'PRIMARY',label:'♻️настройки сброшены',id:target+'reset$1$1$lock$0'}}
   
         ,key:{0:{style:'SECONDARY',label:'🔑ключ @',id:target+'key$0$0',disabled:true},1:{style:'SECONDARY',label:'🔑ключ @',id:target+'key$1$1'},type:'message',needmention:true}
     ,micro:{0:{style:'SECONDARY',label:'🎙️микро @',id:target+'micro$0$0',disabled:true},1:{style:'SECONDARY',label:'🎙️микро @',id:target+'micro$1$1'},type:'message',needmention:true}
