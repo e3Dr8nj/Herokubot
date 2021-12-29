@@ -202,8 +202,8 @@ module.exports.events={};
 
 
 module.exports.events.message={ on:true,run:async(client,message)=>{try{
-  let fakeMessage={}
-  let command_name=''
+ // let fakeMessage={}
+//  let command_name=''
     if(message.content.startsWith('xxx')) message.reply('ok')
 /* double click,modes
 chats.lock.guild_id.owner_id  --  
@@ -230,12 +230,12 @@ if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для
       let mc = message.content
      let props = message.content.split('$')
      let module_name = props[1]
-     command_name = props[2]
+     let command_name = props[2]
      let guild_id= props[3]
      let owner_id=props[4]
      let data=props[5]
 //----
-
+console.log('cd '+command_name)
 //--
    if(!module.exports.owners[owner_id]) {console.log(module.exports.owners);return message.channel.send('error:!module.exports.owners[owner_id]')}
   // let mmb = await message.guild.members.cache.get(member_id)
@@ -244,7 +244,7 @@ if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для
 let channel_=guild.channels.cache.get(module.exports.owners[owner_id].text_channel.id)
 let member_ = guild.members.cache.get(owner_id)
 let author_ = client.users.cache.get(owner_id)
-  fakeMessage = {
+  let fakeMessage = {
     guild:guild
     ,channel:channel_
     ,member:member_
