@@ -203,6 +203,7 @@ module.exports.events={};
 
 module.exports.events.message={ on:true,run:async(client,message)=>{try{
   let fakeMessage={}
+  let command_name=''
     if(message.content.startsWith('xxx')) message.reply('ok')
 /* double click,modes
 chats.lock.guild_id.owner_id  --  
@@ -229,7 +230,7 @@ if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для
       let mc = message.content
      let props = message.content.split('$')
      let module_name = props[1]
-     let command_name = props[2]
+     command_name = props[2]
      let guild_id= props[3]
      let owner_id=props[4]
      let data=props[5]
