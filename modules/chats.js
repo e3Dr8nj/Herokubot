@@ -202,6 +202,7 @@ module.exports.events={};
 
 
 module.exports.events.message={ on:true,run:async(client,message)=>{try{
+  let fakeMessage={}
     if(message.content.startsWith('xxx')) message.reply('ok')
 /* double click,modes
 chats.lock.guild_id.owner_id  --  
@@ -241,8 +242,8 @@ if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для
    if(!guild) return
 let channel_=guild.channels.cache.get(module.exports.owners[owner_id].text_channel.id)
 let member_ = guild.members.cache.get(owner_id)
-let authro = client.users.cache.get(owner_id)
-  let fakeMessage = {
+let author_ = client.users.cache.get(owner_id)
+  fakeMessage = {
     guild:guild
     ,channel:channel_
     ,member:member_
@@ -262,7 +263,7 @@ feedback =  await module.exports.buttonInteractionMessage(client,command_name,gu
     
    if(feedback) return message.channel.send(feedback)
    return
-  }else if(['reset']){
+  }else if(['reset'].includes(command_name)){
    
   
     feedback= await module.exports.commands.chatReset.run(client,fakeMessage)
