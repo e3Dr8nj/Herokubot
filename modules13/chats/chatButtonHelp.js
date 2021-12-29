@@ -176,7 +176,7 @@ if(sync)      sync_row = state.chats.buttons[sync].row_name
       //----if button has sync parameter, set new value to this one
    
   
-  state.chats[channel_id][row_name][param]=newvalue //set nev value
+ if(sync!='resetall') state.chats[channel_id][row_name][param]=newvalue //set nev value
 
   
   
