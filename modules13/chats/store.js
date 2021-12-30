@@ -46,7 +46,7 @@ module.exports.in={
         ,key:{0:{style:'SECONDARY',label:'🔑ключ @',id:target+'key$0$0',disabled:true},1:{style:'SECONDARY',label:'🔑ключ @',id:target+'key$1$1'},type:'message',needmention:true}
     ,micro:{0:{style:'SECONDARY',label:'🎙️микро @',id:target+'micro$0$0',disabled:true},1:{style:'SECONDARY',label:'🎙️микро @',id:target+'micro$1$1'},type:'message',needmention:true}
   ,ban:{0:{style:'SECONDARY',label:'🚫забанить @',id:target+'ban$0$0'},1:{style:'PRIMARY',emoji:'♻️',id:target+'ban$1$1'},type:'message',needmention:true}
-  ,trans:{0:{style:'SECONDARY',label:'👑права @',id:target+'trans$0$0',disabled:true},1:{style:'PRIMARY',emoji:'♻️',id:target+'trans$1$1'},type:'message',needmention:true}
+  ,trans:{0:{style:'SECONDARY',label:'👑права @',id:target+'trans$0$0',disabled:false},1:{style:'PRIMARY',emoji:'♻️',id:target+'trans$1$1'},type:'message',needmention:true}
     ,'null':{0:{style:'SECONDARY',label:'♻️сбросить настройки для @',id:target+'null$0$0'},1:{style:'PRIMARY',emoji:'♻️',id:target+'null$1$1'},type:'message',needmention:true}
  ,'constructive':{0:{style:'SECONDARY',label:'👽конструктив',id:target+'constructive$0$0',disabled:true},1:{style:'PRIMARY',emoji:'♻️',id:target+'constructive$1$1'},type:'message',report:true}
 ,'game':{0:{style:'SECONDARY',label:'🎮игра',id:target+'game$0$0',disabled:true},1:{style:'PRIMARY',emoji:'♻️',id:target+'game$1$1'},type:'message',report:true}

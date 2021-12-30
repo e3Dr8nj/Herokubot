@@ -266,7 +266,13 @@ feedback =  await module.exports.buttonInteractionMessage(client,command_name,gu
   console.log('reset')
  
    feedback= await module.exports.chatResetAction.run(client,fakeMessage)
+ }else if(['transfer'].includes(command_name)){
+  console.log('transferx')
+  let msg1 = await i.channel.messages.fetch(data)
+  fakeMessages.mentions = msg1.mentions
+   feedback= await module.exports.transferAction.run(client,fakeMessage)
  }
+
 
     
    if(feedback) return message.channel.send(feedback)
@@ -1256,3 +1262,23 @@ module.exports.fakeMessage={run:async(client,guild,channel,author,member)=>{try{
 
 }catch(err){console.log(err);};}};//
 */
+//__
+module.exports.transferAction={aliase:'права'
+,description:[[" @ник"," Передать права на войс другому.",'1']]
+,help_type:'base'
+,run:async(client,message,args)=>{try{ console.log('redirect run action');
+//return
+        let obj = await exports.getProps(client,message,args); if (!obj.any) return obj.any_no(); if(!obj.mnt) return obj.no_mnt();
+       
+        let voice_channel=message.guild.channels.cache.get(exports.text_channels[message.channel.id].voice_channel.id);
+        await exports.SetOwnerPermissions(client,message.mentions.members.first(),voice_channel,message.channel);//b
+        await exports.ReSetOwnerPermissions(client,message.member,voice_channel,message.channel);//b
+      //  await message.channel.edit({topic:new_topic}).then().catch(console.error);
+       exports.text_channels[message.channel.id].data.owner_id=message.mentions.members.first().id;
+       let cnt = await JSON.stringify(exports.text_channels[message.channel.id].data); 
+         let msg_data= await a.LCH.messages.fetch(module.exports.text_channels[message.channel.id].msg_id).catch(err=>console.error);
+          await msg_data.edit(cnt);
+        await exports.boots.parseTextChannels.run(client);
+         await module.exports.p.r(message,'right',0,message.mentions.members.first());
+       return;
+}catch(err){console.log(err);};}};//
