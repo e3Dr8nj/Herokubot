@@ -268,8 +268,13 @@ feedback =  await module.exports.buttonInteractionMessage(client,command_name,gu
    feedback= await module.exports.chatResetAction.run(client,fakeMessage)
  }else if(['trans'].includes(command_name)){
   console.log('transferx')
-  let msg1 = await message.channel.messages.fetch(data)
-  fakeMessages.mentions = msg1.mentions
+  let arr = data.split(".")
+           let channel_id_=arr[0]
+           let message_id_=arr[1]
+           let m1 = await guild.channels.cache.get(channel_id_).messages.fetch(message_id_)
+          await  console.log(m1.content)
+  
+  fakeMessage.mentions = m1.mentions
    feedback= await module.exports.transferAction.run(client,fakeMessage)
  }
 
