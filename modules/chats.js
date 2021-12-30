@@ -266,7 +266,7 @@ feedback =  await module.exports.buttonInteractionMessage(client,command_name,gu
   console.log('reset')
  
    feedback= await module.exports.chatResetAction.run(client,fakeMessage)
- }else if(['transfer'].includes(command_name)){
+ }else if(['trans'].includes(command_name)){
   console.log('transferx')
   let msg1 = await i.channel.messages.fetch(data)
   fakeMessages.mentions = msg1.mentions
