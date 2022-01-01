@@ -222,10 +222,14 @@ if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
     let voice_join_id=client.client12.rh.modules.chats.data.owners[i.user.id].voice_channel.id
     console.log(client.client12.rh.modules.chats.data)
     let voice_join = i.guild.channels.cache.get(voice_join_id)
-    let invite = voice_join.createInvite()
-    .then(invite =>{ return invite.code})
+    let invite = await voice_join.createInvite()
+    .then(invite =>{
+
+       return invite.code
+      })
     .catch(console.error);
     let rep_chnl =  i.guild.channels.cache.get(e[i.guild.id].report_channel_id)
+    console.log(invite)
     if(rep_chnl) rep_chnl.send(invite)
     return i.reply({content:`Команда обрабатывается`,ephemeral: true})
     //
