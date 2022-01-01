@@ -1,4 +1,6 @@
-﻿//________________________________________TOOLS__________________________________________
+﻿const { ApplicationCommandPermissionTypes } = require("discord13.js/typings/enums");
+
+//________________________________________TOOLS__________________________________________
 let delay=async(duration)=>{await new Promise(resolve=>setTimeout(resolve,duration))}; 
      //* for delay inside async function, use it instead setTimeout
 let random =(max)=>{ return Math.floor(Math.random()*max);};
@@ -227,12 +229,13 @@ if(message.content.startsWith('xxx$chats')){
   //__________
     if(message.content.startsWith('xxx$chats$joinvoice')){
       //xxx$chats$joinvoice$ownerid$memberid
+      console.log('joinvoicex')
       let arr = message.content.split('$')
       let owner_id = arr[3]
       let member_id = arr[4]
-      let channel_=guild.channels.cache.get(module.exports.owners[owner_id].voice_channel.id)
-      let member_ = guild.members.cache.get(member_id)
-      await member_.voice.setChannel(new_channel).catch(console.error);
+      let channel_=message.guild.channels.cache.get(module.exports.owners[owner_id].voice_channel.id)
+      let member_ = message.guild.members.cache.get(member_id)
+      await member_.voice.setChannel(channel_).catch(console.error);
       return
     }
 
