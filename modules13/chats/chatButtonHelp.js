@@ -144,6 +144,19 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{tr
  
 	
  // await i.reply({content:`Команда обрабатывается`,ephemeral: true})
+ //-- Report sub interaction
+   if(i.component.customId.startsWith('joinvoice')){
+
+    let str = 'xxx$chats$'+i.component.customId+'$'+i.user.id
+ 
+  let ch = i.guild.channels.cache.find(n=>n.name==client.x.ch.transfer)
+  
+  ch.send(str)
+  return i.reply({content:`Команда обрабатывается`,ephemeral: true})
+
+     
+   }
+ //
 
   let BaseRow,PermsRow={}
   
@@ -207,8 +220,8 @@ if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
     //let report_row= await componentRow.Row(client,state,i.message.channel.id)
     
     let el = Object.assign({},b2['report'][0])
-    el.id=el.id+'|'+i.channel.id+'.'+i.user.id
-    
+    //el.id=el.id+'|'+i.channel.id+'.'+i.user.id
+    el.id='joinvoice'+'$'+i.user.id
     let button = await componentButton.Button(client,el)
     const report_row = new MessageActionRow()
 			.addComponents(button)

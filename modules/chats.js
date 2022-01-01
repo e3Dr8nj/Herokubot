@@ -224,6 +224,20 @@ transfer mmb
 
 */
 if(message.content.startsWith('xxx$chats')){
+  //__________
+    if(message.content.startsWith('xxx$chats$joinvoice')){
+      //xxx$chats$joinvoice$ownerid$memberid
+      let arr = message.content.split('$')
+      let owner_id = arr[3]
+      let member_id = arr[4]
+      let channel_=guild.channels.cache.get(module.exports.owners[owner_id].voice_channel.id)
+      let member_ = guild.members.cache.get(member_id)
+      await member_.voice.setChannel(new_channel).catch(console.error);
+      return
+    }
+
+
+  //__________
     let feedback ='.'
 if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для использования команды введите данные в формате: xxx$chats$<guildID>$<commandName>$<actionUserID>$<data>')
 //xxx$chats$mute$guild_id$owner_id$member_id
