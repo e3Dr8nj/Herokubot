@@ -9,9 +9,16 @@ require('dotenv').config();
 let env = {}
 env.cnl_roles='👤▸выбрать_роль'
 env.rl_muted='☣'
+let global_storage={}
+global_storage.setValue=([target,value])=>{
+   
+  global_storage[target]=value
+}
 //___
 const Discord = require("discord.js");
 const client = new Discord.Client();
+client.global_storage=global_storage
+
 client.x=x;
 client.lang=1;
 client.SERVER_ID='301063859702071316';
@@ -111,6 +118,9 @@ const client13 = new Discord13.Client({
 });
 //___________
 client13.client12=client
+//___________________
+client13.global_storage=global_storage
+
 //____________
 client13.prefix = "--";
 client13.SERVER_ID = "301063859702071316";

@@ -24,6 +24,9 @@ let chats={};
 chats.text_channels={};
 chats.voice_channels={};
 chats.owners={};
+module.exports.getChats=async(client)=>{try{ //
+  return chats
+}catch(err){console.log(err);};};
 exports.e={
   
   afk_channel_id:'587191278039466004'

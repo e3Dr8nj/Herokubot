@@ -217,8 +217,18 @@ if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
     let report_str='Конструктивная беседа\n'
     x(b)
     if(msg&&msg.content) report_str+=msg.content
+
+    //
+    let voice_join_id=client.client12.rh.modules.chats.data.owners[i.user.id].voice_channel.id
+    let voice_join = i.guil.channels.cache.get(voice_join_id)
+    let invite = voice_join.createInvite()
+    .then(invite =>{ return invite.code})
+    .catch(console.error);
+    let rep_chnl =  i.guild.channels.cache.get(e[i.guild.id].report_channel_id)
+    if(rep_chnl) rep_chnl.send(invite)
+    //
     //let report_row= await componentRow.Row(client,state,i.message.channel.id)
-    
+    /*
     let el = Object.assign({},b2['report'][0])
     //el.id=el.id+'|'+i.channel.id+'.'+i.user.id
     el.id='joinvoice'+'$'+i.user.id
@@ -228,6 +238,7 @@ if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
     
     let rep_chnl =  i.guild.channels.cache.get(e[i.guild.id].report_channel_id)
    if(rep_chnl) rep_chnl.send({content:report_str,"components": [report_row] })
+   */
   }
  let str = 'xxx$chats$'+param+'$'+i.guild.id+'$'+i.user.id+'$'+newvalue
  
