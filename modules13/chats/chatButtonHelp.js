@@ -220,7 +220,8 @@ if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
 
     //
     let voice_join_id=client.client12.rh.modules.chats.data.owners[i.user.id].voice_channel.id
-    let voice_join = i.guil.channels.cache.get(voice_join_id)
+    console.log(client.client12.rh.modules.chats.data)
+    let voice_join = i.guild.channels.cache.get(voice_join_id)
     let invite = voice_join.createInvite()
     .then(invite =>{ return invite.code})
     .catch(console.error);
