@@ -230,7 +230,7 @@ if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
     .catch(console.error);
     let rep_chnl =  i.guild.channels.cache.get(e[i.guild.id].report_channel_id)
     console.log(invite)
-    if(rep_chnl) rep_chnl.send(invite)
+    if(rep_chnl) rep_chnl.send('https://discord.gg/'+invite)
     return i.reply({content:`Команда обрабатывается`,ephemeral: true})
     //
     //let report_row= await componentRow.Row(client,state,i.message.channel.id)
