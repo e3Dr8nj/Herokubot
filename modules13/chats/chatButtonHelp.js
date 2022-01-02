@@ -231,6 +231,18 @@ if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
     let rep_chnl =  i.guild.channels.cache.get(e[i.guild.id].report_channel_id)
     console.log(invite)
     if(rep_chnl) rep_chnl.send('https://discord.gg/'+invite+'\n'+report_str)
+    //
+    let el = Object.assign({},b2['report'][0])
+    //el.id=el.id+'|'+i.channel.id+'.'+i.user.id
+    
+    let button = await componentButton.Button(client,el)
+    button.url = 'https://discord.gg/'+invite
+    const report_row = new MessageActionRow()
+			.addComponents(button)
+    
+    
+   if(rep_chnl) rep_chnl.send({content:report_str,"components": [report_row] })
+    //
     return i.reply({content:`Команда обрабатывается`,ephemeral: true})
     //
     //let report_row= await componentRow.Row(client,state,i.message.channel.id)
