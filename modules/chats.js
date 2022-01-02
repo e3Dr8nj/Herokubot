@@ -868,7 +868,7 @@ exports.reset=async(client,member,new_channel,free_chat,role)=>{try{ //triggered
         await new_channel.updateOverwrite(new_channel.guild.roles.everyone,{ VIEW_CHANNEL:null}).catch(console.error);
         await free_chat.setParent(parent2).then(ch => { ch.lockPermissions(); }).catch(console.error);
         await free_chat.setParent(parent1).catch(console.error);
-        await exports.textSetPermissions1(client,member,free_chat);
+        await exports.textSetPermissions1(client,member,free_chat,role);
         return;
 }catch(err){console.log(err);};};//exports.createNewVoice end
 
@@ -903,10 +903,12 @@ exports.ReSetOwnerPermissions=async(client,mmb,voice_channel,text_channel)=>{try
 }catch(err){console.log(err);};};
 //_______________
 
-exports.textSetPermissions1=async(client,mmb,free_chat)=>{try{ //on text chat create
+exports.textSetPermissions1=async(client,mmb,free_chat,role)=>{try{ //on text chat create
           await free_chat.updateOverwrite(mmb.user,{VIEW_CHANNEL:true,SEND_MESSAGES:true}).catch(console.error);
           await free_chat.updateOverwrite(mmb.guild.roles.everyone, { VIEW_CHANNEL: false }).catch(console.error);
-}catch(err){console.log(err);};};
+         if(role) await free_chat.updateOverwrite(role, { VIEW_CHANNEL: true }).catch(console.error);
+        
+        }catch(err){console.log(err);};};
 
 
 //______block
@@ -1169,7 +1171,7 @@ exports.resetAction2=async(client,member,new_channel,free_chat,role)=>{try{ //tr
         await new_channel.updateOverwrite(new_channel.guild.roles.everyone,{ VIEW_CHANNEL:null}).catch(console.error);
         await free_chat.setParent(parent2).then(ch => { ch.lockPermissions(); }).catch(console.error);
         await free_chat.setParent(parent1).catch(console.error);
-        await exports.textSetPermissions1(client,member,free_chat);
+        await exports.textSetPermissions1(client,member,free_chat,role);
         return;
 }catch(err){console.log(err);};};//exports.createNewVoice end
 exports.resetAction=async(client,member,new_channel,free_chat,role)=>{try{ //triggered then new chat creating
