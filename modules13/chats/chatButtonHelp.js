@@ -1,6 +1,6 @@
 ﻿let e={
   '476431736813912064':{report_channel_id:'733764937561800724'}
-  ,'301063859702071316':{report_channel_id:'473197950349082624'}
+  ,'301063859702071316':{report_channel_id:'532325036858671116'}
 }
 let checkon=0
 let mod = 'buttonsInteractionMode'

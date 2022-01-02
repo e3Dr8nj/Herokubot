@@ -18,8 +18,8 @@ let d2="Кнопки управления войсом:"
 +"\nКнопки оповещения о беседах:"
 
 +"\nперед тем как нажать на кнопку, можно послать в этот канал сообщение с уточнением темы беседы,начинающееся с точки"
-+"\n👽 - Пингует роль для конструктивной беседы"
-+"\n🎮Пингует роль игроманов"
++"\n👽 - оповещает о беседе"
++"\n🎮 - оповещает об игре"
 //+"\n🎞️ -кнопка оповещает о просмотре фильма в данном войсе и предлагает присоединится к беседе, возможно указать дополнительную информацию о фильме, для этого перед нажатием пришлите сообщение с темой в этот канал"
 
 
@@ -48,8 +48,8 @@ module.exports.in={
   ,ban:{0:{style:'SECONDARY',label:'🚫забанить @',id:target+'ban$0$0'},1:{style:'PRIMARY',emoji:'♻️',id:target+'ban$1$1'},type:'message',needmention:true}
   ,trans:{0:{style:'SECONDARY',label:'👑права @',id:target+'trans$0$0',disabled:false},1:{style:'PRIMARY',emoji:'♻️',id:target+'trans$1$1'},type:'message',needmention:true}
     ,'null':{0:{style:'SECONDARY',label:'♻️сбросить настройки для @',id:target+'null$0$0'},1:{style:'PRIMARY',emoji:'♻️',id:target+'null$1$1'},type:'message',needmention:true}
- ,'constructive':{0:{style:'SECONDARY',label:'👽конструктив',id:target+'constructive$0$0',disabled:false},1:{style:'PRIMARY',emoji:'♻️',id:target+'constructive$1$1'},type:'message',report:true}
-,'game':{0:{style:'SECONDARY',label:'🎮игра',id:target+'game$0$0',disabled:false},1:{style:'PRIMARY',emoji:'♻️',id:target+'game$1$1'},type:'message',report:true}
+ ,'constructive':{0:{style:'SECONDARY',label:'👽оповестить о беседе',id:target+'constructive$0$0',disabled:false},1:{style:'PRIMARY',emoji:'♻️',id:target+'constructive$1$1'},type:'message',report:true}
+,'game':{0:{style:'SECONDARY',label:'🎮оповестить об игре',id:target+'game$0$0',disabled:false},1:{style:'PRIMARY',emoji:'♻️',id:target+'game$1$1'},type:'message',report:true}
 , 'film':{0:{style:'SECONDARY',label:'🎞️фильм',id:target+'film$0$0'},1:{style:'PRIMARY',emoji:'♻️',id:target+'film$1$1'},type:'message'}
     ,broom:{0:{style:'SECONDARY',label:'🧹кик всех',id:target+'broom$0$0'},1:{style:'PRIMARY',emoji:'🧹',id:target+'broom$1$1'}}
   ,report:{0:{style:'LINK',label:'присоединится к беседе'},1:{style:'PRIMARY',emoji:'🧹',id:target+'broom$1$1'},type:'linkdata'}
