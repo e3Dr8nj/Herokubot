@@ -157,7 +157,16 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{tr
      
    }
  //
-
+//030122
+let hasvoice=client.client12.rh.modules.chats.data.owners[i.user.id]
+let ownerchannel=client.client12.rh.modules.chats.data.owners[i.user.id].text_channel.id==i.channel.id
+if(!hasvoice){
+  return i.reply({content:`Вы не являетесь владельцем войс чата, сначала заведите себе войс чат`,ephemeral: true})
+}
+if(!ownerchannel){
+  return i.reply({content:`Вы не являетесь владельцем этого чата`,ephemeral: true})
+}
+//
   let BaseRow,PermsRow={}
   
      let msg ={}
@@ -214,9 +223,7 @@ if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
      }
   if(b.report){
     
-    let report_str='Конструктивная беседа\n'
-    x(b)
-    if(msg&&msg.content&&msg.content.startsWith('.')) report_str+=msg.content.slice(1)
+   
 
     //
     let voice_join_id=client.client12.rh.modules.chats.data.owners[i.user.id].voice_channel.id
@@ -240,7 +247,10 @@ if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
     const report_row = new MessageActionRow()
 			.addComponents(button)
     
-    
+      let report_str='Беседа в '+voice_join.toString()+'\n'
+      x(b)
+      if(msg&&msg.content&&msg.content.startsWith('.')) report_str+=msg.content.slice(1)
+
    if(rep_chnl) rep_chnl.send({content:report_str,"components": [report_row] })
     //
     return i.reply({content:`Команда обрабатывается`,ephemeral: true})
