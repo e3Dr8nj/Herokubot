@@ -52,7 +52,7 @@ module.exports.in={
 ,'game':{0:{style:'SECONDARY',label:'🎮игра',id:target+'game$0$0',disabled:false},1:{style:'PRIMARY',emoji:'♻️',id:target+'game$1$1'},type:'message',report:true}
 , 'film':{0:{style:'SECONDARY',label:'🎞️фильм',id:target+'film$0$0'},1:{style:'PRIMARY',emoji:'♻️',id:target+'film$1$1'},type:'message'}
     ,broom:{0:{style:'SECONDARY',label:'🧹кик всех',id:target+'broom$0$0'},1:{style:'PRIMARY',emoji:'🧹',id:target+'broom$1$1'}}
-  ,report:{0:{style:'SECONDARY',label:'присоединится к беседе',id:target+'report$0$0'},1:{style:'PRIMARY',emoji:'🧹',id:target+'broom$1$1'},type:'linkdata'}
+  ,report:{0:{style:'LINK',label:'присоединится к беседе',id:target+'report$0$0'},1:{style:'PRIMARY',emoji:'🧹',id:target+'broom$1$1'},type:'linkdata'}
  
       }
       

@@ -8,18 +8,20 @@ try{
    // console.log('button')
    // console.log(el)
     let id, label,style,disabled,emoji
-  id=(el.id)?el.id:'custom'
+  id=(el.id)?el.id:null
+  //if(el.id) id=el.id
    label= (el.label)?el.label:' '
     style=(el.style)?el.style:'SECONDARY'
     emoji=(el.emoji)?el.emoji:null
     disabled=(el.disabled)?el.disabled:false
     let b = new MessageButton()
-    .setCustomId(id)
+    
 	.setLabel(label)
 	.setStyle(style)
 	.setDisabled(disabled)
     .setEmoji(emoji)
-  
+  if(id) b.setCustomId(id)
+  if(el.url) b.setUrl(el.url)
    // console.log(b)
     
     return b
