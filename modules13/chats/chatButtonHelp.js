@@ -230,7 +230,7 @@ if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
     .catch(console.error);
     let rep_chnl =  i.guild.channels.cache.get(e[i.guild.id].report_channel_id)
     console.log(invite)
-    if(rep_chnl) rep_chnl.send('https://discord.gg/'+invite+'\n'+report_str)
+   // if(rep_chnl) rep_chnl.send('https://discord.gg/'+invite+'\n'+report_str)
     //
     let el = Object.assign({},b2['report'][0])
     //el.id=el.id+'|'+i.channel.id+'.'+i.user.id
