@@ -216,7 +216,7 @@ if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
     
     let report_str='Конструктивная беседа\n'
     x(b)
-    if(msg&&msg.content) report_str+=msg.content
+    if(msg&&msg.content&&msg.content.startsWith('.')) report_str+=msg.content.slice(1)
 
     //
     let voice_join_id=client.client12.rh.modules.chats.data.owners[i.user.id].voice_channel.id
