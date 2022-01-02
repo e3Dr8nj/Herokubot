@@ -35,6 +35,7 @@ client.on("raw", (...args) => {
 
 exports.run = async(client,event)=>{try{
 //console.log('run')
+    
      if(!client.rh){await exports.buildRh(client)};
      let current_time=new Date().getTime();
 let i_time = client.rh.env.rateLimitDate;
