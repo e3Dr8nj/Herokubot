@@ -1219,18 +1219,19 @@ exports.modeActivate=async(client,type,guild,owner_id,value)=>{try{ //
            bool = (value =='0')?null:false
            //
             let afk=await voice_chat.guild.channels.cache.get(exports.e.afk_channel_id);
-          
+          let mmbs = []
 	    voice_chat.members.map(m=>{
        
 	  	   if(afk&&m&&m.id!=exports.voice_channels[voice_chat.id].owner_id) {
      		    	m.voice.setChannel(afk.id).then(() => console.log(`Moved ${m.displayName}`)).catch(console.error);
-	      	};
+	      	    mmbs.push(m)
+            };
       });
             //
            await voice_chat.updateOverwrite(voice_chat.guild.roles.everyone, { SPEAK: bool }).catch(console.error);
         //
         
-        voice_chat.members.map(m=>{
+        mmbs.map(m=>{
        
           if(afk&&m&&m.id!=exports.voice_channels[voice_chat.id].owner_id) {
                 m.voice.setChannel(voice_chat.id).then(() => console.log(`Moved ${m.displayName}`)).catch(console.error);
