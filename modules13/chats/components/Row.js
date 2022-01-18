@@ -1,43 +1,31 @@
 const { MessageActionRow, MessageEmbed, MessageButton, MessageSelectMenu } = require('discord13.js');
-const components_ = require('./Button.js')
-   const store= require('../store.js') 
-  exports.Row=async(client,state,row_name,ini,channel_id)=>{
+const componentRow = require('./Row.js')
+ const store= require('../store.js') 
+  exports.Rows=async(client,state,channel_id)=>{
 try{ 
   
+
    
-   //--
- 
-  let bRow = ini
-   if(!state.chats[channel_id][row_name]) {state.chats[channel_id][row_name]=Object.assign({},store.in.chats.rowsini[row_name])
-                                          }
-   
-  let objStore = state.chats[channel_id][row_name]
+  if(!state.chats[channel_id]) state.chats[channel_id]={}
   //--
+  let rows=[]
+  let val = state.chats[channel_id].val
+  let obj = (val==1)?store.in.chats.rowsini:store.in.chats.rowsini2
   
+  for(let key in obj){
+      let r = await componentRow.Row(client,state,key,obj[key],channel_id)
+      
+      rows.push(r)
+  }
+  /*
+  let BaseRow = await componentRow.Row(client,state,'baseRow',store.in.chats.rowsini.baseRow,channel_id)
+  let PermsRow = await componentRow.Row(client,state,'permsRow',store.in.chats.rowsini.permsRow,channel_id)
+  let AlertRow = await componentRow.Row(client,state,'alertRow',store.in.chats.rowsini.alertRow,channel_id)
   
-  let target = 'chat$'+channel_id+'$'+row_name+'.'
-
-
- let obj = state.chats.getButtons(target)
-  
-  let i=0
-   const row = await new MessageActionRow()
-	
+  return [BaseRow,PermsRow,AlertRow]
    
-   for(let key in objStore){
-     
-     let el = obj[key][objStore[key]]
-   
-     
-    state.chats.buttons[key]={row_name:row_name}
-     let b2 = await components_.Button(client,el)
-     row.addComponents(b2)
-   }
-
-   
-   row.custom_id=row_name
-  
- return row
+ */
+  return rows
  
 }catch(err){console.log(err);};
 };//

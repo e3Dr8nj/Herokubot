@@ -69,12 +69,14 @@ module.exports.commands.command2={disable:false,aliase:'t2', run:async(client,me
  // return
   let d = store.in.embed.d
   //console.log(d)
+  let v2 =(state.chats&&state.chats[message.channel.id]&&state.chats[message.channel.id].val)?state.chats[message.channel.id].val:0
+  let cnt = (store.d2(v2))?store.d2(v2):'описание не найдено'
+  
   const emb= new MessageEmbed()
 	
 	.addFields(
-		{ name: 'Кнопки для управления войс чатом', value: d
-    },
-		{ name: '\u200B', value: '\u200B' },
+		{ name: 'Кнопки управления войсом:', value: store.d2(v2)
+    }
 		
 	)
 	//.addField('Inline field title', 'Some value here', true)
@@ -82,10 +84,12 @@ module.exports.commands.command2={disable:false,aliase:'t2', run:async(client,me
 	//.setTimestamp()
 //	.setFooter('кнопки для управления войс чатом', 'https://i.imgur.com/AfFp7pu.png');
   //__
+  
   let Rows = await componentRows.Rows(client,state,message.channel.id)
   
-  await message.channel.send({embeds:[emb]})
-  await message.channel.send({content:'Кнопки для управления войс чатом',"components": Rows })
+  //await message.channel.send({embeds:[emb]})
+  
+  await message.channel.send({embeds:[emb],"components": Rows })
   return 
   //console.log(state)
 
@@ -134,9 +138,7 @@ try{
 module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{try{
  //code to execut then this event triggered
   //return
-           console.log('it___________________________-')
- 
-            console.log('but int')
+          
  x('ic')
            
            if(!i.isButton()) return
@@ -158,6 +160,7 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{tr
    }
  //
 //030122
+  if(client.client12){
 let hasvoice=client.client12.rh.modules.chats.data.owners[i.user.id]
 let ownerchannel=client.client12.rh.modules.chats.data.owners[i.user.id].text_channel.id==i.channel.id
 if(!hasvoice){
@@ -166,6 +169,7 @@ if(!hasvoice){
 if(!ownerchannel){
   return i.reply({content:`Вы не являетесь владельцем этого чата`,ephemeral: true})
 }
+  }
 //
   let BaseRow,PermsRow={}
   
@@ -183,7 +187,7 @@ if(!ownerchannel){
       let sync_row=''
       let sync_param=sync
       //
-      console.log('s'+sync)
+    
 if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
       let syncval=v[6]
       
@@ -193,17 +197,36 @@ if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
    
       if(sync&&sync!='resetall'){state.chats[channel_id][sync_row][sync_param]=syncval}else if(sync=='resetall'){
         state.chats[channel_id]=false
-        console.log('resetall case')
+        
       }
       //----if button has sync parameter, set new value to this one
    
   
        if(sync!='resetall') state.chats[channel_id][row_name][param]=newvalue //set nev value
 
+  //
+  
+  if(param=='showall'){
+   // i.message.channel.send(param)
+    state.chats[channel_id].val=newvalue
+  }
+  
   
   
   let Rows = await componentRows.Rows(client,state,i.message.channel.id)
-       if(Rows) await i.message.edit({components:Rows})//render message
+  let v2 =state.chats[channel_id].val||0
+  //
+   
+  //console.log(d)
+  const emb= new MessageEmbed()
+	
+	.addFields(
+		{ name: 'Кнопки управления войсом:', value: store.d2(v2)
+    }
+		
+	)
+  //
+       if(Rows) await i.message.edit({embeds:[emb],components:Rows})//render message
 
   let b2 = state.chats.getButtons(target)
 
@@ -227,7 +250,7 @@ if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
 
     //
     let voice_join_id=client.client12.rh.modules.chats.data.owners[i.user.id].voice_channel.id
-    console.log(client.client12.rh.modules.chats.data)
+    
     let voice_join = i.guild.channels.cache.get(voice_join_id)
     let invite = await voice_join.createInvite()
     .then(invite =>{
@@ -236,7 +259,7 @@ if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
       })
     .catch(console.error);
     let rep_chnl =  i.guild.channels.cache.get(e[i.guild.id].report_channel_id)
-    console.log(invite)
+   
    // if(rep_chnl) rep_chnl.send('https://discord.gg/'+invite+'\n'+report_str)
     //
     let el = Object.assign({},b2['report'][0])
@@ -250,6 +273,9 @@ if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
       let report_str='Беседа в '+voice_join.toString()+'\n'
       x(b)
       if(msg&&msg.content&&msg.content.startsWith('.')) report_str+=msg.content.slice(1)
+    //
+   
+    //
 
    if(rep_chnl) rep_chnl.send({content:report_str,"components": [report_row] })
     //
