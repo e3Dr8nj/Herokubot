@@ -272,7 +272,7 @@ let author_ = client.users.cache.get(owner_id)
     
   }
    
-   if(['lecture','lock','textlock'].includes(command_name)){
+   if(['lecture','lock','textlock' ,'broom'].includes(command_name)){
       feedback=await module.exports.modeActivate(client,command_name,guild,owner_id,data)
       
    }else if(['mute1','ban1','key1','null1','micro1'].includes(command_name)){
@@ -1231,9 +1231,9 @@ console.log('broom1')
           
 	    voice_chat.members.map(m=>{
         console.log('broom2')
-	  	   // if(afk&&m&&m.id!=exports.voice_channels[voice_chat.id].owner_id) {
+	  	   if(afk&&m&&m.id!=exports.voice_channels[voice_chat.id].owner_id) {
      		    	m.voice.setChannel(afk.id).then(() => console.log(`Moved ${m.displayName}`)).catch(console.error);
-	      //	};
+	      	};
       });
           
 
