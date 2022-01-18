@@ -89,7 +89,7 @@ module.exports.commands.command2={disable:false,aliase:'t2', run:async(client,me
   
   //await message.channel.send({embeds:[emb]})
   
-  await message.channel.send({embeds:[emb],"components": Rows })
+  await message.channel.send({content:'*',embeds:[emb],"components": Rows })
   return 
   //console.log(state)
 
@@ -226,7 +226,7 @@ if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
 		
 	)
   //
-       if(Rows) await i.message.edit({embeds:[emb],components:Rows})//render message
+       if(Rows) await i.message.edit({content:'*',embeds:[emb],components:Rows})//render message
 
   let b2 = state.chats.getButtons(target)
 
