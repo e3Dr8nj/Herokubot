@@ -1241,9 +1241,19 @@ exports.modeActivate=async(client,type,guild,owner_id,value)=>{try{ //
            bool = (value =='0')?null:false
            //27.12.21
              module.exports.accessall(client,voice_chat)
+
             //
-           await voice_chat.updateOverwrite(voice_chat.guild.roles.everyone, { CONNECT: bool }).catch(console.error);
-         }else if(type=='broom'){
+            await voice_chat.updateOverwrite(voice_chat.guild.roles.everyone, { CONNECT: bool }).catch(console.error);
+            //
+            voice_chat.members.map(m=>{
+       
+              if(m&&m.id!=exports.voice_channels[voice_chat.id].owner_id) {
+                await voice_chat.updateOverwrite(m, { CONNECT: !bool }).catch(console.error);
+            
+                 };
+           });
+            //
+          }else if(type=='broom'){
 //--27.12.21
 
           let afk=await voice_chat.guild.channels.cache.get(exports.e.afk_channel_id);
