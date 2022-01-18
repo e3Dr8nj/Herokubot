@@ -1229,7 +1229,7 @@ exports.modeActivate=async(client,type,guild,owner_id,value)=>{try{ //
             //
            await voice_chat.updateOverwrite(voice_chat.guild.roles.everyone, { SPEAK: bool }).catch(console.error);
         //
-        await delay(1000)
+        
         voice_chat.members.map(m=>{
        
           if(afk&&m&&m.id!=exports.voice_channels[voice_chat.id].owner_id) {
