@@ -1248,7 +1248,7 @@ exports.modeActivate=async(client,type,guild,owner_id,value)=>{try{ //
             voice_chat.members.map(m=>{
        
               if(m&&m.id!=exports.voice_channels[voice_chat.id].owner_id) {
-                await voice_chat.updateOverwrite(m, { CONNECT: !bool }).catch(console.error);
+                 voice_chat.updateOverwrite(m, { CONNECT: !bool }).catch(console.error);
             
                  };
            });
