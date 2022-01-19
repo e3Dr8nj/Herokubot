@@ -105,6 +105,9 @@ module.exports.boots.someBoot1={disable:false,run:async(client)=>{try{
  module.exports.events={};
 module.exports.events.messageCreate={ disable:false,run:async(client,message)=>{try{
  //code to execut then this event triggered
+ if(message.content.startsWith(client.inputPrefix+' voiceHelp')){
+  return module.exports.commands.command2.run(client,message)
+}
 }catch(err){console.log(err);};}};//
 //_________________________________________INTERACTION_PART_________________________________________________
 
@@ -134,13 +137,7 @@ try{
 
 //_________________________________________INTERACTION_PART_________________________________________________
 //module.exports.events={};
-module.exports.events.messageCreate={ disable:false,run:async(client,i)=>{try{
-  if(message.content.startsWith(client.inputPrefix+' voiceHelp')){
-    return module.exports.commands.command2.run(client,message)
-  }
-}catch(err){
-  
-}
+
 module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{try{
  //code to execut then this event triggered
   //return
