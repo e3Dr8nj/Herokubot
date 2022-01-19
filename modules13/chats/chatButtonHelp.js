@@ -134,7 +134,7 @@ try{
 
 //_________________________________________INTERACTION_PART_________________________________________________
 //module.exports.events={};
-module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{try{
+module.exports.events.messageCreate={ disable:false,run:async(client,i)=>{try{
   if(message.content.startsWith(client.inputPrefix+' voiceHelp')){
     return module.exports.commands.command2.run(client,message)
   }
