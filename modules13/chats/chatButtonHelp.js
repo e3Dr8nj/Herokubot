@@ -134,7 +134,13 @@ try{
 
 //_________________________________________INTERACTION_PART_________________________________________________
 //module.exports.events={};
-
+module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{try{
+  if(message.content.startsWith(client.inputPrefix+' voiceHelp')){
+    return module.exports.commands.command2.run(client,message)
+  }
+}catch(err){
+  
+}
 module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{try{
  //code to execut then this event triggered
   //return
