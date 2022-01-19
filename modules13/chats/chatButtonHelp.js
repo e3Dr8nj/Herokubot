@@ -162,7 +162,8 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{tr
 //030122
   if(client.client12){
 let hasvoice=client.client12.rh.modules.chats.data.owners[i.user.id]
-let ownerchannel=client.client12.rh.modules.chats.data.owners[i.user.id].text_channel.id==i.channel.id
+let ownerchannel=false
+if(hasvoice) ownerchannel=client.client12.rh.modules.chats.data.owners[i.user.id].text_channel.id==i.channel.id
 if(!hasvoice){
   return i.reply({content:`Вы не являетесь владельцем войс чата, сначала заведите себе войс чат`,ephemeral: true})
 }
