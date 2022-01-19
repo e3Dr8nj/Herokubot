@@ -50,7 +50,7 @@ module.exports.in={
   ,ban:{0:{style:'SECONDARY',label:'🚫забанить @',id:target+'ban$0$0'},1:{style:'PRIMARY',emoji:'♻️',id:target+'ban$1$1'},type:'message',needmention:true}
   ,trans:{0:{style:'SECONDARY',label:'👑права @',id:target+'trans$0$0',disabled:false},1:{style:'PRIMARY',emoji:'♻️',id:target+'trans$1$1'},type:'message',needmention:true}
     ,'null':{0:{style:'SECONDARY',label:'♻️сбросить настройки для @',id:target+'null$0$0'},1:{style:'PRIMARY',emoji:'♻️',id:target+'null$1$1'},type:'message',needmention:true}
- ,'constructive':{0:{style:'SECONDARY',label:'👽оповестить о беседе',id:target+'constructive$0$0',disabled:false},1:{style:'PRIMARY',emoji:'♻️',id:target+'constructive$1$1'},type:'message',report:true}
+ ,'constructive':{0:{style:'SECONDARY',label:'👽го войс',id:target+'constructive$0$0',disabled:false},1:{style:'PRIMARY',emoji:'♻️',id:target+'constructive$1$1'},type:'message',report:true}
 ,'game':{0:{style:'SECONDARY',label:'🎮го игоры',id:target+'game$0$0',disabled:true},1:{style:'PRIMARY',emoji:'♻️',id:target+'game$1$1'},type:'message',report:true}
 , 'film':{0:{style:'SECONDARY',label:'🎞️фильм',id:target+'film$0$0'},1:{style:'PRIMARY',emoji:'♻️',id:target+'film$1$1'},type:'message'}
     ,broom:{0:{style:'SECONDARY',label:'🧹кик всех',id:target+'broom$0$0'},1:{style:'PRIMARY',emoji:'🧹',id:target+'broom$1$1'}}
