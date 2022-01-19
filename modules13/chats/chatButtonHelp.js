@@ -141,7 +141,7 @@ module.exports.events.interactionCreate={ disable:false,run:async(client,i)=>{tr
           
  x('ic')
            
-           if(!i.isButton()) return
+  if(!i.isButton()) return
            
  
 	
@@ -214,6 +214,7 @@ if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
   
   
   let Rows = await componentRows.Rows(client,state,i.message.channel.id)
+  console.log(Rows)
   let v2 =state.chats[channel_id].val||0
   //
    
