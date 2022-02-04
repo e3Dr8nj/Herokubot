@@ -1096,12 +1096,13 @@ console.log('action---------------------')
 const item_mmb=guild.members.cache.get(item_mmb_id)
 const voice_channel_id= module.exports.owners[owner_id].voice_channel.id
 const voice_channel = guild.channels.cache.get(voice_channel_id)
+let afk=await voice_chat.guild.channels.cache.get(exports.e.afk_channel_id);
 let str='.'
 
 
 if(type=='mute1'){
 await voice_channel.updateOverwrite(item_mmb, { SPEAK:false}).then().catch(err=>console.log(err));
-       if(item_mmb.username&&voice_channel.members.get(item_mmb.id)) {await guild.members.cache.get(item_mmb.id).voice.setChannel(afk).catch(console.error);
+       if(item_mmb&&voice_channel.members.get(item_mmb.id)) {await guild.members.cache.get(item_mmb.id).voice.setChannel(afk).catch(console.error);
   await guild.members.get(item_mmb.id).setVoiceChannel(voice_channel).catch(console.error); };
     str = 'Успешно замучен'
 }else if(type=='ban1'){
@@ -1113,6 +1114,7 @@ await voice_channel.updateOverwrite(item_mmb, { CONNECT:false}).then().catch(err
 }
 else if(type=='key1'){
 await voice_channel.updateOverwrite(item_mmb, { CONNECT:true}).then().catch(err=>console.log(err));
+     
      str='Выдан секретный ключ для подключения к закрытому войсу'
 }else if(type=='micro1'){
 await voice_channel.updateOverwrite(item_mmb, { SPEAK:true}).then().catch(err=>console.log(err));
