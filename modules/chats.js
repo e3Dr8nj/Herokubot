@@ -1105,8 +1105,8 @@ await voice_channel.updateOverwrite(item_mmb, { SPEAK:false}).then().catch(err=>
     set = 'Успешно замучен'
 }else if(type=='ban1'){
 await voice_channel.updateOverwrite(item_mmb, { CONNECT:false}).then().catch(err=>console.log(err));
-       if(item_mmb.username&&voice_channel.members.get(item_mmb.id)) {await guild.members.cache.get(item_mmb.id).voice.setChannel(afk).catch(console.error);
-  await guild.members.get(item_mmb.id).setVoiceChannel(voice_channel).catch(console.error); };
+       if(item_mmb&&voice_channel.members.get(item_mmb.id)) {await guild.members.cache.get(item_mmb.id).voice.setChannel(afk).catch(console.error);
+  //await guild.members.get(item_mmb.id).setVoiceChannel(voice_channel).catch(console.error); };
     str='Успешно забанен'
 }
 else if(type=='key1'){
