@@ -311,8 +311,9 @@ feedback =  await module.exports.buttonInteractionMessage(client,command_name,gu
 
     
    //if(feedback) return message.channel.send(feedback)
-   if(feedbacks[command_name]) message.channel.send(feedbacks[command_name])
+   if(feedbacks[command_name]) message.channel.send(feedbacks[command_name].msg)
    
+
    
    message.channel.send('fb')
 
