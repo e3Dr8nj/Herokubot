@@ -246,6 +246,7 @@ if(message.content.startsWith('xxx$chats')){
       let owner_id = arr[3]
       let member_id = arr[4]
       let channel_=message.guild.channels.cache.get(module.exports.owners[owner_id].voice_channel.id)
+      
       let member_ = message.guild.members.cache.get(member_id)
       await member_.voice.setChannel(channel_).catch(console.error);
       return
@@ -264,6 +265,7 @@ if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для
      let guild_id= props[3]
      let owner_id=props[4]
      let data=props[5]
+     let text_channel =message.guild.channels.cache.get(module.exports.owners[owner_id].text_channel.id)
 //----
 console.log('cd '+command_name)
 //--
@@ -311,7 +313,7 @@ feedback =  await module.exports.buttonInteractionMessage(client,command_name,gu
 
     
    //if(feedback) return message.channel.send(feedback)
-   if(feedbacks[command_name]) message.channel.send(feedbacks[command_name].msg)
+   if(feedbacks[command_name]) text_channel.send(feedbacks[command_name].msg)
    
 
    
