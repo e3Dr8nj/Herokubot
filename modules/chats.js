@@ -1096,7 +1096,7 @@ console.log('action---------------------')
 const item_mmb=guild.members.cache.get(item_mmb_id)
 const voice_channel_id= module.exports.owners[owner_id].voice_channel.id
 const voice_channel = guild.channels.cache.get(voice_channel_id)
-let afk=await voice_chat.guild.channels.cache.get(exports.e.afk_channel_id);
+let afk=await voice_channel.guild.channels.cache.get(exports.e.afk_channel_id);
 let str='.'
 
 
