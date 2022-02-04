@@ -247,6 +247,16 @@ if(message.content.startsWith('xxx$chats')){
     let feedback ='.'
 if(message.content.startsWith('xxx$chats?')) return message.channel.send('Для использования команды введите данные в формате: xxx$chats$<guildID>$<commandName>$<actionUserID>$<data>')
 //xxx$chats$mute$guild_id$owner_id$member_id
+     const feedbacks={
+                 'lecture':{msg:'Режим тиховсе активирован'}
+                 ,'lock':{msg:'Войс чат заблокирован для подключения'}
+                 ,'broom':{msg:'Все участники были изгнаны из войса'}
+                 ,'mute':{msg:'Участник был замучен'}
+                 ,'ban':{msg:'Участник был забанен'}
+                 ,'key':{msg:'Участнику/роли был выдан доступ'}
+                 ,'null':{msg:'Права участника/роли были обнулены'}
+                 ,'micro':{msg:'Участнику/роли было выдано право говорить даже при активном режиме тиховсе'}
+     }
       let mc = message.content
      let props = message.content.split('$')
      let module_name = props[1]
@@ -300,7 +310,8 @@ feedback =  await module.exports.buttonInteractionMessage(client,command_name,gu
 
 
     
-   if(feedback) return message.channel.send(feedback)
+   //if(feedback) return message.channel.send(feedback)
+   if(feedbacks[command_name]) message.channel.send(feedbacks[command_name])
    return
   }
 
