@@ -18,14 +18,16 @@ let a ={};
 //module.exports.RH_IGNORE_EVENTS=true;//add this line to ignore all events from this module
 //module.exports.RH_IGNORE_EVENTS_PRIMITIVE=true;//add this line to ignore all events_primitive from this module
 const feedbacks={
-  'lecture':{msg:'Режим тиховсе активирован'}
-  ,'lock':{msg:'Войс чат заблокирован для подключения'}
+  'lecture':{msg:'Режим тиховсе активирован','1':{msg:'Режим тиховсе деактивирован'}}
+  ,'lock':{msg:'Войс чат заблокирован для подключения','1':{msg:'Войс чат разблокирован'}}
   ,'broom':{msg:'Все участники были изгнаны из войса'}
   ,'mute':{msg:'Участник был замучен'}
   ,'ban':{msg:'Участник был забанен'}
   ,'key':{msg:'Участнику/роли был выдан доступ'}
   ,'null':{msg:'Права участника/роли были обнулены'}
   ,'micro':{msg:'Участнику/роли было выдано право говорить даже при активном режиме тиховсе'}
+  ,'reset':{msg:'Настройки чата сброшены до заводских'}
+  ,'trans':{msg:'Права переданы'}
 }
 var logs=false;
 //___________________________ETERNAL_VARIABLE_PART
@@ -313,7 +315,8 @@ feedback =  await module.exports.buttonInteractionMessage(client,command_name,gu
 
     
    //if(feedback) return message.channel.send(feedback)
-   if(feedbacks[command_name]) text_channel.send(feedbacks[command_name].msg)
+   
+   if(feedbacks[command_name]) text_channel.send(feedback[command_name][data].msg?feedback[command_name][data].msg:feedbacks[command_name].msg)
    
 
    
