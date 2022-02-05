@@ -18,8 +18,8 @@ let a ={};
 //module.exports.RH_IGNORE_EVENTS=true;//add this line to ignore all events from this module
 //module.exports.RH_IGNORE_EVENTS_PRIMITIVE=true;//add this line to ignore all events_primitive from this module
 const feedbacks={
-  'lecture':{msg:'Режим тиховсе активирован','1':{msg:'Режим тиховсе деактивирован'}}
-  ,'lock':{msg:'Войс чат заблокирован для подключения','1':{msg:'Войс чат разблокирован'}}
+  'lecture':{msg:'Режим тиховсе деактивирован','1':{msg:'Режим тиховсе активирован'}}
+  ,'lock':{msg:'Войс чат разблокирован','1':{msg:'Войс чат заблокирован'}}
   ,'broom':{msg:'Все участники были изгнаны из войса'}
   ,'mute':{msg:'Участник был замучен'}
   ,'ban':{msg:'Участник был забанен'}
