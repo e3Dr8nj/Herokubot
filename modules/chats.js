@@ -316,7 +316,7 @@ feedback =  await module.exports.buttonInteractionMessage(client,command_name,gu
     
    //if(feedback) return message.channel.send(feedback)
    
-   if(feedbacks[command_name]) text_channel.send(feedbacks[command_name][data].msg?feedbacks[command_name][data].msg:feedbacks[command_name].msg)
+   if(feedbacks[command_name]) text_channel.send(feedbacks[command_name][data]?feedbacks[command_name][data].msg:feedbacks[command_name].msg)
    
 
    
