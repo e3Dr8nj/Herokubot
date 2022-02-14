@@ -624,7 +624,7 @@ exports.rh={
               
    //-----------
    //______________________c2
-   module.exports.commands.timemuteX={ on:true, aliase:'ут', run:async(client,message,args,action)=>{try{
+   module.exports.commands.timemuteX={ on:true, aliase:'1ут', run:async(client,message,args,action)=>{try{
    
    if(action){
              if(log) {console.log('timemuteX');}
