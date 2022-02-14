@@ -39,6 +39,7 @@ module.exports.events.messageDelete={ on:true,  run:async(client,message)=>{try{
                     return audit;}).catch(err=>console.log(err));
              // console.log(actually_audit);
               let the_entry=false;
+              let entryfind=false;
               actually_audit.entries.map(e=>{
                   let same_target=e.target.id===message.author.id; 
                   let same_channel = e.extra.channel.id===message.channel.id;
@@ -64,11 +65,15 @@ module.exports.events.messageDelete={ on:true,  run:async(client,message)=>{try{
                       };
                       //message.channel.send('executor '+e.executor.username+" count"+e.extra.count+' id '+e.id);
                       if(e.executor.id===message.guild.owner.id) return;//ADD THIS !!!
-                      log(e);
+                     // log(e);
+                     entryfind=e
                   return ;
               });//filter
               //console.log(changed);
               //changed.map(e=>console.log(e.id));
+              if(entryfind){ log(e)}else{
+                console.log(message)
+              }
               client.audit_delete=actually_audit;
               return;
 
