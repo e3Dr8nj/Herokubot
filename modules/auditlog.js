@@ -46,32 +46,34 @@ module.exports.events.messageDelete={ on:true,  run:async(client,message)=>{try{
                  
                   let the_audit = client.audit_delete.entries.get(e.id);
                      if (!the_audit) {
-                         // console.log('new audit'); 
+                          console.log('new audit'); 
                      };
                      if (the_audit){
                             let same_count=the_audit.extra.count===e.extra.count;
                             if(same_count) {
-                              //console.log('existed and count the same'); 
+                              console.log('existed and count the same'); 
                               return;
                              };
                       };//if audit already existed
                       if(!same_channel) {
-                            //console.log('different channel');
+                            console.log('different channel');
                             return;
                        };
                       if(!same_target) {
-                           // console.log('different target');
+                            console.log('different target');
                             return;
                       };
                       //message.channel.send('executor '+e.executor.username+" count"+e.extra.count+' id '+e.id);
-                      if(e.executor.id===message.guild.owner.id) return;//ADD THIS !!!
+                      if(e.executor.id===message.guild.owner.id) return entryfind='skeep';//ADD THIS !!!
                      // log(e);
                      entryfind=e
                   return ;
               });//filter
               //console.log(changed);
               //changed.map(e=>console.log(e.id));
-              if(entryfind!=false){ log(entryfind)}else{
+              if(entryfind==='skeep'){
+                
+              }else if(entryfind!=false){ log(entryfind)}else{
                 logcash(message)
               }
               client.audit_delete=actually_audit;
