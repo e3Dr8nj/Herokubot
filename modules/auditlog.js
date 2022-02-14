@@ -95,12 +95,13 @@ module.exports.events.messageDelete={ on:true,  run:async(client,message)=>{try{
             async function logcash(message){
               //let d=new Date(); d.setTime(message.createdTimestamp);
               let executor=message.guild.members.cache.get(message.author.id);
+              if(!executor) {console.log(message) 
+                return console.log('no executor')}
               let target=message.guild.members.cache.get(message.author.id);
               let channel = message.guild.channels.cache.get(message.channel.id);
-              if(!executor) console.log(message)
-              executor=(executor)? executor.toString():'000'
+           
              
-              let str = executor
+              let str = executor.toString()
               str+=" удалил сообщение ";
               str+=target.toString()+" "+target.user.username+"#"+target.user.discriminator;
               str+='\n<#'+channel.id+'> \n';
