@@ -31,7 +31,7 @@ let last_id=''; let del_msg=[];
 //_________________________________________EVENTS_PART_________________________________________________
 module.exports.events.messageDelete={ on:true,  run:async(client,message)=>{try{
 //if on this function triggers on deffined event
-    
+              console.log(message)
               console.log('message delete'); 
               let log_channel=message.guild.channels.cache.find(ch=>ch.name==module.exports.e.ch_log_name);
               let str_msg = "message.author: "+message.member+" message.channel: "+message.channel.name+'\n'+" message.content: "+message.content ;
