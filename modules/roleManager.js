@@ -310,7 +310,7 @@ exports.log=async(client,message,action)=>{
 try{ 
    let colors={blue:0x3366ff};
    action.name=(action.name)?action.name:'Управление ролями';
-   let log_mod=await message.guild.channels.cache.find(r=>r.name==module.exports.e.ch_log_name);
+   let log_mod=await message.guild.channels.cache.find(r=>r.name.indexOf(module.exports.e.ch_log_name)!=-1);
    if(!log_mod){console.log('log channel not found'); return;};
   // log_mod.send(message.member+action+"`"+role_name+"`  "+mmb);
   //let str = (all)?message.member.toString()+'\n':message.member.toString();
