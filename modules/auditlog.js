@@ -31,7 +31,7 @@ let last_id=''; let del_msg=[];
 //_________________________________________EVENTS_PART_________________________________________________
 module.exports.events.messageDelete={ on:true,  run:async(client,message)=>{try{
 //if on this function triggers on deffined event
-              console.log(message)
+              
               console.log('message delete'); 
               let log_channel=message.guild.channels.cache.find(ch=>ch.name==module.exports.e.ch_log_name);
               let str_msg = "message.author: "+message.member+" message.channel: "+message.channel.name+'\n'+" message.content: "+message.content ;
@@ -71,8 +71,8 @@ module.exports.events.messageDelete={ on:true,  run:async(client,message)=>{try{
               });//filter
               //console.log(changed);
               //changed.map(e=>console.log(e.id));
-              if(entryfind){ log(e)}else{
-                console.log(message)
+              if(entryfind!=false){ log(e)}else{
+                logcash(message)
               }
               client.audit_delete=actually_audit;
               return;
@@ -84,6 +84,19 @@ module.exports.events.messageDelete={ on:true,  run:async(client,message)=>{try{
               let executor=message.guild.members.cache.get(entry.executor.id);
               let target=message.guild.members.cache.get(entry.target.id);
               let channel = message.guild.channels.cache.get(entry.extra.channel.id);
+              let str = executor.toString();
+              str+=" удалил сообщение ";
+              str+=target.toString()+" "+target.user.username+"#"+target.user.discriminator;
+              str+='\n<#'+channel.id+'> \n';
+              let msg_cnt = (message.content.length<1850)?message.content:message.content.slice(0,1850);
+              str+=msg_cnt;
+              module.exports.log(client,message,{description:str});
+            };
+            async function logcash(message){
+              //let d=new Date(); d.setTime(message.createdTimestamp);
+              let executor=message.guild.members.cache.get(message.author.id);
+              let target=message.guild.members.cache.get(message.author.id);
+              let channel = message.guild.channels.cache.get(message.channel.id);
               let str = executor.toString();
               str+=" удалил сообщение ";
               str+=target.toString()+" "+target.user.username+"#"+target.user.discriminator;
