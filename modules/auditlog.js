@@ -97,7 +97,10 @@ module.exports.events.messageDelete={ on:true,  run:async(client,message)=>{try{
               let executor=message.guild.members.cache.get(message.author.id);
               let target=message.guild.members.cache.get(message.author.id);
               let channel = message.guild.channels.cache.get(message.channel.id);
-              let str = executor.toString();
+              if(!executor) console.log(message)
+              executor=(executor)? executor.toString():'000'
+             
+              let str = executor
               str+=" удалил сообщение ";
               str+=target.toString()+" "+target.user.username+"#"+target.user.discriminator;
               str+='\n<#'+channel.id+'> \n';
