@@ -71,7 +71,7 @@ module.exports.events.messageDelete={ on:true,  run:async(client,message)=>{try{
               });//filter
               //console.log(changed);
               //changed.map(e=>console.log(e.id));
-              if(entryfind!=false){ log(e)}else{
+              if(entryfind!=false){ log(entryfind)}else{
                 logcash(message)
               }
               client.audit_delete=actually_audit;
