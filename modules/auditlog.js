@@ -23,7 +23,7 @@ exports.d={
 //___________ENVORIMENTAL//envorimental set, elements accesed by module.exports.e.some_envorimental
 exports.e={
      some_envorimental:'value'  
-     ,ch_log_name:'🕸▸лог-мод'
+     ,ch_log_name:'✂💢'
      ,sm_role_name:'Супермодератор'
 };//e end
 //_________________________________________INITIATION_PART_END___________________________________________
@@ -72,9 +72,9 @@ module.exports.events.messageDelete={ on:true,  run:async(client,message)=>{try{
               //console.log(changed);
               //changed.map(e=>console.log(e.id));
               if(entryfind==='skeep'){
-                
+
               }else if(entryfind!=false){ log(entryfind)}else{
-                logcash(message)
+                //logcash(message)
               }
               client.audit_delete=actually_audit;
               return;
