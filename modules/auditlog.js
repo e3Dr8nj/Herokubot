@@ -113,15 +113,18 @@ module.exports.commands.audit={ on:true, aliase:'audit', run:async(client,messag
                          // console.log('count:'+entry.extra.count);
                     });
 
-                //return;
-                return audit.entries.first();
+                return audit.entries.filter(entry=>entry.executor.id===message.author.id);
+               // return audit.entries.first();
+              // return audit.entries.filter()
               }).catch(err=>console.log(err));
+              /*
            console.log(entry.id);
              let d=new Date(); d.setTime(entry.createdTimestamp);
            console.log('time: '+d);
            console.log('executor: '+entry.executor.username);
            console.log('channel: '+entry.extra.channel.name);
            console.log('target:'+entry.target.username);
+           */
             
           console.log(entry);
        };
