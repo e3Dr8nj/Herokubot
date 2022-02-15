@@ -240,7 +240,7 @@ exports.rh={
              };//if mmb to unmute is not defined
                 // message.channel.send('И пусть бы дальше познавали пустотность бытия.. <:33:402137670345687050> ');
                 if(!client.muted[mmb.user.id]) return message.channel.send(mmb.toString()+' Объект не найден среди замученных..');
-                 message.channel.send(mmb.toString()+' Снимается печать немоты. <:58:589907574300606474>');
+                 message.channel.send(mmb.toString()+' Снимается печать немоты. <:59:942844464878198794>');
                  await module.exports.delay(1000);
                  message.channel.send(' Происходит восстановление ролей доступа.');
                    let resolve = module.exports.unmute(client,message,mmb.user.id,0);
