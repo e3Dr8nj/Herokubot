@@ -11,6 +11,7 @@ const componentButton = require('./components/Button.js')
 //const componentRow= require('./components/Row.js')
 const componentRows= require('./components/Rows.js')
 
+
 const store= require('./store.js')
 let target='#target'
 let state={
