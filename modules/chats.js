@@ -443,6 +443,9 @@ exports.createNewVoice=async(client,oldState,newState)=>{try{ //triggered then n
   let new_channel=await channel.clone({name:name}).catch(console.error);
       // await new_channel.edit({name: name});
        // await new_channel.setBitrate(128000).catch(console.error);
+       await new_channel.setUserLimit(16)
+  .then(vc => console.log(`Set user limit`))
+  .catch(console.error);
         let parent2 = await channel.guild.channels.cache.get(exports.e.free_chat_category_id);
         if(parent2) {await new_channel.setParent(parent2.id).then(ch => { ch.lockPermissions(); }).catch(console.error);};
         await new_channel.setParent(channel.parentID).catch(console.error);
