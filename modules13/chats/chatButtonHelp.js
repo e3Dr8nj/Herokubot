@@ -279,9 +279,10 @@ if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
     const report_row = new MessageActionRow()
 			.addComponents(button)
       
-      let report_reply=(param=='reply')?' Беседа в ':' Игра в '
-      let report_role_name=(param=='reply')?'го войс':'Игра'
-      let report_role = i.guild.roles.cache.find(r=>r.name==report_role_name)
+      let report_reply=(param=='report')?' Беседа в ':' Игра в '
+      let report_role_name=(param=='report')?'го войс':'Игра'
+      let report_role=false
+      //let report_role = i.guild.roles.cache.find(r=>r.name==report_role_name)
       report_ping=(report_role)?report_role.toString():''
       let report_str=report_ping+report_reply+voice_join.toString()+'\n'
       
