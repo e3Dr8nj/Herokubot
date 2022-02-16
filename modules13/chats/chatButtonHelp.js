@@ -278,8 +278,13 @@ if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
     button.url = 'https://discord.gg/'+invite
     const report_row = new MessageActionRow()
 			.addComponents(button)
-    
-      let report_str='Беседа в '+voice_join.toString()+'\n'
+      
+      let report_reply=(param=='reply')?' Беседа в ':' Игра в '
+      let report_role_name=(param=='reply')?'го войс':'Игра'
+      let report_role = i.guild.roles.cache.find(r=>r.name==report_role_name)
+      report_ping=(report_role)?report_role.toString():''
+      let report_str=report_ping+report_reply+voice_join.toString()+'\n'
+      
       x(b)
       if(msg&&msg.content&&msg.content.startsWith('.')) report_str+=msg.content.slice(1)
     //
