@@ -243,8 +243,9 @@ if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
         let filter = (message)=>{return message.author.id==i.user.id}
        let msg_arr = await i.channel.messages.fetch({limit:50}).then(collected=>{return collected})
        msg_arr= await msg_arr.filter((m)=>m.author.id==i.user.id)
-        msg= msg_arr.first()
+       if(msg){ msg= msg_arr.first()
        newvalue=msg.channel.id+"."+msg.id
+       }
         //27.12
       //  if(param)
   
