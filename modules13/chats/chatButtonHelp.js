@@ -1,4 +1,4 @@
-﻿let e={
+﻿﻿let e={
   '476431736813912064':{report_channel_id:'733764937561800724'}
   ,'301063859702071316':{report_channel_id:'532325036858671116'}
 }
@@ -251,7 +251,7 @@ if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
     if(b.needmention&&!msg.mentions.members.first()) return i.reply({content:`Нужно прислать сообщение в этот канал с упоминанием ника или роли, лалка`,ephemeral: true})
     //
      }
-  if(b.report||b.game){
+  if(b.report){
     
    
 
@@ -276,15 +276,8 @@ if(sync&&sync!='resetall')      sync_row = state.chats.buttons[sync].row_name
     button.url = 'https://discord.gg/'+invite
     const report_row = new MessageActionRow()
 			.addComponents(button)
-      
-
-       let report_str=''
-       let ping_role_name = (b.report)?'го войс':'игра'
-      let ping_role = i.guild.roles.cache.find(r=>r.name.toLowerCase()==ping_role_name.toLowerCase())
-       let changed = (b.report)?'Беседа в':'Игра в'
-      
-       if(ping_role) changed+=" "+ping_role.toString()
-      let report_str=changed+voice_join.toString()+'\n'
+    
+      let report_str='Беседа в '+voice_join.toString()+'\n'
       x(b)
       if(msg&&msg.content&&msg.content.startsWith('.')) report_str+=msg.content.slice(1)
     //
