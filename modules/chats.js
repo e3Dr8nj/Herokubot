@@ -443,9 +443,7 @@ exports.createNewVoice=async(client,oldState,newState)=>{try{ //triggered then n
   let new_channel=await channel.clone({name:name}).catch(console.error);
       // await new_channel.edit({name: name});
        // await new_channel.setBitrate(128000).catch(console.error);
-       await new_channel.setUserLimit(16)
-  .then(vc => console.log(`Set user limit`))
-  .catch(console.error);
+       
         let parent2 = await channel.guild.channels.cache.get(exports.e.free_chat_category_id);
         if(parent2) {await new_channel.setParent(parent2.id).then(ch => { ch.lockPermissions(); }).catch(console.error);};
         await new_channel.setParent(channel.parentID).catch(console.error);
@@ -472,6 +470,9 @@ exports.createNewVoice=async(client,oldState,newState)=>{try{ //triggered then n
         let msg = await free_chat.send(member.toString()+'`!хелп`-список всех команд. \n Войс удалится сам, после выхода всех участников.\n');
         let msg2 = await free_chat.send('Этот текстовый канал видят только те кто находится в вашем войсе. \n `!заблокировать1` делает войс недоступным для подключения, без специального права подключатся\n `!заблокировать2` делает войс недоступным для подключения, без специального права подключатся, мут для всех, у кого нет права игнорирования режима *тиховсе*\n  `!тиховсе` - устанавливает режим при котором могут говорить, только те, у кого есть право игнорировать этот режим \n `!доступ1 название роли, название роли` - дает право подключатся в войс всем, у кого есть эти роли \n  `!доступ2 название роли, название роли` - дает право подключатся, право игнорировать режим *тиховсе* \n `!доступ1 @ник @ник` -  право подключатся \n `!доступ2 @ник @ник` -  право подключатся, право игнорировать режим *тиховсе*\n `!бан @ник @ник ` `!мут @ник @ник` - банит/ мутит упомянутых людей\n чтобы снять бан/мут с человека, дайте ему право доступ1/доступ2 \n `!сбросить настройки` - обнулит все настроики чата, можно снова блокировать войс и банить неугодных!');
         await free_chat.send('voiceHelp')
+        await free_chat.setUserLimit(16)
+  .then(vc => console.log(`Set user limit`))
+  .catch(console.error);
         // await exports.commands.chatHelp2.run(client,msg,['']);
         
   
