@@ -453,7 +453,7 @@ exports.createNewVoice=async(client,oldState,newState)=>{try{ //triggered then n
       let role_id = free_chat.name.match(/\d{1,}/)[0]; if(!role_id) return; console.log(role_id);
       let role = await free_chat.guild.roles.cache.find(r=>r.name==exports.e.sp+role_id); 
       if(!role) return; 
-       await free_chat.updateOverwrite(role, { VIEW_CHANNEL:true });
+      // await free_chat.updateOverwrite(role, { VIEW_CHANNEL:true });
       //if (logs) console.log(role.name);
       let cht='chat'+free_chat.id;
       let data = {chatVR:true,text_id:free_chat.id,id:new_channel.id, owner_id:member.user.id, role_id:role.id,ud:0, opened:0, blocked:0};
@@ -470,8 +470,8 @@ exports.createNewVoice=async(client,oldState,newState)=>{try{ //triggered then n
         let msg = await free_chat.send(member.toString()+'`!хелп`-список всех команд. \n Войс удалится сам, после выхода всех участников.\n');
         let msg2 = await free_chat.send('Этот текстовый канал видят только те кто находится в вашем войсе. \n `!заблокировать1` делает войс недоступным для подключения, без специального права подключатся\n `!заблокировать2` делает войс недоступным для подключения, без специального права подключатся, мут для всех, у кого нет права игнорирования режима *тиховсе*\n  `!тиховсе` - устанавливает режим при котором могут говорить, только те, у кого есть право игнорировать этот режим \n `!доступ1 название роли, название роли` - дает право подключатся в войс всем, у кого есть эти роли \n  `!доступ2 название роли, название роли` - дает право подключатся, право игнорировать режим *тиховсе* \n `!доступ1 @ник @ник` -  право подключатся \n `!доступ2 @ник @ник` -  право подключатся, право игнорировать режим *тиховсе*\n `!бан @ник @ник ` `!мут @ник @ник` - банит/ мутит упомянутых людей\n чтобы снять бан/мут с человека, дайте ему право доступ1/доступ2 \n `!сбросить настройки` - обнулит все настроики чата, можно снова блокировать войс и банить неугодных!');
         await free_chat.send('voiceHelp')
-
-        await new_channel.setUserLimit(8)
+        await free_chat.updateOverwrite(role, { VIEW_CHANNEL:true });
+        await new_channel.setUserLimit(10)
   .then(vc => console.log(`Set user limit`))
   .catch(console.error);
   await new_channel.updateOverwrite(a.SRV.roles.everyone, { CONNECT:null,SPEAK:null });
