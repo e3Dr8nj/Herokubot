@@ -1,6 +1,12 @@
 ﻿exports.logs=true;
 //________________________________________INITIATION_PART__________________________________________
 let s_up=false;
+let state_ini={
+   bumped:false
+   ,suped:false
+   ,liked:false
+}
+let state ={}
 //_____________SETTINGS
 
 let delay=async(duration)=>{await new Promise(resolve=>setTimeout(resolve,duration))};
@@ -31,7 +37,7 @@ exports.e={
 };//e end
 //_________________________________________INITIATION_PART_END___________________________________________
 //_________________________________________EVENTS_PART_________________________________________________
-module.exports.events.message={ on:true,  run:async(client,message)=>{try{
+module.exports.events.messageCreate={ on:true,  run:async(client,message)=>{try{
 //if on this function triggers on deffined event
              
              
@@ -40,21 +46,30 @@ module.exports.events.message={ on:true,  run:async(client,message)=>{try{
               //if(message.embeds[0]) console.log(message.embeds[0]);
              // if(message.embeds[0]&&message.embeds[0].author&&message.embeds[0].author.name&&( message.embeds[0].author.name.startsWith('Сервер Up'))) { s_up=true;return;};
 */
+//----
              
-                if((message.author.bot&& message.embeds[0]&&message.embeds[0].title&&message.embeds[0].title.startsWith('Сервер Up'))||(message.content=='sup test'&&!message.author.bot )||(message.author.id=='464272403766444044')){ client.suped=true;
-message.channel.send('а теперь /like  <:17:925640924451713044> ');
- return;
+//----
+             
+                if((message.author.bot&& message.embeds[0]&&message.embeds[0].title&&message.embeds[0].title.startsWith('Сервер Up'))||(message.content=='sup test'&&!message.author.bot )||(message.author.id=='464272403766444044')){ 
+                   client.suped=true
+                   state.suped=true
+                  if(!state.liked)  message.channel.send('а теперь /like  <:17:925640924451713044> ');
+                   return;
 };
 
-              if(message.content.startsWith('!bump')){return;};
+              if(message.content.startsWith('!bump')){
+                 state=state_ini
+                 return;};
               if(!message.embeds[0]) return;
-              if(message.embeds[0].description&&message.embeds[0].description.startsWith(':alarm_clock: Next bump point will be available')){message.channel.send('<:54:589907518080286731>'); return;};
+              if(message.embeds[0].description&&message.embeds[0].description.startsWith(':alarm_clock: Next bump point will be available')){
+                 message.channel.send('<:54:589907518080286731>'); return;
+               };
               if(message.embeds[0].description&&message.embeds[0].description.startsWith('[Top Discord Servers]') && message.author.bot){
            
 //put data next bump time to db
 // change channel name
 //set awaiter to change channel name
-
+              state.bumped=true
 
                 
                
@@ -75,12 +90,12 @@ message.channel.send('а теперь /like  <:17:925640924451713044> ');
 */
                 message.channel.send('<:17:925640924451713044>'); 
                 
-                message.channel.send('а теперь напиши */up* пожалуйста <:17:925640924451713044> ');
                // client.suped=false;
                 await  module.exports.changeChnlName(client,message.channel,'default');//change channel name to default
                 await module.exports.updateTime(client,message,time_msc);
                 await module.exports.setAwaiter(client,message.channel,module.exports.e.tag_time,time_msc);
-                
+                if(!state.suped) message.channel.send('а теперь напиши */up* пожалуйста <:17:925640924451713044> ');
+               
                 return;
 
                 };
