@@ -37,7 +37,7 @@ exports.e={
 };//e end
 //_________________________________________INITIATION_PART_END___________________________________________
 //_________________________________________EVENTS_PART_________________________________________________
-module.exports.events.messageCreate={ on:true,  run:async(client,message)=>{try{
+module.exports.events.message={ on:true,  run:async(client,message)=>{try{
 //if on this function triggers on deffined event
              
              
