@@ -1,5 +1,5 @@
 ﻿//const { ApplicationCommandPermissionTypes } = require("discord13.js/typings/enums");
-
+//ll
 //________________________________________TOOLS__________________________________________
 let delay=async(duration)=>{await new Promise(resolve=>setTimeout(resolve,duration))}; 
      //* for delay inside async function, use it instead setTimeout
