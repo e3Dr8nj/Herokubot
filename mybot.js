@@ -17,59 +17,12 @@ global_storage.setValue=([target,value])=>{
 }
 
 //
-//________________
 
-let client={}
-const Discord13= require("discord13.js")
-const {Intents:Intents13}= require("discord13.js")
-const client13 = new Discord13.Client({
-    disableEveryone: true
-   //,intents:[Intents13]
-   ,intents: [Intents13.FLAGS.GUILDS
-             , Intents13.FLAGS.GUILD_MEMBERS, Intents13.FLAGS.GUILD_BANS, Intents13.FLAGS.GUILD_EMOJIS_AND_STICKERS, Intents13.FLAGS.GUILD_INTEGRATIONS, Intents13.FLAGS.GUILD_WEBHOOKS, Intents13.FLAGS.GUILD_INVITES, Intents13.FLAGS.GUILD_VOICE_STATES, Intents13.FLAGS.GUILD_PRESENCES, Intents13.FLAGS.GUILD_MESSAGES, Intents13.FLAGS.GUILD_MESSAGE_REACTIONS, Intents13.FLAGS.GUILD_MESSAGE_TYPING, Intents13.FLAGS.DIRECT_MESSAGES, Intents13.FLAGS.DIRECT_MESSAGE_REACTIONS, Intents13.FLAGS.DIRECT_MESSAGE_TYPING
-             ],
-});
-//___________
-client13.client12=client
-//___________________
-client13.global_storage=global_storage
-
-//____________
-client13.prefix = "--";
-client13.SERVER_ID = "301063859702071316";
-let RH13 = require(`./raw13.js`);
-RH13.folder_name = `./modules13`; // RH.folder_name='C:/user/discord/bot4/modules';- for pc running
-//RH13.prefix = client13.prefix; //prefix for commands; default value: '!'
-RH13.build(client13)
-
-
-client13.x={
-  ch:{
-    transfer:'transfer'
-  }
-}
-client13.x.inputPrefix='x13'
-client13.x.rewirePrefix='rewx13'
-client13.login();
-
-//------------031221
-
-client13.on('ready',guild=>{
-let channelError= client13.guilds.cache.get(client13.SERVER_ID).channels.cache.find(ch=>ch.name=='error')
-  //let channelError= client13.channels.cache.find(ch=>ch.name=='error')
-  let consolelog = console.log
-  console.log=(data)=>{
-  if((data.data||data.message)&&channelError) {
-    let ndata = data.toString()
-   // if(ndata.length>1) channelError.send(ndata)
-  }
-   consolelog(data)}
-    })
 //-------------
 //___
 const Discord = require("discord.js");
  client = new Discord.Client();
-client.actions.MessageCreate=client13.actions.MessageCreate//experimental
+//client.actions.MessageCreate=client13.actions.MessageCreate//experimental
 client.global_storage=global_storage
 
 client.x=x;
@@ -128,7 +81,7 @@ client2.on("raw", (...args) => {try{
 
 const Discord3 = require("discord.js");
 const client3 = new Discord3.Client();
-client.actions.MessageCreate=client13.actions.MessageCreate//experimental
+//client.actions.MessageCreate=client13.actions.MessageCreate//experimental
 client3.env = env
 client3.lang=1;
 client3.SERVER_ID='622954155077533696';
@@ -158,3 +111,54 @@ client3.on("raw", (...args) => {try{
 
 client3.login(process.env.TOKEN_TEA);
 
+
+
+
+//________________
+
+
+const Discord13= require("discord13.js")
+const {Intents:Intents13}= require("discord13.js")
+const client13 = new Discord13.Client({
+    disableEveryone: true
+   //,intents:[Intents13]
+   ,intents: [Intents13.FLAGS.GUILDS
+             , Intents13.FLAGS.GUILD_MEMBERS, Intents13.FLAGS.GUILD_BANS, Intents13.FLAGS.GUILD_EMOJIS_AND_STICKERS, Intents13.FLAGS.GUILD_INTEGRATIONS, Intents13.FLAGS.GUILD_WEBHOOKS, Intents13.FLAGS.GUILD_INVITES, Intents13.FLAGS.GUILD_VOICE_STATES, Intents13.FLAGS.GUILD_PRESENCES, Intents13.FLAGS.GUILD_MESSAGES, Intents13.FLAGS.GUILD_MESSAGE_REACTIONS, Intents13.FLAGS.GUILD_MESSAGE_TYPING, Intents13.FLAGS.DIRECT_MESSAGES, Intents13.FLAGS.DIRECT_MESSAGE_REACTIONS, Intents13.FLAGS.DIRECT_MESSAGE_TYPING
+             ],
+});
+//___________
+client13.client12=client
+//___________________
+client13.global_storage=global_storage
+
+//____________
+client13.prefix = "--";
+client13.SERVER_ID = "301063859702071316";
+let RH13 = require(`./raw13.js`);
+RH13.folder_name = `./modules13`; // RH.folder_name='C:/user/discord/bot4/modules';- for pc running
+//RH13.prefix = client13.prefix; //prefix for commands; default value: '!'
+RH13.build(client13)
+
+
+client13.x={
+  ch:{
+    transfer:'transfer'
+  }
+}
+client13.x.inputPrefix='x13'
+client13.x.rewirePrefix='rewx13'
+client13.login();
+
+//------------031221
+
+client13.on('ready',guild=>{
+let channelError= client13.guilds.cache.get(client13.SERVER_ID).channels.cache.find(ch=>ch.name=='error')
+  //let channelError= client13.channels.cache.find(ch=>ch.name=='error')
+  let consolelog = console.log
+  console.log=(data)=>{
+  if((data.data||data.message)&&channelError) {
+    let ndata = data.toString()
+   // if(ndata.length>1) channelError.send(ndata)
+  }
+   consolelog(data)}
+    })
