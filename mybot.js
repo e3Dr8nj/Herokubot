@@ -19,7 +19,7 @@ global_storage.setValue=([target,value])=>{
 //
 //________________
 
-
+let client={}
 const Discord13= require("discord13.js")
 const {Intents:Intents13}= require("discord13.js")
 const client13 = new Discord13.Client({
@@ -68,7 +68,7 @@ let channelError= client13.guilds.cache.get(client13.SERVER_ID).channels.cache.f
 //-------------
 //___
 const Discord = require("discord.js");
-const client = new Discord.Client();
+ client = new Discord.Client();
 client.actions.MessageCreate=client13.actions.MessageCreate//experimental
 client.global_storage=global_storage
 
