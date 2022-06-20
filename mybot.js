@@ -145,6 +145,7 @@ client13.x={
     transfer:'transfer'
   }
 }
+client13.x.server_id=client13.SERVER_ID
 client13.x.inputPrefix='x13'
 client13.x.rewirePrefix='rewx13'
 client13.login();
