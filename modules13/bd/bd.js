@@ -167,7 +167,7 @@ let pattern = /\d{10,}/g;
 let result = text.match(pattern);
    
     let r =parser.m.recordObj(result[0],table_name.x)
-     let channel = await client.guilds.cache.get(guild_id).channels.cache.find(ch=>cn.name===parser.data.channel_name)
+     let channel = await client.guilds.cache.get(guild_id).channels.cache.find(ch=>ch.name===parser.data.channel_name)
    channel.send(r)
   }
 }catch(err){console.log(err);};}};//
