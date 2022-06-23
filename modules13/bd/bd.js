@@ -88,8 +88,10 @@ module.exports.commands.command1={disable:false,aliase:'top', run:async(client,m
   console.log(bd)
   bd=await bd.sort((a,b)=>{return Number(b.points)-Number(a.points)})
   //sord bd by points des
-
-  let str='7дн|все \n'
+  let inv5="⠀⠀⠀⠀⠀"
+  let inv2="⠀⠀"
+  let inv1="⠀"
+  let str=`7дн${inv2}|${inv1}все${inv2}|${inv1}бампер \n`
  // console.log('find ')
 //  console.log(bd_all.find)
 let ee=0
@@ -97,14 +99,18 @@ let ee=0
  // console.log(bd)
   bd.map(e=>{
     
-   let pd= String(e.points).padStart(3,'0')
-    
+  // let pd= String(e.points).padStart(2,'0')//++
+    let r = inv5+e.points
+    let pd=r.slice(-4)
   //  let pd = e.points
 ee=bd_all.find(e1=>e1.user_id===e.user_id) || 0
-    let all_points = String(ee.points).padStart(3,'0')
+    let r2 = inv5+e.points
+    let all_points=r.slice(-4)
+  //  let all_points = String(ee.points).padStart(3,'0')
+    
 // console.log('ee '+ee.points)
-  
-   str+=`${pd}|${all_points}   <@${ee.user_id}> \n`
+   
+   str+=` ${pd}${inv1}  ${all_points}${inv2}   <@${ee.user_id}>  \n`
   })
   let emb = {}
  emb.description=str
