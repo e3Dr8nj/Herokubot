@@ -101,7 +101,7 @@ let ee=0
     
   // let pd= String(e.points).padStart(2,'0')//++
     let r = inv5+e.points
-    let pd=r.slice(-4)
+    let pd=r.slice(-3)
   //  let pd = e.points
 ee=bd_all.find(e1=>e1.user_id===e.user_id) || 0
     let r2 = inv5+e.points
