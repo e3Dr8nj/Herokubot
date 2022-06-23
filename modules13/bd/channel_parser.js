@@ -33,13 +33,13 @@ function ijs(str) {//check if str is correctly jsoned
   }
 }
 function getTable(bd,tableName){//get table from bd
-    bd= bd.filter(e=>e.tableName===tableName)//--------
-    return bd
+    let bd_= bd.filter(e=>e.tableName===tableName)//--------
+    return bd_
 }
 
 function select(bd,param,val){//get table from bd
-    bd= bd.filter(e=>e[param]===val)//--------
-    return bd
+    let bd_= bd.filter(e=>e[param]===val)//--------
+    return bd_
 }
 
 /*
@@ -47,10 +47,9 @@ function select(bd,param,val){//get table from bd
 */
 
 function selectf(bd,param,func){//get table from bd
-    bd= bd.filter(e=>{
-      console.log(e)
-      return func(e[param])})//--------
-    return bd
+   let bd_= bd.filter(e=>func(e[param]))//--------
+   return bd_
+   
 }
 
 function conUniBy(bd,uni, by){
@@ -60,6 +59,7 @@ function conUniBy(bd,uni, by){
      
     
             {
+      console.log('e '+el)
                
                let same =bd2.find(e=>e[uni]===el[uni])
                if(!!same){
@@ -69,7 +69,7 @@ function conUniBy(bd,uni, by){
                         } else{bd2.push(el)}
     })
                                                      
-      return bd2       
+      return bd2    
           
 }
 //---

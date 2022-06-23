@@ -1,4 +1,5 @@
 const parser = require('./channel_parser.js')
+const set = require('./set.js')
 const data = parser.data
 const table_name_reset=parser.data.table_name
 let table_name=
@@ -67,30 +68,41 @@ module.exports.commands.command1={disable:false,aliase:'top', run:async(client,m
 
    //bd= await getTable(bd,'table1')//--------
   
-  bd_all = await parser.m.select(bd_all,'tableName',tableName)
+  bd_all = await parser.m.select(bd_all,'tableName',tableName)//++
+//  bd_all =await bd_all.filter(e=>{e.tableName==='bump'})
   //return table from bd
-
-   let bd = await parser.m.selectf(bd_all,'data',lastDays)
+  
+  // let bd_ = await parser.m.selectf(bd_all,'data',lastDays)
+  let bd_ = await bd_all.filter(e=>lastDays(e.data))
+ let  bd = JSON.parse(JSON.stringify(bd_));
+ //  let bd=bd_
    //select from table by filter function
-  
-  if(bd.length===0) return
-   bd = await parser.m.conUniBy(bd,'user_id','points')
+   console.log('bd selected')
+  console.log(bd_)
+   bd_all = await parser.m.conUniBy(bd_all,'user_id','points')
+  if(bd_.length===0) return
+  bd = await parser.m.conUniBy(bd,'user_id','points')
+ 
   //reorganized bd by unique value fild, sum 
-  
+  console.log('unificata')
   console.log(bd)
-  bd=await bd.sort((a,b)=>{Number(a.points)-Number(b.points)})
+  bd=await bd.sort((a,b)=>{return Number(b.points)-Number(a.points)})
   //sord bd by points des
 
-  let str=''
-  console.log('find ')
-  console.log(bd_all.find)
+  let str='7дн|все \n'
+ // console.log('find ')
+//  console.log(bd_all.find)
 let ee=0
+//console.log('dd')
+ // console.log(bd)
   bd.map(e=>{
     
-    let pd= String(e.points).padStart(2,'0')
+   let pd= String(e.points).padStart(3,'0')
+    
+  //  let pd = e.points
 ee=bd_all.find(e1=>e1.user_id===e.user_id) || 0
-    let all_points = String(ee.points).padStart(2,'0')
- console.log('ee '+ee.points)
+    let all_points = String(ee.points).padStart(3,'0')
+// console.log('ee '+ee.points)
   
    str+=`${pd}|${all_points}   <@${ee.user_id}> \n`
   })
@@ -99,7 +111,7 @@ ee=bd_all.find(e1=>e1.user_id===e.user_id) || 0
   
   message.channel.send({embeds:[emb]})
   
-  console.log(bd)
+ // console.log(bd)
 }catch(err){console.log(err);};}};//
 //--------
 module.exports.commands.command2={disable:false,aliase:'bt_bump_emit', run:async(client,message,args)=>{try{
@@ -118,7 +130,10 @@ module.exports.commands.command3={disable:false,aliase:'bt_points', run:async(cl
   let channel_name = parser.data.channel_name
   let tableName = table_name.x
   let points = Number(args[1])||0
-  let id =message.mentions.users.first().id||message.author.id
+  let pattern = /\d{10,}/;
+let result = message.content.match(pattern);
+  let id =result[0]
+  
   let r =parser.m.recordObj(id,tableName,points)
   /*
   let r = parser.m.recordObj({'id':d})
@@ -204,9 +219,10 @@ try{
       a.curTime = new Date().getTime() 
      a.recTime=recTime
     //  let tag = days*1000*60*60*24
-     a.tag = 1000*60*60*24*30
+     a.tag =set.data.tag
       a.terminalPoint = a.curTime - a.tag
-    a.res=a.recTime>a.terminalPoint
+    a.res=a.recTime-a.terminalPoint
+   a.res=(a.res>0)?true:false
     console.log(a)
       return a.res
   }

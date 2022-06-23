@@ -5,5 +5,6 @@ module.exports.data = {
       tableName:"table1"
       ,table_name:"bump"
       ,channel_name:"bd_bump"
+      ,tag:1000*60*60*24*1
     }
     
