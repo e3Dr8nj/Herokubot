@@ -89,8 +89,8 @@ module.exports.commands.command1={disable:false,aliase:'top', run:async(client,m
   console.log(bd)
   bd=await bd.sort((a,b)=>{return Number(b.points)-Number(a.points)})
   //sord bd by points des
-  let inv5="⠀⠀⠀⠀⠀⠀⠀⠀"
-    let inv4="⠀⠀⠀⠀⠀⠀"
+  let inv5="⠀⠀⠀⠀⠀⠀"
+    let inv4="⠀⠀⠀⠀"
   let inv2="⠀⠀"
   let inv1="⠀"
   let invs = inv5.slice(0,3)
