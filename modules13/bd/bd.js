@@ -2,6 +2,7 @@ const parser = require('./channel_parser.js')
 const set = require('./set.js')
 const data = parser.data
 const table_name_reset=parser.data.table_name
+
 let table_name=
     {
       x:parser.data.table_name
@@ -88,35 +89,67 @@ module.exports.commands.command1={disable:false,aliase:'top', run:async(client,m
   console.log(bd)
   bd=await bd.sort((a,b)=>{return Number(b.points)-Number(a.points)})
   //sord bd by points des
-  let inv5="⠀⠀⠀⠀⠀"
+  let inv5="⠀⠀⠀⠀⠀⠀⠀⠀"
+    let inv4="⠀⠀⠀⠀⠀⠀"
   let inv2="⠀⠀"
   let inv1="⠀"
-  let str=`7дн${inv2}|${inv1}все${inv2}|${inv1}бампер \n`
+  let invs = inv5.slice(0,3)
+//  let str=`7дн${inv2}|${inv1}все${inv2}|${inv1}бампер \n`
+  let str=''
  // console.log('find ')
 //  console.log(bd_all.find)
 let ee=0
 //console.log('dd')
  // console.log(bd)
+let i=0
+let sw=0
   bd.map(e=>{
-    
-  // let pd= String(e.points).padStart(2,'0')//++
-    let r = inv5+e.points
-    let pd=r.slice(-3)
-  //  let pd = e.points
+    sw=(sw===0)?1:0
+    let invd=(sw)?inv5:inv4
+  //  let invd=(sw===0)?invs:inv5
+  //let pd= String(e.points).padStart(2,'0')//++
+    let r = e.points+inv5
+   let pd=r.slice(0,4)
+  // let pd = e.points
 ee=bd_all.find(e1=>e1.user_id===e.user_id) || 0
-    let r2 = inv5+e.points
-    let all_points=r.slice(-4)
+    let r2 = ee.points+inv5
+    let all_points=r2.slice(0,4)
   //  let all_points = String(ee.points).padStart(3,'0')
     
 // console.log('ee '+ee.points)
-   
-   str+=` ${pd}${inv1}  ${all_points}${inv2}   <@${ee.user_id}>  \n`
+    let user = message.guild.members.cache.get(ee.user_id)
+  // let link='[d](http://google.com)'
+    user=(user)?user:'0'
+    let udn= user.displayName
+   // udn=udn.slice(-15)
+    let link = '['+udn+'](http://google.com)'
+     let user_id =(user)? user.toString():ee.user_id
+     let user_id_s=user_id
+     user_id_s=user_id.slice(-20)
+    let u_m='<@'+ee.user_id+'>'
+  // str+=` k  ${pd}${inv1}  ${all_points}${inv2}   <@${ee.user_id}>  \n`
+    let b=(sw)?'`':''
+    let b2=(sw)?'` ':''
+   // invs=(sw)?inv5:invs
+   // let vip = Math.floor(e.points/10)
+    let vip = e.points/10
+    vip+=inv5
+    vip=vip.slice(0,4)
+    let line=''
+  // if(sw) {
+     line=[b,pd,inv5,all_points,invd,vip,invd,b,u_m,'\n'].join('')
+   //}else{
+    // line=[b,pd,inv5,all_points,inv4,vip,inv4,b,u_m,'\n'].join('')}
+    str+=line
+    //str+=b+pd+""+inv5+all_points+''+inv5+inv5+''+vip+inv5+b2+""+u_m+""+' \n'
+
   })
   let emb = {}
- emb.description=str
-  
+ //emb.description=str
+  emb.fields=[{name:`неделя${inv1}|${inv1}все время${inv1}|привилегии${inv1}|${inv1}короли бампа`,value:str}]
   message.channel.send({embeds:[emb]})
-  
+
+
  // console.log(bd)
 }catch(err){console.log(err);};}};//
 //--------
@@ -125,7 +158,7 @@ module.exports.commands.command2={disable:false,aliase:'bt_bump_emit', run:async
 
   let id =message.mentions.users.first().id||message.author.id
   let emb = {description:`Server bumped by  <@${id}>`}
-  message.channel.send({embeds:[emb]})
+ await  message.channel.send({embeds:[emb]})
   return
 }catch(err){console.log(err);};}};//
 
@@ -179,8 +212,9 @@ module.exports.boots.someBoot1={disable:false,run:async(client)=>{try{
 module.exports.events={};
 module.exports.events.messageCreate={ disable:false,run:async(client,message)=>{try{
  //code to execut then this event triggered
+ if(!client.bd_bump_dis) {
   let guild_id = client.x.serverId
- 
+
   if(message.embeds[0]&&message.embeds[0].description&&message.embeds[0].description.indexOf('Server bumped by')!=-1){
     
     let text = message.embeds[0].description; 
@@ -190,7 +224,14 @@ let result = text.match(pattern);
     let r =parser.m.recordObj(result[0],table_name.x)
      let channel = await client.guilds.cache.get(guild_id).channels.cache.find(ch=>ch.name===parser.data.channel_name)
    channel.send(r)
+    client.bd_bump_dis=true
+    await module.exports.commands.command1.run(client,message,[])
+    await delay(1000*60)
+    client.bd_bump_dis=false
+  
+    
   }
+ }
 }catch(err){console.log(err);};}};//
 
 //______________________________EVENTS PRIMITIVE
