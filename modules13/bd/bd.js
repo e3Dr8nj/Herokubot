@@ -225,10 +225,11 @@ let result = text.match(pattern);
      let channel = await client.guilds.cache.get(guild_id).channels.cache.find(ch=>ch.name===parser.data.channel_name)
    channel.send(r)
     client.bd_bump_dis=true
-    await module.exports.commands.command1.run(client,message,[])
+    
     await delay(1000*60)
     client.bd_bump_dis=false
-  
+     await delay(1000*30)
+    await module.exports.commands.command1.run(client,message,[])
     
   }
  }
