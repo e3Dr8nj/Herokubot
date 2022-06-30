@@ -146,7 +146,7 @@ ee=bd_all.find(e1=>e1.user_id===e.user_id) || 0
   })
   let emb = {}
  //emb.description=str
-  emb.fields=[{name:`неделя${inv1}|${inv1}все время${inv1}|привилегии${inv1}|${inv1}короли бампа`,value:str}]
+  emb.fields=[{name:`неделя${inv1}|${inv1}все время${inv1}|${inv1}привилегии${inv1}|${inv1}короли бампа`,value:str}]
   message.channel.send({embeds:[emb]})
 
 
