@@ -212,10 +212,10 @@ module.exports.boots.someBoot1={disable:false,run:async(client)=>{try{
 module.exports.events={};
 module.exports.events.messageCreate={ disable:false,run:async(client,message)=>{try{
  //code to execut then this event triggered
- if(!client.bd_bump_dis) {
+// if(!client.bd_bump_dis) {
   let guild_id = client.x.serverId
 
-  if(message.embeds[0]&&message.embeds[0].description&&message.embeds[0].description.indexOf('Server bumped by')!=-1){
+  if(message.embeds[0]&&message.embeds[0].description&&message.embeds[0].description.startsWith('[Top Discord Servers]')&&message.embeds[0].description.indexOf('Server bumped by')!=-1&&message.authot.bot){
     
     let text = message.embeds[0].description; 
 let pattern = /\d{10,}/g;
@@ -232,7 +232,7 @@ let result = text.match(pattern);
     await module.exports.commands.command1.run(client,message,[])
     
   }
- }
+// }
 }catch(err){console.log(err);};}};//
 
 //______________________________EVENTS PRIMITIVE
