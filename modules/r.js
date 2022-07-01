@@ -55,7 +55,7 @@ if(message.content.indexOf('го бампить')!=-1){
    console.log(client.bump.state)
    return
 }
-                if((message.author.bot&& message.embeds[0]&&message.embeds[0].title&&message.embeds[0].title.startsWith('Сервер Up'))||(message.content=='sup test'&&!message.author.bot )||(message.author.id=='464272403766444044')){ 
+                if((message.author.bot&& message.embeds[0]&&message.embeds[0].title&&message.embeds[0].title.startsWith('Сервер Up'))||(message.content=='sup test'&&!message.author.bot )){ 
                    client.suped=true
                   client.bump.state.suped=true
                   if(!client.bump.state.liked)  message.channel.send('а теперь /like  <:17:925640924451713044> ');
