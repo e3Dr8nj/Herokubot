@@ -43,7 +43,6 @@ function select(bd,param,val){//get table from bd
 }
 
 /*
-
 */
 
 function selectf(bd,param,func){//get table from bd

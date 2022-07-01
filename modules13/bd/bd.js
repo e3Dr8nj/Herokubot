@@ -157,7 +157,7 @@ module.exports.commands.command2={disable:false,aliase:'bt_bump_emit', run:async
    //code to execut then this command triggered
 
   let id =message.mentions.users.first().id||message.author.id
-  let emb = {description:`[Top Discord Servers] Server bumped by  <@${id}>`}
+  let emb = {description:`Server bumped by  <@${id}>`}
  await  message.channel.send({embeds:[emb]})
   return
 }catch(err){console.log(err);};}};//
@@ -196,7 +196,6 @@ module.exports.commands.command3={disable:false,aliase:'bt_points', run:async(cl
   let points = Number(args[1])||0
   let id =message.mentions.users.first().id||message.author.id
   let r =parser.m.recordObj(id,tableName,points)
-
      let channel = client.guilds.cache.get(parser.data.guild_id).channels.cache.get(parser.data.channel_id)
    channel.send(r)
   return
@@ -212,10 +211,10 @@ module.exports.boots.someBoot1={disable:false,run:async(client)=>{try{
 module.exports.events={};
 module.exports.events.messageCreate={ disable:false,run:async(client,message)=>{try{
  //code to execut then this event triggered
-// if(!client.bd_bump_dis) {
+ if(!client.bd_bump_dis) {
   let guild_id = client.x.serverId
 
-  if(message.embeds[0]&&message.embeds[0].description&&message.embeds[0].description.startsWith('[Top Discord Servers]')&&message.authot.bot){
+  if(message.embeds[0]&&message.embeds[0].description&&message.embeds[0].description.indexOf('Server bumped by')!=-1){
     
     let text = message.embeds[0].description; 
 let pattern = /\d{10,}/g;
@@ -232,7 +231,7 @@ let result = text.match(pattern);
     await module.exports.commands.command1.run(client,message,[])
     
   }
-// }
+ }
 }catch(err){console.log(err);};}};//
 
 //______________________________EVENTS PRIMITIVE
