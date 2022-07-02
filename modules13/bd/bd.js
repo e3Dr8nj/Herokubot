@@ -89,8 +89,8 @@ module.exports.commands.command1={disable:false,aliase:'top', run:async(client,m
   console.log(bd)
   bd=await bd.sort((a,b)=>{return Number(b.points)-Number(a.points)})
   //sord bd by points des
-  let inv5="⠀⠀⠀⠀⠀⠀"
-    let inv4="⠀⠀⠀⠀"
+  let inv5="⠀⠀⠀⠀"
+    let inv4="⠀⠀⠀"
   let inv2="⠀⠀"
   let inv1="⠀"
   let invs = inv5.slice(0,3)
@@ -137,7 +137,7 @@ ee=bd_all.find(e1=>e1.user_id===e.user_id) || 0
     vip=vip.slice(0,4)
     let line=''
   // if(sw) {
-     line=[b,pd,inv5,all_points,invd,vip,invd,b,u_m,'\n'].join('')
+     line=[b,pd,inv1,all_points,invd,vip,invd,b,u_m,'\n'].join('')
    //}else{
     // line=[b,pd,inv5,all_points,inv4,vip,inv4,b,u_m,'\n'].join('')}
     str+=line
@@ -146,22 +146,30 @@ ee=bd_all.find(e1=>e1.user_id===e.user_id) || 0
   })
   let emb = {}
  //emb.description=str
-  emb.fields=[{name:`неделя${inv1}|${inv1}все время${inv1}|${inv1}привилегии${inv1}|${inv1}короли бампа`,value:str}]
+  emb.fields=[{name:`7дн${inv1}|все${inv1}|привилегии${inv1}|короли бампа`,value:str}]
   message.channel.send({embeds:[emb]})
 
 
  // console.log(bd)
 }catch(err){console.log(err);};}};//
 //--------
-module.exports.commands.command2={disable:false,aliase:'bt_bump_emit', run:async(client,message,args)=>{try{
+module.exports.commands.command_emitbump={disable:false,aliase:'bt_bump_emit', run:async(client,message,args)=>{try{
    //code to execut then this command triggered
 
   let id =message.mentions.users.first().id||message.author.id
-  let emb = {description:`Server bumped by  <@${id}>`}
+  let emb = {description:`Top Discord Servers Server bumped by  <@${id}>`}
  await  message.channel.send({embeds:[emb]})
   return
 }catch(err){console.log(err);};}};//
 
+module.exports.commands.command_emitsup={disable:false,aliase:'bt_sup_emit', run:async(client,message,args)=>{try{
+   //code to execut then this command triggered
+
+  let id =message.mentions.users.first().id||message.author.id
+  let emb = {title:`Сервер Up <@${id}>`}
+ await  message.channel.send({embeds:[emb]})
+  return
+}catch(err){console.log(err);};}};//
 module.exports.commands.command3={disable:false,aliase:'bt_points', run:async(client,message,args)=>{try{
   
    //code to execut then this command triggered
@@ -211,27 +219,33 @@ module.exports.boots.someBoot1={disable:false,run:async(client)=>{try{
 module.exports.events={};
 module.exports.events.messageCreate={ disable:false,run:async(client,message)=>{try{
  //code to execut then this event triggered
- if(!client.bd_bump_dis) {
+   async function addPoints(env,type,phrase){
+ if(!client[env]) {
+ 
   let guild_id = client.x.serverId
 
-  if(message.embeds[0]&&message.embeds[0].description&&message.embeds[0].description.indexOf('Server bumped by')!=-1){
+  if(message.embeds[0]&&message.embeds[0][type]&&message.embeds[0][type].indexOf(phrase)!=-1){
     
-    let text = message.embeds[0].description; 
+    let text = message.embeds[0][type]; 
 let pattern = /\d{10,}/g;
 let result = text.match(pattern);
    
     let r =parser.m.recordObj(result[0],table_name.x)
      let channel = await client.guilds.cache.get(guild_id).channels.cache.find(ch=>ch.name===parser.data.channel_name)
    channel.send(r)
-    client.bd_bump_dis=true
+    client[env]=true
     
     await delay(1000*60)
-    client.bd_bump_dis=false
+    client[env]=false
      await delay(1000*30)
     await module.exports.commands.command1.run(client,message,[])
-    
   }
  }
+  // addPoints()
+ }
+ addPoints('bd_bump_dis','description','Server bumped by')
+ // addPoints('bd_sup_dis','title','Сервер Up')
+//  addPoints('bd_like_dis','title','Сервер Up')
 }catch(err){console.log(err);};}};//
 
 //______________________________EVENTS PRIMITIVE
