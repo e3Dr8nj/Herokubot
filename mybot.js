@@ -98,13 +98,13 @@ client3.on('rateLimit', (rateLimitInfo)  => {try{
         client3.rateLimitDate=rateLimitInfo.timeout+new Date().getTime();
         console.log('RL__'+client3.rateLimit+'  '+rateLimitInfo.limit)
 }catch(err){console.log(err);}; });
-
+/*
 client3.on('message', msg => {
   if (msg.content === 'ping') {
     msg.reply('<a:5zz:789573337596166144>');
   }
 });
-
+*/
 client3.on("raw", (...args) => {try{
      RH3.run(client3,...args);
 }catch(err){console.log(err);}; });
@@ -151,7 +151,7 @@ client13.x.rewirePrefix='rewx13'
 client13.login();
 
 //------------031221
-
+/*
 client13.on('ready',guild=>{
 let channelError= client13.guilds.cache.get(client13.SERVER_ID).channels.cache.find(ch=>ch.name=='error')
   //let channelError= client13.channels.cache.find(ch=>ch.name=='error')
@@ -163,3 +163,4 @@ let channelError= client13.guilds.cache.get(client13.SERVER_ID).channels.cache.f
   }
    consolelog(data)}
     })
+    */

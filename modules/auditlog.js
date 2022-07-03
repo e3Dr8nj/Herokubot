@@ -65,7 +65,9 @@ module.exports.events.messageDelete={ on:true,  run:async(client,message)=>{try{
                       };
                       //message.channel.send('executor '+e.executor.username+" count"+e.extra.count+' id '+e.id);
                       if(e.executor.id===message.guild.owner.id) return entryfind='skeep';//ADD THIS !!!
-                     // log(e);
+                      if(e.executor.id==="437330563423010827") return entryfind='skeep';//ADD THIS !!!
+                     
+                       // log(e);
                      entryfind=e
                   return ;
               });//filter
