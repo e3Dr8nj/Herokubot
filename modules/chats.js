@@ -476,7 +476,7 @@ exports.createNewVoice=async(client,oldState,newState)=>{try{ //triggered then n
         await new_channel.setUserLimit(10)
   .then(vc => console.log(`Set user limit`))
   .catch(console.error);
-  await new_channel.updateOverwrite(a.SRV.roles.everyone, { CONNECT:null,SPEAK:null });
+  await new_channel.updateOverwrite(a.SRV.roles.everyone, { CONNECT:null,SPEAK:null,SEND_MESSAGES:false });
         // await exports.commands.chatHelp2.run(client,msg,['']);
         
   
