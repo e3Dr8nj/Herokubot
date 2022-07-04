@@ -60,7 +60,15 @@ exports.rh={
      let cnt = args.join(' ')
      message.channel.send(cnt+'\n')
    }catch(err){console.log(err);};}};//
-   
+   //--------
+module.exports.commands.random={disable:false,aliase:'rnd', run:async(client,message,args)=>{try{
+    //code to execut then this command triggered
+   if(!args[1]) return
+   let rnd = random(Number(args[1]))
+   message.channel.send(rnd.toString())
+   console.log(rnd.toString())
+ }catch(err){console.log(err);};}};//
+
    //_________________________________________BOOTS_PART___________________________________________________
    
    module.exports.boots = {}; 
