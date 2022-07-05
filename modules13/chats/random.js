@@ -28,20 +28,27 @@ exports.rh={
    //_________________________________________COMMANDS_PART_________________________________________________
    module.exports.commands = {};
    //--------
-   module.exports.commands.addContent={disable:false,aliase:'ac', run:async(client,message,args)=>{try{
+   module.exports.commands.addContent={disable:false,aliase:'+++', run:async(client,message,args)=>{try{
       //code to execut then this command triggered
-     if(!args[1]) return
+     if(!args[1]||!args[2]) return message.channel.send('не указана эмодзи или название роли, эмодзи пробел название роли')
+    // if(!args[2]) return message.channel.send('не указано название роли')
      let msg  = await message.channel.messages.fetch({limit:100}).then(messages => {
                
-                let msg =  messages.find(m=>m.reactions.cache.get('✅'));
+                let msg =  messages.find(m=>m.reactions.cache.get('✅')&&m.author.id===client.user.id);
                return msg;
                  //return msgs;
             }).catch(console.error);
      args.shift()
+     let emo = args.shift()
      let cnt = args.join(' ')
-     await msg.edit(msg.content+' \n'+cnt)
+     let msg_cnt=msg.content.split('\n ###')
+     let d=''
+     let mm = msg.mentions.members.get(message.author.id)
+     if(mm){d=''}else{d=message.author.toString()}
+     await msg.edit(msg_cnt[0]+' \n'+emo+' '+cnt+'\n ###'+msg_cnt[1]+' '+d)
      .then(msg => console.log(`Updated the content of a message to ${msg.content}`))
      .catch(console.error);
+     msg.react(emo)
      /*
      //console.log(msg.reactions)
     let obj= msg.reactions.fetch()
@@ -53,22 +60,48 @@ exports.rh={
      */
    }catch(err){console.log(err);};}};//
    //--------
-   module.exports.commands.createMessage={disable:false,aliase:'cm', run:async(client,message,args)=>{try{
+   module.exports.commands.createMessage={disable:false,aliase:'создать-список', run:async(client,message,args)=>{try{
       //code to execut then this command triggered
-     if(!args[1]) return
+     if(!args[1]) args[1]='список'
      args.shift()
      let cnt = args.join(' ')
-     message.channel.send(cnt+'\n')
+     let msg=await message.channel.send(cnt+'\n ###')
+     await msg.react('✅')
    }catch(err){console.log(err);};}};//
    //--------
-module.exports.commands.random={disable:false,aliase:'rnd', run:async(client,message,args)=>{try{
-    //code to execut then this command triggered
-   if(!args[1]) return
-   let rnd = random(Number(args[1]))
-   message.channel.send(rnd.toString())
-   console.log(rnd.toString())
- }catch(err){console.log(err);};}};//
-
+   module.exports.commands.random={disable:false,aliase:'рандом', run:async(client,message,args)=>{try{
+      //code to execut then this command triggered
+    
+     
+    // message.channel.send(rnd.toString())
+     
+       let msg  = await message.channel.messages.fetch({limit:100}).then(messages => {
+               
+                let msg =  messages.find(m=>m.reactions.cache.get('✅')&&m.author.id===client.user.id);
+               return msg;
+                 //return msgs;
+            }).catch(console.error);
+     let arr =[]
+     if(!msg.mentions.members.first()) return message.channel.send('нет ни одного участника')
+        let mm = msg.mentions.members
+        
+        mm.map(m=>{
+          arr.push(m)
+        })
+        
+        let rnd = random(arr.length)
+        let mm_rnd_st=arr[rnd].toString()
+        message.channel.send(mm_rnd_st)
+   }catch(err){console.log(err);};}};//
+   module.exports.commands.rnd_help={disable:false,aliase:'рандом-хелп', run:async(client,message,args)=>{try{
+      let str='  !рандом-хелп'
+     str+='\n !создать-список <заголовок> - создает сообщение-список с заданым заголовком'
+     str+='\n например: !создать-список роли'
+      str+='\n !+++ <эмодзи> <название роли> - добавляет позицию в собщение-список, а так же добавляет упоминание ее автора'
+     str+='\n например: !+++ 1️⃣ роль1'
+      str+='\n !рандом - выбирает из упоминаний в конце сообщения-списка одного участника'
+     message.channel.send(str)
+   }catch(err){console.log(err);};}};//
    //_________________________________________BOOTS_PART___________________________________________________
    
    module.exports.boots = {}; 
