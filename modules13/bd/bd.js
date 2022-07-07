@@ -127,6 +127,8 @@ ee=bd_all.find(e1=>e1.user_id===e.user_id) || 0
      let user_id_s=user_id
      user_id_s=user_id.slice(-20)
     let u_m='<@'+ee.user_id+'>'
+    let usernamesubline=udn+inv5+inv5+inv5+inv5+inv5
+    u_m = usernamesubline.slice(0,15)//redefined
   // str+=` k  ${pd}${inv1}  ${all_points}${inv2}   <@${ee.user_id}>  \n`
     let b=(sw)?'`':''
     let b2=(sw)?'` ':''
@@ -137,7 +139,7 @@ ee=bd_all.find(e1=>e1.user_id===e.user_id) || 0
     vip=vip.slice(0,4)
     let line=''
   // if(sw) {
-     line=[b,pd,inv1,all_points,invd,vip,invd,b,u_m,'\n'].join('')
+     line=[b,pd,inv1,all_points,invd,vip,invd,u_m,b,'\n'].join('')
    //}else{
     // line=[b,pd,inv5,all_points,inv4,vip,inv4,b,u_m,'\n'].join('')}
     str+=line
