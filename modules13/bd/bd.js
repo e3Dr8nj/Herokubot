@@ -1,7 +1,15 @@
+
 const parser = require('./channel_parser.js')
 const set = require('./set.js')
 const data = parser.data
 const table_name_reset=parser.data.table_name
+let obj_i = {
+  збс:true,
+  bump:true
+  ,up:true
+  ,like:true
+ 
+}
 
 let table_name=
     {
@@ -127,8 +135,10 @@ ee=bd_all.find(e1=>e1.user_id===e.user_id) || 0
      let user_id_s=user_id
      user_id_s=user_id.slice(-20)
     let u_m='<@'+ee.user_id+'>'
-    let usernamesubline=udn+inv5+inv5+inv5+inv5+inv5
-    u_m = usernamesubline.slice(0,15)//redefined
+   let usernamesubline=udn+inv5+inv5+inv5+inv5+inv5
+    
+   // u_m = '['+usernamesubline.slice(0,15)//redefined
+     u_m = '['+udn+'](http://discord.com)'//redefined
   // str+=` k  ${pd}${inv1}  ${all_points}${inv2}   <@${ee.user_id}>  \n`
     let b=(sw)?'`':''
     let b2=(sw)?'` ':''
@@ -139,7 +149,7 @@ ee=bd_all.find(e1=>e1.user_id===e.user_id) || 0
     vip=vip.slice(0,4)
     let line=''
   // if(sw) {
-     line=[b,pd,inv1,all_points,invd,vip,invd,u_m,b,'\n'].join('')
+     line=[b,pd,inv1,all_points,invd,vip,invd,b,u_m,'\n'].join('')
    //}else{
     // line=[b,pd,inv5,all_points,inv4,vip,inv4,b,u_m,'\n'].join('')}
     str+=line
@@ -221,6 +231,30 @@ module.exports.boots.someBoot1={disable:false,run:async(client)=>{try{
 module.exports.events={};
 module.exports.events.messageCreate={ disable:false,run:async(client,message)=>{try{
  //code to execut then this event triggered
+  console.log(message.author)
+  let cn = (message.interaction)?message.interaction.commandName:(message.content)?message.content.slice(1):false
+ 
+ if(obj_i[cn]){
+  // message.reply('+'+' '+cn)
+   obj_i[cn]=false
+  let r = ''
+  for(let key in obj_i){
+    if(obj_i[key]) r= key
+  }
+    let str =(r=='збс')?r:'``/'+r+'``'
+    message.channel.send(str)
+   await delay(1000*60*5)
+  // message.channel.send('ch ')
+   obj_i[cn]=true
+              }
+  if(message.content.startsWith('/up')){
+    //console.log(message)
+   // console.log('mess')
+   // message.channel.send('and now')
+  }
+  
+  
+  
    async function addPoints(env,type,phrase){
  if(!client[env]) {
  

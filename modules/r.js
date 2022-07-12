@@ -99,7 +99,7 @@ if(message.content.indexOf('го бампить')!=-1){
                 await  module.exports.changeChnlName(client,message.channel,'default');//change channel name to default
                 await module.exports.updateTime(client,message,time_msc);
                 await module.exports.setAwaiter(client,message.channel,module.exports.e.tag_time,time_msc);
-                if(!client.bump.state.suped) message.channel.send('а теперь напиши */up* пожалуйста <:17:925640924451713044> ');
+                //if(!client.bump.state.suped) message.channel.send('а теперь напиши */up* пожалуйста <:17:925640924451713044> ');
                
                 return;
 
