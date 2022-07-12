@@ -242,6 +242,7 @@ module.exports.events.messageCreate={ disable:false,run:async(client,message)=>{
     if(obj_i[key]) r= key
   }
     let str =(r=='збс')?r:'``/'+r+'``'
+    await delay(1000*5)
     message.channel.send(str)
    await delay(1000*60*5)
   // message.channel.send('ch ')
