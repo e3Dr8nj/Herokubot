@@ -4,7 +4,7 @@ const set = require('./set.js')
 const data = parser.data
 const table_name_reset=parser.data.table_name
 let obj_i = {
-  збс:true,
+  хватит:true,
   bump:true
   ,up:true
   ,like:true

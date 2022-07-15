@@ -198,7 +198,7 @@ exports.getTime=async(client)=>{try{
                     role=(!role)?'':role.toString();
                     
                    // chnl.send(role+' го бампить!<:28:589907105717157909> !bump   s.up  /like');
-                      chnl.send(role + '**го бампить!** <:17:925640924451713044>  \n \n`!bump`\n`/up`\n`/like`')
+                      chnl.send(role + '**го бампить!** <:17:925640924451713044>  \n \n`!bump`')
                  // s_up=false;
                 };
                 await chnl.edit({name:str}).catch(err=>console.log(err));
