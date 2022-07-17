@@ -1,4 +1,3 @@
-
 const parser = require('./channel_parser.js')
 const set = require('./set.js')
 const data = parser.data
@@ -130,6 +129,7 @@ ee=bd_all.find(e1=>e1.user_id===e.user_id) || 0
     user=(user)?user:'0'
     let udn= user.displayName
    // udn=udn.slice(-15)
+    let link_dsc='https://discord.com/channels/301063859702071316/301319871981944834'
     let link = '['+udn+'](http://google.com)'
      let user_id =(user)? user.toString():ee.user_id
      let user_id_s=user_id
@@ -138,7 +138,8 @@ ee=bd_all.find(e1=>e1.user_id===e.user_id) || 0
    let usernamesubline=udn+inv5+inv5+inv5+inv5+inv5
     
    // u_m = '['+usernamesubline.slice(0,15)//redefined
-     u_m = '['+udn+'](http://discord.com)'//redefined
+   //  u_m = '['+udn+'](http://discord.com)'//redefined
+    u_m = '['+udn+']('+link_dsc+')'
   // str+=` k  ${pd}${inv1}  ${all_points}${inv2}   <@${ee.user_id}>  \n`
     let b=(sw)?'`':''
     let b2=(sw)?'` ':''
@@ -241,7 +242,9 @@ module.exports.events.messageCreate={ disable:false,run:async(client,message)=>{
   for(let key in obj_i){
     if(obj_i[key]) r= key
   }
-    let str =(r=='збс')?r:'``/'+r+'``'
+   let emo ='<:20:925640966579306557>'
+    let str =(r=='хватит')?emo:'``/'+r+'``'
+    
     await delay(1000*5)
     message.channel.send(str)
    await delay(1000*60*5)
