@@ -245,7 +245,7 @@ module.exports.events.messageCreate={ disable:false,run:async(client,message)=>{
    let emo ='<:20:925640966579306557>'
     let str =(r=='хватит')?emo:'``/'+r+'``'
     
-    await delay(1000*5)
+    await delay(1000*20)
     message.channel.send(str)
    await delay(1000*60*5)
   // message.channel.send('ch ')
