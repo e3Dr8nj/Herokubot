@@ -2,6 +2,7 @@ const parser = require('./channel_parser.js')
 const set = require('./set.js')
 const data = parser.data
 const table_name_reset=parser.data.table_name
+let xlog=console.log
 let obj_i = {
   хватит:true,
   bump:true
@@ -87,6 +88,7 @@ module.exports.commands.command1={disable:false,aliase:'top', run:async(client,m
    //select from table by filter function
    console.log('bd selected')
   console.log(bd_)
+ 
    bd_all = await parser.m.conUniBy(bd_all,'user_id','points')
   if(bd_.length===0) return
   bd = await parser.m.conUniBy(bd,'user_id','points')
@@ -119,7 +121,7 @@ let sw=0
    let pd=r.slice(0,4)
   // let pd = e.points
 ee=bd_all.find(e1=>e1.user_id===e.user_id) || 0
-    let r2 = ee.points+inv5
+    let r2 = ee.all_points+inv5
     let all_points=r2.slice(0,4)
   //  let all_points = String(ee.points).padStart(3,'0')
     
@@ -145,12 +147,13 @@ ee=bd_all.find(e1=>e1.user_id===e.user_id) || 0
     let b2=(sw)?'` ':''
    // invs=(sw)?inv5:invs
    // let vip = Math.floor(e.points/10)
-    let vip = e.points/10
+    let vip = (e.ps)?e.ps:0
+   // let vip = e.points/10
     vip+=inv5
-    vip=vip.slice(0,4)
+    vip=vip.slice(0,3)
     let line=''
   // if(sw) {
-     line=[b,pd,inv1,all_points,invd,vip,invd,b,u_m,'\n'].join('')
+     line=[b,pd,inv1,all_points,inv1,vip,invd,b,u_m,'\n'].join('')
    //}else{
     // line=[b,pd,inv5,all_points,inv4,vip,inv4,b,u_m,'\n'].join('')}
     str+=line
@@ -159,7 +162,7 @@ ee=bd_all.find(e1=>e1.user_id===e.user_id) || 0
   })
   let emb = {}
  //emb.description=str
-  emb.fields=[{name:`7дн${inv1}|все${inv1}|привилегии${inv1}|короли бампа`,value:str}]
+  emb.fields=[{name:`7дн${inv1}|все${inv1}|п-и${inv1}|короли бампа`,value:str}]
   message.channel.send({embeds:[emb]})
 
 
@@ -168,7 +171,7 @@ ee=bd_all.find(e1=>e1.user_id===e.user_id) || 0
 //--------
 module.exports.commands.command_emitbump={disable:false,aliase:'bt_bump_emit', run:async(client,message,args)=>{try{
    //code to execut then this command triggered
-
+ // await delay(1000)
   let id =message.mentions.users.first().id||message.author.id
   let emb = {description:`Top Discord Servers Server bumped by  <@${id}>`}
  await  message.channel.send({embeds:[emb]})
@@ -204,10 +207,42 @@ let result = message.content.match(pattern);
   return
 }catch(err){console.log(err);};}};//
 //--------------------
+module.exports.commands.command5={disable:false,aliase:'привилегии', run:async(client,message,args)=>{try{
+  
+  message.channel.send('d')
+     let channel_name = parser.data.channel_name
+ let guild_id = client.x.serverId
+   let ps_sp = Number(args[1])||0
+   let points = Number(args[2])||0
+   let current = Number(args[3])||0
+   let all_points = Number(args[4]||0)
+   
+  let pattern = /\d{10,}/;
+  let result = message.content.match(pattern);
+  let user_id =result[0]
+  let r = await module.exports.jsonForBd(client,user_id,ps_sp,points,current,all_points)
+  let channel = client.guilds.cache.get(guild_id).channels.cache.find(ch=>ch.name===channel_name)
+   channel.send(r)
+  return
+  
+}catch(err){console.log(err);};}};//
+//--------------------
 module.exports.commands.command4={disable:false,aliase:'bt_table', run:async(client,message,args)=>{try{
    //code to execut then this command triggered
    (args[1]==='rst')?table_name.reset():table_name.x=args[1]
 message.reply(args[1])
+  return
+}catch(err){console.log(err);};}};//
+module.exports.commands.command5={disable:false,aliase:'ххелп', run:async(client,message,args)=>{try{
+   //code to execut then this command triggered
+  if(args[1]&&args[1]!='бамп') return
+   let str = ''
+   str+='бамп \n'
+   str+='`top` - показать таблицу \n'
+   str+='`привилегии -1` - убрать привилегию \n'
+   str+='`привилегии 1 -2 4 5` - убрать/добавить привилегии очки т.к общ.кол-во \n'
+   
+   await message.channel.send(str)
   return
 }catch(err){console.log(err);};}};//
 /*
@@ -245,7 +280,7 @@ module.exports.events.messageCreate={ disable:false,run:async(client,message)=>{
    let emo ='<:20:925640966579306557>'
     let str =(r=='хватит')?emo:'``/'+r+'``'
     
-    await delay(1000*20)
+    await delay(1000*10)
     message.channel.send(str)
    await delay(1000*60*5)
   // message.channel.send('ch ')
@@ -260,7 +295,7 @@ module.exports.events.messageCreate={ disable:false,run:async(client,message)=>{
   
   
    async function addPoints(env,type,phrase){
- if(!client[env]) {
+// if(!client[env]) {
  
   let guild_id = client.x.serverId
 
@@ -270,7 +305,9 @@ module.exports.events.messageCreate={ disable:false,run:async(client,message)=>{
 let pattern = /\d{10,}/g;
 let result = text.match(pattern);
    
-    let r =parser.m.recordObj(result[0],table_name.x)
+  // let r =parser.m.recordObj(result[0],table_name.x)
+   let r = await module.exports.jsonForBd(client,result[0],0,1)
+   // await module.exports.jsonForBd(client,user_id,points)
      let channel = await client.guilds.cache.get(guild_id).channels.cache.find(ch=>ch.name===parser.data.channel_name)
    channel.send(r)
     client[env]=true
@@ -280,7 +317,7 @@ let result = text.match(pattern);
      await delay(1000*30)
     await module.exports.commands.command1.run(client,message,[])
   }
- }
+// }
   // addPoints()
  }
  addPoints('bd_bump_dis','description','Server bumped by')
@@ -296,9 +333,74 @@ module.exports.events_primitive.SOME_EVENT_NAME={disable:false,run:async(client,
 //_____________SUB FUNCTION
 
 
-exports.subFunction2=async(client)=>{
+exports.jsonForBd=async(client,user_id,ps_sp,points,current_sp,all_points_sp)=>{
 try{ 
-   
+  if(!ps_sp) ps_sp=0
+  if(!points) points = 0
+  if(!current_sp) current_sp=0
+  if(!all_points_sp) all_points_sp=0
+  // input user_id, points
+  //output jsoned data string record to bd usage
+  
+   let tableName = table_name.x
+   let guild_id = client.x.serverId
+  let channel_name = parser.data.channel_name
+  //
+
+   let bd_all= await parser.m.parseAll(client,guild_id,channel_name)//--
+  
+  
+ 
+ 
+ 
+  points = Number(points)||0
+  
+ 
+  let id = user_id
+  let obj={
+    user_id:id
+    ,tableName:'bump'
+    ,data:new Date().getTime()
+    ,points:points
+    ,all_points:0
+    ,ps:0
+    ,qps:0
+  }
+  
+let bd_all2 = await parser.m.select(bd_all,'tableName',tableName)//++
+let recordLast= parser.m.select(bd_all2,'user_id',id)
+recordLast=(recordLast)?recordLast[0]:false
+let p = 0
+let current = 0
+let ps = 0
+if(recordLast){
+  p=recordLast.all_points||0
+ 
+  current = recordLast.current||0
+  
+  ps=recordLast.ps||0
+  }
+
+
+  obj.all_points=p+points+all_points_sp
+  current+=points+current_sp
+  
+ if(current=>10){
+   let psm = Math.floor(current/10)
+   ps+=psm;current=current-(10*psm);
+ }
+ 
+  
+  
+   obj.current=current
+   obj.ps=ps + ps_sp
+
+ let r = parser.m.recordObj2(obj)
+ 
+ // let channel = client.guilds.cache.get(guild_id).channels.cache.find(ch=>ch.name===channel_name)
+  // channel.send(r)
+  
+  return r//jsoned ready to send
 }catch(err){console.log(err);};
 };//
 

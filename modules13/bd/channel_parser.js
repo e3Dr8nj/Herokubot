@@ -10,12 +10,8 @@ let data={
 */
 let data = settings.data
 let parser = {
-    isj:ijs
-    ,getTable:getTable
-    ,select:select
-    ,selectf:selectf
-    ,conUniBy:conUniBy
-  ,ijs:ijs
+   
+  ijs:ijs
   ,getTable:getTable
   ,select:select
   ,selectf:selectf
@@ -23,6 +19,7 @@ let parser = {
   ,mergeWeek:mergeWeek
   ,recordObj:recordObj
   ,parseAll:parseAll
+  ,recordObj2:recordObj2
 }
 function ijs(str) {//check if str is correctly jsoned
   try {
@@ -52,7 +49,20 @@ function selectf(bd,param,func){//get table from bd
 }
 
 function conUniBy(bd,uni, by){
-  
+  //return bd, contated by 'by' value, and unique by 'uni'
+  /*
+  let bd = [
+     {'tableName':'table1','id':'1','points':'12'}
+     ,{'id':'2','points':'1'}
+     ,{'id':'1','points':'1'}
+     ,{'id':'3','points':'4'}
+     ,{'id':'2','points':'3'}
+     ,{'id':'3','points':'6'}
+ ]
+  example: 
+  let bd2 = await parser.conUniBy(bd,'id','points')
+  console.log(bd2)
+  */
    let bd2=[]
     bd.map(el=>
      
@@ -99,6 +109,26 @@ function recordObj(user_id,tableName,points_){
   let st = JSON.stringify(obj)
  
   return st
+}
+///---
+function recordObj2(a){
+  /*
+  let points = points_||1
+  let data = new Date().getTime()
+ let obj = {
+   tableName:tableName
+  , user_id:user_id
+   ,data: data
+   ,points:points
+   ,type:'bump'
+ }
+  let st = JSON.stringify(obj)
+ 
+  return st
+  */
+  let obj = Object.assign(a)
+  obj=JSON.stringify(obj)
+  return obj
 }
 //-----------
 async function parseAll(client,guild_id,channel_name){
