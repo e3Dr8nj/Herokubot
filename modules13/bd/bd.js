@@ -239,8 +239,8 @@ module.exports.commands.command5={disable:false,aliase:'ххелп', run:async(c
    let str = ''
    str+='бамп \n'
    str+='`top` - показать таблицу \n'
-   str+='`ps -1` - убрать привилегию \n'
-   str+='`ps 1 -2 4 5` - убрать/добавить привилегии очки т.к общ.кол-во \n'
+   str+='`ps -1 @ник/id` - убрать привилегию \n'
+   str+='`ps 1 -2 4 5 @ник/id` - убрать/добавить привилегии очки т.к общ.кол-во \n'
    
    await message.channel.send(str)
   return
