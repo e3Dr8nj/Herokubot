@@ -207,7 +207,7 @@ let result = message.content.match(pattern);
   return
 }catch(err){console.log(err);};}};//
 //--------------------
-module.exports.commands.command5={disable:false,aliase:'привилегии', run:async(client,message,args)=>{try{
+module.exports.commands.ps={disable:false,aliase:'ps', run:async(client,message,args)=>{try{
   
   message.channel.send('d')
      let channel_name = parser.data.channel_name
@@ -239,8 +239,8 @@ module.exports.commands.command5={disable:false,aliase:'ххелп', run:async(c
    let str = ''
    str+='бамп \n'
    str+='`top` - показать таблицу \n'
-   str+='`привилегии -1` - убрать привилегию \n'
-   str+='`привилегии 1 -2 4 5` - убрать/добавить привилегии очки т.к общ.кол-во \n'
+   str+='`ps -1` - убрать привилегию \n'
+   str+='`ps 1 -2 4 5` - убрать/добавить привилегии очки т.к общ.кол-во \n'
    
    await message.channel.send(str)
   return
