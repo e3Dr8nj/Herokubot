@@ -100,6 +100,7 @@ module.exports.commands.command1={disable:false,aliase:'top', run:async(client,m
   //sord bd by points des
   let inv5="⠀⠀⠀⠀"
     let inv4="⠀⠀⠀"
+    let inv3="⠀⠀"
   let inv2="⠀⠀"
   let inv1="⠀"
   let invs = inv5.slice(0,3)
@@ -114,7 +115,7 @@ let i=0
 let sw=0
   bd.map(e=>{
     sw=(sw===0)?1:0
-    let invd=(sw)?inv5:inv4
+    let invd=(sw)?inv2:inv1
   //  let invd=(sw===0)?invs:inv5
   //let pd= String(e.points).padStart(2,'0')//++
     let r = e.points+inv5
@@ -162,7 +163,7 @@ ee=bd_all.find(e1=>e1.user_id===e.user_id) || 0
   })
   let emb = {}
  //emb.description=str
-  emb.fields=[{name:`7дн${inv1}|все${inv1}|п-и${inv1}|короли бампа`,value:str}]
+  emb.fields=[{name:`7дн${inv1}|все${inv1}|привилегии${inv1}`,value:str}]
   message.channel.send({embeds:[emb]})
 
 
