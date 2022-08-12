@@ -81,11 +81,13 @@ exports.rh={
                       //let rnd = Math.floor(Math.random()*ph.warn.length);           
                       message.channel.send( 'Незнание закона не освобождает от ответственности. <#301319871981944834>'); return;
                  };
+                 let bcs ='без причины'
                 let bec =(args[2])? args.splice(2).join(' '):false
+                if(bec) bcs=bec
                  console.log(args)
                  let rnd = Math.floor(Math.random()*ph.warn.length);           
                        message.channel.send(mmb.toString()+" "+ph.warn[rnd]);
-                       await module.exports.log(client,message,{name:'Предупреждение',description:' предупредил '+mmb.toString()+' '+mmb.user.username+mmb.user.discriminator+' ',color:'red2',cose:bec});
+                       await module.exports.log(client,message,{name:'Предупреждение',description:' предупредил '+mmb.toString()+' '+mmb.user.username+mmb.user.discriminator+' ',color:'red2',cose:bcs});
                  return;        
              
    }catch(err){console.log(err);};}};//
@@ -350,7 +352,8 @@ exports.rh={
                  message.channel.send(' Накладывается печать немоты 🤐');
                  base_part=(base_part!=' ')?base_part:'неопределенное время';
                  let a_time=(more)?'||10д||':'';
-                 await module.exports.log(client,message,{name:'Мут',description:' замутил на '+base_part+a_time+' '+mmb.toString()+' '+mmb.user.username+mmb.user.discriminator,color:'red'});
+                 let bcs_str=''
+                 await module.exports.log(client,message,{name:'Мут',description:' замутил на '+base_part+a_time+' '+mmb.toString()+' '+mmb.user.username+mmb.user.discriminator,color:'red',cose:bcs});
                  if(Number(times)<=limit){
                            console.log('les then limite run timer');
                            await module.exports.delay(times);
