@@ -81,7 +81,7 @@ exports.rh={
                       //let rnd = Math.floor(Math.random()*ph.warn.length);           
                       message.channel.send( 'Незнание закона не освобождает от ответственности. <#301319871981944834>'); return;
                  };
-                 let bec = args.slice(2).join(' ')
+                let bec =(args[2])? args.splice(2).join(' '):false
                  console.log(args)
                  let rnd = Math.floor(Math.random()*ph.warn.length);           
                        message.channel.send(mmb.toString()+" "+ph.warn[rnd]);
@@ -264,7 +264,7 @@ exports.rh={
                  let bcs='без причины';
                //__
                 //let mmb_men = args[1] //let time_ args[2] //let bec=args[3]
-                let bec = args.slice(3).join(' ')
+                let bec =(args[3])? args.splice(3).join(' '):false
    //___ 
    
                 // if(bec) {bcs= '\n причина: '+bec;}; 
