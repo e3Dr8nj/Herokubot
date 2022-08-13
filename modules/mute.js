@@ -271,7 +271,7 @@ exports.rh={
                 if(args[2]){
                 let pattern = /\d/g;
                  let result = args[2].match(pattern);
-                 if(!!result) cos_pos=2
+                 if(!result) cos_pos=2
                 }
                 let bec =(args[cos_pos])? args.splice(cos_pos).join(' '):false
    //___ 
