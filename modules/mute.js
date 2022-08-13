@@ -228,7 +228,8 @@ exports.rh={
    //_______________________c1
    module.exports.commands.unmute={ on:true, aliase:'азмут', run:async(client,message,args)=>{try{
    //if on this function triggers on deffined command
-                 
+                let bcs='без причины';
+                if(args[2]) bcs=args.splice(2).join(' ')
                 let allow_unmute=await module.exports.check(client,message,message.member,'actor');
                 
                  let super_moderator_role = message.member.guild.roles.cache.find(r=>r.name==module.exports.e.super_moderator_name);
@@ -251,7 +252,7 @@ exports.rh={
                  //await module.exports.delay(1000);
                  message.channel.send(' Дождитесь полной интеграции.');
                  
-                 await module.exports.log(client,message,{name:'Размут',description:' размутил '+mmb.toString()+' '+mmb.user.username+mmb.user.discriminator,color:'green'});
+                 await module.exports.log(client,message,{name:'Размут',description:' размутил '+mmb.toString()+' '+mmb.user.username+mmb.user.discriminator,color:'green',cose:bcs});
                  return;  
    
    
