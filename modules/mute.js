@@ -307,6 +307,7 @@ exports.rh={
                  if(message.guild.owner.id==message.member.user.id){allow_be_muted=true;};
                  //if(!!super_moderator_role&&mmb.roles.get(super_moderator_role.id)){allow_be_muted=false;};
                  if(!allow_be_muted) {return message.channel.send('У вас недостаточно прав, лалка');};
+                 
                  //return;
    //___upd 14.12
                   if(client.muted[mmb.user.id]) {
