@@ -266,7 +266,13 @@ exports.rh={
                  let bcs='без причины';
                //__
                 //let mmb_men = args[1] //let time_ args[2] //let bec=args[3]
-                let bec =(args[3])? args.splice(3).join(' '):false
+                let cos_pos = 3
+                if(args[2]){
+                let pattern = /\d/g;
+                 let result = text.match(pattern);
+                 if(!!result) cos_pos=2
+                }
+                let bec =(args[cos_pos])? args.splice(cos_pos).join(' '):false
    //___ 
    
                 // if(bec) {bcs= '\n причина: '+bec;}; 
